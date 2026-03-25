@@ -1,0 +1,396 @@
+{% comment %}
+  Bacteria Section
+  Two-column layout with text content and bacteria comparison table
+{% endcomment %}
+
+<section class="hc-bacteria-section">
+  <div class="hc-bacteria-grid">
+    <!-- Text Content Column -->
+    <div class="hc-bacteria-content">
+      <h3 class="hc-bacteria-content-title">{{ section.settings.title | default: "Stop Bacteria. Stop Odor." }}</h3>
+      <div class="hc-bacteria-content-text">{{ section.settings.content }}</div>
+    </div>
+
+    <!-- Table Column -->
+    <div class="hc-bacteria-table-wrapper">
+      <div class="hc-bacteria-table-container">
+        <div class="hc-bacteria-table-card">
+          <div class="hc-bacteria-table-scroll">
+            <table class="hc-bacteria-table">
+              <thead>
+                <tr class="hc-bacteria-table-head-row">
+                  <th class="hc-bacteria-table-head-cell">Material</th>
+                  <th class="hc-bacteria-table-head-cell hc-bacteria-table-head-cell-mechanism">Mechanism</th>
+                  <th class="hc-bacteria-table-head-cell">Reduction</th>
+                  <th class="hc-bacteria-table-head-cell hc-bacteria-table-head-cell-right">Speed</th>
+                </tr>
+              </thead>
+              <tbody class="hc-bacteria-table-body">
+                {% for block in section.blocks %}
+                  <tr class="hc-bacteria-table-row {% if block.settings.is_hero %}hc-bacteria-table-row-hero{% endif %}">
+                    <td class="hc-bacteria-table-cell hc-bacteria-table-cell-material {% if block.settings.is_hero %}hc-bacteria-table-cell-hero{% endif %}">
+                      {{ block.settings.material_name }}
+                    </td>
+                    <td class="hc-bacteria-table-cell hc-bacteria-table-cell-mechanism {% if block.settings.is_hero %}hc-bacteria-table-cell-mechanism-hero{% endif %}">
+                      {{ block.settings.mechanism }}
+                    </td>
+                    <td class="hc-bacteria-table-cell {% if block.settings.is_hero %}hc-bacteria-table-cell-hero-bold{% endif %}">
+                      {{ block.settings.reduction }}
+                    </td>
+                    <td class="hc-bacteria-table-cell hc-bacteria-table-cell-right">
+                      <span class="{% if block.settings.is_hero or block.settings.highlight_speed %}hc-bacteria-table-cell-speed-highlight{% endif %}">
+                        {{ block.settings.speed }}
+                      </span>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="hc-bacteria-table-footer">
+            <div class="hc-bacteria-table-footer-box">
+              <p class="hc-bacteria-table-footer-text">{{ section.settings.footer_text | default: "HercFiber Works 10-100x Faster Than Silver-Infused Clothing" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Bacteria Section */
+.hc-bacteria-section {
+  border-bottom: 1px solid #000000;
+  background-color: #000000;
+}
+
+.hc-bacteria-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 60vh;
+}
+
+/* Content Column */
+.hc-bacteria-content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.hc-bacteria-content-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.hc-bacteria-content-text {
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 32rem;
+  color: #9ca3af;
+  white-space: pre-line;
+}
+
+/* Table Column */
+.hc-bacteria-table-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #000000;
+}
+
+.hc-bacteria-table-container {
+  width: 100%;
+  max-width: 36rem;
+}
+
+.hc-bacteria-table-card {
+  padding: 2rem;
+  border: 1px solid #374151;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.hc-bacteria-table-scroll {
+  overflow-x: auto;
+}
+
+/* Table */
+.hc-bacteria-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.hc-bacteria-table-head-row {
+  border-bottom: 1px solid #374151;
+  color: #9ca3af;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hc-bacteria-table-head-cell {
+  padding: 0.5rem 1rem 0.5rem 0;
+}
+
+.hc-bacteria-table-head-cell-mechanism {
+  display: none;
+}
+
+.hc-bacteria-table-head-cell-right {
+  text-align: right;
+}
+
+.hc-bacteria-table-row {
+  border-bottom: 1px solid #1f2937;
+  color: #6b7280;
+}
+
+.hc-bacteria-table-row-hero {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.hc-bacteria-table-cell {
+  padding: 0.75rem 1rem 0.75rem 0;
+}
+
+.hc-bacteria-table-cell-material {
+  font-weight: 700;
+}
+
+.hc-bacteria-table-cell-hero {
+  color: #B45309;
+}
+
+.hc-bacteria-table-cell-hero-bold {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.hc-bacteria-table-cell-mechanism {
+  display: none;
+}
+
+.hc-bacteria-table-cell-mechanism-hero {
+  opacity: 0.7;
+  color: #ffffff;
+}
+
+.hc-bacteria-table-cell-right {
+  text-align: right;
+}
+
+.hc-bacteria-table-cell-speed-highlight {
+  color: #B45309;
+}
+
+.hc-bacteria-table-row:not(.hc-bacteria-table-row-hero) .hc-bacteria-table-cell:nth-child(3) {
+  color: #ffffff;
+}
+
+/* Table Footer */
+.hc-bacteria-table-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #374151;
+  text-align: center;
+}
+
+.hc-bacteria-table-footer-box {
+  background-color: #111827;
+  border: 1px solid #374151;
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+.hc-bacteria-table-footer-text {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #d1d5db;
+  margin: 0;
+}
+
+/* Responsive - Medium screens */
+@media (min-width: 768px) {
+  .hc-bacteria-content {
+    padding: 6rem;
+  }
+  
+  .hc-bacteria-content-title {
+    font-size: 3rem;
+  }
+  
+  .hc-bacteria-table-wrapper {
+    padding: 3rem;
+  }
+  
+  .hc-bacteria-table {
+    font-size: 0.875rem;
+  }
+  
+  .hc-bacteria-table-head-cell-mechanism,
+  .hc-bacteria-table-cell-mechanism {
+    display: table-cell;
+  }
+}
+
+/* Responsive - Large screens */
+@media (min-width: 1024px) {
+  .hc-bacteria-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hc-bacteria-content {
+    border-right: 1px solid #1f2937;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC Bacteria Section",
+  "tag": "section",
+  "class": "bacteria-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Stop Bacteria. Stop Odor."
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Odor only exists because bacteria linger long enough to break down sweat. Most fabrics give them hours of freedom — and those hours are all bacteria need to create smell. HercLeón solves this at the source with advanced antibacterial fibers that neutralize bacteria the moment they touch the fabric.</p><p>By removing bacteria up to 100x faster than even the most powerful silver treated clothing our HercFiber stops the entire odor cycle before it can begin. The result is simple: you stay fresher, cleaner, and more confident for far longer.</p><p>Freshness isn't luck — it's engineering.<br>And it starts with killing bacteria fast.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Table Footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "HercFiber Works 10-100x Faster Than Silver-Infused Clothing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "material",
+      "name": "Material Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "material_name",
+          "label": "Material Name",
+          "default": "Cotton"
+        },
+        {
+          "type": "text",
+          "id": "mechanism",
+          "label": "Mechanism",
+          "default": "Minimize moisture availability"
+        },
+        {
+          "type": "text",
+          "id": "reduction",
+          "label": "Reduction %",
+          "default": "5%"
+        },
+        {
+          "type": "text",
+          "id": "speed",
+          "label": "Speed (use ★ for stars)",
+          "default": "★☆☆☆☆"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight_speed",
+          "label": "Highlight Speed (Orange)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "is_hero",
+          "label": "Hero Row (HercFiber)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Bacteria Section",
+      "blocks": [
+        {
+          "type": "material",
+          "settings": {
+            "material_name": "Polyester",
+            "mechanism": "No antibacterial abilities",
+            "reduction": "0%",
+            "speed": "☆☆☆☆☆"
+          }
+        },
+        {
+          "type": "material",
+          "settings": {
+            "material_name": "Cotton",
+            "mechanism": "Minimize moisture availability",
+            "reduction": "5%",
+            "speed": "★☆☆☆☆"
+          }
+        },
+        {
+          "type": "material",
+          "settings": {
+            "material_name": "Merino Wool",
+            "mechanism": "Resists but doesn't kill",
+            "reduction": "30%",
+            "speed": "★☆☆☆☆",
+            "highlight_speed": true
+          }
+        },
+        {
+          "type": "material",
+          "settings": {
+            "material_name": "Silver-Infused",
+            "mechanism": "Ions kill on contact",
+            "reduction": "99.9%",
+            "speed": "★★★☆☆",
+            "highlight_speed": true
+          }
+        },
+        {
+          "type": "material",
+          "settings": {
+            "material_name": "HercFiber™",
+            "mechanism": "Multi-mineral matrix",
+            "reduction": "99.9%",
+            "speed": "★★★★★",
+            "is_hero": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

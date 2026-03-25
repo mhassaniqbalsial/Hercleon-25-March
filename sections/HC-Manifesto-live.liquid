@@ -1,0 +1,176 @@
+{% comment %}
+  HC Manifesto section
+  Class prefix: hc-manifesto
+{% endcomment %}
+
+{% style %}
+  .hc-manifesto {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+==
+{% endstyle %}
+
+<div class="hc-manifesto">
+  <div class="hc-manifesto__wrapper">
+    <div class="hc-manifesto__inner">
+      <span class="hc-manifesto__eyebrow">{{ section.settings.eyebrow | default: 'The Hercléon Manifesto' }}</span>
+      <h2 class="hc-manifesto__title">{{ section.settings.title | default: "Live With Less. Do More." }}</h2>
+      <div class="hc-manifesto__body">
+        {% if section.settings.body != blank %}
+          <div class="hc-manifesto__body-content">
+            {{ section.settings.body }}
+          </div>
+        {% else %}
+          <div class="hc-manifesto__body-content">
+            <p class="hc-manifesto__paragraph">We believe that your possessions should liberate you, not burden you.</p>
+            <p class="hc-manifesto__paragraph">We believe that laundry is a waste of a finite human life.</p>
+            <p class="hc-manifesto__paragraph">We believe that travel is the highest form of education, and you should move through the world unencumbered.</p>
+            <p class="hc-manifesto__paragraph">We build gear for the few who prioritize experience over accumulation.</p>
+          </div>
+        {% endif %}
+      </div>
+      <div class="hc-manifesto__footer">
+        <h3 class="hc-manifesto__cta">{{ section.settings.cta_text | default: 'Join the Movement' }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hc-manifesto {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hc-manifesto__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hc-manifesto__inner {
+    max-width: 48rem;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-manifesto__inner {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hc-manifesto__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 2rem;
+  }
+
+  .hc-manifesto__title {
+    font-size: 2.25rem;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-manifesto__title {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-manifesto__title {
+      font-size: 4.5rem;
+    }
+  }
+
+  .hc-manifesto__body {
+    margin-bottom: 0;
+  }
+
+  .hc-manifesto__body-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Style both default paragraphs and richtext body so customizer content matches */
+  .hc-manifesto__body-content p,
+  .hc-manifesto__paragraph {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #9ca3af;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .hc-manifesto__footer {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid #1f2937;
+  }
+
+  .hc-manifesto__cta {
+    color: #fff;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Manifesto Live",
+  "tag": "section",
+  "class": "section-hc-manifesto",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "The Hercléon Manifesto"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Live With Less. Do More.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body content",
+      "default": "<p>We believe that your possessions should liberate you, not burden you.</p><p>We believe that laundry is a waste of a finite human life.</p><p>We believe that travel is the highest form of education, and you should move through the world unencumbered.</p><p>We build gear for the few who prioritize experience over accumulation.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Footer CTA text",
+      "default": "Join the Movement"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Manifesto Live"
+    }
+  ]
+}
+{% endschema %}

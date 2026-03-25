@@ -1,0 +1,254 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "hc_live_section_EDqfxz": {
+      "type": "hc-live-section",
+      "name": "HC Live Section",
+      "settings": {
+        "background_image": "shopify://shop_images/photo-1501555088652-021faa106b9b.png",
+        "background_image_opacity": 40,
+        "heading": "Live Lighter. \nLive Better. \nLive Freer.",
+        "header_offset": 56,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0
+      }
+    },
+    "hc_jump_to_P7iVNq": {
+      "type": "hc-jump-to",
+      "blocks": {
+        "jump_link_zGyM7r": {
+          "type": "jump_link",
+          "settings": {
+            "title": "Our Story",
+            "anchor_id": "our-story"
+          }
+        },
+        "jump_link_9DYBaU": {
+          "type": "jump_link",
+          "settings": {
+            "title": "Our Mission",
+            "anchor_id": "our-mission"
+          }
+        },
+        "jump_link_FaCptt": {
+          "type": "jump_link",
+          "settings": {
+            "title": "Our Approach",
+            "anchor_id": "our-approach"
+          }
+        },
+        "jump_link_TWCitg": {
+          "type": "jump_link",
+          "settings": {
+            "title": "Our Purpose",
+            "anchor_id": "our-purpose"
+          }
+        },
+        "jump_link_C43gPF": {
+          "type": "jump_link",
+          "settings": {
+            "title": "Our Founder's Letter",
+            "anchor_id": "our-founders-letter"
+          }
+        }
+      },
+      "block_order": [
+        "jump_link_zGyM7r",
+        "jump_link_9DYBaU",
+        "jump_link_FaCptt",
+        "jump_link_TWCitg",
+        "jump_link_C43gPF"
+      ],
+      "name": "HC Jump To",
+      "settings": {
+        "label_prefix": "Jump to:",
+        "nav_aria_label": "Jump to page sections",
+        "auto_match_header": true,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0
+      }
+    },
+    "hc_clothes_smell_xrBYE4": {
+      "type": "hc-clothes-smell",
+      "name": "HC Clothes Smell",
+      "settings": {
+        "story_anchor_id": "our-story",
+        "mission_anchor_id": "our-mission",
+        "eyebrow": "Iceland, 2017",
+        "heading": "Why do clothes smell?",
+        "story_content": "<p>A few months before the trip, Wen, our founder, lost his mom.</p><p>He needed to get away. So he packed a backpack — just a few pieces of clothing — and flew to Iceland.</p><p>He wasn't there to be productive. He was there to breathe, to be somewhere completely different, and hopefully, to feel something other than grief for a little while. His friends were there too, and they wanted to go out — explore, party, live. He wanted that too. More than they probably knew.</p><p>But Iceland had other plans.</p><p>Within days, some of his clothes started smelling. Not subtly — noticeably. The strange thing was, other pieces were completely fine. Same backpack, same trip, same person wearing them. Why were some clothes unbearable after a single wear while others stayed fresh?</p><p>He didn't have a good answer. And he didn't have a laundromat either — their hostel didn't have one, and if you've spent time in Iceland, you already know they're not exactly on every corner. So he did what anyone would do: reached for the cologne, leaned on the deodorant, and tried to convince himself it wasn't that bad.</p><p>It was that bad.</p><p>One by one, evenings he'd planned to spend out with friends became evenings spent in — not because he wanted to, but because he couldn't shake the self-consciousness of knowing he didn't smell great. It sounds small. But when you've traveled thousands of miles to feel alive again, being sidelined by a t-shirt is its own particular kind of defeat.</p><p>On the way home, somewhere over the Atlantic, the question finally crystallized:</p><p><strong>Why do clothes smell? And do they actually have to?</strong></p><p>It felt almost too simple. But he couldn't let it go. Back home, he started digging — into bacteria, enzymes, airflow, material science, fiber construction. He tested yarns, fabrics, and treatments. He failed a lot. He learned more. Two years later, what started as a question on a grief trip to Iceland had become something he hadn't expected:</p><p><strong>A mission. A company. A reason to keep going.</strong></p>",
+        "show_mission_card": true,
+        "mission_eyebrow": "Our Mission",
+        "mission_heading_line1": "To free humanity through",
+        "mission_heading_line2": "the power of our fibers.",
+        "beliefs_label": "Our Beliefs",
+        "belief_1": "Clothes are costing us more than money.\nThey're costing us time, space, energy,\npeace of mind, and our freedom.\nWorse of all, they're destroying our planet.",
+        "belief_2": "The world doesn't need more clothes.\nIt needs better ones, clothes that do more with less.\nLess washing. Less waste. Less weight on the planet.",
+        "belief_3": "Every thing we make is a step toward that world.",
+        "footer_note": "Together, our mission and beliefs became the foundation of HercLeón.",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_business_product_approach_gERVgc": {
+      "type": "hc-business-product-approach",
+      "blocks": {
+        "approach_point_xVnhUf": {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Starting with humans, not mood boards.",
+            "point_body": "We study biology, psychology, and daily habits before we ever touch a fabric. If we don't understand the problem completely, we have no business designing the solution."
+          }
+        },
+        "approach_point_Dp6q9h": {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Bringing in the right minds.",
+            "point_body": "We collaborate with chemists, biologists, and physicists to make sure the science behind every product is as strong as the story around it."
+          }
+        },
+        "approach_point_CdFCa6": {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Obsessing over the details nobody sees.",
+            "point_body": "Fiber selection, yarn spinning, knit construction, finishing treatments; each one is analyzed, tested, and refined until it earns its place in the final product."
+          }
+        },
+        "approach_point_ycGB6H": {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Connecting all the dots.",
+            "point_body": "Great materials mean nothing without great manufacturing. We marry what we know about human needs, material science, and production to create products that are aligned in every direction."
+          }
+        },
+        "approach_point_8kemKK": {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Taking the time it actually takes.",
+            "point_body": "We've spent years, sometimes a decade, refining a single product before releasing it. Not because we're slow, but because we'd rather keep working than hand you something we know could be better."
+          }
+        }
+      },
+      "block_order": [
+        "approach_point_xVnhUf",
+        "approach_point_Dp6q9h",
+        "approach_point_CdFCa6",
+        "approach_point_ycGB6H",
+        "approach_point_8kemKK"
+      ],
+      "name": "HC Business Approach",
+      "settings": {
+        "section_anchor_id": "our-approach",
+        "business_eyebrow": "Our Business Approach",
+        "business_heading": "No Shareholders. \nNo Private Jets.",
+        "business_body": "<p>People often ask why big clothing brands don't just do what we do. The honest answer: their incentives won't let them.</p><p>Most large brands answer to shareholders. That means every decision — materials, manufacturing, pricing — gets filtered through one question: what's best for the stock price? Better materials cost more. Higher standards cut into margins. In that system, you're not really the customer. You're a line item with a credit card.</p><p>We decided early on that we didn't want to build that way.</p><p>It wasn't easy. Our founder Wen spent everything he had to buy out our early shareholders — and came dangerously close to losing it all. At some point, faced with the choice between going broke or going hollow, he picked broke. Turns out an empty wallet is easier to live with than an empty conscience.</p><p>So today, HercLeón is fully independent. No shareholders to answer to. No quarterly earnings call to dress up. Just us, our products, and the people who wear them.</p><p>There's an African proverb we keep coming back to: \"If you want to go fast, go alone. If you want to go far, go together.\" We're not trying to be the fastest brand in the room — just the one still standing when it matters. And the only way to do that is to stay honest, stay independent, and occasionally remind ourselves that a great jacket outlasts a great stock tip.</p>",
+        "product_image_alt": "Fabric yarns and fibers",
+        "product_eyebrow": "Our Product Approach",
+        "product_heading": "Engineering first. \nAlways.",
+        "product_intro": "<p>We don't design products to follow trends. We design them to solve problems real ones, that real people deal with every day. That means doing the work most brands skip:</p>",
+        "product_footer_lead": "If something can be meaningfully improved, we feel responsible for trying.",
+        "product_footer_taglines": "Even when it's difficult.\nEven when it's expensive.\nEven when most brands wouldn't bother.",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_why_this_matters_fqWQDM": {
+      "type": "hc-why-this-matters",
+      "name": "HC Why This Matters",
+      "settings": {
+        "section_anchor_id": "our-purpose",
+        "eyebrow": "The Impact",
+        "heading": "Why this matters",
+        "lead": "We didn't set out to build a clothing company. We set out to stop people from missing out on their own lives.",
+        "body_paragraph_1": "That's what bad gear actually costs you — not money, but moments. The evening you stayed in. The trip you overpacked for. The morning lost to laundry instead of living.",
+        "body_paragraph_2": "HercLeón exists to give that back. Clothes that stay fresh longer mean less water wasted and less gear in landfills. But the real return is personal — the confidence to show up without second-guessing, the freedom to move through life without your closet calling the shots.",
+        "closing": "Better design makes better clothes. But more importantly, it makes more room for everything that actually matters.",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_question_is_bigger_PBxynr": {
+      "type": "hc-question-is-bigger",
+      "name": "HC Question Bigger",
+      "settings": {
+        "prelude": "We started by asking why clothes smell.",
+        "transition": "Today, the question is bigger.",
+        "main_question": "How much better could life feel if the essentials were truly built for freedom?",
+        "closing_line": "We're here to find out.",
+        "footer_line": "And we're just getting started.",
+        "show_cta": true,
+        "cta_heading": "Experience the Freedom",
+        "cta_button_label": "Shop The Gear",
+        "cta_button_link": "",
+        "cta_button_new_tab": false,
+        "padding_top_mobile": 96,
+        "padding_bottom_mobile": 96,
+        "padding_top_desktop": 160,
+        "padding_bottom_desktop": 160
+      }
+    },
+    "hc_founders_letter_pfwzQR": {
+      "type": "hc-founders-letter",
+      "name": "HC Founder Note",
+      "settings": {
+        "section_anchor_id": "our-founders-letter",
+        "eyebrow": "A Personal Note from Wen, Our Founder",
+        "letter_body": "<p>I've loved people my whole life. Even as a kid, if someone didn't like me, I still loved them. I never really understood it. It's just who I am.</p><p>I grew up in Africa, where we didn't have much. But looking back, we had more than enough. Life was simple, close, and full. That simplicity never left me. If anything, it became the thing I've spent my whole adult life trying to protect, for myself and for the people I hope to serve.</p><p>My mom passed away in 2017. Her last words were: \"I did the best I could.\"</p><p>I've never gotten over those words. I don't think I'm supposed to. They follow me into every decision I make, every product I work on, every time I'm tempted to cut a corner or ship something I know isn't ready. She didn't leave me money or a business plan. She left me a standard. And I've spent every day since trying to live up to it.</p><p>I've worn our shirts and socks and slept on our sheets almost every single day since 2018. I've worn a single HercShirt for 100 consecutive days just to understand what it could endure. Some products took a decade to get right. When something finally carries the HercLeón name, it earned it.</p><p>The products have a way of proving themselves when it counts. Customers have traveled for weeks across multiple countries out of a single small bag. Couples going through divorce have fought over who gets to keep the Jax Sheets. Not the house. The sheets. We take that as a good sign.</p><p>I've been offered millions by some of the most famous people in the world to help build their brands. I turned every one of them down. Saying yes would have meant trading my peace, my playfulness, and my joy for money, fame, and power. That's exactly what people mean when they say you've sold your soul. I pitched HercLeón on Shark Tank instead, showed up as myself, and somehow people called it the best pitch they'd ever seen. All I did was tell the truth.</p><p>Here's the truth about what drives me: it isn't money. I live simply, I always have. I have nothing to prove and no one to impress. What I do have is work I genuinely love, and the knowledge that when you buy something from HercLeón, you're not funding a lifestyle. You're funding the next decade of someone quietly obsessing over how to make your life a little freer and a little lighter.</p><p>That's all I want. That's all I've ever wanted.</p><p>One day I'll go home. Back to the village, back to the simple life. I'll need almost nothing: a couple of shirts, two pairs of socks, one set of sheets. Just the essentials, perfectly made. That's what freedom looks like to me.</p><p>But until then, I'm here. Fully committed to doing my best, for you, for this company, and for the memory of a woman who showed me what that actually means.</p>",
+        "signature_name": "Wen Muenyi",
+        "signature_title": "HercLeon CEO & Founder",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "hc_live_section_EDqfxz",
+    "hc_jump_to_P7iVNq",
+    "hc_clothes_smell_xrBYE4",
+    "hc_business_product_approach_gERVgc",
+    "hc_why_this_matters_fqWQDM",
+    "hc_question_is_bigger_PBxynr",
+    "hc_founders_letter_pfwzQR"
+  ]
+}

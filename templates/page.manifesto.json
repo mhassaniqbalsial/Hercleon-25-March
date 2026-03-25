@@ -1,0 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "hc_manifesto_live_nenJYC": {
+      "type": "HC-Manifesto-live",
+      "name": "HC Manifesto Live",
+      "settings": {
+        "eyebrow": "The Hercléon Manifesto",
+        "title": "<p>Live With Less.<br/>Do More.</p>",
+        "body": "<p>We believe that your possessions should liberate you, not burden you.</p><p>We believe that laundry is a waste of a finite human life.</p><p>We believe that travel is the highest form of education, and you should move through the world unencumbered.</p><p>We build gear for the few who prioritize experience over accumulation.</p>",
+        "cta_text": "Join the Movement"
+      }
+    },
+    "hc_floating_nav_page_p6AN6E": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_TzeBPN": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_fh4HMi": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_BLiT3j": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_TzeBPN",
+        "clearance_item_fh4HMi",
+        "clearance_item_BLiT3j"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "hc_manifesto_live_nenJYC",
+    "hc_floating_nav_page_p6AN6E"
+  ]
+}

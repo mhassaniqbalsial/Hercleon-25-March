@@ -1,0 +1,325 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "hc_os_fashion_Bjiwib": {
+      "type": "HC-OS-fashion",
+      "name": "HC os Fashion",
+      "settings": {
+        "heading": "We Didn't Start\nWith Fashion.",
+        "subheading": "We Started With a Problem.",
+        "tagline": "Clothing shouldn't limit your freedom — it should expand it.",
+        "cta_text": "Scroll to learn our story ↓",
+        "cta_link": "#story-start"
+      }
+    },
+    "hc_os_iceland_Q9U4p3": {
+      "type": "HC-OS-iceland",
+      "name": "HC os Iceland",
+      "settings": {
+        "section_id": "story-start",
+        "label": "The Origin",
+        "label_color": "#b45309",
+        "heading": "It All Began\nIn Iceland.",
+        "paragraph_1": "It was a trip where clothes began to smell too fast. A realization that odor — not design, not style — is what truly limits clothing.",
+        "paragraph_2": "A question that refused to let go:",
+        "highlight_text": "\"Do clothes actually have to smell?\"",
+        "image_alt": "",
+        "caption": "Reykjavik, 2017"
+      }
+    },
+    "hc_os_search_zBAh9g": {
+      "type": "HC-OS-search",
+      "name": "HC OS Search",
+      "settings": {
+        "heading": "A Two-Year Search\nFor Answers",
+        "paragraph_1": "Sleepless nights. Research that led nowhere. Experiments that failed — until they didn't.",
+        "paragraph_2": "A discovery emerged: Different fabrics handle odor differently. But all of them eventually fail because they only target one type of odor.",
+        "highlight": "What if clothing could handle all five?",
+        "paragraph_3": "This became the foundation for HercLeón.",
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_os_benefits_YtF37W": {
+      "type": "HC-OS-benefits",
+      "blocks": {
+        "benefit_3kp9Bt": {
+          "type": "benefit",
+          "settings": {
+            "number": "01",
+            "title": "Discovery",
+            "text": "Understanding the biology of odor. Identifying the 5 odor types. Mapping why every fabric fails."
+          }
+        },
+        "benefit_jPUYj6": {
+          "type": "benefit",
+          "settings": {
+            "number": "02",
+            "title": "Engineering",
+            "text": "Years of testing mineral blends. Understanding how odor molecules bind. Finding the perfect fiber geometry."
+          }
+        },
+        "benefit_Fea9aP": {
+          "type": "benefit",
+          "settings": {
+            "number": "03",
+            "title": "Proof",
+            "text": "The first shirts worn for days — even weeks — with no odor breakthrough."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_3kp9Bt",
+        "benefit_jPUYj6",
+        "benefit_Fea9aP"
+      ],
+      "name": "HC OS Benefits",
+      "settings": {
+        "heading": "The Smell-Proof Breakthrough",
+        "subheading": "A new kind of fiber blend, built from minerals and plants, not chemicals.",
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128,
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128
+      }
+    },
+    "hc_os_clothing_QAB7qx": {
+      "type": "HC-OS-clothing",
+      "name": "HC OS Clothing",
+      "settings": {
+        "title": "Clothing Was Meant to Help Humans Go Farther.",
+        "text": "But over time, clothes became fragile, high-maintenance, and easily defeated by odor. Laundry took over our schedules. Packing took over our bags. Odor took over our confidence. We exist to reverse that.",
+        "quote": "Clothing should serve you,\nnot the other way around.",
+        "padding_top_desktop": 160,
+        "padding_bottom_desktop": 160,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "hc_os_beliefs_DViipc": {
+      "type": "HC-OS-beliefs",
+      "blocks": {
+        "card_6ikqe7": {
+          "type": "card",
+          "settings": {
+            "icon": "freedom",
+            "title": "Freedom",
+            "text": "Clothing should give you more life, not more chores."
+          }
+        },
+        "card_Dw4xJh": {
+          "type": "card",
+          "settings": {
+            "icon": "lightness",
+            "title": "Lightness",
+            "text": "Own less, move more, feel clearer."
+          }
+        },
+        "card_cxpU8Q": {
+          "type": "card",
+          "settings": {
+            "icon": "engineering",
+            "title": "Engineering > Fashion",
+            "text": "Better materials > trends."
+          }
+        },
+        "card_Yzx8Gp": {
+          "type": "card",
+          "settings": {
+            "icon": "longevity",
+            "title": "Longevity",
+            "text": "What you wear should last years, not months."
+          }
+        }
+      },
+      "block_order": [
+        "card_6ikqe7",
+        "card_Dw4xJh",
+        "card_cxpU8Q",
+        "card_Yzx8Gp"
+      ],
+      "name": "HC OS Beliefs",
+      "settings": {
+        "heading": "Our Core Beliefs",
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128,
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128
+      }
+    },
+    "hc_os_freedomwear_edm3Xa": {
+      "type": "HC-OS-freedomwear",
+      "name": "HC OS Freedomwear",
+      "settings": {
+        "heading": "We're Building Freedomwear.",
+        "description": "Clothing designed to eliminate odor, reduce laundry, last longer, pack lighter, and help people experience life with more freedom and fewer limits.",
+        "matrix_label": "HercFiber Matrix",
+        "tagline": "[Multi-Layer Odor Defense]",
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_os_life_odor_gz8VDc": {
+      "type": "HC-OS-life-odor",
+      "blocks": {
+        "tag_YHGFT8": {
+          "type": "tag",
+          "settings": {
+            "label": "You pack less"
+          }
+        },
+        "tag_JPYe7U": {
+          "type": "tag",
+          "settings": {
+            "label": "You wash less"
+          }
+        },
+        "tag_Kzghxg": {
+          "type": "tag",
+          "settings": {
+            "label": "You own fewer things"
+          }
+        },
+        "tag_7bVDyU": {
+          "type": "tag",
+          "settings": {
+            "label": "You move with more confidence"
+          }
+        }
+      },
+      "block_order": [
+        "tag_YHGFT8",
+        "tag_JPYe7U",
+        "tag_Kzghxg",
+        "tag_7bVDyU"
+      ],
+      "name": "HC OS Life Odor",
+      "settings": {
+        "heading": "Life Gets Lighter When\nOdor Is Removed",
+        "subtitle_line_1": "This isn't fashion.",
+        "subtitle_line_2": "This is the next evolution of clothing.",
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_os_wen_note_nia4qm": {
+      "type": "HC-OS-wen-note",
+      "name": "HC OS Wen Note",
+      "settings": {
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128,
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128,
+        "label": "A Note From Wen",
+        "quote": "\"I created HercLeón because odor was the one limitation that clothing never solved. I wanted a life where I could travel with less, worry less, and feel more alive. I hope these clothes serve you as well as they have served me.\"",
+        "author_name": "Wen",
+        "author_title": "Founder & Chief Textile Engineer"
+      }
+    },
+    "hc_os_future_8kzGN6": {
+      "type": "HC-OS-future",
+      "name": "HC OS Future",
+      "settings": {
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128,
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128,
+        "heading": "Experience the Future of Clothing",
+        "primary_button_label": "Shop Shirts",
+        "primary_button_link": "",
+        "secondary_button_label": "Explore the Science",
+        "secondary_button_link": ""
+      }
+    },
+    "hc_floating_nav_page_fk77Ld": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_RiHkUd": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_daWxG4": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_cM7Gw9": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_RiHkUd",
+        "clearance_item_daWxG4",
+        "clearance_item_cM7Gw9"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hc_os_fashion_Bjiwib",
+    "hc_os_iceland_Q9U4p3",
+    "hc_os_search_zBAh9g",
+    "hc_os_benefits_YtF37W",
+    "hc_os_clothing_QAB7qx",
+    "hc_os_beliefs_DViipc",
+    "hc_os_freedomwear_edm3Xa",
+    "hc_os_life_odor_gz8VDc",
+    "hc_os_wen_note_nia4qm",
+    "hc_os_future_8kzGN6",
+    "hc_floating_nav_page_fk77Ld"
+  ]
+}

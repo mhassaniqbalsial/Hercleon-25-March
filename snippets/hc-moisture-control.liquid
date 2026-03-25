@@ -1,0 +1,248 @@
+{% comment %}
+  HC Moisture Control Block
+  Section: moisture control / hyper-absorbency
+{% endcomment %}
+
+<style>
+  .hc-moisture-control {
+    border-bottom: 1px solid #000;
+    background-color: #000;
+    animation: hc-moisture-control-fade-in-up 0.6s ease forwards;
+    overflow: visible;
+  }
+
+  .hc-moisture-control__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-moisture-control__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-moisture-control__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-moisture-control__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-moisture-control__content {
+      border-right: 1px solid #1f2937;
+    }
+  }
+
+  .hc-moisture-control__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hc-moisture-control__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.25;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-moisture-control__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-moisture-control__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 32rem;
+    color: #9ca3af;
+    white-space: pre-line;
+  }
+
+  .hc-moisture-control__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-moisture-control__right {
+      padding: 3rem;
+    }
+  }
+
+  .hc-moisture-control__card-wrap {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-moisture-control__card {
+    background-color: #fff;
+    padding: 3rem;
+    text-align: center;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000;
+    min-height: 320px;
+  }
+
+  .hc-moisture-control__card-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-moisture-control__card-subtitle {
+    font-size: 10px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 3rem;
+  }
+
+  .hc-moisture-control__bars {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3rem;
+    height: 256px;
+    min-height: 256px;
+  }
+
+  .hc-moisture-control__bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 6rem;
+    min-width: 6rem;
+    flex-shrink: 0;
+  }
+
+  .hc-moisture-control__bar-legend {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #b45309;
+    margin-bottom: 0.25rem;
+  }
+
+  .hc-moisture-control__bar-legend--muted {
+    color: #d1d5db;
+  }
+
+  .hc-moisture-control__bar {
+    width: 100%;
+    min-width: 4rem;
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .hc-moisture-control__bar--left {
+    background-color: #bfdbfe;
+    height: 256px;
+    min-height: 256px;
+    display: block !important;
+  }
+
+  .hc-moisture-control__bar--right {
+    background-color: #b45309;
+    height: 32px;
+    min-height: 32px;
+    display: block !important;
+  }
+
+  .hc-moisture-control__bar-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .hc-moisture-control__bar-label--muted {
+    color: #d1d5db;
+  }
+
+  .hc-moisture-control__bar-label--accent {
+    color: #b45309;
+  }
+
+  @keyframes hc-moisture-control-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<section
+  id="moisture_control"
+  class="hc-moisture-control"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-moisture-control__grid">
+    <div class="hc-moisture-control__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+        <span class="hc-moisture-control__eyebrow">{{ block.settings.eyebrow_text }}</span>
+      {%- endif -%}
+      {%- if block.settings.title != blank -%}
+        <h3 class="hc-moisture-control__title">{{ block.settings.title }}</h3>
+      {%- endif -%}
+      {%- if block.settings.description != blank -%}
+        <p class="hc-moisture-control__description">{{ block.settings.description }}</p>
+      {%- endif -%}
+    </div>
+    <div class="hc-moisture-control__right">
+      <div class="hc-moisture-control__card-wrap">
+        <div class="hc-moisture-control__card">
+          {%- if block.settings.card_title != blank -%}
+            <h4 class="hc-moisture-control__card-title">{{ block.settings.card_title }}</h4>
+          {%- endif -%}
+          {%- if block.settings.card_subtitle != blank -%}
+            <p class="hc-moisture-control__card-subtitle">{{ block.settings.card_subtitle }}</p>
+          {%- endif -%}
+          <div class="hc-moisture-control__bars">
+            <div class="hc-moisture-control__bar-group">
+              <div class="hc-moisture-control__bar hc-moisture-control__bar--left" style="background-color: #bfdbfe;"></div>
+              <span class="hc-moisture-control__bar-label hc-moisture-control__bar-label--muted">{{ block.settings.bar_left_label | default: 'Others' }}</span>
+            </div>
+            <div class="hc-moisture-control__bar-group">
+              {%- if block.settings.bar_right_legend != blank -%}
+                <span class="hc-moisture-control__bar-legend">{{ block.settings.bar_right_legend }}</span>
+              {%- endif -%}
+              <div class="hc-moisture-control__bar hc-moisture-control__bar--right" style="background-color: #b45309;"></div>
+              <span class="hc-moisture-control__bar-label hc-moisture-control__bar-label--accent">{{ block.settings.bar_right_label | default: 'HercFiber' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

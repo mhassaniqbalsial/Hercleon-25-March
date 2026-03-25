@@ -1,0 +1,374 @@
+{% comment %}
+  Bacteria Block
+  Two-column layout with text content and bacteria comparison table
+{% endcomment %}
+
+<style>
+/* Bacteria Block */
+.hc-odor-bacteria-block {
+  border-bottom: 1px solid #000000;
+  background-color: #ffffff;
+}
+
+.hc-odor-bacteria-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    min-height: 60vh;
+    direction: rtl;
+}
+
+.hc-odor-bacteria-block__grid > * {
+    direction: ltr;
+}
+
+/* Content Column */
+.hc-odor-bacteria-block__content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.hc-odor-bacteria-block__content-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.hc-odor-bacteria-block__content-text {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 32rem;
+    color: #4b5563;
+}
+
+/* Table Column */
+.hc-odor-bacteria-block__table-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.hc-odor-bacteria-block__table-container {
+  width: 100%;
+  max-width: 36rem;
+}
+
+.hc-odor-bacteria-block__table-card {
+  padding: 2rem;
+  border: 1px solid #374151;
+  background-color: #ffffff;
+  color: #ffffff;
+}
+
+.hc-odor-bacteria-block__table-scroll {
+  overflow-x: auto;
+}
+
+/* Table */
+.hc-odor-bacteria-block__table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.hc-odor-bacteria-block__table-head-row {
+  color: #6b7280;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hc-odor-bacteria-block__table-head-cell {
+    padding: 0.5rem 1rem 0.5rem 0;
+    font-size: 10px;
+}
+
+.hc-odor-bacteria-block__table-head-cell--mechanism {
+  display: none;
+}
+
+.hc-odor-bacteria-block__table-head-cell--right {
+  text-align: right;
+}
+
+.hc-odor-bacteria-block__table-row {
+  border-bottom: 1px solid #1f2937;
+  color: #6b7280;
+}
+
+.hc-odor-bacteria-block__table-row--hero {
+  color: #ffffff;
+  background-color: rgba(243, 244, 246, 0.1);
+}
+
+.hc-odor-bacteria-block__table-cell {
+    padding: 0.75rem 1rem 0.75rem 0;
+    font-size: 14px;
+}
+
+.hc-odor-bacteria-block__table-cell--material {
+  font-weight: 700;
+  color: #000000;
+}
+
+.hc-odor-bacteria-block__table-cell--hero {
+  color: #B45309 !important;
+}
+
+.hc-odor-bacteria-block__table-cell--hero-bold {
+  font-weight: 700;
+  color: #000000;
+}
+
+.hc-odor-bacteria-block__table-cell--mechanism {
+  display: none;
+}
+
+.hc-odor-bacteria-block__table-cell--mechanism-hero {
+  opacity: 0.7;
+  color: #000000;
+}
+
+.hc-odor-bacteria-block__table-cell--right {
+  text-align: right;
+}
+
+.hc-odor-bacteria-block__table-cell-speed--highlight {
+  color: #B45309;
+}
+
+.hc-odor-bacteria-block__table-row:not(.hc-odor-bacteria-block__table-row--hero) .hc-odor-bacteria-block__table-cell:nth-child(3) {
+  color: #4b5563;
+}
+
+/* Table Footer */
+.hc-odor-bacteria-block__table-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #374151;
+  text-align: center;
+}
+
+.hc-odor-bacteria-block__table-footer-box {
+  background-color: #f3f4f6;
+  border: 1px solid #374151;
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+.hc-odor-bacteria-block__table-footer-text {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #4b5563;
+  margin: 0;
+}
+.hc-prod-compare-label {
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-prod-compare-label__text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    display: inline-block;
+  }
+
+/* Responsive - Medium screens */
+@media (min-width: 768px) {
+  .hc-odor-bacteria-block__content {
+    padding: 6rem;
+  }
+  
+  .hc-odor-bacteria-block__content-title {
+    font-size: 3rem;
+  }
+  
+  .hc-odor-bacteria-block__table-wrapper {
+    padding: 3rem;
+  }
+  
+  .hc-odor-bacteria-block__table {
+    font-size: 0.875rem;
+  }
+  
+  .hc-odor-bacteria-block__table-head-cell--mechanism,
+  .hc-odor-bacteria-block__table-cell--mechanism {
+    display: table-cell;
+  }
+}
+@media (max-width: 749px) {
+    .hc-prod-compare-label {
+      margin-bottom: 1rem;
+    }
+  }
+
+/* Responsive - Large screens */
+@media (min-width: 1024px) {
+  .hc-odor-bacteria-block__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .hc-odor-bacteria-block__content {
+    border-left: 1px solid #1f2937;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hc-odor-bacteria-block__content {
+    padding: 32px 20px;
+}
+
+  .hc-odor-bacteria-block__table-wrapper {
+    padding: 32px 20px;
+}
+}
+</style>
+
+<div class="hc-odor-bacteria-block {{ block.settings.custom_class }}" {{ block.shopify_attributes }}>
+  <div class="hc-odor-bacteria-block__grid">
+    <!-- Text Content Column -->
+    <div class="hc-odor-bacteria-block__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+      <div class="hc-prod-compare-label">
+  <span class="hc-prod-compare-label__text">
+    {{ block.settings.eyebrow_text }}
+  </span>
+</div>
+      {%- endif -%}
+      <h3 class="hc-odor-bacteria-block__content-title">{{ block.settings.title | default: "Stop Bacteria. Stop Odor." }}</h3>
+      <div class="hc-odor-bacteria-block__content-text">{{ block.settings.content }}</div>
+    </div>
+
+    <!-- Table Column -->
+    <div class="hc-odor-bacteria-block__table-wrapper">
+      <div class="hc-odor-bacteria-block__table-container">
+        <div class="hc-odor-bacteria-block__table-card">
+          <div class="hc-odor-bacteria-block__table-scroll">
+            <table class="hc-odor-bacteria-block__table">
+              <thead>
+                <tr class="hc-odor-bacteria-block__table-head-row">
+                  <th class="hc-odor-bacteria-block__table-head-cell">Material</th>
+                  <th class="hc-odor-bacteria-block__table-head-cell hc-odor-bacteria-block__table-head-cell--mechanism">Mechanism</th>
+                  <th class="hc-odor-bacteria-block__table-head-cell">Reduction</th>
+                  <th class="hc-odor-bacteria-block__table-head-cell hc-odor-bacteria-block__table-head-cell--right">Speed</th>
+                </tr>
+              </thead>
+              <tbody class="hc-odor-bacteria-block__table-body">
+                {%- comment -%} Material 1 - Polyester {%- endcomment -%}
+                <tr class="hc-odor-bacteria-block__table-row">
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--material">
+                    {{ block.settings.material_1_name | default: 'Polyester' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--mechanism">
+                    {{ block.settings.material_1_mechanism | default: 'No antibacterial abilities' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell">
+                    {{ block.settings.material_1_reduction | default: '0%' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--right">
+                    <span class="{% if block.settings.material_1_highlight_speed %}hc-odor-bacteria-block__table-cell-speed--highlight{% endif %}">
+                      {{ block.settings.material_1_speed | default: '☆☆☆☆☆' }}
+                    </span>
+                  </td>
+                </tr>
+
+                {%- comment -%} Material 2 - Cotton {%- endcomment -%}
+                <tr class="hc-odor-bacteria-block__table-row">
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--material">
+                    {{ block.settings.material_2_name | default: 'Cotton' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--mechanism">
+                    {{ block.settings.material_2_mechanism | default: 'Minimize moisture availability' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell">
+                    {{ block.settings.material_2_reduction | default: '5%' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--right">
+                    <span class="{% if block.settings.material_2_highlight_speed %}hc-odor-bacteria-block__table-cell-speed--highlight{% endif %}">
+                      {{ block.settings.material_2_speed | default: '★☆☆☆☆' }}
+                    </span>
+                  </td>
+                </tr>
+
+                {%- comment -%} Material 3 - Merino Wool {%- endcomment -%}
+                <tr class="hc-odor-bacteria-block__table-row">
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--material">
+                    {{ block.settings.material_3_name | default: 'Merino Wool' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--mechanism">
+                    {{ block.settings.material_3_mechanism | default: 'Resists but does not kill' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell">
+                    {{ block.settings.material_3_reduction | default: '30%' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--right">
+                    <span class="{% if block.settings.material_3_highlight_speed %}hc-odor-bacteria-block__table-cell-speed--highlight{% endif %}">
+                      {{ block.settings.material_3_speed | default: '★☆☆☆☆' }}
+                    </span>
+                  </td>
+                </tr>
+
+                {%- comment -%} Material 4 - Silver-Infused {%- endcomment -%}
+                <tr class="hc-odor-bacteria-block__table-row">
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--material">
+                    {{ block.settings.material_4_name | default: 'Silver-Infused' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--mechanism">
+                    {{ block.settings.material_4_mechanism | default: 'Ions kill on contact' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell">
+                    {{ block.settings.material_4_reduction | default: '99.9%' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--right">
+                    <span class="{% if block.settings.material_4_highlight_speed %}hc-odor-bacteria-block__table-cell-speed--highlight{% endif %}">
+                      {{ block.settings.material_4_speed | default: '★★★☆☆' }}
+                    </span>
+                  </td>
+                </tr>
+
+                {%- comment -%} Material 5 - HercFiber (Hero Row) {%- endcomment -%}
+                <tr class="hc-odor-bacteria-block__table-row hc-odor-bacteria-block__table-row--hero">
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--material hc-odor-bacteria-block__table-cell--hero">
+                    {{ block.settings.material_5_name | default: 'HercFiber™' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--mechanism hc-odor-bacteria-block__table-cell--mechanism-hero">
+                    {{ block.settings.material_5_mechanism | default: 'Multi-mineral matrix' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--hero-bold">
+                    {{ block.settings.material_5_reduction | default: '99.9%' }}
+                  </td>
+                  <td class="hc-odor-bacteria-block__table-cell hc-odor-bacteria-block__table-cell--right">
+                    <span class="hc-odor-bacteria-block__table-cell-speed--highlight">
+                      {{ block.settings.material_5_speed | default: '★★★★★' }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="hc-odor-bacteria-block__table-footer">
+            <div class="hc-odor-bacteria-block__table-footer-box">
+              <p class="hc-odor-bacteria-block__table-footer-text">{{ block.settings.footer_text | default: "HercFiber Works 10-100x Faster Than Silver-Infused Clothing" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

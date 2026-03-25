@@ -1,0 +1,2338 @@
+{% comment %}
+  Tab Content Section - Overview
+  
+  This section is controlled by the hc-product-tabs-nav section
+  It will only display when its tab_id matches the active tab
+
+  # Get the active tab from body attribute (will be set by JavaScript)
+  # For initial render, default to first tab if this section's tab_id is empty
+{% endcomment %}
+
+{%- liquid
+  
+  assign current_tab = section.settings.tab_id
+  
+  assign should_render = false
+  if current_tab == blank
+    assign should_render = true
+  endif
+-%}
+
+{%- style -%}
+  .hc-tab-content-section {
+    display: none;
+    opacity: 0;
+    animation: hc-tab-fade-in 0.4s ease forwards;
+  }
+
+  .hc-tab-content-section.hc-tab-content-section--visible {
+    display: block;
+  }
+
+  @keyframes hc-tab-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hc-no-specific-mod-section {
+    padding: 6rem 0;
+    text-align: center;
+    background: #f9fafb;
+    border-bottom: 1px solid #000;
+  }
+  .hc-no-specific-mod-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin: 0;
+  }
+
+{%- endstyle -%} 
+
+<div 
+  class="hc-tab-content-section hc-tab-content-highlights {% if should_render %}hc-tab-content-section--visible{% endif %}"
+  data-tab-id="{{ section.settings.tab_id }}"
+  data-section-id="{{ section.id }}"
+>
+
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'types-of-odor' -%}
+            {% render 'odor-types-of-odor', block: block %}
+          {%- when 'speak' -%}
+            {% render 'odor-speak', block: block %}
+          {%- when 'bacteria' -%}
+            {% render 'odor-bacteria', block: block %}
+          {%- when 'travel-pack' -%}
+            {% render 'travel-pack', block: block %}
+          {%- when 'travel-clothes' -%}
+            {% render 'travel-clothes', block: block %}
+          {%- when 'travel-chore' -%}
+            {% render 'travel-chore', block: block %}
+          {%- when 'stay-fresh' -%}
+            {% render 'highlights-stay-fresh', block: block %}
+          {%- when 'comfort-sweat-absorbed' -%}
+            {% render 'comfort-fit-sweat', block: block %}
+          {%- when 'comfort-softness' -%}
+            {% render 'comfort-fit-softness', block: block %}
+          {%- when 'durability-lifespan' -%}
+            {% render 'durability-lifespan', block: block %}
+          {%- when 'durability-laundry' -%}
+            {% render 'durability-laundry', block: block %}
+          {%- when 'durability-investment' -%}
+            {% render 'durability-investment', block: block %}
+          {%- when 'briefing-washing' -%}
+            {% render 'briefing-washing', block: block %}
+          {%- when 'soft-cashmere' -%}
+            {% render 'highlights-soft-cashmere', block: block %}
+          {%- when 'built-to-last' -%}
+            {% render 'highlights-built-to-last', block: block %}
+          {%- when 'travel-with-less-clothing' -%}
+            {% render 'highlights-travel-with-less-clothing', block: block %}
+          {%- when 'exp-laundry' -%}
+            {% render 'highlights-exp-laundary', block: block %}
+          {%- when 'backups-needed' -%}
+            {% render 'hc-backups-needed', block: block %}
+          {%- when 'moisture-control' -%}
+            {% render 'hc-moisture-control', block: block %}
+            {%- when 'build-to-last' -%}
+            {% render 'hc-build-to-last', block: block %}
+          {%- when 'intelligent-investment' -%}
+            {% render 'hc-intelligent-investment', block: block %}
+          {%- when 'no-specific-modules' -%}
+            {% render 'hc-no-specific-modules', block: block %}
+          {%- when 'sheets-for-men' -%}
+            {% render 'highlights-sheets-for-men', block: block %}
+          {%- when 'self-cleaning' -%}
+            {% render 'highlights-self-cleaning', block: block %}
+          {%- when 'sweat-management' -%}
+            {% render 'highlights-sweat-management', block: block %}
+          {%- when 'acne-shield' -%}
+            {% render 'highlights-acne-shield', block: block %}
+          {%- when 'micron-finish' -%}
+            {% render 'highlights-micron-finish', block: block %}
+          {%- when 'longevity-designed' -%}
+            {% render 'highlights-longevity-designed', block: block %}
+          {%- when 'charcoal-ash-system' -%}
+            {% render 'highlights-charcoal-ash-system', block: block %}
+        {%- endcase -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+<script>
+  if (!window.HCTabContentManager) {
+    window.HCTabContentManager = {
+      init() {
+        this.updateVisibility();
+        
+        // Listen for tab changes
+        document.addEventListener('hc-tab-changed', () => {
+          this.updateVisibility();
+        });
+      },
+
+      updateVisibility() {
+        const activeTab = document.body.getAttribute('data-active-tab');
+        const contentHidden = document.body.getAttribute('data-tab-content-hidden') === 'true';
+        const tabSections = document.querySelectorAll('.hc-tab-content-section[data-tab-id]');
+        
+        tabSections.forEach(section => {
+          const sectionTabId = section.getAttribute('data-tab-id');
+          
+          // Hide all sections if content is marked as hidden for this tab
+          if (contentHidden) {
+            section.classList.remove('hc-tab-content-section--visible');
+          } else if (sectionTabId && sectionTabId === activeTab) {
+            section.classList.add('hc-tab-content-section--visible');
+            // Reset animation
+            section.style.animation = 'none';
+            setTimeout(() => {
+              section.style.animation = '';
+            }, 10);
+          } else if (sectionTabId && sectionTabId !== activeTab) {
+            section.classList.remove('hc-tab-content-section--visible');
+          }
+        });
+      }
+    };
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      window.HCTabContentManager.init();
+    });
+  } else {
+    window.HCTabContentManager.init();
+  }
+
+  // Reinitialize on section render
+  document.addEventListener('shopify:section:load', () => {
+    window.HCTabContentManager.updateVisibility();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Tab Content - Highlights",
+  "tag": "section",
+  "class": "section-hc-tab-content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tab_id",
+      "label": "Tab ID",
+      "info": "Must match a Tab ID from the Product Tabs Navigation section (e.g., 'overview'). Leave blank to always show.",
+      "default": "highlights"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stay-fresh",
+      "name": "Stay Fresh Comparison",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Main Title",
+          "default": "Stays Fresh For Up To 100 Wears"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "All-day, multi-day freshness powered by neutralizing all five types of human odor."
+        },
+        {
+          "type": "header",
+          "content": "Labels"
+        },
+        {
+          "type": "text",
+          "id": "competitor_label",
+          "label": "Competitor Label",
+          "default": "Silver-infused, Merino Wool, Anti-bacterial, etc."
+        },
+        {
+          "type": "text",
+          "id": "hercleon_label",
+          "label": "HercLeon Label",
+          "default": "HercLeon"
+        },
+        {
+          "type": "header",
+          "content": "Odor Type 1"
+        },
+        {
+          "type": "text",
+          "id": "odor_1_name",
+          "label": "Odor 1 Name",
+          "default": "Bacteria"
+        },
+        {
+          "type": "text",
+          "id": "competitor_odor_1_status",
+          "label": "Competitor Status",
+          "default": "Covered"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_odor_1_status",
+          "label": "HercLeon Status",
+          "default": "Neutralized"
+        },
+        {
+          "type": "header",
+          "content": "Odor Type 2"
+        },
+        {
+          "type": "text",
+          "id": "odor_2_name",
+          "label": "Odor 2 Name",
+          "default": "Fungus"
+        },
+        {
+          "type": "text",
+          "id": "competitor_odor_2_status",
+          "label": "Competitor Status",
+          "default": "Ignored"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_odor_2_status",
+          "label": "HercLeon Status",
+          "default": "Neutralized"
+        },
+        {
+          "type": "header",
+          "content": "Odor Type 3"
+        },
+        {
+          "type": "text",
+          "id": "odor_3_name",
+          "label": "Odor 3 Name",
+          "default": "Body Oils"
+        },
+        {
+          "type": "text",
+          "id": "competitor_odor_3_status",
+          "label": "Competitor Status",
+          "default": "Ignored"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_odor_3_status",
+          "label": "HercLeon Status",
+          "default": "Neutralized"
+        },
+        {
+          "type": "header",
+          "content": "Odor Type 4"
+        },
+        {
+          "type": "text",
+          "id": "odor_4_name",
+          "label": "Odor 4 Name",
+          "default": "Environment"
+        },
+        {
+          "type": "text",
+          "id": "competitor_odor_4_status",
+          "label": "Competitor Status",
+          "default": "Ignored"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_odor_4_status",
+          "label": "HercLeon Status",
+          "default": "Neutralized"
+        },
+        {
+          "type": "header",
+          "content": "Odor Type 5"
+        },
+        {
+          "type": "text",
+          "id": "odor_5_name",
+          "label": "Odor 5 Name",
+          "default": "Hormones"
+        },
+        {
+          "type": "text",
+          "id": "competitor_odor_5_status",
+          "label": "Competitor Status",
+          "default": "Ignored"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_odor_5_status",
+          "label": "HercLeon Status",
+          "default": "Neutralized"
+        },
+        {
+          "type": "richtext",
+          "id": "additional_rich_text",
+          "label": "Additional Rich Text",
+          "default": "<p>Traditional clothing fails because it only fights one type of odor. HercLeón fights all five: Sweat, Bacteria, Fungus, Body Oils, and Stress Hormones. The result is a shirt that doesn't just resist smell—it actively destroys it.</p>"
+        }
+      ]
+    },
+    {
+      "type": "soft-cashmere",
+      "name": "Soft Cashmere Comparison",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Main Title",
+          "default": "Softer Than Cashmere"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "A next-generation mineral + plant-fiber blend engineered for everyday luxury."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "We engineered our fabric to be softer than cashmere and almost twice as soft as merino wool. By using ultra-fine beechwood fibers blended with volcanic minerals, we created a material that feels like a second skin—cool, smooth, and incredibly gentle."
+        },
+        {
+          "type": "header",
+          "content": "Chart Settings"
+        },
+        {
+          "type": "text",
+          "id": "chart_title",
+          "label": "Chart Title",
+          "default": "Micron Count (Lower is Softer)"
+        },
+        {
+          "type": "header",
+          "content": "Material 1"
+        },
+        {
+          "type": "text",
+          "id": "material_1_name",
+          "label": "Material Name",
+          "default": "Cotton"
+        },
+        {
+          "type": "range",
+          "id": "material_1_value",
+          "label": "Micron Value",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 20
+        },
+        {
+          "type": "header",
+          "content": "Material 2"
+        },
+        {
+          "type": "text",
+          "id": "material_2_name",
+          "label": "Material Name",
+          "default": "Merino Wool"
+        },
+        {
+          "type": "range",
+          "id": "material_2_value",
+          "label": "Micron Value",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 18
+        },
+        {
+          "type": "header",
+          "content": "Material 3"
+        },
+        {
+          "type": "text",
+          "id": "material_3_name",
+          "label": "Material Name",
+          "default": "Cashmere"
+        },
+        {
+          "type": "range",
+          "id": "material_3_value",
+          "label": "Micron Value",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 15
+        },
+        {
+          "type": "header",
+          "content": "Material 4"
+        },
+        {
+          "type": "text",
+          "id": "material_4_name",
+          "label": "Material Name",
+          "default": "Silk"
+        },
+        {
+          "type": "range",
+          "id": "material_4_value",
+          "label": "Micron Value",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 12
+        },
+        {
+          "type": "header",
+          "content": "Material 5 (HercFiber)"
+        },
+        {
+          "type": "text",
+          "id": "material_5_name",
+          "label": "Material Name",
+          "default": "HercFiber™"
+        },
+        {
+          "type": "range",
+          "id": "material_5_value",
+          "label": "Micron Value",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 10
+        }
+      ]
+    },
+    {
+      "type": "built-to-last",
+      "name": "Built to Last",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Main Title",
+          "default": "Built to Last Years, Not Months"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Less washing means far less wear — keeping the shirt looking and feeling new."
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The #1 enemy of clothing isn't wearing it; it's washing it. Because HercLeón requires 90% less washing, the fibers aren't subjected to the heat, friction, and chemicals that destroy normal clothes. A HercShirt can last a decade.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Comparison Section"
+        },
+        {
+          "type": "text",
+          "id": "comparison_title",
+          "label": "Comparison Title",
+          "default": "HercFiber™ is more durable than others by:"
+        },
+        {
+          "type": "text",
+          "id": "comparison_1_value",
+          "label": "Comparison 1 Value",
+          "default": "1.9x"
+        },
+        {
+          "type": "text",
+          "id": "comparison_1_label",
+          "label": "Comparison 1 Label",
+          "default": "Cotton"
+        },
+        {
+          "type": "text",
+          "id": "comparison_2_value",
+          "label": "Comparison 2 Value",
+          "default": "2x"
+        },
+        {
+          "type": "text",
+          "id": "comparison_2_label",
+          "label": "Comparison 2 Label",
+          "default": "Viscose"
+        },
+        {
+          "type": "text",
+          "id": "comparison_3_value",
+          "label": "Comparison 3 Value",
+          "default": "3x"
+        },
+        {
+          "type": "text",
+          "id": "comparison_3_label",
+          "label": "Comparison 3 Label",
+          "default": "Merino Wool"
+        },
+        {
+          "type": "header",
+          "content": "Durability Table"
+        },
+        {
+          "type": "text",
+          "id": "durability_title",
+          "label": "Durability Table Title",
+          "default": "HercFiber Is Durable In Every Way"
+        },
+        {
+          "type": "header",
+          "content": "Row 1 - Tensile Strength"
+        },
+        {
+          "type": "text",
+          "id": "row_1_category",
+          "label": "Category",
+          "default": "Tensile Strength"
+        },
+        {
+          "type": "text",
+          "id": "row_1_meaning",
+          "label": "Meaning",
+          "default": "Resistance to breaking"
+        },
+        {
+          "type": "text",
+          "id": "row_1_cotton",
+          "label": "Cotton Rating",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_1_merino",
+          "label": "Merino Rating",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_1_herc",
+          "label": "Herc Rating",
+          "default": "★★★"
+        },
+        {
+          "type": "header",
+          "content": "Row 2 - Abrasion Resistance"
+        },
+        {
+          "type": "text",
+          "id": "row_2_category",
+          "label": "Category",
+          "default": "Abrasion Resistance"
+        },
+        {
+          "type": "text",
+          "id": "row_2_meaning",
+          "label": "Meaning",
+          "default": "Handles rubbing/friction"
+        },
+        {
+          "type": "text",
+          "id": "row_2_cotton",
+          "label": "Cotton Rating",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_2_merino",
+          "label": "Merino Rating",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_2_herc",
+          "label": "Herc Rating",
+          "default": "★★★"
+        },
+        {
+          "type": "header",
+          "content": "Row 3 - Pilling Resistance"
+        },
+        {
+          "type": "text",
+          "id": "row_3_category",
+          "label": "Category",
+          "default": "Pilling Resistance"
+        },
+        {
+          "type": "text",
+          "id": "row_3_meaning",
+          "label": "Meaning",
+          "default": "Avoids fiber balls"
+        },
+        {
+          "type": "text",
+          "id": "row_3_cotton",
+          "label": "Cotton Rating",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_3_merino",
+          "label": "Merino Rating",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_3_herc",
+          "label": "Herc Rating",
+          "default": "★★★"
+        },
+        {
+          "type": "header",
+          "content": "Row 4 - Shape Retention"
+        },
+        {
+          "type": "text",
+          "id": "row_4_category",
+          "label": "Category",
+          "default": "Shape Retention"
+        },
+        {
+          "type": "text",
+          "id": "row_4_meaning",
+          "label": "Meaning",
+          "default": "Keeps shape/fit"
+        },
+        {
+          "type": "text",
+          "id": "row_4_cotton",
+          "label": "Cotton Rating",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_4_merino",
+          "label": "Merino Rating",
+          "default": "★★★"
+        },
+        {
+          "type": "text",
+          "id": "row_4_herc",
+          "label": "Herc Rating",
+          "default": "★★"
+        },
+        {
+          "type": "header",
+          "content": "Row 5 - Heat/Wash Stability"
+        },
+        {
+          "type": "text",
+          "id": "row_5_category",
+          "label": "Category",
+          "default": "Heat/Wash Stability"
+        },
+        {
+          "type": "text",
+          "id": "row_5_meaning",
+          "label": "Meaning",
+          "default": "Tolerates washing"
+        },
+        {
+          "type": "text",
+          "id": "row_5_cotton",
+          "label": "Cotton Rating",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_5_merino",
+          "label": "Merino Rating",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_5_herc",
+          "label": "Herc Rating",
+          "default": "★★★"
+        },
+        {
+          "type": "header",
+          "content": "Row 6 - Moisture Strength"
+        },
+        {
+          "type": "text",
+          "id": "row_6_category",
+          "label": "Category",
+          "default": "Moisture Strength"
+        },
+        {
+          "type": "text",
+          "id": "row_6_meaning",
+          "label": "Meaning",
+          "default": "Strength when wet"
+        },
+        {
+          "type": "text",
+          "id": "row_6_cotton",
+          "label": "Cotton Rating",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_6_merino",
+          "label": "Merino Rating",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_6_herc",
+          "label": "Herc Rating",
+          "default": "★★★"
+        },
+        {
+          "type": "header",
+          "content": "Row 7 - Overall Durability"
+        },
+        {
+          "type": "text",
+          "id": "row_7_category",
+          "label": "Category",
+          "default": "Overall Durability"
+        },
+        {
+          "type": "text",
+          "id": "row_7_meaning",
+          "label": "Meaning",
+          "default": "Real-world lifespan"
+        },
+        {
+          "type": "text",
+          "id": "row_7_cotton",
+          "label": "Cotton Rating",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_7_merino",
+          "label": "Merino Rating",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_7_herc",
+          "label": "Herc Rating",
+          "default": "★★★"
+        }
+      ]
+    },
+    {
+      "type": "travel-with-less-clothing",
+      "name": "Travel With Less Clothing",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Main Title",
+          "default": "Travel With 80% Less Clothing"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "One HercLeón replaces 7+ traditional clothing. You might not even need to pack any extras."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Imagine traveling for weeks with just a backpack. No check-in fees. No waiting at baggage claim. No laundromats. HercLeón gives you the freedom to move through the world unburdened."
+        },
+        {
+          "type": "header",
+          "content": "Comparison Box Settings"
+        },
+        {
+          "type": "text",
+          "id": "comparison_title",
+          "label": "Comparison Title",
+          "default": "2 Weeks Long Trip"
+        },
+        {
+          "type": "header",
+          "content": "Tourist/Standard Section"
+        },
+        {
+          "type": "text",
+          "id": "tourist_label",
+          "label": "Tourist Label",
+          "default": "Standard Tourist"
+        },
+        {
+          "type": "text",
+          "id": "tourist_weight",
+          "label": "Tourist Weight",
+          "default": "~3.5kg Load"
+        },
+        {
+          "type": "range",
+          "id": "tourist_items",
+          "label": "Number of Items",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "text",
+          "id": "tourist_note",
+          "label": "Tourist Note",
+          "default": "Requires 14 items OR Laundry"
+        },
+        {
+          "type": "header",
+          "content": "HercLeon Section"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_label",
+          "label": "HercLeon Label",
+          "default": "HercLeon Operative"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_weight",
+          "label": "HercLeon Weight",
+          "default": "~0.1kg Load"
+        },
+        {
+          "type": "range",
+          "id": "hercleon_items",
+          "label": "Number of Items",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "hercleon_note",
+          "label": "HercLeon Note",
+          "default": "Requires 1 Item. Zero Laundry."
+        }
+      ]
+    },
+    {
+      "type": "exp-laundry",
+      "name": "Experience Laundry",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow_text",
+          "label": "Eyebrow Text",
+          "default": "05 — EXPERIENCE FREEDOM"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Main Title",
+          "default": "Experience Freedom"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Experiencing having more time, energy and flexibility"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Laundry is a waste of a finite human life. By eliminating the need to wash your clothes after every wear, you reclaim days of your life every year. Plus, you save thousands of liters of water and reduce ocean microplastics."
+        },
+        {
+          "type": "header",
+          "content": "Card Settings"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title",
+          "default": "Life Efficiency"
+        },
+        {
+          "type": "text",
+          "id": "footer_text",
+          "label": "Footer Text",
+          "default": "HercLeón removes the hidden burdens of clothing."
+        },
+        {
+          "type": "header",
+          "content": "Metric 1"
+        },
+        {
+          "type": "text",
+          "id": "metric_1_label",
+          "label": "Label",
+          "default": "Laundry Reduction"
+        },
+        {
+          "type": "range",
+          "id": "metric_1_value",
+          "label": "Percentage Value",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 90
+        },
+        {
+          "type": "header",
+          "content": "Metric 2"
+        },
+        {
+          "type": "text",
+          "id": "metric_2_label",
+          "label": "Label",
+          "default": "Water Savings"
+        },
+        {
+          "type": "range",
+          "id": "metric_2_value",
+          "label": "Percentage Value",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 85
+        },
+        {
+          "type": "header",
+          "content": "Metric 3"
+        },
+        {
+          "type": "text",
+          "id": "metric_3_label",
+          "label": "Label",
+          "default": "Energy Saved"
+        },
+        {
+          "type": "range",
+          "id": "metric_3_value",
+          "label": "Percentage Value",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 90
+        },
+        {
+          "type": "header",
+          "content": "Metric 4"
+        },
+        {
+          "type": "text",
+          "id": "metric_4_label",
+          "label": "Label",
+          "default": "Reduced mental load"
+        },
+        {
+          "type": "range",
+          "id": "metric_4_value",
+          "label": "Percentage Value",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50
+        }
+      ]
+    },
+    {
+      "type": "sheets-for-men",
+      "name": "Sheets For Men",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "We created the best sheets for men."
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading Line 1",
+          "default": "Most sheets were designed for everyone."
+        },
+        {
+          "type": "text",
+          "id": "subheading_line2",
+          "label": "Subheading Line 2",
+          "default": "These were designed for you."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Men's bodies operate differently. Higher body temperatures, sweatier nights, and less frequent washing than most bedding was ever built to handle. We took all of that into consideration when creating the Jax Sheets."
+        },
+        {
+          "type": "textarea",
+          "id": "cta_text",
+          "label": "CTA Text",
+          "default": "Get to know the technology before you experience the difference."
+        },
+        {
+          "type": "text",
+          "id": "scroll_target",
+          "label": "Scroll Target Element ID",
+          "info": "The ID of the element to scroll to when the button is clicked"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent Color",
+          "info": "Used for subheading and hover states",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#9ca3af"
+        }
+      ]
+    },
+    {
+      "type": "self-cleaning",
+      "name": "Self Cleaning Fabrics",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "01 — Biologically Clean"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "SELF-CLEANING FABRIC?"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Yes, the Jax Sheets are woven with a permanent <strong>Silver Grid</strong> that continuously inhibits the growth of bacteria, fungi, and odor-causing microbes across the entire surface.\nUnlike conventional bedding that passively accumulates what your body sheds through the night, the silver ions are constantly active against the microbes that thrive in warm, humid bedding environments. This keeps the fabric genuinely cleaner between washes and makes it a more hygienic environment for your skin over the long term.</p>"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "99.9% Bacteria Neutralized"
+        },
+        {
+          "type": "text",
+          "id": "footer_text",
+          "label": "Footer Text",
+          "default": "Anti-Microbial Barrier Analysis"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse Layout (Row Reverse)",
+          "default": false,
+          "info": "Swaps text and visual column positions"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger",
+          "label": "Trigger Word",
+          "info": "The bold word in the description that opens the tooltip on hover",
+          "default": "Silver Grid"
+        },
+        { 
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip Content",
+          "info": "Use bold text for section titles. Each paragraph becomes a section.",
+          "default": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction. It does not wash out, fade, or lose effectiveness over time.</p><p><strong>Why is it in the Jax Sheets?</strong></p><p>Silver is one of the most effective natural antimicrobial elements known, and in the Jax Sheets it works continuously to inhibit the growth of bacteria, fungi, and odor-causing microbes across the entire surface of the fabric. Because the silver is woven in rather than coated on, its protective properties remain consistent wash after wash and year after year. The result is a sheet that maintains a genuinely hygienic sleep surface over the long term, without relying on chemical treatments or needing to be replaced to stay effective.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent Color",
+          "info": "Used for tag line, shield, and highlights",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description Color",
+          "default": "#4b5563"
+        }
+      ]
+    },
+    {
+      "type": "sweat-management",
+      "name": "Advanced Sweat Management",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "02 — Active Temperature Regulation"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Advanced Night Sweat Management"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Standard sheets trap heat against your skin, which forces your body to sweat in order to cool itself down and ultimately disrupts your sleep. The Jax Sheets address this through <strong>Phase Changing Materials</strong> embedded in the fabric that absorb excess heat as your body temperature rises, storing it within the material rather than letting it build up against your skin. As your temperature naturally drops through the night, the PCM releases that stored heat back gradually, keeping your thermal environment stable in both directions. By reducing the heat spikes that trigger night sweats in the first place, these sheets help you stay in the ideal thermal zone for uninterrupted rest.</p>"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "NASA TECH"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse Layout (Row Reverse)",
+          "default": false,
+          "info": "Swaps text and visual column positions"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger",
+          "label": "Trigger Word",
+          "info": "The bold word in the description that opens the tooltip on hover",
+          "default": "Phase Changing Materials"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip Content",
+          "info": "Use bold text for section titles. Each paragraph becomes a section."
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent Color",
+          "info": "Used for tag line, PCM circle, badge, and highlights",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description Color",
+          "default": "#9ca3af"
+        }
+      ]
+    },
+    {
+      "type": "acne-shield",
+      "name": "Acne Shield",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "03 — Clinical-Grade Germ Protection"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "THE ANTI-ACNE SHIELD"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Most sleep acne is caused by bacteria that accumulate on your pillowcase and transfer back to your skin while you sleep. The <strong>Silver Grid</strong> woven into the Jax Sheets continuously inhibits the growth of those bacteria on the fabric surface, meaning your face rests on a significantly cleaner environment every night.\nFor skin prone to breakouts, conventional pillowcases offer no protection against bacterial buildup between washes. The Jax Sheets work against it constantly.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual Card"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title",
+          "default": "MICROBIOME PROTECTION"
+        },
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Stat Value",
+          "default": "99.9%"
+        },
+        {
+          "type": "text",
+          "id": "stat_unit",
+          "label": "Stat Unit Label",
+          "default": "Kill Rate"
+        },
+        {
+          "type": "text",
+          "id": "stat_title",
+          "label": "Stat Title",
+          "default": "Bacteria Neutralization"
+        },
+        {
+          "type": "text",
+          "id": "stat_desc",
+          "label": "Stat Description",
+          "default": "Destroys acne-causing microbes every 180 seconds."
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse Layout (Row Reverse)",
+          "default": false,
+          "info": "Swaps text and visual column positions"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger",
+          "label": "Trigger Word",
+          "info": "The bold word in the description that opens the tooltip on hover",
+          "default": "Silver Grid"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip Content",
+          "info": "Use bold text for section titles. Each paragraph becomes a section.",
+          "default": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction.</p><p><strong>How does it fight acne?</strong></p><p>The silver ions continuously neutralize the bacteria that cause breakouts — Propionibacterium acnes and Staphylococcus aureus — directly on the fabric surface. Your skin rests on a cleaner environment every night without any additional effort.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent Color",
+          "info": "Used for tag line, ring, and highlights",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description Color",
+          "default": "#4b5563"
+        }
+      ]
+    },
+    {
+      "type": "micron-finish",
+      "name": "Micron Finish",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "04 — Softer Than Silk, Stronger Than Cotton"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "10 Micron Finish"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Jax Sheets are engineered with 10-<strong>micron</strong> ultra-fine fibers—roughly 1/10th the thickness of a human hair. This microscopic precision creates a surface that is noticeably softer than traditional silk while maintaining the structural strength of high-performance gear. Unlike standard cotton, which features microscopic \"hooks\" that can cause texture changes over time, Jax fibers are designed for long-term smoothness.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Chart Card"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Chart Title",
+          "default": "SURFACE FRICTION COEFFICIENT"
+        },
+        {
+          "type": "text",
+          "id": "bar_1_label",
+          "label": "Bar 1 Label",
+          "default": "Cotton"
+        },
+        {
+          "type": "text",
+          "id": "bar_2_label",
+          "label": "Bar 2 Label",
+          "default": "Silk"
+        },
+        {
+          "type": "text",
+          "id": "bar_3_label",
+          "label": "Bar 3 Label (Highlighted)",
+          "default": "HercLeón"
+        },
+        {
+          "type": "text",
+          "id": "chart_footer",
+          "label": "Chart Footer Text",
+          "default": "Lower value indicates smoother surface & less skin irritation"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse Layout (Row Reverse)",
+          "default": false,
+          "info": "Swaps text and visual column positions"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger",
+          "label": "Trigger Word",
+          "info": "The bold word in the description that opens the tooltip on hover",
+          "default": "micron"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip Content",
+          "info": "Use bold text for section titles. Each paragraph becomes a section.",
+          "default": "<p><strong>What is a micron?</strong></p><p>A micron (micrometer) is one millionth of a meter. At 10 microns, each Jax fiber is roughly 1/10th the diameter of a human hair. This ultra-fine gauge allows the fibers to bend and drape with almost no resistance, producing a surface that feels remarkably smooth against skin.</p><p><strong>Why does it matter for sheets?</strong></p><p>Finer fibers create a denser, smoother weave with less surface friction. This means less irritation, less pilling, and a softer hand-feel that actually improves with use rather than degrading over time like conventional cotton.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent Color",
+          "info": "Used for tag line, highlighted bar, and tooltips",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description Color",
+          "default": "#9ca3af"
+        }
+      ]
+    },
+    {
+      "type": "longevity-designed",
+      "name": "Longevity Designed",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "05 — Resists Wear and Breakdown"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "DESIGNED FOR LONGEVITY"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Frequent laundering is the primary cause of fabric wear. The friction and high heat of heavy bedding cycles eventually break down fibers, leading to stretching and thinning. Because Jax Sheets require significantly fewer washes, they avoid this routine damage. Built with a highly pill-resistant HercLeón™ structure, they are designed to maintain their performance for years—reducing textile waste and the need for frequent replacements.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Chart Card"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Chart Title",
+          "default": "AVERAGE SHEET LIFESPAN"
+        },
+        {
+          "type": "text",
+          "id": "standard_label",
+          "label": "Standard Bar Label",
+          "default": "TRADITIONAL COTTON / LINEN / POLY"
+        },
+        {
+          "type": "text",
+          "id": "standard_value",
+          "label": "Standard Bar Value",
+          "default": "2 - 3 YEARS"
+        },
+        {
+          "type": "text",
+          "id": "jax_label",
+          "label": "Jax Bar Label",
+          "default": "JAX SHEETS"
+        },
+        {
+          "type": "text",
+          "id": "jax_value",
+          "label": "Jax Bar Value",
+          "default": "UP TO 10 YEARS"
+        },
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Stat Value",
+          "default": "5x"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat Label",
+          "default": "Durability Factor"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse Layout (Row Reverse)",
+          "default": true,
+          "info": "Swaps text and visual column positions"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger",
+          "label": "Trigger Word",
+          "info": "The bold word in the description that opens the tooltip on hover"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip Content",
+          "info": "Use bold text for section titles. Each paragraph becomes a section."
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent Color",
+          "info": "Used for tag line, Jax bar, stat, and highlights",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description Color",
+          "default": "#4b5563"
+        }
+      ]
+    },
+    {
+      "type": "charcoal-ash-system",
+      "name": "Charcoal Ash System",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "02 — ODOR DEFENSE & HUMIDITY CONTROL"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "The Charcoal and Ash System"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>To complement the silver's active protection, we've woven in <strong>Coconut Charcoal</strong> and <strong>Volcanic Ash</strong> to manage the environment of your bed. While the charcoal acts as a natural filter to trap and neutralize odors, the <strong>volcanic ash</strong> works to pull skin humidity away before it can turn into liquid sweat. By removing this moisture, the fabric denies bacteria the damp environment they need to multiply in the first place. This system keeps your bed dry and fresh for up to two months between washes.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual Card"
+        },
+        {
+          "type": "text",
+          "id": "architecture_title",
+          "label": "Architecture Title",
+          "default": "DEEP SLEEP ARCHITECTURE"
+        },
+        {
+          "type": "text",
+          "id": "card_1_title",
+          "label": "Card 1 Title",
+          "default": "Coconut Charcoal"
+        },
+        {
+          "type": "text",
+          "id": "card_1_subtitle",
+          "label": "Card 1 Subtitle",
+          "default": "Odor Filter"
+        },
+        {
+          "type": "text",
+          "id": "card_2_title",
+          "label": "Card 2 Title",
+          "default": "Volcanic Ash"
+        },
+        {
+          "type": "text",
+          "id": "card_2_subtitle",
+          "label": "Card 2 Subtitle",
+          "default": "Humidity Pull"
+        },
+        {
+          "type": "text",
+          "id": "result_title",
+          "label": "Result Title",
+          "default": "Sweat Free Deep Sleep Zone"
+        },
+        {
+          "type": "text",
+          "id": "badge_1",
+          "label": "Badge 1",
+          "default": "Active 24/7"
+        },
+        {
+          "type": "text",
+          "id": "badge_2",
+          "label": "Badge 2",
+          "default": "Zero Odor"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse Layout (Row Reverse)",
+          "default": true,
+          "info": "Swaps text and visual column positions"
+        },
+        {
+          "type": "header",
+          "content": "Tooltips"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Tooltip 1 Trigger",
+          "info": "Must match bold text in description exactly",
+          "default": "Coconut Charcoal"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip 1 Content",
+          "default": "<p><strong>Coconut Charcoal</strong></p><p>Activated coconut charcoal is embedded in the fibers to adsorb odor molecules and help keep the sleeping surface fresher between washes.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_2_trigger",
+          "label": "Tooltip 2 Trigger",
+          "default": "Volcanic Ash"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_2_content",
+          "label": "Tooltip 2 Content",
+          "default": "<p><strong>Volcanic Ash</strong></p><p>Fine volcanic minerals are integrated into the fabric to wick and disperse humidity so moisture does not pool where bacteria thrive.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_3_trigger",
+          "label": "Tooltip 3 Trigger",
+          "default": "volcanic ash"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_3_content",
+          "label": "Tooltip 3 Content",
+          "info": "Shown when hovering the lowercase phrase in the description",
+          "default": "<p><strong>Humidity control</strong></p><p>Pulling skin humidity away early reduces the damp microclimate that would otherwise encourage bacterial growth on the fabric.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent Color",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description Color",
+          "default": "#9ca3af"
+        }
+      ]
+    },
+    {
+      "type": "types-of-odor",
+      "name": "Types of Odor Comparison",
+      "settings": [
+        { "type": "richtext", "id": "main_title", "label": "Main Title", "default": "<p>Even the best alternatives can handle only <strong>1 out of 5</strong> types of Odor.<br>HercLeón Can handle <strong>all five.</strong></p>" },
+        { "type": "header", "content": "Competitor Row Settings" },
+        { "type": "text", "id": "competitor_label", "label": "Competitor Label", "default": "Silver-infused, Merino Wool, Anti-bacterial, etc." },
+        { "type": "header", "content": "Odor Type 1" },
+        { "type": "text", "id": "odor_1_name", "label": "Odor Name", "default": "Bacteria" },
+        { "type": "text", "id": "competitor_odor_1_status", "label": "Competitor Status", "default": "Covered" },
+        { "type": "text", "id": "hercleon_odor_1_status", "label": "HercLeon Status", "default": "Neutralized" },
+        { "type": "header", "content": "Odor Type 2" },
+        { "type": "text", "id": "odor_2_name", "label": "Odor Name", "default": "Fungus" },
+        { "type": "text", "id": "competitor_odor_2_status", "label": "Competitor Status", "default": "Ignored" },
+        { "type": "text", "id": "hercleon_odor_2_status", "label": "HercLeon Status", "default": "Neutralized" },
+        { "type": "header", "content": "Odor Type 3" },
+        { "type": "text", "id": "odor_3_name", "label": "Odor Name", "default": "Body Oils" },
+        { "type": "text", "id": "competitor_odor_3_status", "label": "Competitor Status", "default": "Ignored" },
+        { "type": "text", "id": "hercleon_odor_3_status", "label": "HercLeon Status", "default": "Neutralized" },
+        { "type": "header", "content": "Odor Type 4" },
+        { "type": "text", "id": "odor_4_name", "label": "Odor Name", "default": "Environment" },
+        { "type": "text", "id": "competitor_odor_4_status", "label": "Competitor Status", "default": "Ignored" },
+        { "type": "text", "id": "hercleon_odor_4_status", "label": "HercLeon Status", "default": "Neutralized" },
+        { "type": "header", "content": "Odor Type 5" },
+        { "type": "text", "id": "odor_5_name", "label": "Odor Name", "default": "Hormones" },
+        { "type": "text", "id": "competitor_odor_5_status", "label": "Competitor Status", "default": "Ignored" },
+        { "type": "text", "id": "hercleon_odor_5_status", "label": "HercLeon Status", "default": "Neutralized" },
+        { "type": "header", "content": "HercLeon Row Settings" },
+        { "type": "text", "id": "hercleon_label", "label": "HercLeon Label", "default": "HercLeon" },
+        { "type": "header", "content": "Bottom Content" },
+        { "type": "richtext", "id": "bottom_content", "label": "Bottom Content Text", "default": "<p>Here's the truth: even the best merino wool or silver-infused shirts only neutralize one of the five types of body odor.</p>" }
+      ]
+    },
+    {
+      "type": "speak",
+      "name": "Speak For Yourself",
+      "settings": [
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "03 — YOUR PRESENCE, UNDISTORTED" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Speak For Yourself" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Recent research shows that smell shapes first impressions instantly.</p>" },
+        { "type": "header", "content": "Sensory Diagram" },
+        { "type": "text", "id": "sense_1_label", "label": "Sense 1 Label", "default": "Sight (How you look)" },
+        { "type": "text", "id": "sense_1_time", "label": "Sense 1 Time", "default": "~0.5s" },
+        { "type": "text", "id": "sense_2_label", "label": "Sense 2 Label", "default": "Sound (What you say)" },
+        { "type": "text", "id": "sense_2_time", "label": "Sense 2 Time", "default": "~0.7s" },
+        { "type": "text", "id": "sense_3_label", "label": "Sense 3 Label (Highlighted)", "default": "Scent (Your smell)" },
+        { "type": "text", "id": "sense_3_time", "label": "Sense 3 Time", "default": "~0.1s (Instant)" },
+        { "type": "textarea", "id": "sense_3_note", "label": "Sense 3 Note", "default": "Direct connection. No logic filter. Instant emotional judgment." }
+      ]
+    },
+    {
+      "type": "bacteria",
+      "name": "Stop Bacteria",
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_class",
+          "label": "Custom Class"
+        },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "01 — ANTI-MICROBIAL DEFENSE" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Stop Bacteria. Stop Odor." },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Odor only exists because bacteria linger long enough to break down sweat.</p>" },
+        { "type": "header", "content": "Material 1 - Polyester" },
+        { "type": "text", "id": "material_1_name", "label": "Material Name", "default": "Polyester" },
+        { "type": "text", "id": "material_1_mechanism", "label": "Mechanism", "default": "No antibacterial abilities" },
+        { "type": "text", "id": "material_1_reduction", "label": "Reduction", "default": "0%" },
+        { "type": "text", "id": "material_1_speed", "label": "Speed (use ★)", "default": "☆☆☆☆☆" },
+        { "type": "checkbox", "id": "material_1_highlight_speed", "label": "Highlight Speed (Orange)", "default": false },
+        { "type": "header", "content": "Material 2 - Cotton" },
+        { "type": "text", "id": "material_2_name", "label": "Material Name", "default": "Cotton" },
+        { "type": "text", "id": "material_2_mechanism", "label": "Mechanism", "default": "Minimize moisture availability" },
+        { "type": "text", "id": "material_2_reduction", "label": "Reduction", "default": "5%" },
+        { "type": "text", "id": "material_2_speed", "label": "Speed (use ★)", "default": "★☆☆☆☆" },
+        { "type": "checkbox", "id": "material_2_highlight_speed", "label": "Highlight Speed (Orange)", "default": false },
+        { "type": "header", "content": "Material 3 - Merino Wool" },
+        { "type": "text", "id": "material_3_name", "label": "Material Name", "default": "Merino Wool" },
+        { "type": "text", "id": "material_3_mechanism", "label": "Mechanism", "default": "Resists but doesn't kill" },
+        { "type": "text", "id": "material_3_reduction", "label": "Reduction", "default": "30%" },
+        { "type": "text", "id": "material_3_speed", "label": "Speed (use ★)", "default": "★☆☆☆☆" },
+        { "type": "checkbox", "id": "material_3_highlight_speed", "label": "Highlight Speed (Orange)", "default": true },
+        { "type": "header", "content": "Material 4 - Silver-Infused" },
+        { "type": "text", "id": "material_4_name", "label": "Material Name", "default": "Silver-Infused" },
+        { "type": "text", "id": "material_4_mechanism", "label": "Mechanism", "default": "Ions kill on contact" },
+        { "type": "text", "id": "material_4_reduction", "label": "Reduction", "default": "99.9%" },
+        { "type": "text", "id": "material_4_speed", "label": "Speed (use ★)", "default": "★★★☆☆" },
+        { "type": "checkbox", "id": "material_4_highlight_speed", "label": "Highlight Speed (Orange)", "default": true },
+        { "type": "header", "content": "Material 5 - HercFiber (Hero Row)" },
+        { "type": "text", "id": "material_5_name", "label": "Material Name", "default": "HercFiber™" },
+        { "type": "text", "id": "material_5_mechanism", "label": "Mechanism", "default": "Multi-mineral matrix" },
+        { "type": "text", "id": "material_5_reduction", "label": "Reduction", "default": "99.9%" },
+        { "type": "text", "id": "material_5_speed", "label": "Speed (use ★)", "default": "★★★★★" },
+        { "type": "text", "id": "footer_text", "label": "Footer Text", "default": "HercFiber Works 10-100x Faster Than Silver-Infused Clothing" }
+      ]
+    },
+    {
+      "type": "travel-pack",
+      "name": "Pack Lighter",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "01 — LUGGAGE REDUCTION" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Pack lighter. Move freer." },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Smell is what forces travelers to overpack." },
+        { "type": "header", "content": "Comparison Settings" },
+        { "type": "text", "id": "trip_title", "label": "Trip Title", "default": "2 Weeks Long Trip" },
+        { "type": "text", "id": "standard_label", "label": "Standard - Label", "default": "Standard Tourist" },
+        { "type": "text", "id": "standard_weight", "label": "Standard - Weight", "default": "~3.5kg Load" },
+        { "type": "text", "id": "standard_items", "label": "Standard - Number of Items", "default": "14" },
+        { "type": "text", "id": "standard_caption", "label": "Standard - Caption", "default": "Requires 14 items OR Laundry" },
+        { "type": "text", "id": "hercleon_label", "label": "HercLeon - Label", "default": "HercLeon Operative" },
+        { "type": "text", "id": "hercleon_weight", "label": "HercLeon - Weight", "default": "~0.1kg Load" },
+        { "type": "text", "id": "hercleon_items", "label": "HercLeon - Number of Items", "default": "1" },
+        { "type": "text", "id": "hercleon_caption", "label": "HercLeon - Caption", "default": "Requires 1 Item. Zero Laundry." }
+      ]
+    },
+    {
+      "type": "travel-clothes",
+      "name": "Change of Clothes", 
+      "settings": [
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "background_color", "label": "Block background", "default": "#000000" },
+        { "type": "color", "id": "title_color", "label": "Title & timeline label color", "default": "#ffffff" },
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "02 — from takeoff to dinner" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Who needs a change of clothes?" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "HercFiber stays fresh from the moment you leave the airport to the moment you sit down for dinner." },
+        { "type": "header", "content": "Timeline Events" },
+        { "type": "text", "id": "time_1", "label": "Event 1 - Time", "default": "08:00" },
+        { "type": "text", "id": "label_1", "label": "Event 1 - Label", "default": "International Flight" },
+        { "type": "text", "id": "time_2", "label": "Event 2 - Time", "default": "14:00" },
+        { "type": "text", "id": "label_2", "label": "Event 2 - Label", "default": "Client Meeting" },
+        { "type": "text", "id": "time_3", "label": "Event 3 - Time", "default": "16:00" },
+        { "type": "text", "id": "label_3", "label": "Event 3 - Label", "default": "Gym Session" },
+        { "type": "text", "id": "time_4", "label": "Event 4 - Time", "default": "19:00" },
+        { "type": "text", "id": "label_4", "label": "Event 4 - Label", "default": "Dinner Date" }
+      ]
+    },
+    {
+      "type": "travel-chore",
+      "name": "Chore List",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "03 — CHORE ELIMINATION" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Travel without the chore list." },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Laundry shouldn't dictate your trip." },
+        { "type": "header", "content": "Standard Requirements" },
+        { "type": "text", "id": "standard_title", "label": "Standard - Title", "default": "Standard Requirements" },
+        { "type": "text", "id": "standard_item_1", "label": "Standard - Item 1", "default": "[ ] Laundry Machine" },
+        { "type": "text", "id": "standard_item_2", "label": "Standard - Item 2", "default": "[ ] Detergent" },
+        { "type": "text", "id": "standard_item_3", "label": "Standard - Item 3", "default": "[ ] Drying Rack" },
+        { "type": "text", "id": "standard_item_4", "label": "Standard - Item 4", "default": "[ ] Iron / Steamer" },
+        { "type": "text", "id": "standard_item_5", "label": "Standard - Item 5", "default": "[ ] Spare Coins" },
+        { "type": "text", "id": "standard_item_6", "label": "Standard - Item 6", "default": "[ ] 2 Hours Wait" },
+        { "type": "header", "content": "HercLeon Requirements" },
+        { "type": "text", "id": "hercleon_title", "label": "HercLeon - Title", "default": "HercLeon Requirements" },
+        { "type": "richtext", "id": "hercleon_message", "label": "HercLeon - Message", "default": "<p>ZERO<br>CHORES</p>" }
+      ]
+    },
+    {
+      "type": "comfort-sweat-absorbed",
+      "name": "Sweat Absorbed",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "01 — THE PERFECT FIT" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Sweat Absorbed. Odor Stopped." },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Most clothes fail because sweat sits on the surface." },
+        { "type": "header", "content": "Stats Grid" },
+        { "type": "text", "id": "stat_1_value", "label": "Stat 1 - Value", "default": "300%" },
+        { "type": "text", "id": "stat_1_label", "label": "Stat 1 - Label", "default": "More Absorbent (Cotton)" },
+        { "type": "checkbox", "id": "stat_1_highlight", "label": "Stat 1 - Highlight (Orange)", "default": true },
+        { "type": "text", "id": "stat_2_value", "label": "Stat 2 - Value", "default": "1000%" },
+        { "type": "text", "id": "stat_2_label", "label": "Stat 2 - Label", "default": "More Absorbent (Poly)" },
+        { "type": "checkbox", "id": "stat_2_highlight", "label": "Stat 2 - Highlight (Orange)", "default": true },
+        { "type": "text", "id": "stat_3_value", "label": "Stat 3 - Value", "default": "130%" },
+        { "type": "text", "id": "stat_3_label", "label": "Stat 3 - Label", "default": "More Cooling (Cotton)" },
+        { "type": "checkbox", "id": "stat_3_highlight", "label": "Stat 3 - Highlight (Orange)", "default": false },
+        { "type": "text", "id": "stat_4_value", "label": "Stat 4 - Value", "default": "200%" },
+        { "type": "text", "id": "stat_4_label", "label": "Stat 4 - Label", "default": "Faster Wicking (Poly)" },
+        { "type": "checkbox", "id": "stat_4_highlight", "label": "Stat 4 - Highlight (Orange)", "default": false }
+      ]
+    },
+    {
+      "type": "comfort-softness",
+      "name": "Softness",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "02 — Gear You Won't Want To Take Off" },
+        { "type": "text", "id": "title", "label": "Title", "default": "More Softness. Less Smell." },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "We engineered our fabric to be softer than cashmere." },
+        { "type": "header", "content": "Micron Chart" },
+        { "type": "text", "id": "chart_title", "label": "Chart Title", "default": "Micron Count (Lower is Softer)" },
+        { "type": "text", "id": "material_1_name", "label": "Material 1 - Name", "default": "Cotton" },
+        { "type": "text", "id": "material_1_value", "label": "Material 1 - Value", "default": "20μm" },
+        { "type": "text", "id": "material_1_width", "label": "Material 1 - Bar Width %", "default": "20" },
+        { "type": "text", "id": "material_2_name", "label": "Material 2 - Name", "default": "Merino Wool" },
+        { "type": "text", "id": "material_2_value", "label": "Material 2 - Value", "default": "18μm" },
+        { "type": "text", "id": "material_2_width", "label": "Material 2 - Bar Width %", "default": "18" },
+        { "type": "text", "id": "material_3_name", "label": "Material 3 - Name", "default": "Cashmere" },
+        { "type": "text", "id": "material_3_value", "label": "Material 3 - Value", "default": "15μm" },
+        { "type": "text", "id": "material_3_width", "label": "Material 3 - Bar Width %", "default": "15" },
+        { "type": "text", "id": "material_4_name", "label": "Material 4 - Name", "default": "Silk" },
+        { "type": "text", "id": "material_4_value", "label": "Material 4 - Value", "default": "12μm" },
+        { "type": "text", "id": "material_4_width", "label": "Material 4 - Bar Width %", "default": "12" },
+        { "type": "text", "id": "material_5_name", "label": "Material 5 - Name (Hero)", "default": "HercFiber™" },
+        { "type": "text", "id": "material_5_value", "label": "Material 5 - Value", "default": "10μm" },
+        { "type": "text", "id": "material_5_width", "label": "Material 5 - Bar Width %", "default": "10" }
+      ]
+    },
+    {
+      "type": "durability-lifespan",
+      "name": "Lifespan",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "01 — EXTENDED LIFESPAN" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Less Smell = Longer Lifespan" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Most clothing wears out early because it has to be washed constantly." },
+        { "type": "text", "id": "comparison_title", "label": "Comparison Title", "default": "HercFiber™ is more durable than others by:" },
+        { "type": "text", "id": "comparison_1_value", "label": "Comparison 1 - Value", "default": "1.9x" },
+        { "type": "text", "id": "comparison_1_label", "label": "Comparison 1 - Label", "default": "Cotton" },
+        { "type": "text", "id": "comparison_2_value", "label": "Comparison 2 - Value", "default": "2x" },
+        { "type": "text", "id": "comparison_2_label", "label": "Comparison 2 - Label", "default": "Viscose" },
+        { "type": "text", "id": "comparison_3_value", "label": "Comparison 3 - Value", "default": "3x" },
+        { "type": "text", "id": "comparison_3_label", "label": "Comparison 3 - Label", "default": "Merino Wool" },
+        { "type": "text", "id": "table_title", "label": "Table Title", "default": "HercFiber Is Durable In Every Way" },
+        { "type": "text", "id": "header_category", "label": "Header - Category", "default": "Category" },
+        { "type": "text", "id": "header_meaning", "label": "Header - Meaning", "default": "Meaning" },
+        { "type": "text", "id": "header_cotton", "label": "Header - Cotton", "default": "Cot" },
+        { "type": "text", "id": "header_merino", "label": "Header - Merino", "default": "Mer" },
+        { "type": "text", "id": "header_herc", "label": "Header - Herc", "default": "Herc" },
+        { "type": "text", "id": "row_1_category", "label": "Row 1 - Category", "default": "Tensile Strength" },
+        { "type": "text", "id": "row_1_meaning", "label": "Row 1 - Meaning", "default": "Resistance to breaking" },
+        { "type": "text", "id": "row_1_cotton", "label": "Row 1 - Cotton", "default": "★★" },
+        { "type": "text", "id": "row_1_merino", "label": "Row 1 - Merino", "default": "★" },
+        { "type": "text", "id": "row_1_herc", "label": "Row 1 - Herc", "default": "★★★" },
+        { "type": "text", "id": "row_2_category", "label": "Row 2 - Category", "default": "Abrasion Resistance" },
+        { "type": "text", "id": "row_2_meaning", "label": "Row 2 - Meaning", "default": "Handles rubbing/friction" },
+        { "type": "text", "id": "row_2_cotton", "label": "Row 2 - Cotton", "default": "★★" },
+        { "type": "text", "id": "row_2_merino", "label": "Row 2 - Merino", "default": "★" },
+        { "type": "text", "id": "row_2_herc", "label": "Row 2 - Herc", "default": "★★★" },
+        { "type": "text", "id": "row_3_category", "label": "Row 3 - Category", "default": "Pilling Resistance" },
+        { "type": "text", "id": "row_3_meaning", "label": "Row 3 - Meaning", "default": "Avoids fiber balls" },
+        { "type": "text", "id": "row_3_cotton", "label": "Row 3 - Cotton", "default": "★★" },
+        { "type": "text", "id": "row_3_merino", "label": "Row 3 - Merino", "default": "★" },
+        { "type": "text", "id": "row_3_herc", "label": "Row 3 - Herc", "default": "★★★" },
+        { "type": "text", "id": "row_4_category", "label": "Row 4 - Category", "default": "Shape Retention" },
+        { "type": "text", "id": "row_4_meaning", "label": "Row 4 - Meaning", "default": "Keeps shape/fit" },
+        { "type": "text", "id": "row_4_cotton", "label": "Row 4 - Cotton", "default": "★" },
+        { "type": "text", "id": "row_4_merino", "label": "Row 4 - Merino", "default": "★★★" },
+        { "type": "text", "id": "row_4_herc", "label": "Row 4 - Herc", "default": "★★" },
+        { "type": "text", "id": "row_5_category", "label": "Row 5 - Category", "default": "Heat/Wash Stability" },
+        { "type": "text", "id": "row_5_meaning", "label": "Row 5 - Meaning", "default": "Tolerates washing" },
+        { "type": "text", "id": "row_5_cotton", "label": "Row 5 - Cotton", "default": "★★" },
+        { "type": "text", "id": "row_5_merino", "label": "Row 5 - Merino", "default": "★" },
+        { "type": "text", "id": "row_5_herc", "label": "Row 5 - Herc", "default": "★★★" },
+        { "type": "text", "id": "row_6_category", "label": "Row 6 - Category", "default": "Moisture Strength" },
+        { "type": "text", "id": "row_6_meaning", "label": "Row 6 - Meaning", "default": "Strength when wet" },
+        { "type": "text", "id": "row_6_cotton", "label": "Row 6 - Cotton", "default": "★★" },
+        { "type": "text", "id": "row_6_merino", "label": "Row 6 - Merino", "default": "★" },
+        { "type": "text", "id": "row_6_herc", "label": "Row 6 - Herc", "default": "★★★" },
+        { "type": "text", "id": "row_7_category", "label": "Row 7 - Category", "default": "Overall Durability" },
+        { "type": "text", "id": "row_7_meaning", "label": "Row 7 - Meaning", "default": "Real-world lifespan" },
+        { "type": "text", "id": "row_7_cotton", "label": "Row 7 - Cotton", "default": "★★" },
+        { "type": "text", "id": "row_7_merino", "label": "Row 7 - Merino", "default": "★" },
+        { "type": "text", "id": "row_7_herc", "label": "Row 7 - Herc", "default": "★★★" }
+      ]
+    },
+    {
+      "type": "durability-laundry",
+      "name": "Laundry Time",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "04 — TIME FOR WHAT YOU LOVE" },
+        { "type": "text", "id": "title", "label": "Title", "default": "USE YOUR LIMITED TIME FOR LIVING NOT LAUNDRY" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "The real cost of regular clothes is time. Every load of laundry adds up: sorting piles, waiting for cycles, drying, and folding. Most of this time exists for one reason. Odor forces you to clean your clothes long before they're actually dirty.\n\nWe break that cycle. Zoom out, and the impact is simple. More mornings without chores. More evenings without folding. And more time for the things that actually matter." },
+        { "type": "text", "id": "hercleon_hours", "label": "HercLeon - Hours", "default": "1071h" },
+        { "type": "text", "id": "hercleon_bar_height", "label": "HercLeon - Bar Height %", "default": "15" },
+        { "type": "text", "id": "hercleon_name", "label": "HercLeon - Name", "default": "HercLeon" },
+        { "type": "text", "id": "hercleon_caption", "label": "HercLeon - Caption", "default": "Life spent doing laundry" },
+        { "type": "text", "id": "competitor_hours", "label": "Competitor - Hours", "default": "7133h" },
+        { "type": "text", "id": "competitor_bar_height", "label": "Competitor - Bar Height %", "default": "100" },
+        { "type": "text", "id": "competitor_name", "label": "Competitor - Name", "default": "Others" },
+        { "type": "text", "id": "competitor_caption", "label": "Competitor - Caption", "default": "Life spent doing laundry" },
+        { "type": "text", "id": "reclaimed_title", "label": "Reclaimed Title", "default": "Total Time Reclaimed" },
+        { "type": "text", "id": "reclaimed_days", "label": "Days - Value", "default": "253" },
+        { "type": "text", "id": "reclaimed_days_label", "label": "Days - Label", "default": "Days" },
+        { "type": "text", "id": "reclaimed_weeks", "label": "Weeks - Value", "default": "36" },
+        { "type": "text", "id": "reclaimed_weeks_label", "label": "Weeks - Label", "default": "Weeks" },
+        { "type": "text", "id": "reclaimed_months", "label": "Months - Value", "default": "8.4" },
+        { "type": "text", "id": "reclaimed_months_label", "label": "Months - Label", "default": "Months" }
+      ]
+    },
+    {
+      "type": "durability-investment",
+      "name": "Investment",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "Financial Intelligence" },
+        { "type": "text", "id": "title", "label": "Title", "default": "The Most Intelligent Investment You Can Make." },
+        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Smelly clothes are a liability. HercLeón turns clothing into an asset.</p>" },
+        { "type": "header", "content": "Cost Reduction Items" },
+        { "type": "text", "id": "chart_title", "label": "Chart Title", "default": "Cost Reduction Analysis" },
+        { "type": "text", "id": "item_1_label", "label": "Item 1 - Label", "default": "Detergent" },
+        { "type": "text", "id": "item_1_value", "label": "Item 1 - Value", "default": "-90% Usage" },
+        { "type": "text", "id": "item_2_label", "label": "Item 2 - Label", "default": "Water & Power" },
+        { "type": "text", "id": "item_2_value", "label": "Item 2 - Value", "default": "-90% Usage" },
+        { "type": "text", "id": "item_3_label", "label": "Item 3 - Label", "default": "Dryer Cycles" },
+        { "type": "text", "id": "item_3_value", "label": "Item 3 - Value", "default": "Eliminated" },
+        { "type": "text", "id": "item_4_label", "label": "Item 4 - Label", "default": "Replacements" },
+        { "type": "text", "id": "item_4_value", "label": "Item 4 - Value", "default": "Every 5-10 Years" }
+      ]
+    },
+    {
+      "type": "briefing-washing",
+      "name": "Washing & Pollution",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Odor Drives Washing. Washing Drives Pollution. HercLeón Stops Both." },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Global textile research shows that 35% of ocean microplastics come directly from washing clothes.</p>" }
+      ]
+    },
+    {
+      "type": "backups-needed",
+      "name": "HC Backup Needed",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "title_accent", "label": "Title Accent (colored)", "default": "no" },
+        { "type": "text", "id": "title_main", "label": "Title Main", "default": "backups needed" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "World's first antibacterial clothing to stay truly odorless. Made for people who want to move through life with less laundry, and more freedom." }
+      ]
+    },
+    {
+      "type": "moisture-control",
+      "name": "HC Moisture Control",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "02 — HYPER-ABSORBENCY" },
+        { "type": "text", "id": "title", "label": "Title", "default": "MOISTURE CONTROL" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "HercFiber is built with a hyper-absorbent fiber system that pulls moisture away instantly, keeping your skin dry. Its ultra-fine structure, thanks to our fibers that are engineered at just 10 microns, creates less friction, traps less heat, and keeps your skin cooler and drier throughout the day. Removing the moist environment bacteria need to grow, odor never gets a chance to form." },
+        { "type": "header", "content": "Chart Card" },
+        { "type": "text", "id": "card_title", "label": "Card Title", "default": "Skin Moisture Level" },
+        { "type": "text", "id": "card_subtitle", "label": "Card Subtitle", "default": "Bacteria Requires Moisture To Breed" },
+        { "type": "text", "id": "bar_left_label", "label": "Bar Left Label", "default": "Others" },
+        { "type": "text", "id": "bar_right_legend", "label": "Bar Right Legend (above bar)", "default": "Dry" },
+        { "type": "text", "id": "bar_right_label", "label": "Bar Right Label", "default": "HercFiber" }
+      ]
+    },
+    {
+      "type": "intelligent-investment",
+      "name": "HC Intelligent Investment",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "eyebrow_text", "label": "Eyebrow Text", "default": "03 — FINANCIAL INTELLIGENCE" },
+        { "type": "text", "id": "title", "label": "Title", "default": "THE MOST INTELLIGENT INVESTMENT YOU CAN MAKE." },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Smelly clothes are a liability. They require constant spending on detergent, water, electricity, and machine maintenance. Worse, frequent washing destroys the fabric, forcing you to buy replacements.\n\nHercLéon turns clothing into an asset. By staying fresh for weeks, we eliminate 90% of laundry costs and extend garment lifespan by years. Clothing that doesn't smell literally costs less to own." },
+        { "type": "header", "content": "Card" },
+        { "type": "text", "id": "card_title", "label": "Card Title", "default": "Cost Reduction Analysis" },
+        { "type": "header", "content": "Items" },
+        { "type": "text", "id": "item_1_label", "label": "Item 1 Label", "default": "DETERGENT" },
+        { "type": "text", "id": "item_1_value", "label": "Item 1 Value", "default": "−90% Usage" },
+        { "type": "text", "id": "item_2_label", "label": "Item 2 Label", "default": "WATER & POWER" },
+        { "type": "text", "id": "item_2_value", "label": "Item 2 Value", "default": "−90% Usage" },
+        { "type": "text", "id": "item_3_label", "label": "Item 3 Label", "default": "DRYER CYCLES" },
+        { "type": "text", "id": "item_3_value", "label": "Item 3 Value", "default": "Eliminated" },
+        { "type": "text", "id": "item_4_label", "label": "Item 4 Label", "default": "REPLACEMENTS" },
+        { "type": "text", "id": "item_4_value", "label": "Item 4 Value", "default": "Every 5–10 Years" }
+      ]
+    },
+    {
+      "type": "no-specific-modules",
+      "name": "No specific modules",
+      "settings": [
+        {
+          "type": "text",
+          "id": "message",
+          "label": "Message",
+          "default": "No specific modules found for this category."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tab Content - Highlights",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "stay-fresh",
+          "settings": {
+            "title": "Stays Fresh For Up To 100 Wears",
+            "description": "All-day, multi-day freshness powered by neutralizing all five types of human odor.",
+            "competitor_label": "Silver-infused, Merino Wool, Anti-bacterial, etc.",
+            "hercleon_label": "HercLeon",
+            "odor_1_name": "Bacteria",
+            "competitor_odor_1_status": "Covered",
+            "hercleon_odor_1_status": "Neutralized",
+            "odor_2_name": "Fungus",
+            "competitor_odor_2_status": "Ignored",
+            "hercleon_odor_2_status": "Neutralized",
+            "odor_3_name": "Body Oils",
+            "competitor_odor_3_status": "Ignored",
+            "hercleon_odor_3_status": "Neutralized",
+            "odor_4_name": "Environment",
+            "competitor_odor_4_status": "Ignored",
+            "hercleon_odor_4_status": "Neutralized",
+            "odor_5_name": "Hormones",
+            "competitor_odor_5_status": "Ignored",
+            "hercleon_odor_5_status": "Neutralized"
+          }
+        },
+        {
+          "type": "soft-cashmere",
+          "settings": {
+            "title": "Softer Than Cashmere",
+            "subtitle": "A next-generation mineral + plant-fiber blend engineered for everyday luxury.",
+            "description": "We engineered our fabric to be softer than cashmere and almost twice as soft as merino wool. By using ultra-fine beechwood fibers blended with volcanic minerals, we created a material that feels like a second skin—cool, smooth, and incredibly gentle.",
+            "chart_title": "Micron Count (Lower is Softer)",
+            "material_1_name": "Cotton",
+            "material_1_value": 20,
+            "material_2_name": "Merino Wool",
+            "material_2_value": 18,
+            "material_3_name": "Cashmere",
+            "material_3_value": 15,
+            "material_4_name": "Silk",
+            "material_4_value": 12,
+            "material_5_name": "HercFiber™",
+            "material_5_value": 10
+          }
+        },
+        {
+          "type": "built-to-last",
+          "settings": {
+            "title": "Built to Last Years, Not Months",
+            "subtitle": "Less washing means far less wear — keeping the shirt looking and feeling new.",
+            "description": "<p>The #1 enemy of clothing isn't wearing it; it's washing it. Because HercLeón requires 90% less washing, the fibers aren't subjected to the heat, friction, and chemicals that destroy normal clothes. A HercShirt can last a decade.</p>",
+            "comparison_title": "HercFiber™ is more durable than others by:",
+            "comparison_1_value": "1.9x",
+            "comparison_1_label": "Cotton",
+            "comparison_2_value": "2x",
+            "comparison_2_label": "Viscose",
+            "comparison_3_value": "3x",
+            "comparison_3_label": "Merino Wool",
+            "durability_title": "HercFiber Is Durable In Every Way",
+            "row_1_category": "Tensile Strength",
+            "row_1_meaning": "Resistance to breaking",
+            "row_1_cotton": "★★",
+            "row_1_merino": "★",
+            "row_1_herc": "★★★",
+            "row_2_category": "Abrasion Resistance",
+            "row_2_meaning": "Handles rubbing/friction",
+            "row_2_cotton": "★★",
+            "row_2_merino": "★",
+            "row_2_herc": "★★★",
+            "row_3_category": "Pilling Resistance",
+            "row_3_meaning": "Avoids fiber balls",
+            "row_3_cotton": "★★",
+            "row_3_merino": "★",
+            "row_3_herc": "★★★",
+            "row_4_category": "Shape Retention",
+            "row_4_meaning": "Keeps shape/fit",
+            "row_4_cotton": "★",
+            "row_4_merino": "★★★",
+            "row_4_herc": "★★",
+            "row_5_category": "Heat/Wash Stability",
+            "row_5_meaning": "Tolerates washing",
+            "row_5_cotton": "★★",
+            "row_5_merino": "★",
+            "row_5_herc": "★★★",
+            "row_6_category": "Moisture Strength",
+            "row_6_meaning": "Strength when wet",
+            "row_6_cotton": "★★",
+            "row_6_merino": "★",
+            "row_6_herc": "★★★",
+            "row_7_category": "Overall Durability",
+            "row_7_meaning": "Real-world lifespan",
+            "row_7_cotton": "★★",
+            "row_7_merino": "★",
+            "row_7_herc": "★★★"
+          }
+        },
+        {
+          "type": "built-to-last",
+          "settings": {
+            "title": "Built to Last Years, Not Months",
+            "subtitle": "Less washing means far less wear — keeping the shirt looking and feeling new.",
+            "description": "<p>The #1 enemy of clothing isn't wearing it; it's washing it. Because HercLeón requires 90% less washing, the fibers aren't subjected to the heat, friction, and chemicals that destroy normal clothes. A HercShirt can last a decade.</p>",
+            "comparison_title": "HercFiber™ is more durable than others by:",
+            "comparison_1_value": "1.9x",
+            "comparison_1_label": "Cotton",
+            "comparison_2_value": "2x",
+            "comparison_2_label": "Viscose",
+            "comparison_3_value": "3x",
+            "comparison_3_label": "Merino Wool",
+            "durability_title": "HercFiber Is Durable In Every Way",
+            "row_1_category": "Tensile Strength",
+            "row_1_meaning": "Resistance to breaking",
+            "row_1_cotton": "★★",
+            "row_1_merino": "★",
+            "row_1_herc": "★★★",
+            "row_2_category": "Abrasion Resistance",
+            "row_2_meaning": "Handles rubbing/friction",
+            "row_2_cotton": "★★",
+            "row_2_merino": "★",
+            "row_2_herc": "★★★",
+            "row_3_category": "Pilling Resistance",
+            "row_3_meaning": "Avoids fiber balls",
+            "row_3_cotton": "★★",
+            "row_3_merino": "★",
+            "row_3_herc": "★★★",
+            "row_4_category": "Shape Retention",
+            "row_4_meaning": "Keeps shape/fit",
+            "row_4_cotton": "★",
+            "row_4_merino": "★★★",
+            "row_4_herc": "★★",
+            "row_5_category": "Heat/Wash Stability",
+            "row_5_meaning": "Tolerates washing",
+            "row_5_cotton": "★★",
+            "row_5_merino": "★",
+            "row_5_herc": "★★★",
+            "row_6_category": "Moisture Strength",
+            "row_6_meaning": "Strength when wet",
+            "row_6_cotton": "★★",
+            "row_6_merino": "★",
+            "row_6_herc": "★★★",
+            "row_7_category": "Overall Durability",
+            "row_7_meaning": "Real-world lifespan",
+            "row_7_cotton": "★★",
+            "row_7_merino": "★",
+            "row_7_herc": "★★★"
+          }
+        },
+        {
+          "type": "travel-with-less-clothing",
+          "settings": {
+            "title": "Travel With 80% Less Clothing",
+            "subtitle": "One HercLeón replaces 7+ traditional clothing. You might not even need to pack any extras.",
+            "description": "Imagine traveling for weeks with just a backpack. No check-in fees. No waiting at baggage claim. No laundromats. HercLeón gives you the freedom to move through the world unburdened.",
+            "comparison_title": "2 Weeks Long Trip",
+            "tourist_label": "Standard Tourist",
+            "tourist_weight": "~3.5kg Load",
+            "tourist_items": 14,
+            "tourist_note": "Requires 14 items OR Laundry",
+            "hercleon_label": "HercLeon Operative",
+            "hercleon_weight": "~0.1kg Load",
+            "hercleon_items": 1,
+            "hercleon_note": "Requires 1 Item. Zero Laundry."
+          }
+        },
+        {
+          "type": "exp-laundry",
+          "settings": {
+            "title": "Experience Freedom",
+            "subtitle": "Experiencing having more time, energy and flexibility",
+            "description": "Laundry is a waste of a finite human life. By eliminating the need to wash your clothes after every wear, you reclaim days of your life every year. Plus, you save thousands of liters of water and reduce ocean microplastics.",
+            "card_title": "Life Efficiency",
+            "footer_text": "HercLeón removes the hidden burdens of clothing.",
+            "metric_1_label": "Laundry Reduction",
+            "metric_1_value": 90,
+            "metric_2_label": "Water Savings",
+            "metric_2_value": 85,
+            "metric_3_label": "Energy Saved",
+            "metric_3_value": 90,
+            "metric_4_label": "Reduced mental load",
+            "metric_4_value": 50
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

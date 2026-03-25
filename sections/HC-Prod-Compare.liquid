@@ -1,0 +1,545 @@
+{% comment %}
+  Product Comparison Section
+  Compares HercFiber with other materials
+{% endcomment %}
+
+<section id="{{ section.settings.custom_id }}" class="hc-prod-compare-section">
+  <div class="page-width">
+    <!-- Section Header -->
+    <div class="hc-prod-compare-header">
+      <span class="hc-prod-compare-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="hc-prod-compare-title">{{ section.settings.title | default: "Hercléon vs. Everyone" }}</h2>
+      <p class="hc-prod-compare-desc__text">
+    {{ section.settings.comparison_description }}
+  </p>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="hc-prod-compare-table-wrapper">
+      <table class="hc-prod-compare-table">
+        <thead>
+          <tr class="hc-prod-compare-table-head-row">
+            <th class="hc-prod-compare-table-head-cell hc-prod-compare-table-head-cell-category">Category</th>
+            <th class="hc-prod-compare-table-head-cell hc-prod-compare-table-head-cell-highlight">
+              {{ section.settings.hero_column | default: "HercFiber" }}
+            </th>
+            {% for block in section.blocks %}
+              <th class="hc-prod-compare-table-head-cell hc-prod-compare-table-head-cell-competitor">
+                {{ block.settings.material_name }}
+              </th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody class="hc-prod-compare-table-body">
+          {% assign categories = "Odor Control,Antibacterial,Moisture Management,Drying Speed,Freshness Longevity,Softness / Comfort,Temperature Control,Durability,Travel Efficiency,Eco-Friendliness,Overall Performance" | split: "," %}
+          
+          {% for category in categories %}
+            {% assign category_index = forloop.index %}
+            <tr class="hc-prod-compare-table-row">
+              <td class="hc-prod-compare-table-cell hc-prod-compare-table-cell-category">
+                {{ category }}
+              </td>
+              <td class="hc-prod-compare-table-cell hc-prod-compare-table-cell-highlight">
+                {% assign hero_rating_key = "hero_rating_" | append: category_index %}
+                {% assign hero_rating = section.settings[hero_rating_key] | default: 5 %}
+                <div class="hc-prod-compare-rating">
+                  {% for i in (1..5) %}
+                    <div class="hc-prod-compare-rating-dot hc-prod-compare-rating-dot-hero {% if i <= hero_rating %}hc-prod-compare-rating-dot-filled{% endif %}"></div>
+                  {% endfor %}
+                </div>
+              </td>
+              {% for block in section.blocks %}
+                {% assign rating_key = "rating_" | append: category_index %}
+                {% assign rating = block.settings[rating_key] | default: 3 %}
+                <td class="hc-prod-compare-table-cell hc-prod-compare-table-cell-competitor">
+                  <div class="hc-prod-compare-rating">
+                    {% for i in (1..5) %}
+                      <div class="hc-prod-compare-rating-dot {% if i <= rating %}hc-prod-compare-rating-dot-filled{% endif %}"></div>
+                    {% endfor %}
+                  </div>
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Comparison Section */
+.hc-prod-compare-section {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 6rem 0;
+  border-bottom: 1px solid #1f2937;
+}
+
+/* Section Header */
+.hc-prod-compare-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hc-prod-compare-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #B45309;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.hc-prod-compare-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  padding-bottom: 21px;
+}
+
+.hc-prod-compare-desc {
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .hc-prod-compare-desc__text {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #9ca3af;
+    line-height: 1.75;
+    text-align: center;
+    max-width: 672px;
+    margin: 0 auto;
+}
+
+/* Table Wrapper */
+.hc-prod-compare-table-wrapper {
+  overflow-x: auto;
+}
+
+.hc-prod-compare-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+/* Table Head */
+.hc-prod-compare-table-head-row {
+  border-bottom: 1px solid #1f2937;
+  color: #6b7280;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hc-prod-compare-table-head-cell {
+  padding: 1.5rem 1rem;
+  font-size: 10px;
+}
+
+.hc-prod-compare-table-head-cell-category {
+  text-align: left;
+}
+
+.hc-prod-compare-table-head-cell-highlight {
+  text-align: center;
+  color: #B45309;
+  font-weight: 700;
+  font-size: 0.875rem;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.hc-prod-compare-table-head-cell-competitor {
+  text-align: center;
+}
+
+/* Table Body */
+.hc-prod-compare-table-body {
+  font-size: 0.75rem;
+}
+
+.hc-prod-compare-table-row {
+  border-bottom: 1px solid #111827;
+  transition: background-color 0.3s ease;
+}
+
+.hc-prod-compare-table-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.hc-prod-compare-table-cell {
+  padding: 1.5rem 1rem;
+}
+
+.hc-prod-compare-table-cell-category {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #d1d5db;
+    font-size: 12px;
+}
+
+.hc-prod-compare-table-cell-highlight {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.hc-prod-compare-table-cell-competitor {
+  text-align: center;
+  opacity: 0.4;
+}
+
+.hc-prod-compare-table-cell-competitor:hover {
+  opacity: 0.6;
+}
+
+/* Rating Dots */
+.hc-prod-compare-rating {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.hc-prod-compare-rating-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    display: flex !important;
+}
+
+.hc-prod-compare-rating-dot-filled {
+  background-color: #ffffff;
+}
+
+.hc-prod-compare-rating-dot-hero {
+  border-color: #B45309;
+}
+
+.hc-prod-compare-rating-dot-hero.hc-prod-compare-rating-dot-filled {
+  background-color: #B45309;
+}
+
+/* Responsive - Medium screens */
+@media (min-width: 768px) {
+  .hc-prod-compare-title {
+    font-size: 3rem;
+  }
+}
+
+ @media (max-width: 749px) {
+    .hc-prod-compare-desc__text {
+      font-size: 1.125rem;
+      line-height: 1.625;
+    }
+  }
+
+/* Responsive - Small screens */
+@media (max-width: 640px) {
+  .hc-prod-compare-section {
+    padding: 4rem 0;
+  }
+  
+  .hc-prod-compare-title {
+    font-size: 1.875rem;
+  }
+  
+  .hc-prod-compare-table-cell {
+    padding: 1rem 0.75rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC Product Comparison",
+  "tag": "section",
+  "class": "product-comparison-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_id",
+      "label": "Custom ID"
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hercléon vs. Everyone"
+    },
+    {
+      "type": "textarea",
+      "id": "comparison_description",
+      "label": "Description Text",
+      "default": "When you look at the data, it's not even close. HercLéon is the only fabric engineered to handle the full spectrum of human odor."
+    },
+    {
+      "type": "text",
+      "id": "hero_column",
+      "label": "Hero Column Name",
+      "default": "HercFiber"
+    },
+    {
+      "type": "header",
+      "content": "Hero Column Ratings (1-5)"
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_1",
+      "label": "Odor Control",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_2",
+      "label": "Antibacterial",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_3",
+      "label": "Moisture Management",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_4",
+      "label": "Drying Speed",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_5",
+      "label": "Freshness Longevity",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_6",
+      "label": "Softness / Comfort",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_7",
+      "label": "Temperature Control",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_8",
+      "label": "Durability",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_9",
+      "label": "Travel Efficiency",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_10",
+      "label": "Eco-Friendliness",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "hero_rating_11",
+      "label": "Overall Performance",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "competitor",
+      "name": "Competitor Material",
+      "settings": [
+        {
+          "type": "text",
+          "id": "material_name",
+          "label": "Material Name",
+          "default": "Cotton"
+        },
+        {
+          "type": "range",
+          "id": "rating_1",
+          "label": "Odor Control",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "rating_2",
+          "label": "Antibacterial",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "rating_3",
+          "label": "Moisture Management",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "rating_4",
+          "label": "Drying Speed",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "rating_5",
+          "label": "Freshness Longevity",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "rating_6",
+          "label": "Softness / Comfort",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "rating_7",
+          "label": "Temperature Control",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "rating_8",
+          "label": "Durability",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "rating_9",
+          "label": "Travel Efficiency",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "rating_10",
+          "label": "Eco-Friendliness",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "rating_11",
+          "label": "Overall Performance",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 2
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Product Comparison",
+      "blocks": [
+        {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Merino Wool"
+          }
+        },
+        {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Cotton"
+          }
+        },
+        {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Polyester"
+          }
+        },
+        {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Viscose"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,162 @@
+{% comment %}
+  HC OS Fashion Clothing Section
+  Class prefix: hc-os-fashion-clothing-
+{% endcomment %}
+
+{% style %}
+  .hc-os-fashion-clothing {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-os-fashion-clothing {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  .hc-os-fashion-clothing__inner {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .hc-os-fashion-clothing__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+    color: #111827;
+  }
+
+  @media (min-width: 768px) {
+    .hc-os-fashion-clothing__title {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-os-fashion-clothing__text {
+    font-size: 1.25rem;
+    color: #4b5563;
+    font-weight: 300;
+    line-height: 1.625;
+    margin-bottom: 4rem;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-os-fashion-clothing__quote-wrap {
+    display: inline-block;
+    border: 1px solid #000000;
+    padding: 2rem 3rem;
+  }
+
+  .hc-os-fashion-clothing__quote {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    line-height: 1.4;
+    color: #111827;
+  }
+{% endstyle %}
+
+<section class="hc-os-fashion-clothing">
+  <div class="hc-os-fashion-clothing__inner">
+    {% if section.settings.title != blank %}
+      <h2 class="hc-os-fashion-clothing__title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <p class="hc-os-fashion-clothing__text">{{ section.settings.text }}</p>
+    {% endif %}
+
+    {% if section.settings.quote != blank %}
+      <div class="hc-os-fashion-clothing__quote-wrap">
+        <p class="hc-os-fashion-clothing__quote">{{ section.settings.quote | newline_to_br }}</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HC OS Clothing",
+  "tag": "section",
+  "class": "section-hc-os-fashion-clothing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Clothing Was Meant to Help Humans Go Farther."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "But over time, clothes became fragile, high-maintenance, and easily defeated by odor. Laundry took over our schedules. Packing took over our bags. Odor took over our confidence. We exist to reverse that."
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "Clothing should serve you,\nnot the other way around."
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OS Clothing"
+    }
+  ]
+}
+{% endschema %}

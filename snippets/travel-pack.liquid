@@ -1,0 +1,258 @@
+{% comment %}
+  Travel - Pack Lighter Block
+{% endcomment %}
+
+<style>
+  .hc-travel-pack-block {
+    border-bottom: 1px solid #000;
+    background-color: #fff;
+    animation: hc-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-travel-pack-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+  .hc-pack-lighter-eyebrow {
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-pack-lighter-eyebrow__text {
+    font-family: monospace;
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    display: inline-block;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-travel-pack-block__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hc-travel-pack-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-travel-pack-block__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-travel-pack-block__content {
+      border-right: 1px solid #000;
+    }
+  }
+
+  .hc-travel-pack-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-travel-pack-block__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-travel-pack-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+
+  .hc-travel-pack-block__comparison-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-travel-pack-block__comparison-wrapper {
+      padding: 3rem;
+    }
+  }
+
+  .hc-travel-pack-block__comparison-container {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-travel-pack-block__comparison-box {
+    background-color: #f9fafb;
+    padding: 2rem;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+  .hc-travel-pack-block__trip-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+  }
+
+  .hc-travel-pack-block__standard {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-travel-pack-block__comparison-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-travel-pack-block__items-grid {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-travel-pack-block__item {
+    width: 1.5rem;
+    height: 2rem;
+    border: 1px solid #000;
+    background-color: #fff;
+    display: flex !important;
+}
+
+  .hc-travel-pack-block__caption {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-travel-pack-block__hercleon {
+    /* No additional styling needed */
+  }
+
+  .hc-travel-pack-block__comparison-header--hero {
+    color: #B45309;
+    font-weight: 700;
+  }
+
+  .hc-travel-pack-block__item--hero {
+    background-color: #B45309;
+    border: none;
+  }
+
+  .hc-travel-pack-block__caption--hero {
+    color: #B45309;
+  }
+
+  @keyframes hc-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+@media screen and (max-width: 1024px) { 
+  .hc-travel-pack-block__content {
+    padding: 32px 20px;
+}
+.hc-travel-pack-block__comparison-wrapper {
+    padding: 32px 20px;
+}
+}
+
+</style>
+
+<section class="hc-travel-pack-block" {{ block.shopify_attributes }}>
+  <div class="hc-travel-pack-block__grid">
+    
+    {%- comment -%} Left Content {%- endcomment -%}
+    <div class="hc-travel-pack-block__content">
+      <div class="hc-pack-lighter-eyebrow">
+  <span class="hc-pack-lighter-eyebrow__text">
+    {{ block.settings.eyebrow_text }}
+  </span>
+</div>
+      <h3 class="hc-travel-pack-block__title">
+        {{ block.settings.title | default: 'Pack lighter. Move freer.' }}
+      </h3>
+      <div class="hc-travel-pack-block__description">
+        <p>{{ block.settings.description | default: 'Smell is what forces travelers to overpack...' }}</p>
+      </div>
+    </div>
+
+    {%- comment -%} Right Comparison {%- endcomment -%}
+    <div class="hc-travel-pack-block__comparison-wrapper">
+      <div class="hc-travel-pack-block__comparison-container">
+        <div class="hc-travel-pack-block__comparison-box">
+          <p class="hc-travel-pack-block__trip-title">
+            {{ block.settings.trip_title | default: '2 Weeks Long Trip' }}
+          </p>
+
+          {%- comment -%} Standard Tourist {%- endcomment -%}
+          <div class="hc-travel-pack-block__standard">
+            <div class="hc-travel-pack-block__comparison-header">
+              <span>{{ block.settings.standard_label | default: 'Standard Tourist' }}</span>
+              <span>{{ block.settings.standard_weight | default: '~3.5kg Load' }}</span>
+            </div>
+            <div class="hc-travel-pack-block__items-grid">
+              {%- assign standard_items = block.settings.standard_items | default: 14 | plus: 0 -%}
+              {%- for i in (1..standard_items) -%}
+                <div class="hc-travel-pack-block__item"></div>
+              {%- endfor -%}
+            </div>
+            <p class="hc-travel-pack-block__caption">
+              {{ block.settings.standard_caption | default: 'Requires 14 items OR Laundry' }}
+            </p>
+          </div>
+
+          {%- comment -%} HercLeon Operative {%- endcomment -%}
+          <div class="hc-travel-pack-block__hercleon">
+            <div class="hc-travel-pack-block__comparison-header hc-travel-pack-block__comparison-header--hero">
+              <span>{{ block.settings.hercleon_label | default: 'HercLeon Operative' }}</span>
+              <span>{{ block.settings.hercleon_weight | default: '~0.1kg Load' }}</span>
+            </div>
+            <div class="hc-travel-pack-block__items-grid">
+              {%- assign hercleon_items = block.settings.hercleon_items | default: 1 | plus: 0 -%}
+              {%- for i in (1..hercleon_items) -%}
+                <div class="hc-travel-pack-block__item hc-travel-pack-block__item--hero"></div>
+              {%- endfor -%}
+            </div>
+            <p class="hc-travel-pack-block__caption hc-travel-pack-block__caption--hero">
+              {{ block.settings.hercleon_caption | default: 'Requires 1 Item. Zero Laundry.' }}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

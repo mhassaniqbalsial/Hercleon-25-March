@@ -1,0 +1,257 @@
+{% comment %}
+  Comfort & Fit - Sweat Absorbed Block
+{% endcomment %}
+
+<style>
+  .hc-comfort-fit-sweat-block {
+    border-bottom: 1px solid #000;
+    background-color: #000;
+    animation: hc-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-comfort-fit-sweat-block__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    min-height: 60vh;
+  }
+
+  .hc-prod-compare-label {
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-prod-compare-label__text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    display: inline-block;
+  }
+
+  .hc-comfort-fit-sweat-block__stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.hc-comfort-fit-sweat-block__stat-card {
+  border-right: 1px solid #374151;
+  border-bottom: 1px solid #374151;
+  padding: 40px 20px;
+}
+
+.hc-comfort-fit-sweat-block__stat-card:nth-child(2n) {
+  border-right: none;
+}
+
+.hc-comfort-fit-sweat-block__stat-card:nth-child(3),
+.hc-comfort-fit-sweat-block__stat-card:nth-child(4) {
+  border-bottom: none;
+}
+
+  @media (min-width: 1024px) {
+    .hc-comfort-fit-sweat-block__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-comfort-fit-sweat-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-comfort-fit-sweat-block__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-comfort-fit-sweat-block__content {
+      border-right: 1px solid #1f2937;
+    }
+  }
+
+  .hc-comfort-fit-sweat-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-comfort-fit-sweat-block__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-comfort-fit-sweat-block__description p {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #9ca3af;
+    white-space: pre-line;
+  }
+
+  .hc-comfort-fit-sweat-block__stats-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-comfort-fit-sweat-block__stats-wrapper {
+      padding: 3rem;
+    }
+  }
+
+  .hc-comfort-fit-sweat-block__stats-container {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-comfort-fit-sweat-block__stats-grid {
+    border: 1px solid #374151;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .hc-comfort-fit-sweat-block__stat-card {
+    text-align: center;
+  }
+
+  .hc-comfort-fit-sweat-block__stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    height: 5rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+  .hc-comfort-fit-sweat-block__stat-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hc-comfort-fit-sweat-block__stat-label--highlight {
+    color: #B45309;
+  }
+
+  .hc-comfort-fit-sweat-block__stat-label--muted {
+    color: #6b7280;
+  }
+
+  @keyframes hc-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+  .hc-comfort-fit-sweat-block__content {
+    padding: 32px 20px;
+}
+.hc-comfort-fit-sweat-block__stats-wrapper {
+    padding: 32px 20px;
+}
+
+}
+
+ @media (max-width: 749px) {
+    .hc-prod-compare-label {
+      margin-bottom: 1rem;
+    }
+  }
+
+</style>
+
+<section class="hc-comfort-fit-sweat-block" {{ block.shopify_attributes }}>
+  <div class="hc-comfort-fit-sweat-block__grid">
+    
+    {%- comment -%} Left Content {%- endcomment -%}
+    <div class="hc-comfort-fit-sweat-block__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+      <div class="hc-prod-compare-label">
+  <span class="hc-prod-compare-label__text">
+    {{ block.settings.eyebrow_text }}
+  </span>
+</div>
+      {%- endif -%}
+      <h3 class="hc-comfort-fit-sweat-block__title">
+        {{ block.settings.title | default: 'Sweat Absorbed. Odor Stopped.' }}
+      </h3>
+      <div class="hc-comfort-fit-sweat-block__description">
+        <p>{{ block.settings.description | default: 'Most clothes fail because sweat sits on the surface...' }}</p>
+      </div>
+    </div>
+
+    {%- comment -%} Right Stats Grid {%- endcomment -%}
+    <div class="hc-comfort-fit-sweat-block__stats-wrapper">
+      <div class="hc-comfort-fit-sweat-block__stats-container">
+        <div class="hc-comfort-fit-sweat-block__stats-grid">
+          
+          {%- comment -%} Stat 1 - Cotton Absorbent {%- endcomment -%}
+          <div class="hc-comfort-fit-sweat-block__stat-card">
+            <p class="hc-comfort-fit-sweat-block__stat-value">
+              {{ block.settings.stat_1_value | default: '300%' }}
+            </p>
+            <p class="hc-comfort-fit-sweat-block__stat-label {% if block.settings.stat_1_highlight %}hc-comfort-fit-sweat-block__stat-label--highlight{% else %}hc-comfort-fit-sweat-block__stat-label--muted{% endif %}">
+              {{ block.settings.stat_1_label | default: 'More Absorbent (Cotton)' }}
+            </p>
+          </div>
+
+          {%- comment -%} Stat 2 - Poly Absorbent {%- endcomment -%}
+          <div class="hc-comfort-fit-sweat-block__stat-card">
+            <p class="hc-comfort-fit-sweat-block__stat-value">
+              {{ block.settings.stat_2_value | default: '1000%' }}
+            </p>
+            <p class="hc-comfort-fit-sweat-block__stat-label {% if block.settings.stat_2_highlight %}hc-comfort-fit-sweat-block__stat-label--highlight{% else %}hc-comfort-fit-sweat-block__stat-label--muted{% endif %}">
+              {{ block.settings.stat_2_label | default: 'More Absorbent (Poly)' }}
+            </p>
+          </div>
+
+          {%- comment -%} Stat 3 - Cooling {%- endcomment -%}
+          <div class="hc-comfort-fit-sweat-block__stat-card">
+            <p class="hc-comfort-fit-sweat-block__stat-value">
+              {{ block.settings.stat_3_value | default: '130%' }}
+            </p>
+            <p class="hc-comfort-fit-sweat-block__stat-label {% if block.settings.stat_3_highlight %}hc-comfort-fit-sweat-block__stat-label--highlight{% else %}hc-comfort-fit-sweat-block__stat-label--muted{% endif %}">
+              {{ block.settings.stat_3_label | default: 'More Cooling (Cotton)' }}
+            </p>
+          </div>
+
+          {%- comment -%} Stat 4 - Wicking {%- endcomment -%}
+          <div class="hc-comfort-fit-sweat-block__stat-card">
+            <p class="hc-comfort-fit-sweat-block__stat-value">
+              {{ block.settings.stat_4_value | default: '200%' }}
+            </p>
+            <p class="hc-comfort-fit-sweat-block__stat-label {% if block.settings.stat_4_highlight %}hc-comfort-fit-sweat-block__stat-label--highlight{% else %}hc-comfort-fit-sweat-block__stat-label--muted{% endif %}">
+              {{ block.settings.stat_4_label | default: 'Faster Wicking (Poly)' }}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

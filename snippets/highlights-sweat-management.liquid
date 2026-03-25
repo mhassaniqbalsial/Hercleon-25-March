@@ -1,0 +1,544 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign is_reversed = block.settings.reverse_layout
+-%}
+
+<style>
+  .hc-sm {
+    --hc-sm-bg: {{ bg_color }};
+    --hc-sm-text: {{ text_color }};
+    --hc-sm-accent: {{ accent_color }};
+    --hc-sm-desc: {{ desc_color }};
+
+    background-color: var(--hc-sm-bg);
+    border-bottom: 1px solid #000;
+  }
+
+  .hc-sm__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-sm__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-sm-text);
+    order: 1;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .hc-sm__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-sm-bg);
+    order: 2;
+  }
+
+  .hc-sm__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-sm-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-sm__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-sm-text);
+  }
+
+  .hc-sm__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-sm-desc);
+    white-space: pre-line;
+  }
+
+  .hc-sm__desc strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-sm__desc strong:hover {
+    color: var(--hc-sm-accent);
+  }
+
+  /* Tooltip */
+  .hc-sm__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hc-sm__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-sm__tooltip-trigger:hover strong {
+    color: var(--hc-sm-accent);
+  }
+
+  .hc-sm__tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    width: 320px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+  .hc-sm__tooltip-trigger:hover .hc-sm__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-sm__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #000;
+    position: relative;
+  }
+
+  .hc-sm__tooltip-box,
+  .hc-sm__tooltip-content {
+    display: block;
+  }
+
+  .hc-sm__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-sm__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-sm__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-sm-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-sm__tooltip-p strong:hover {
+    color: var(--hc-sm-accent);
+  }
+
+  .hc-sm__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-sm__tooltip {
+      width: 450px;
+    }
+  }
+
+  /* Visual card */
+  .hc-sm__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-sm__card {
+    background-color: #000;
+    padding: 1.5rem;
+    border: 1px solid #1f2937;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-sm__arena {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-sm__grid-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image:
+      linear-gradient(to right, rgba(180, 83, 9, 0.2) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(180, 83, 9, 0.2) 1px, transparent 1px);
+    background-size: calc(100% / 12) calc(100% / 8);
+    padding: 1rem;
+  }
+
+  .hc-sm__center {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-sm__circle {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 4px solid var(--hc-sm-accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 50px rgba(180, 83, 9, 0.3);
+    position: relative;
+  }
+
+  .hc-sm__circle-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 83, 9, 0.5);
+    animation: hc-sm-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    opacity: 0.2;
+  }
+
+  @keyframes hc-sm-ping {
+    75%, 100% { transform: scale(2); opacity: 0; }
+  }
+
+  .hc-sm__thermo-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--hc-sm-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-sm__pcm-label {
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+  }
+
+  /* Heat arrow from top */
+  .hc-sm__heat-in {
+    position: absolute;
+    top: -8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: hc-sm-pulse 2s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes hc-sm-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .hc-sm__heat-in-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #ef4444;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+  }
+
+  .hc-sm__heat-in-line {
+    display: flex !important;
+    width: 6px;
+    height: 4rem;
+    background: linear-gradient(to top, #dc2626, transparent);
+}
+
+  .hc-sm__heat-in-arrow {
+    display: flex !important;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 20px solid #dc2626;
+  }
+
+  /* Regulated arrows at bottom */
+  .hc-sm__heat-out {
+    position: absolute;
+    bottom: -8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-sm__heat-out-streams {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-sm__heat-out-stream {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-sm__heat-out-line {
+    display: flex !important;
+    width: 4px;
+    height: 4rem;
+    background: linear-gradient(to bottom, #fb923c, transparent);
+    animation: hc-sm-pulse 2s ease-in-out infinite;
+  }
+
+  .hc-sm__heat-out-tip {
+    display: flex !important;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid #fb923c;
+  }
+
+  .hc-sm__heat-out-label {
+    font-size: 0.625rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #fb923c;
+    text-shadow: 0 0 6px rgba(251, 146, 60, 0.5);
+  }
+
+  /* NASA badge */
+  .hc-sm__badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color: var(--hc-sm-accent);
+    color: #000;
+    padding: 0.25rem 1rem;
+    font-weight: 900;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transform: skewX(-12deg);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 1);
+  }
+
+  @media (min-width: 768px) {
+    .hc-sm__text-col {
+      padding: 6rem;
+    }
+
+    .hc-sm__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-sm__heading {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-sm__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-sm__text-col {
+      border-bottom: none;
+    }
+
+    .hc-sm__grid--default .hc-sm__text-col {
+      order: 1;
+      border-right: 1px solid #1f2937;
+    }
+
+    .hc-sm__grid--default .hc-sm__visual-col {
+      order: 2;
+    }
+
+    .hc-sm__grid--reversed .hc-sm__text-col {
+      order: 2;
+      border-left: 1px solid #1f2937;
+    }
+
+    .hc-sm__grid--reversed .hc-sm__visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section id="night-sweats" class="hc-sm" {{ block.shopify_attributes }}>
+  <div class="hc-sm__grid {% if is_reversed %}hc-sm__grid--reversed{% else %}hc-sm__grid--default{% endif %}">
+
+    <div class="hc-sm__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-sm__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-sm__heading">
+        {{ block.settings.heading | default: 'Advanced Night Sweat Management' }}
+      </h3>
+
+      <div class="hc-sm__desc">
+        {%- if block.settings.tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+          {%- assign sm_trigger_html = '<strong>' | append: block.settings.tooltip_trigger | append: '</strong>' -%}
+          {%- capture sm_tooltip_html -%}<span class="hc-sm__tooltip-trigger"><strong>{{ block.settings.tooltip_trigger }}</strong><span class="hc-sm__tooltip"><span class="hc-sm__tooltip-box"><span class="hc-sm__tooltip-content">{{ block.settings.tooltip_content | replace: '<p>', '<span class="hc-sm__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-sm__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+          {{ block.settings.description | replace: sm_trigger_html, sm_tooltip_html }}
+        {%- else -%}
+          {{ block.settings.description }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hc-sm__visual-col">
+      <div class="hc-sm__visual-inner">
+        <div class="hc-sm__card">
+          <div class="hc-sm__arena">
+            <div class="hc-sm__grid-bg"></div>
+
+            <div class="hc-sm__center">
+              <div class="hc-sm__circle">
+                <div class="hc-sm__circle-ping"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sm__thermo-icon" aria-hidden="true">
+                  <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
+                </svg>
+                <span class="hc-sm__pcm-label">PCM</span>
+              </div>
+
+              <div class="hc-sm__heat-in">
+                <span class="hc-sm__heat-in-label">BODY HEAT</span>
+                <div class="hc-sm__heat-in-line"></div>
+                <div class="hc-sm__heat-in-arrow"></div>
+              </div>
+
+              <div class="hc-sm__heat-out">
+                <div class="hc-sm__heat-out-streams">
+                  <div class="hc-sm__heat-out-stream">
+                    <div class="hc-sm__heat-out-line" style="animation-delay:150ms;"></div>
+                    <div class="hc-sm__heat-out-tip"></div>
+                  </div>
+                  <div class="hc-sm__heat-out-stream">
+                    <div class="hc-sm__heat-out-line" style="animation-delay:300ms;"></div>
+                    <div class="hc-sm__heat-out-tip"></div>
+                  </div>
+                  <div class="hc-sm__heat-out-stream">
+                    <div class="hc-sm__heat-out-line" style="animation-delay:450ms;"></div>
+                    <div class="hc-sm__heat-out-tip"></div>
+                  </div>
+                  <div class="hc-sm__heat-out-stream">
+                    <div class="hc-sm__heat-out-line" style="animation-delay:600ms;"></div>
+                    <div class="hc-sm__heat-out-tip"></div>
+                  </div>
+                  <div class="hc-sm__heat-out-stream">
+                    <div class="hc-sm__heat-out-line" style="animation-delay:750ms;"></div>
+                    <div class="hc-sm__heat-out-tip"></div>
+                  </div>
+                </div>
+                <span class="hc-sm__heat-out-label">REGULATED</span>
+              </div>
+            </div>
+
+            {%- if block.settings.badge_text != blank -%}
+              <div class="hc-sm__badge">{{ block.settings.badge_text }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{%- if block.settings.tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+  <template id="hc-sm-tooltip-template">
+    <div class="hc-sm__tooltip">
+      <div class="hc-sm__tooltip-box">
+        <div class="hc-sm__tooltip-content">
+          {{ block.settings.tooltip_content }}
+        </div>
+        <div class="hc-sm__tooltip-arrow"></div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function() {
+      function initSmTooltip() {
+        var trigger = {{ block.settings.tooltip_trigger | json }};
+        var section = document.getElementById('night-sweats');
+        if (!section) return;
+        var descEl = section.querySelector('.hc-sm__desc');
+        if (!descEl) return;
+        var strongs = descEl.querySelectorAll('strong');
+        strongs.forEach(function(el) {
+          if (el.textContent.trim().toLowerCase() === trigger.trim().toLowerCase()) {
+            if (el.parentNode.classList && el.parentNode.classList.contains('hc-sm__tooltip-trigger')) return;
+            var wrapper = document.createElement('span');
+            wrapper.className = 'hc-sm__tooltip-trigger';
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
+
+            var tmpl = document.getElementById('hc-sm-tooltip-template');
+            if (tmpl) {
+              wrapper.appendChild(tmpl.content.cloneNode(true));
+            }
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSmTooltip);
+      } else {
+        initSmTooltip();
+      }
+    })();
+  </script>
+{%- endif -%}

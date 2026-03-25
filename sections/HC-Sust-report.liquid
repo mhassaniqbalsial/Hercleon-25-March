@@ -1,0 +1,84 @@
+{% comment %}
+  HC Science Sustainability Report section
+  Class prefix: hc-science-sustainability-report-
+{% endcomment %}
+
+{% style %}
+  .hc-science-sustainability-report {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+{% endstyle %}
+
+<div class="hc-science-sustainability-report">
+  <div class="page-width">
+  <div class="hc-science-sustainability-report__wrapper">
+    <span class="hc-science-sustainability-report__eyebrow">{{ section.settings.eyebrow | default: 'Sustainability Report' }}</span>
+    <h2 class="hc-science-sustainability-report__title">{{ section.settings.title | default: "The Most Sustainable Shirt<br> Is The One You Don't Wash" }}</h2>
+  </div>
+</div>
+</div>
+
+<style>
+
+
+
+  .hc-science-sustainability-report__wrapper {
+    display: block;
+  }
+
+  .hc-science-sustainability-report__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 1rem;
+  }
+
+  .hc-science-sustainability-report__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .hc-science-sustainability-report__title {
+      font-size: 3.75rem;
+      max-width: 780px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Sustainability Report",
+  "tag": "section",
+  "class": "hc-science-sustainability-report-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Sustainability Report"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "The Most Sustainable Shirt\nIs The One You Don't Wash"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Sustainability Report"
+    }
+  ]
+}
+{% endschema %}

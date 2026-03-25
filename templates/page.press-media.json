@@ -1,0 +1,143 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "hc_press_media_Bdxdy7": {
+      "type": "HC-Press-Media",
+      "blocks": {
+        "media_item_AAQQRG": {
+          "type": "media_item",
+          "settings": {
+            "source": "CNN",
+            "quote": "The shirt that could end laundry day forever."
+          }
+        },
+        "media_item_Jg7Ppc": {
+          "type": "media_item",
+          "settings": {
+            "source": "Gear Junkie",
+            "quote": "We wore it for a week straight in the summer heat. It smelled like nothing. Impressive."
+          }
+        },
+        "media_item_TU3Kt8": {
+          "type": "media_item",
+          "settings": {
+            "source": "Lonely Planet",
+            "quote": "The ultimate travel hack. One shirt, one trip."
+          }
+        },
+        "media_item_iLtzxX": {
+          "type": "media_item",
+          "settings": {
+            "source": "Men's Journal",
+            "quote": "Hercléon is disrupting the activewear industry with biology."
+          }
+        },
+        "media_item_iwcKhA": {
+          "type": "media_item",
+          "settings": {
+            "source": "Shark Tank",
+            "quote": "The technology is undeniable."
+          }
+        },
+        "media_item_xirtj9": {
+          "type": "media_item",
+          "settings": {
+            "source": "Wonderful Engineering",
+            "quote": "Material science at its finest."
+          }
+        }
+      },
+      "block_order": [
+        "media_item_AAQQRG",
+        "media_item_Jg7Ppc",
+        "media_item_TU3Kt8",
+        "media_item_iLtzxX",
+        "media_item_iwcKhA",
+        "media_item_xirtj9"
+      ],
+      "name": "HC Press Media",
+      "settings": {
+        "heading": "In The Media",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "hc_floating_nav_page_qcDcKH": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_AxjEmt": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_iq9w8B": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_fqcMQa": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_AxjEmt",
+        "clearance_item_iq9w8B",
+        "clearance_item_fqcMQa"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "hc_press_media_Bdxdy7",
+    "hc_floating_nav_page_qcDcKH"
+  ]
+}

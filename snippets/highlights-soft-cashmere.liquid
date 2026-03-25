@@ -1,0 +1,278 @@
+<style>
+  /* Soft Cashmere Block Styles */
+  .hc-soft-cashmere-block {
+    border-bottom: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .hc-soft-cashmere-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-soft-cashmere-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+    order: 2;
+  }
+
+  .hc-soft-cashmere-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  .hc-soft-cashmere-block__subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #1f2937;
+  }
+
+  .hc-soft-cashmere-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+
+  .hc-soft-cashmere-block__chart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #fff;
+    order: 1;
+  }
+
+  .hc-soft-cashmere-block__chart-container {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-soft-cashmere-block__chart {
+    background-color: #fff;
+    color: #000;
+    padding: 2rem;
+    border: 1px solid #000;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .hc-soft-cashmere-block__chart-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    display: block;
+    color: #9ca3af;
+  }
+
+  .hc-soft-cashmere-block__chart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hc-soft-cashmere-block__chart-item {
+    position: relative;
+  }
+
+  .hc-soft-cashmere-block__chart-item-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .hc-soft-cashmere-block__chart-item-label {
+    color: #6b7280;
+  }
+
+  .hc-soft-cashmere-block__chart-item-label--highlight {
+    color: #b45309;
+    font-size: 1.25rem;
+  }
+
+  .hc-soft-cashmere-block__chart-bar-bg {
+    height: 1.5rem;
+    background-color: #f3f4f6;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hc-soft-cashmere-block__chart-bar {
+    height: 100%;
+    display: flex !important;
+}
+
+  .hc-soft-cashmere-block__chart-bar--cotton {
+    background-color: #d1d5db;
+  }
+
+  .hc-soft-cashmere-block__chart-bar--merino {
+    background-color: #9ca3af;
+  }
+
+  .hc-soft-cashmere-block__chart-bar--cashmere {
+    background-color: #6b7280;
+  }
+
+  .hc-soft-cashmere-block__chart-bar--silk {
+    background-color: #4b5563;
+  }
+
+  .hc-soft-cashmere-block__chart-bar--hercfiber {
+    background-color: #b45309;
+  }
+
+  @media (min-width: 768px) {
+    .hc-soft-cashmere-block__content {
+      padding: 6rem;
+    }
+
+    .hc-soft-cashmere-block__chart-wrapper {
+      padding: 3rem;
+    }
+
+    .hc-soft-cashmere-block__title {
+      font-size: 3rem;
+    }
+
+    .hc-soft-cashmere-block__chart-item-header {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-soft-cashmere-block__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-soft-cashmere-block__content {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+
+    .hc-soft-cashmere-block__chart-wrapper {
+      order: 1;
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+  .hc-soft-cashmere-block__content {
+    order: unset;
+    padding: 32px 20px;
+}
+.hc-soft-cashmere-block__chart-wrapper {
+    order: unset;
+    padding: 32px 20px;
+}
+.hc-soft-cashmere-block__chart {
+    padding: 32px 20px;
+}
+} 
+
+</style>
+
+<div class="hc-soft-cashmere-block" {{ block.shopify_attributes }}>
+              <div class="hc-soft-cashmere-block__grid">
+                <div class="hc-soft-cashmere-block__content">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="hc-soft-cashmere-block__title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.subtitle != blank -%}
+                    <p class="hc-soft-cashmere-block__subtitle">{{ block.settings.subtitle }}</p>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.description != blank -%}
+                    <p class="hc-soft-cashmere-block__description">{{ block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+
+                <div class="hc-soft-cashmere-block__chart-wrapper">
+                  <div class="hc-soft-cashmere-block__chart-container">
+                    <div class="hc-soft-cashmere-block__chart">
+                      <span class="hc-soft-cashmere-block__chart-title">{{ block.settings.chart_title | default: 'Micron Count (Lower is Softer)' }}</span>
+                      
+                      <div class="hc-soft-cashmere-block__chart-items">
+                        {%- comment -%} Cotton {%- endcomment -%}
+                        <div class="hc-soft-cashmere-block__chart-item">
+                          <div class="hc-soft-cashmere-block__chart-item-header">
+                            <span class="hc-soft-cashmere-block__chart-item-label">{{ block.settings.material_1_name | default: 'Cotton' }}</span>
+                            <span>{{ block.settings.material_1_value | default: '20' }}MM</span>
+                          </div>
+                          <div class="hc-soft-cashmere-block__chart-bar-bg">
+                            <div class="hc-soft-cashmere-block__chart-bar hc-soft-cashmere-block__chart-bar--cotton" style="width: {{ block.settings.material_1_value | default: 20 }}%;"></div>
+                          </div>
+                        </div>
+
+                        {%- comment -%} Merino Wool {%- endcomment -%}
+                        <div class="hc-soft-cashmere-block__chart-item">
+                          <div class="hc-soft-cashmere-block__chart-item-header">
+                            <span class="hc-soft-cashmere-block__chart-item-label">{{ block.settings.material_2_name | default: 'Merino Wool' }}</span>
+                            <span>{{ block.settings.material_2_value | default: '18' }}MM</span>
+                          </div>
+                          <div class="hc-soft-cashmere-block__chart-bar-bg">
+                            <div class="hc-soft-cashmere-block__chart-bar hc-soft-cashmere-block__chart-bar--merino" style="width: {{ block.settings.material_2_value | default: 18 }}%;"></div>
+                          </div>
+                        </div>
+
+                        {%- comment -%} Cashmere {%- endcomment -%}
+                        <div class="hc-soft-cashmere-block__chart-item">
+                          <div class="hc-soft-cashmere-block__chart-item-header">
+                            <span class="hc-soft-cashmere-block__chart-item-label">{{ block.settings.material_3_name | default: 'Cashmere' }}</span>
+                            <span>{{ block.settings.material_3_value | default: '15' }}MM</span>
+                          </div>
+                          <div class="hc-soft-cashmere-block__chart-bar-bg">
+                            <div class="hc-soft-cashmere-block__chart-bar hc-soft-cashmere-block__chart-bar--cashmere" style="width: {{ block.settings.material_3_value | default: 15 }}%;"></div>
+                          </div>
+                        </div>
+
+                        {%- comment -%} Silk {%- endcomment -%}
+                        <div class="hc-soft-cashmere-block__chart-item">
+                          <div class="hc-soft-cashmere-block__chart-item-header">
+                            <span class="hc-soft-cashmere-block__chart-item-label">{{ block.settings.material_4_name | default: 'Silk' }}</span>
+                            <span>{{ block.settings.material_4_value | default: '12' }}MM</span>
+                          </div>
+                          <div class="hc-soft-cashmere-block__chart-bar-bg">
+                            <div class="hc-soft-cashmere-block__chart-bar hc-soft-cashmere-block__chart-bar--silk" style="width: {{ block.settings.material_4_value | default: 12 }}%;"></div>
+                          </div>
+                        </div>
+
+                        {%- comment -%} HercFiber {%- endcomment -%}
+                        <div class="hc-soft-cashmere-block__chart-item">
+                          <div class="hc-soft-cashmere-block__chart-item-header">
+                            <span class="hc-soft-cashmere-block__chart-item-label hc-soft-cashmere-block__chart-item-label--highlight">{{ block.settings.material_5_name | default: 'HercFiber™' }}</span>
+                            <span>{{ block.settings.material_5_value | default: '10' }}MM</span>
+                          </div>
+                          <div class="hc-soft-cashmere-block__chart-bar-bg">
+                            <div class="hc-soft-cashmere-block__chart-bar hc-soft-cashmere-block__chart-bar--hercfiber" style="width: {{ block.settings.material_5_value | default: 10 }}%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

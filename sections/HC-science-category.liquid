@@ -1,0 +1,182 @@
+{% comment %}
+  HC Science Category Section
+  Class prefix: hc-science-category-
+{% endcomment %}
+
+{% style %}
+  .hc-science-category {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: #B45309;
+    color: #fff;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .hc-science-category {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  .hc-science-category__inner {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-science-category__title {
+    font-family: var(--font-heading-family), sans-serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-science-category__title {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-science-category__text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+
+  .hc-science-category__cta {
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+    padding: 1.25rem 3rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .hc-science-category__cta:hover {
+    background-color: #000;
+    color: #fff;
+  }
+{% endstyle %}
+
+<section class="hc-science-category">
+  <div class="hc-science-category__inner">
+    <h2 class="hc-science-category__title">{{ section.settings.title }}</h2>
+    <div class="hc-science-category__text">
+      {{ section.settings.body }}
+    </div>
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="hc-science-category__cta">
+        {{ section.settings.button_label }}
+      </a>
+    {% elsif section.settings.button_label != blank %}
+      <span class="hc-science-category__cta">{{ section.settings.button_label }}</span>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HC Science Category",
+  "tag": "section",
+  "class": "hc-science-category-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "It's A Different Category."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body text",
+      "default": "<p>Cotton → No protection<br>Polyester → Traps odor<br>Merino → 1 odor type<br>HercLeón → All 5 odor types</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Upgrade To Smell-Proof"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 128
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Science Category"
+    }
+  ]
+}
+{% endschema %}

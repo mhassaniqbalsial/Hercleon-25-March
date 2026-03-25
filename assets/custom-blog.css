@@ -1,0 +1,116 @@
+/* Blog page Css start */
+
+.hc-blog-page a.badge.font-medium.leading-none.rounded-full {
+    border-radius: inherit;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+}
+
+.hc-blog-page p.heading.normal-case.font-medium {
+    color: #b45309;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hc-blog-page .title-wrapper.text-left {
+    gap: 0;
+    margin-bottom: 5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.hc-blog-page .title-wrapper h2 {
+    text-transform: capitalize;
+    font-size: 3rem;
+    line-height: 1;
+    color: #111827;
+    font-weight: 700;
+}
+
+.hc-blog-page motion-list.blog-grid.card-grid {
+    gap: 3rem;
+}
+
+.hc-blog-page split-words.split-words.block.words.splitting {
+    display: flex;
+}
+
+.hc-blog-page img.article-card__image {
+    filter: grayscale(100%);
+}
+.hc-blog-page .article-card:hover .article-card__image {
+  filter: none;
+}
+
+.hc-blog-page .card.article-card.relative {
+    gap: 0;
+}
+
+.hc-blog-page .article-card__media.relative.overflow-hidden {
+    margin-bottom: 2rem;
+}
+
+.hc-blog-page .grid.gap-4 {
+    gap: 0;
+}
+.hc-blog-page .article-card__content {
+    gap: 0;
+}
+
+.hc-blog-page a.article-card__title.heading {
+    font-family: var(--font-heading-family);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #111827;
+}
+
+.hc-blog-page .article-card:hover a.article-card__title.heading {
+  color: #b45309;
+}
+
+.hc-blog-page .grid.gap-4 p {
+    margin-bottom: 1rem;
+}
+
+.hc-blog-page .article-card__bottom.rte.leading-normal {
+    font-size: .875rem;
+    line-height: 1.625;
+    color: #6b7280;
+    margin-bottom: 21px;
+}
+    
+    .hc-blog-page .article-card__bottom {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hc-blog-page a.link.text-sm.font-medium.leading-tight {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    line-height: 1rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: 0.1em;
+}
+
+.hc-blog-page a.link {
+    background: linear-gradient(#b45309, #b45309) 0 min(100%, 1.35em) / 100% 1px no-repeat;
+}
+
+@media screen and (max-width: 768px){
+    .hc-blog-page span.word.animated {
+    font-size: 2.25rem;
+}
+}
+
+
+/* Blog page Css end */

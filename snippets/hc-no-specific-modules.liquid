@@ -1,0 +1,12 @@
+{% comment %}
+  No specific modules block – message when no modules for a category.
+  @param {object} block - Block object with settings
+{% endcomment %}
+
+{%- liquid
+  assign message = block.settings.message | default: 'No specific modules found for this category.'
+-%}
+
+<div class="hc-no-specific-mod-section" {{ block.shopify_attributes }}>
+  <p class="hc-no-specific-mod-text">{{ message }}</p>
+</div>

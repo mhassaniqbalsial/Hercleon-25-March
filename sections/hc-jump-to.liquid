@@ -1,0 +1,451 @@
+<div class="hc-jump-to__spacer" aria-hidden="true"></div>
+<div
+  class="hc-jump-to"
+  data-hc-jump-section="{{ section.id }}"
+  data-hc-jump-auto-header="{% if section.settings.auto_match_header %}1{% else %}0{% endif %}"
+  data-hc-jump-header-selector="{{ section.settings.header_bottom_selector | escape }}"
+  style="
+    --hc-jt-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-jt-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-jt-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-jt-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --hc-jt-sticky-top: {{ section.settings.sticky_top_offset }}px;
+  "
+>
+  <nav
+    class="hc-jump-to__bar"
+    aria-label="{{ section.settings.nav_aria_label | escape }}"
+  >
+    <div class="hc-jump-to__inner">
+      {%- if section.settings.label_prefix != blank -%}
+        <span class="hc-jump-to__label">{{ section.settings.label_prefix }}</span>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="hc-jump-to__list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'jump_link' and block.settings.title != blank and block.settings.anchor_id != blank -%}
+              <li class="hc-jump-to__item" {{ block.shopify_attributes }}>
+                <a class="hc-jump-to__link" href="#{{ block.settings.anchor_id | strip }}">
+                  {{ block.settings.title }}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </nav>
+</div>
+
+<style>
+  /* Theme wrappers often use overflow:hidden, which breaks position:sticky */
+  #shopify-section-{{ section.id }} {
+    overflow: visible !important;
+  }
+
+  .hc-jump-to__spacer {
+    width: 100%;
+    height: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hc-jump-to {
+    position: relative;
+    z-index: 40;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: var(--hc-jt-pt-mobile);
+    padding-bottom: var(--hc-jt-pb-mobile);
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .hc-jump-to.hc-jump-to--pinned {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--hc-jt-sticky-top);
+    z-index: 40;
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-jump-to {
+      padding-top: var(--hc-jt-pt-desktop);
+      padding-bottom: var(--hc-jt-pb-desktop);
+    }
+  }
+
+  .hc-jump-to__bar {
+    display: block;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .hc-jump-to__inner {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #6b7280;
+    white-space: nowrap;
+  }
+
+  .hc-jump-to__inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hc-jump-to__inner {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hc-jump-to__label {
+    flex-shrink: 0;
+    margin-right: 1rem;
+    color: #000;
+  }
+
+  .hc-jump-to__list {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hc-jump-to__item {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .hc-jump-to__item + .hc-jump-to__item::before {
+    content: '|';
+    flex-shrink: 0;
+    padding: 0 0.25rem;
+    color: #d1d5db;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .hc-jump-to__link {
+    flex-shrink: 0;
+    padding: 0 0.75rem;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  @media (min-width: 768px) {
+    .hc-jump-to__link {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  .hc-jump-to__link:hover,
+  .hc-jump-to__link:focus-visible {
+    color: #000;
+    outline: none;
+  }
+
+  .hc-jump-to__link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.querySelector('.hc-jump-to[data-hc-jump-section="{{ section.id }}"]');
+    if (!root) return;
+
+    var spacer = root.previousElementSibling;
+    if (!spacer || !spacer.classList.contains('hc-jump-to__spacer')) return;
+
+    var autoMatch = root.getAttribute('data-hc-jump-auto-header') === '1';
+    var customHeaderSel = root.getAttribute('data-hc-jump-header-selector') || '';
+
+    var manualFallback = {{ section.settings.sticky_top_offset | default: 128 }};
+
+    var anchorTop = 0;
+    var scrollTicking = false;
+
+    function readTopOffset() {
+      var raw = getComputedStyle(root).getPropertyValue('--hc-jt-sticky-top').trim();
+      var v = parseInt(raw, 10);
+      return isNaN(v) ? manualFallback : v;
+    }
+
+    function queryHeaderRoot() {
+      if (customHeaderSel && String(customHeaderSel).trim()) {
+        try {
+          var customEl = document.querySelector(String(customHeaderSel).trim());
+          if (customEl) return customEl;
+        } catch (err) {}
+      }
+      return (
+        document.querySelector('.header-group') ||
+        document.querySelector('[data-header-group]') ||
+        document.querySelector('#shopify-section-header') ||
+        document.querySelector('sticky-header') ||
+        document.querySelector('header[role="banner"]') ||
+        document.querySelector('.header-wrapper') ||
+        document.querySelector('header')
+      );
+    }
+
+    /** Distance from viewport top to bottom edge of header (flush under header). */
+    function getHeaderBottomPx() {
+      if (customHeaderSel && String(customHeaderSel).trim()) {
+        try {
+          var c = document.querySelector(String(customHeaderSel).trim());
+          if (c) return Math.max(0, Math.ceil(c.getBoundingClientRect().bottom));
+        } catch (err) {}
+      }
+
+      var group =
+        document.querySelector('.header-group') ||
+        document.querySelector('[data-header-group]');
+      if (group) {
+        return Math.max(0, Math.ceil(group.getBoundingClientRect().bottom));
+      }
+
+      var maxBottom = 0;
+      var ids = [
+        '#shopify-section-announcement-bar',
+        '#shopify-section-announcement',
+        '#shopify-section-header'
+      ];
+      for (var i = 0; i < ids.length; i++) {
+        var sec = document.querySelector(ids[i]);
+        if (!sec) continue;
+        var r = sec.getBoundingClientRect();
+        if (r.height <= 0) continue;
+        if (r.top < 420) maxBottom = Math.max(maxBottom, r.bottom);
+      }
+      if (maxBottom > 0) return Math.max(0, Math.ceil(maxBottom));
+
+      var el = queryHeaderRoot();
+      if (!el) return 0;
+      return Math.max(0, Math.ceil(el.getBoundingClientRect().bottom));
+    }
+
+    function getTopOffsetForLogic() {
+      if (!autoMatch) return readTopOffset();
+      var h = getHeaderBottomPx();
+      return h > 0 ? h : readTopOffset();
+    }
+
+    function syncPinnedTop() {
+      if (!root.classList.contains('hc-jump-to--pinned')) return;
+      if (autoMatch) {
+        var px = getHeaderBottomPx();
+        if (px <= 0) px = readTopOffset();
+        root.style.top = px + 'px';
+      } else {
+        root.style.top = '';
+      }
+    }
+
+    function remeasureAnchor() {
+      root.classList.remove('hc-jump-to--pinned');
+      root.style.top = '';
+      spacer.style.height = '0px';
+      void root.offsetHeight;
+      anchorTop = root.getBoundingClientRect().top + window.scrollY;
+    }
+
+    function updatePin() {
+      var topOffset = getTopOffsetForLogic();
+      var shouldPin = window.scrollY >= anchorTop - topOffset;
+
+      if (shouldPin) {
+        if (!root.classList.contains('hc-jump-to--pinned')) {
+          root.classList.add('hc-jump-to--pinned');
+          spacer.style.height = root.offsetHeight + 'px';
+        }
+        syncPinnedTop();
+      } else if (root.classList.contains('hc-jump-to--pinned')) {
+        root.classList.remove('hc-jump-to--pinned');
+        root.style.top = '';
+        spacer.style.height = '0px';
+        requestAnimationFrame(function () {
+          remeasureAnchor();
+        });
+      }
+    }
+
+    function onScroll() {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(function () {
+        updatePin();
+        scrollTicking = false;
+      });
+    }
+
+    function onResize() {
+      remeasureAnchor();
+      updatePin();
+    }
+
+    remeasureAnchor();
+    updatePin();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+
+    document.addEventListener('shopify:section:load', function () {
+      remeasureAnchor();
+      updatePin();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "HC Jump To",
+  "tag": "section",
+  "class": "hc-jump-to-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "text",
+      "id": "label_prefix",
+      "label": "Prefix label",
+      "default": "Jump to:"
+    },
+    {
+      "type": "text",
+      "id": "nav_aria_label",
+      "label": "Accessibility label (for screen readers)",
+      "default": "Jump to page sections",
+      "info": "Describes this navigation for assistive technology."
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_match_header",
+      "label": "Make It Sticky",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "jump_link",
+      "name": "Jump link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Link label",
+          "default": "Our Story"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "Section ID",
+          "default": "our-story",
+          "info": "Must match an element id on the page (no #). Use lowercase with hyphens, e.g. our-mission."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Jump To",
+      "blocks": [
+        { "type": "jump_link", "settings": { "title": "Our Story", "anchor_id": "our-story" } },
+        { "type": "jump_link", "settings": { "title": "Our Mission", "anchor_id": "our-mission" } },
+        { "type": "jump_link", "settings": { "title": "Our Approach", "anchor_id": "our-approach" } },
+        { "type": "jump_link", "settings": { "title": "Our Purpose", "anchor_id": "our-purpose" } },
+        { "type": "jump_link", "settings": { "title": "Our Founder's Letter", "anchor_id": "our-founders-letter" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

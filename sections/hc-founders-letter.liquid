@@ -1,0 +1,253 @@
+<section
+  {% if section.settings.section_anchor_id != blank %}id="{{ section.settings.section_anchor_id | strip }}"{% endif %}
+  class="hc-founder-note"
+  style="
+    --hc-fn-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-fn-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-fn-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-fn-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-founder-note__wrap">
+    <div class="hc-founder-note__inner">
+      <div class="hc-founder-note__card">
+
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="hc-founder-note__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+
+        {%- if section.settings.letter_body != blank -%}
+          <div class="hc-founder-note__letter">
+            {{ section.settings.letter_body }}
+          </div>
+        {%- endif -%}
+
+        <div class="hc-founder-note__signoff">
+          {%- if section.settings.signature_name != blank -%}
+            <div class="hc-founder-note__signature">{{ section.settings.signature_name }}</div>
+          {%- endif -%}
+          {%- if section.settings.signature_title != blank -%}
+            <div class="hc-founder-note__role">{{ section.settings.signature_title }}</div>
+          {%- endif -%}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hc-founder-note {
+    margin: 0;
+  }
+
+  .hc-founder-note__wrap {
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    padding-top: var(--hc-fn-pt-mobile);
+    padding-bottom: var(--hc-fn-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-founder-note__wrap {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-founder-note__wrap {
+      padding-top: var(--hc-fn-pt-desktop);
+      padding-bottom: var(--hc-fn-pb-desktop);
+    }
+  }
+
+  .hc-founder-note__inner {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-founder-note__card {
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  @media (min-width: 768px) {
+    .hc-founder-note__card {
+      padding: 4rem;
+    }
+  }
+
+  .hc-founder-note__eyebrow {
+    display: block;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-founder-note__letter {
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: #4b5563;
+    line-height: 1.75;
+  }
+
+  .hc-founder-note__letter > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .hc-founder-note__letter p {
+    margin: 0;
+  }
+
+  .hc-founder-note__signoff {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hc-founder-note__signature {
+    font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+    font-size: 3rem;
+    color: #B45309;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    margin-left: -0.5rem;
+    transform: rotate(-2deg);
+  }
+
+  @media (min-width: 768px) {
+    .hc-founder-note__signature {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-founder-note__role {
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Founder Note",
+  "tag": "section",
+  "class": "hc-founder-note-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section anchor"
+    },
+    {
+      "type": "text",
+      "id": "section_anchor_id",
+      "label": "Section HTML id",
+      "default": "personal-note",
+      "info": "For jump links (no #). Leave blank to omit id."
+    },
+    {
+      "type": "header",
+      "content": "Letter"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "A Personal Note from Wen, Our Founder"
+    },
+    {
+      "type": "richtext",
+      "id": "letter_body",
+      "label": "Letter body",
+      "default": "<p>I've loved people my whole life. Even as a kid, if someone didn't like me, I still loved them. I never really understood it. It's just who I am.</p><p>I grew up in Africa, where we didn't have much. But looking back, we had more than enough. Life was simple, close, and full. That simplicity never left me. If anything, it became the thing I've spent my whole adult life trying to protect, for myself and for the people I hope to serve.</p><p>My mom passed away in 2017. Her last words were: \"I did the best I could.\"</p><p>I've never gotten over those words. I don't think I'm supposed to. They follow me into every decision I make, every product I work on, every time I'm tempted to cut a corner or ship something I know isn't ready. She didn't leave me money or a business plan. She left me a standard. And I've spent every day since trying to live up to it.</p><p>I've worn our shirts and socks and slept on our sheets almost every single day since 2018. I've worn a single HercShirt for 100 consecutive days just to understand what it could endure. Some products took a decade to get right. When something finally carries the HercLeón name, it earned it.</p><p>The products have a way of proving themselves when it counts. Customers have traveled for weeks across multiple countries out of a single small bag. Couples going through divorce have fought over who gets to keep the Jax Sheets. Not the house. The sheets. We take that as a good sign.</p><p>I've been offered millions by some of the most famous people in the world to help build their brands. I turned every one of them down. Saying yes would have meant trading my peace, my playfulness, and my joy for money, fame, and power. That's exactly what people mean when they say you've sold your soul. I pitched HercLeón on Shark Tank instead, showed up as myself, and somehow people called it the best pitch they'd ever seen. All I did was tell the truth.</p><p>Here's the truth about what drives me: it isn't money. I live simply, I always have. I have nothing to prove and no one to impress. What I do have is work I genuinely love, and the knowledge that when you buy something from HercLeón, you're not funding a lifestyle. You're funding the next decade of someone quietly obsessing over how to make your life a little freer and a little lighter.</p><p>That's all I want. That's all I've ever wanted.</p><p>One day I'll go home. Back to the village, back to the simple life. I'll need almost nothing: a couple of shirts, two pairs of socks, one set of sheets. Just the essentials, perfectly made. That's what freedom looks like to me.</p><p>But until then, I'm here. Fully committed to doing my best, for you, for this company, and for the memory of a woman who showed me what that actually means.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Signature"
+    },
+    {
+      "type": "text",
+      "id": "signature_name",
+      "label": "Signature name",
+      "default": "Wen Muenyi"
+    },
+    {
+      "type": "text",
+      "id": "signature_title",
+      "label": "Title under signature",
+      "default": "HercLeon CEO & Founder"
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Founder Note"
+    }
+  ]
+}
+{% endschema %}

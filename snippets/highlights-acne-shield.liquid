@@ -1,0 +1,415 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign is_reversed = block.settings.reverse_layout
+-%}
+
+<style>
+  .hc-as {
+    --hc-as-bg: {{ bg_color }};
+    --hc-as-text: {{ text_color }};
+    --hc-as-accent: {{ accent_color }};
+    --hc-as-desc: {{ desc_color }};
+
+    background-color: var(--hc-as-bg);
+    border-bottom: 1px solid #000;
+  }
+
+  .hc-as__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 30vh;
+  }
+
+  .hc-as__text-col {
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-as-text);
+    order: 2;
+    border-top: 1px solid #000;
+  }
+
+  .hc-as__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background-color: var(--hc-as-bg);
+    order: 1;
+  }
+
+  .hc-as__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-as-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-as__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-as-text);
+  }
+
+  .hc-as__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-as-desc);
+    white-space: pre-line;
+  }
+
+  .hc-as__desc strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-as__desc strong:hover {
+    color: var(--hc-as-accent);
+  }
+
+  /* Tooltip */
+  .hc-as__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hc-as__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-as__tooltip-trigger:hover strong {
+    color: var(--hc-as-accent);
+  }
+
+  .hc-as__tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    width: 320px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-as__tooltip-trigger:hover .hc-as__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-as__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+  }
+
+  .hc-as__tooltip-content {
+    display: block;
+  }
+
+  .hc-as__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-as__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-as__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-as-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-as__tooltip-p strong:hover {
+    color: var(--hc-as-accent);
+  }
+
+  .hc-as__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-as__tooltip {
+      width: 450px;
+    }
+  }
+
+  /* Visual card */
+  .hc-as__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-as__card {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #f3f4f6;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    max-width: 56rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .hc-as__card-title {
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+    color: #9ca3af;
+  }
+
+  .hc-as__card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-as__stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border: 1px solid #f3f4f6;
+    background-color: rgba(249, 250, 251, 0.5);
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .hc-as__ring-wrap {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-as__ring-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .hc-as__ring-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 6;
+  }
+
+  .hc-as__ring-fill {
+    fill: none;
+    stroke: var(--hc-as-accent);
+    stroke-width: 6;
+    stroke-dasharray: 282.7;
+    stroke-dashoffset: 0.28;
+    filter: drop-shadow(0 0 15px rgba(180, 83, 9, 0.6));
+  }
+
+  .hc-as__ring-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-as__ring-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--hc-as-text);
+  }
+
+  .hc-as__ring-unit {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--hc-as-accent);
+    margin-top: 0.5rem;
+    font-weight: 700;
+  }
+
+  .hc-as__stat-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .hc-as__stat-desc {
+    font-size: 0.75rem;
+    color: #4b5563;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  @media (min-width: 768px) {
+    .hc-as__text-col {
+      padding: 3rem 6rem;
+    }
+
+    .hc-as__visual-col {
+      padding: 2rem 3rem;
+    }
+
+    .hc-as__heading {
+      font-size: 3rem;
+    }
+
+    .hc-as__card {
+      padding: 1.5rem;
+    }
+
+    .hc-as__card-title {
+      font-size: 0.75rem;
+    }
+
+    .hc-as__stat-box {
+      padding: 1.5rem;
+    }
+
+    .hc-as__ring-wrap {
+      width: 10rem;
+      height: 10rem;
+    }
+
+    .hc-as__ring-value {
+      font-size: 2.25rem;
+    }
+
+    .hc-as__ring-unit {
+      font-size: 0.75rem;
+    }
+
+    .hc-as__stat-title {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-as__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-as__text-col {
+      border-top: none;
+    }
+
+    .hc-as__grid--default .hc-as__text-col {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+
+    .hc-as__grid--default .hc-as__visual-col {
+      order: 1;
+    }
+
+    .hc-as__grid--reversed .hc-as__text-col {
+      order: 1;
+      border-right: 1px solid #000;
+    }
+
+    .hc-as__grid--reversed .hc-as__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section id="acne-shield" class="hc-as" {{ block.shopify_attributes }}>
+  <div class="hc-as__grid {% if is_reversed %}hc-as__grid--reversed{% else %}hc-as__grid--default{% endif %}">
+
+    <div class="hc-as__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-as__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-as__heading">
+        {{ block.settings.heading | default: 'THE ANTI-ACNE SHIELD' }}
+      </h3>
+
+      <div class="hc-as__desc">
+        {%- if block.settings.tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+          {%- assign as_trigger_html = '<strong>' | append: block.settings.tooltip_trigger | append: '</strong>' -%}
+          {%- capture as_tooltip_html -%}<span class="hc-as__tooltip-trigger"><strong>{{ block.settings.tooltip_trigger }}</strong><span class="hc-as__tooltip"><span class="hc-as__tooltip-box"><span class="hc-as__tooltip-content">{{ block.settings.tooltip_content | replace: '<p>', '<span class="hc-as__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-as__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+          {{ block.settings.description | replace: as_trigger_html, as_tooltip_html }}
+        {%- else -%}
+          {{ block.settings.description }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hc-as__visual-col">
+      <div class="hc-as__visual-inner">
+        <div class="hc-as__card">
+          <h4 class="hc-as__card-title">{{ block.settings.card_title | default: 'MICROBIOME PROTECTION' }}</h4>
+          <div class="hc-as__card-body">
+            <div class="hc-as__stat-box">
+              <div class="hc-as__ring-wrap">
+                <svg class="hc-as__ring-svg" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="45" class="hc-as__ring-bg"></circle>
+                  <circle cx="50" cy="50" r="45" class="hc-as__ring-fill"></circle>
+                </svg>
+                <div class="hc-as__ring-label">
+                  <span class="hc-as__ring-value">{{ block.settings.stat_value | default: '99.9%' }}</span>
+                  <span class="hc-as__ring-unit">{{ block.settings.stat_unit | default: 'Kill Rate' }}</span>
+                </div>
+              </div>
+              <span class="hc-as__stat-title">{{ block.settings.stat_title | default: 'Bacteria Neutralization' }}</span>
+              <p class="hc-as__stat-desc">{{ block.settings.stat_desc | default: 'Destroys acne-causing microbes every 180 seconds.' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

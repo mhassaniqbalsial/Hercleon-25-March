@@ -1,0 +1,255 @@
+{% comment %}
+  HC Over Consumption Block
+  Section: sustainability / reducing overconsumption
+{% endcomment %}
+
+<style>
+  .hc-over-consump {
+    border-bottom: 1px solid #000;
+    background-color: #000;
+    animation: hc-over-consump-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-over-consump__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-over-consump__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-over-consump__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-over-consump__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-over-consump__content {
+      order: 2;
+      border-left: 1px solid #1f2937;
+    }
+  }
+
+  .hc-over-consump__eyebrow {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hc-over-consump__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.25;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-over-consump__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-over-consump__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 32rem;
+    color: #9ca3af;
+    white-space: pre-line;
+  }
+
+  .hc-over-consump__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-over-consump__right {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-over-consump__right {
+      order: 1;
+    }
+  }
+
+  .hc-over-consump__visual-wrap {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-over-consump__visual-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 0;
+  }
+
+  .hc-over-consump__traditional {
+    filter: grayscale(100%);
+    opacity: 0.6;
+  }
+
+  .hc-over-consump__row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.375rem;
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-over-consump__row-header--muted {
+    border-bottom: 1px solid #e5e7eb;
+    color: #9ca3af;
+  }
+
+  .hc-over-consump__row-header--accent {
+    border-bottom: 1px solid #b45309;
+    color: #b45309;
+  }
+
+  .hc-over-consump__row-value {
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .hc-over-consump__traditional-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.25rem;
+  }
+
+  .hc-over-consump__box {
+    aspect-ratio: 3 / 4;
+    border: 1px solid #f3f4f6;
+    background-color: rgba(249, 250, 251, 0.5);
+    display: block !important;
+  }
+
+  .hc-over-consump__hercleon-row {
+    display: flex;
+    gap: 0.375rem;
+  }
+
+  .hc-over-consump__hercleon-box {
+    width: 2rem;
+    aspect-ratio: 3 / 4;
+    background-color: #b45309;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: block !important
+  }
+
+  .hc-over-consump__hercleon-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hc-over-consump__hercleon-caption {
+    margin-top: 0.75rem;
+    font-family: ui-monospace, monospace;
+    font-size: 8px;
+    color: #b45309;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+
+  @keyframes hc-over-consump-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<section
+  id="sustainability_shirt_overconsumption"
+  class="hc-over-consump"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-over-consump__grid">
+    <div class="hc-over-consump__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+        <span class="hc-over-consump__eyebrow">{{ block.settings.eyebrow_text }}</span>
+      {%- endif -%}
+      {%- if block.settings.title != blank -%}
+        <h3 class="hc-over-consump__title">{{ block.settings.title }}</h3>
+      {%- endif -%}
+      {%- if block.settings.description != blank -%}
+        <p class="hc-over-consump__description">{{ block.settings.description }}</p>
+      {%- endif -%}
+    </div>
+    <div class="hc-over-consump__right">
+      <div class="hc-over-consump__visual-wrap">
+        <div class="hc-over-consump__visual-inner">
+          <div class="hc-over-consump__traditional">
+            <div class="hc-over-consump__row-header hc-over-consump__row-header--muted">
+              <span>{{ block.settings.traditional_label | default: 'Traditional Wardrobe' }}</span>
+              <span class="hc-over-consump__row-value">{{ block.settings.traditional_value | default: '40 - 50 PIECES' }}</span>
+            </div>
+            <div class="hc-over-consump__traditional-grid">
+              {%- for i in (1..40) -%}
+                <div class="hc-over-consump__box"></div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div>
+            <div class="hc-over-consump__row-header hc-over-consump__row-header--accent">
+              <span>{{ block.settings.hercleon_label | default: 'HercLéon Core System' }}</span>
+              <span class="hc-over-consump__row-value">{{ block.settings.hercleon_value | default: '5 - 10 PIECES' }}</span>
+            </div>
+            <div class="hc-over-consump__hercleon-row">
+              {%- for i in (1..6) -%}
+                <div class="hc-over-consump__hercleon-box"></div>
+              {%- endfor -%}
+            </div>
+            {%- if block.settings.hercleon_caption != blank -%}
+              <p class="hc-over-consump__hercleon-caption">{{ block.settings.hercleon_caption }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

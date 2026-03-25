@@ -1,0 +1,204 @@
+{% comment %}
+  HC of Fashion Search – "A Two-Year Search For Answers" section
+  Class prefix: hc-os-fashion-search-
+{% endcomment %}
+
+<section class="hc-os-fashion-search-section" id="section-{{ section.id }}">
+  <div class="hc-os-fashion-search-container">
+    <div class="hc-os-fashion-search-inner">
+      {% if section.settings.heading != blank %}
+        <h2 class="hc-os-fashion-search-heading">
+          {{ section.settings.heading | newline_to_br }}
+        </h2>
+      {% endif %}
+      <div class="hc-os-fashion-search-content">
+        {% if section.settings.paragraph_1 != blank %}
+          <p class="hc-os-fashion-search-paragraph">{{ section.settings.paragraph_1 }}</p>
+        {% endif %}
+        {% if section.settings.paragraph_2 != blank %}
+          <p class="hc-os-fashion-search-paragraph">{{ section.settings.paragraph_2 }}</p>
+        {% endif %}
+        {% if section.settings.highlight != blank %}
+          <p class="hc-os-fashion-search-highlight">{{ section.settings.highlight }}</p>
+        {% endif %}
+        {% if section.settings.paragraph_3 != blank %}
+          <p class="hc-os-fashion-search-paragraph">{{ section.settings.paragraph_3 }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #section-{{ section.id }}.hc-os-fashion-search-section {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    #section-{{ section.id }}.hc-os-fashion-search-section {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hc-os-fashion-search-section {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .hc-os-fashion-search-container {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .hc-os-fashion-search-inner {
+    text-align: center;
+  }
+
+  .hc-os-fashion-search-heading {
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-os-fashion-search-heading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-os-fashion-search-content {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.625;
+    text-align: left;
+    color: rgb(156 163 175);
+  }
+
+  .hc-os-fashion-search-content p + p {
+    margin-top: 1.5rem;
+  }
+
+  .hc-os-fashion-search-paragraph {
+    margin: 0;
+  }
+
+  .hc-os-fashion-search-highlight {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.25rem;
+    border-left: 2px solid #B45309;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC OS Search",
+  "tag": "section",
+  "class": "section-hc-os-fashion-search",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A Two-Year Search\nFor Answers"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "Sleepless nights. Research that led nowhere. Experiments that failed — until they didn't."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "A discovery emerged: Different fabrics handle odor differently. But all of them eventually fail because they only target one type of odor."
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Highlight / quote",
+      "default": "What if clothing could handle all five?"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_3",
+      "label": "Paragraph 3",
+      "default": "This became the foundation for HercLeón."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OS Search",
+      "settings": {
+        "heading": "A Two-Year Search\nFor Answers",
+        "paragraph_1": "Sleepless nights. Research that led nowhere. Experiments that failed — until they didn't.",
+        "paragraph_2": "A discovery emerged: Different fabrics handle odor differently. But all of them eventually fail because they only target one type of odor.",
+        "highlight": "What if clothing could handle all five?",
+        "paragraph_3": "This became the foundation for HercLeón.",
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    }
+  ]
+}
+{% endschema %}

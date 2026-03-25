@@ -1,0 +1,409 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hc_hero_section_q9JVVf": {
+      "type": "HC-Hero-Section",
+      "name": "HC Hero Section",
+      "settings": {
+        "section_id": "hc-home-hero-section",
+        "show_status_bar": true,
+        "mission_text": "ODOR NULLIFICATION",
+        "status_text": "ACTIVE",
+        "temp_text": "REGULATED",
+        "bacteria_text": "0%",
+        "heading": "Clothing For The Journey.",
+        "description": "<p>We believe travel should feel freeing, not complicated. Fewer items. Less maintenance. More confidence to move, explore, and live without friction. Our focus is simple: make gear that works harder, demands less, and stays reliable wherever the journey leads.<br/><br/>HercLéon exists to simplify what you carry — so you can focus on where you’re going.</p>",
+        "heading_herclabs": "DISCOVER WHAT'S NEXT",
+        "description_herclabs": "<p>Welcome to the HercLéon testing ground — a space where curiosity meets craftsmanship. HercLabs is our workshop for designs that don’t fit a single theme, but share a single goal: to solve the friction in your daily life. See what we’re working on today, and what we’re solving for tomorrow.</p>",
+        "show_buttons": true,
+        "button_1_text": "STUDY OUR TECH",
+        "button_1_link": "shopify://collections/all",
+        "button_2_text": "ACQUIRE GEAR",
+        "button_2_link": "shopify://collections/all",
+        "stat_one": "★ 20,000+ Customers",
+        "stat_two": "In 100+ Countries",
+        "stat_three": "With 97% Satisfaction Rate"
+      }
+    },
+    "hc_home_seen_on_AdXNej": {
+      "type": "HC-home-seen-on",
+      "blocks": {
+        "publication_iMcy7r": {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Shark Tank"
+          }
+        },
+        "publication_NpNWLY": {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Wonderful Engineering"
+          }
+        },
+        "publication_xq8hUP": {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Men's Journal"
+          }
+        },
+        "publication_P9AnmV": {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Gear Junkie"
+          }
+        },
+        "publication_jc37Vj": {
+          "type": "publication",
+          "settings": {
+            "publication_name": "CNN"
+          }
+        },
+        "publication_DFntkM": {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Lonely Planet"
+          }
+        },
+        "publication_6erLAf": {
+          "type": "publication",
+          "settings": {
+            "publication_name": "MPR"
+          }
+        }
+      },
+      "block_order": [
+        "publication_iMcy7r",
+        "publication_NpNWLY",
+        "publication_xq8hUP",
+        "publication_P9AnmV",
+        "publication_jc37Vj",
+        "publication_DFntkM",
+        "publication_6erLAf"
+      ],
+      "name": "HC Home Seen On",
+      "settings": {
+        "label_text": "As Seen On:"
+      }
+    },
+    "hc_featured_collection_DKTCBz": {
+      "type": "HC-Featured-Collection",
+      "name": "HC Featured Collection",
+      "settings": {
+        "custom_class": "hc-featured-collection hc-featured-collection-hercleon",
+        "collection": "",
+        "products": [
+          "hercshirt-2",
+          "hercsocks-1",
+          "apollo-button-down"
+        ],
+        "product_limit": 6,
+        "columns": 3,
+        "carousel_on_desktop": false,
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "heading": "",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "highlighted_reveal": false,
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "divider": false,
+        "full_width": true,
+        "rounded": false
+      }
+    },
+    "hc_featured_collection_XMUfHz": {
+      "type": "HC-Featured-Collection",
+      "name": "HC Featured Collection",
+      "settings": {
+        "custom_class": "hc-featured-collection hc-featured-collection-herclabs",
+        "collection": "",
+        "products": [
+          "hercsheets",
+          "herctowel",
+          "herccomforter"
+        ],
+        "product_limit": 6,
+        "columns": 3,
+        "carousel_on_desktop": false,
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "heading": "",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "highlighted_reveal": false,
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "divider": false,
+        "full_width": true,
+        "rounded": false
+      }
+    },
+    "hc_herc_leon_interactive_nCPGQa": {
+      "type": "HC-hercLeon-interactive",
+      "blocks": {
+        "benefit_baggage_bYFnTJ": {
+          "type": "benefit_baggage",
+          "settings": {
+            "benefit_title": "Leave Baggage Behind",
+            "benefit_subtitle": "Pack lighter. Move freer.",
+            "content_type": "baggage",
+            "baggage_label": "2 Weeks Long Trip",
+            "standard_label": "Standard Tourist",
+            "standard_weight": "~3.5kg Load",
+            "standard_items": 14,
+            "herc_label": "HercLéon Operative",
+            "herc_weight": "~0.1kg Load",
+            "display_title": "Pack lighter. Move freer.",
+            "display_description": "Traditional clothing takes up space. HercLéon gear is made to reduce how much you carry. One set replaces an entire stack, making travel simpler and lighter."
+          }
+        },
+        "benefit_micron_tTPn8t": {
+          "type": "benefit_micron",
+          "settings": {
+            "benefit_title": "Gear You Won't Want To Take Off",
+            "benefit_subtitle": "What's the value of amazing gear if you don't love wearing it?",
+            "content_type": "micron",
+            "micron_label": "Micron Count (Lower is Softer)",
+            "show_cotton": true,
+            "show_merino": true,
+            "show_cashmere": true,
+            "show_silk": true,
+            "herc_name": "HercFiber™",
+            "display_title": "What's the value of amazing gear if you don't love wearing it?",
+            "display_description": "HercLéon is not only smell-proof and anti-bacterial, it's also incredibly comfortable. Around 2x softer than cotton, so you will not only get the perfect travel clothing but you'll also get the perfect travel clothing that you will actually enjoy wearing for days on end."
+          }
+        },
+        "benefit_table_h8Lyig": {
+          "type": "benefit_table",
+          "settings": {
+            "benefit_title": "Stay Fresh On The Road",
+            "benefit_subtitle": "Clean travel is better travel.",
+            "content_type": "table",
+            "show_polyester": true,
+            "show_cotton": true,
+            "show_merino": true,
+            "show_silver": true,
+            "herc_name": "HercFiber™",
+            "display_title": "Clean travel is better travel.",
+            "display_description": "HercFiber™ prevents bacteria from building up, helping garments stay fresh across long journeys. Clean-feeling clothing without lingering odors or unwanted buildup."
+          }
+        },
+        "benefit_stats_bWGkq3": {
+          "type": "benefit_stats",
+          "settings": {
+            "benefit_title": "Interact With More Confidence",
+            "benefit_subtitle": "Smell-proof means Sweat-Resistant",
+            "content_type": "stats",
+            "stat_1_value": "300%",
+            "stat_1_label": "More Absorbent (Cotton)",
+            "stat_1_highlight": true,
+            "stat_2_value": "1000%",
+            "stat_2_label": "More Absorbent (Poly)",
+            "stat_2_highlight": true,
+            "stat_3_value": "130%",
+            "stat_3_label": "More Cooling (Cotton)",
+            "stat_3_highlight": false,
+            "stat_4_value": "200%",
+            "stat_4_label": "Faster Wicking (Poly)",
+            "stat_4_highlight": false,
+            "display_title": "Smell-proof means Sweat-Resistant",
+            "display_description": "HercFiber™ prevents bacteria from building up, helping garments stay fresh across long journeys. Clean-feeling clothing without lingering odors or unwanted buildup."
+          }
+        },
+        "benefit_timeline_8bzwrU": {
+          "type": "benefit_timeline",
+          "settings": {
+            "benefit_title": "One Outfit, Many Situations",
+            "benefit_subtitle": "From flight to dinner in one move.",
+            "content_type": "timeline",
+            "timeline_1_time": "08:00",
+            "timeline_1_text": "International Flight",
+            "timeline_2_time": "14:00",
+            "timeline_2_text": "Client Meeting",
+            "timeline_3_time": "16:00",
+            "timeline_3_text": "Gym Session",
+            "timeline_4_time": "19:00",
+            "timeline_4_text": "Dinner Date",
+            "display_title": "From flight to dinner in one move.",
+            "display_description": "HercLéon adapts to wherever your day takes you."
+          }
+        },
+        "benefit_comparison_X4rRCg": {
+          "type": "benefit_comparison",
+          "settings": {
+            "benefit_title": "Plan Adventures, Not Chores",
+            "benefit_subtitle": "Travel without the chore list.",
+            "content_type": "comparison",
+            "standard_title": "Standard Requirements",
+            "standard_item_1": "[ ] Laundry Machine",
+            "standard_item_2": "[ ] Detergent",
+            "standard_item_3": "[ ] Drying Rack",
+            "standard_item_4": "[ ] Iron / Steamer",
+            "standard_item_5": "[ ] Spare Coins",
+            "standard_item_6": "[ ] 2 Hours Wait",
+            "herc_title": "HercLéon Requirements",
+            "herc_text": "ZEROCHORES",
+            "display_title": "Travel without the chore list.",
+            "display_description": "Laundry shouldn't shape your travel plans."
+          }
+        },
+        "benefit_durability_6pXAzQ": {
+          "type": "benefit_durability",
+          "settings": {
+            "benefit_title": "Designed To Last A Decade",
+            "benefit_subtitle": "Durability that defies the industry.",
+            "content_type": "durability",
+            "durability_label": "HercFiber™ is more durable than others by:",
+            "durability_1_value": "1.9x",
+            "durability_1_label": "Cotton",
+            "durability_2_value": "2x",
+            "durability_2_label": "Viscose",
+            "durability_3_value": "3x",
+            "durability_3_label": "Merino Wool",
+            "display_title": "Durability that defies the industry.",
+            "display_description": "Standard clothing lasts 30 washes. HercFiber is engineered for the long haul."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_baggage_bYFnTJ",
+        "benefit_micron_tTPn8t",
+        "benefit_table_h8Lyig",
+        "benefit_stats_bWGkq3",
+        "benefit_timeline_8bzwrU",
+        "benefit_comparison_X4rRCg",
+        "benefit_durability_6pXAzQ"
+      ],
+      "name": "HercLeon Interactive",
+      "settings": {
+        "section_label": "The Problem & The Solution",
+        "section_title": "Why People Love Smell-Proof",
+        "section_bg": "#f8f8f8",
+        "accent_color": "#b45309",
+        "border_color": "#000000",
+        "border_width": 1
+      }
+    },
+    "blog_posts_jW9cRx": {
+      "type": "blog-posts",
+      "name": "t:sections.blog-posts.name",
+      "settings": {
+        "custom_class": "hc-blog-page",
+        "blog": "the-journal",
+        "post_limit": 3,
+        "columns": 3,
+        "carousel_on_desktop": false,
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "image_ratio": "landscape",
+        "show_tags": true,
+        "show_date": false,
+        "show_comments": false,
+        "show_author": false,
+        "show_excerpt": true,
+        "heading": "The Journal",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "FIELD NOTES",
+        "description": "",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "highlighted_reveal": false,
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "full_width": false,
+        "rounded": false
+      }
+    },
+    "hc_floating_navigation_edzV8Q": {
+      "type": "HC-floating-navigation",
+      "blocks": {
+        "clearance_item_gpVf7A": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_gpVf7A"
+      ],
+      "name": "HC Floating Navigation",
+      "settings": {
+        "mission_text": "Mission",
+        "mission_link": "#hc-header-section",
+        "benefits_text": "Benefits",
+        "benefits_link": "#hc-footer-section",
+        "more_text": "More",
+        "more_link": "shopify://blogs/news",
+        "cta_text": "Acquire Gear",
+        "cta_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "hc_hero_section_q9JVVf",
+    "hc_home_seen_on_AdXNej",
+    "hc_featured_collection_DKTCBz",
+    "hc_featured_collection_XMUfHz",
+    "hc_herc_leon_interactive_nCPGQa",
+    "blog_posts_jW9cRx",
+    "hc_floating_navigation_edzV8Q"
+  ]
+}

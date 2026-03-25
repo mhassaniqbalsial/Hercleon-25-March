@@ -1,0 +1,279 @@
+<section
+  class="hc-freedom"
+  style="
+    --hc-fr-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-fr-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-fr-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-fr-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-freedom__container">
+
+    <div class="hc-freedom__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="hc-freedom__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hc-freedom__heading">{{ section.settings.heading | newline_to_br }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p class="hc-freedom__intro">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="hc-freedom__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'benefit' -%}
+            <div class="hc-freedom__column" {{ block.shopify_attributes }}>
+              {%- if block.settings.title != blank -%}
+                <h3 class="hc-freedom__column-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.body != blank -%}
+                <p class="hc-freedom__column-body">{{ block.settings.body }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .hc-freedom {
+    background-color: #fff;
+    border-top: 1px solid #e5e7eb;
+    padding-top: var(--hc-fr-pt-mobile);
+    padding-bottom: var(--hc-fr-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-freedom {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-freedom {
+      padding-top: var(--hc-fr-pt-desktop);
+      padding-bottom: var(--hc-fr-pb-desktop);
+    }
+  }
+
+  .hc-freedom__container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .hc-freedom__header {
+    margin-bottom: 3rem;
+  }
+
+  .hc-freedom__eyebrow {
+    display: block;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-freedom__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #050505;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .hc-freedom__heading {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-freedom__intro {
+    font-size: 1.25rem;
+    color: #4b5563;
+    line-height: 1.75;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+  }
+
+  .hc-freedom__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: left;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    .hc-freedom__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .hc-freedom__column {
+    padding: 2rem;
+    border-left: 2px solid #B45309;
+  }
+
+  .hc-freedom__column-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #050505;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .hc-freedom__column-body {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.75;
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Freedom",
+  "tag": "section",
+  "class": "hc-freedom-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Result"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (line break = new line)",
+      "default": "Uncompromising \nFreedom."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro paragraph",
+      "default": "By understanding the biology of odor and engineering materials that actively work with your body, we've created more than just a shirt. We've created a tool that gives you back your time, your confidence, and your freedom to move through the world without limitations."
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Travel Lighter"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+          "default": "Pack for a month in a single carry-on. One shirt, infinite possibilities."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Freedom",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Travel Lighter",
+            "body": "Pack for a month in a single carry-on. One shirt, infinite possibilities."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Live Cleaner",
+            "body": "Hyper-hygienic materials mean you stay fresh, even when you're pushing your limits."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Waste Less",
+            "body": "Less washing means less water waste, fewer microplastics, and clothes that last years longer."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,221 @@
+{{ 'hc-science-sayonara.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="hc-science-sayonara"
+  style="
+    --hc-ss-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-ss-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-ss-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-ss-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+
+  {%- comment -%} Background glow orbs {%- endcomment -%}
+  <div class="hc-science-sayonara__orb hc-science-sayonara__orb--top-right" aria-hidden="true"></div>
+  <div class="hc-science-sayonara__orb hc-science-sayonara__orb--bottom-left" aria-hidden="true"></div>
+
+  <div class="hc-science-sayonara__container">
+
+    <h2 class="hc-science-sayonara__heading">
+      {{ section.settings.heading_line_1 }}
+      <br>
+      <span class="hc-science-sayonara__heading-gradient">
+        {{ section.settings.heading_line_2 }}
+      </span>
+    </h2>
+
+    {%- if section.settings.subtext != blank -%}
+      <p class="hc-science-sayonara__subtext">
+        {{ section.settings.subtext }}
+      </p>
+    {%- endif -%}
+
+  </div>
+
+</section>
+
+<style>
+  .hc-science-sayonara {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    padding-top: var(--hc-ss-pt-mobile);
+    padding-bottom: var(--hc-ss-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .hc-science-sayonara {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-science-sayonara {
+      padding-top: var(--hc-ss-pt-desktop);
+      padding-bottom: var(--hc-ss-pb-desktop);
+    }
+  }
+
+  /* Glow orbs */
+  .hc-science-sayonara__orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  .hc-science-sayonara__orb--top-right {
+    top: 0;
+    right: 0;
+    width: 800px;
+    height: 800px;
+    background-color: #B45309;
+    opacity: 0.2;
+    animation: hc-science-sayonara-pulse 4s ease-in-out infinite;
+  }
+
+  .hc-science-sayonara__orb--bottom-left {
+    bottom: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    background-color: #1e3a8a;
+    filter: blur(100px);
+    opacity: 0.2;
+  }
+
+  @keyframes hc-science-sayonara-pulse {
+    0%, 100% { opacity: 0.2; }
+    50%       { opacity: 0.35; }
+  }
+
+  /* Container */
+  .hc-science-sayonara__container {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  /* Heading */
+  .hc-science-sayonara__heading {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    color: #ffffff;
+  }
+
+  .hc-science-sayonara__heading-gradient {
+    background: linear-gradient(to right, #B45309, #fb923c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Subtext */
+  .hc-science-sayonara__subtext {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: #9ca3af;
+    font-weight: 300;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Science Sayonara",
+  "tag": "section",
+  "class": "hc-science-sayonara-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading — Line 1",
+      "default": "We said"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading — Line 2 (gradient)",
+      "default": "Sayonara to Smell."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Body odor is completely natural, but smelly clothes don't have to be. Instead of relying on constant washing to keep your clothes fresh, we engineered a fabric that actively prevents odor-causing bacteria from growing in the first place. The result? Clothing that stays clean, smells fresh, and rarely needs to see the inside of a washing machine."
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Science Sayonara"
+    }
+  ]
+}
+{% endschema %}

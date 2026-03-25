@@ -1,0 +1,214 @@
+{% comment %}
+  HC Science Sustainability Benefits section
+  Class prefix: hc-science-sustainability-benefits
+{% endcomment %}
+
+{% style %}
+  .hc-science-sustainability-benefits {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media (min-width: 750px) {
+    .hc-science-sustainability-benefits {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="hc-science-sustainability-benefits">
+  <div class="hc-science-sustainability-benefits__inner">
+    <div class="hc-science-sustainability-benefits__grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'card' %}
+            <div class="hc-science-sustainability-benefits__card" {{ block.shopify_attributes }}>
+              <span class="hc-science-sustainability-benefits__stat">{{ block.settings.stat }}</span>
+              <p class="hc-science-sustainability-benefits__label">{{ block.settings.label }}</p>
+              <p class="hc-science-sustainability-benefits__description">{{ block.settings.description }}</p>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .hc-science-sustainability-benefits {
+    background-color: #111;
+    color: #fff;
+    border-top: 1px solid #1f2937;
+    border-bottom: 1px solid #1f2937;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .hc-science-sustainability-benefits {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  .hc-science-sustainability-benefits__inner {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-science-sustainability-benefits__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .hc-science-sustainability-benefits__grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+
+  .hc-science-sustainability-benefits__card {
+    padding: 2rem;
+    border: 1px solid #1f2937;
+  }
+
+  .hc-science-sustainability-benefits__stat {
+    display: block;
+    font-size: 3.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #b45309;
+  }
+
+  .hc-science-sustainability-benefits__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+  }
+
+  .hc-science-sustainability-benefits__description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Sustainability Profit",
+  "tag": "section",
+  "class": "hc-science-sustainability-benefits-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Spacing - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 96
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Benefit card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat",
+          "label": "Stat",
+          "default": "35%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Of Ocean Microplastics"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Come from laundering synthetic clothes. Hercléon reduces washing by ~90%."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Sustainability Profit",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "stat": "35%",
+            "label": "Of Ocean Microplastics",
+            "description": "Come from laundering synthetic clothes. Hercléon reduces washing by ~90%."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "stat": "3,000L",
+            "label": "Water Saved Per Year",
+            "description": "By switching to a low-wash laundry cycle with Hercléon gear."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "stat": "10x",
+            "label": "Longer Lifespan",
+            "description": "Washing destroys fabric. Washing less means keeping your gear years longer."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,499 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign is_reversed = block.settings.reverse_layout
+  assign cas_desc = block.settings.description
+-%}
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  {%- assign cas_t1 = '<strong>' | append: block.settings.tooltip_1_trigger | append: '</strong>' -%}
+  {%- capture cas_w1 -%}<span class="hc-cas__tooltip-trigger"><strong>{{ block.settings.tooltip_1_trigger }}</strong><span class="hc-cas__tooltip"><span class="hc-cas__tooltip-box"><span class="hc-cas__tooltip-content">{{ block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-cas__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-cas__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign cas_desc = cas_desc | replace: cas_t1, cas_w1 -%}
+{%- endif -%}
+{%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+  {%- assign cas_t2 = '<strong>' | append: block.settings.tooltip_2_trigger | append: '</strong>' -%}
+  {%- capture cas_w2 -%}<span class="hc-cas__tooltip-trigger"><strong>{{ block.settings.tooltip_2_trigger }}</strong><span class="hc-cas__tooltip"><span class="hc-cas__tooltip-box"><span class="hc-cas__tooltip-content">{{ block.settings.tooltip_2_content | replace: '<p>', '<span class="hc-cas__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-cas__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign cas_desc = cas_desc | replace: cas_t2, cas_w2 -%}
+{%- endif -%}
+{%- if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank -%}
+  {%- assign cas_t3 = '<strong>' | append: block.settings.tooltip_3_trigger | append: '</strong>' -%}
+  {%- capture cas_w3 -%}<span class="hc-cas__tooltip-trigger"><strong>{{ block.settings.tooltip_3_trigger }}</strong><span class="hc-cas__tooltip"><span class="hc-cas__tooltip-box"><span class="hc-cas__tooltip-content">{{ block.settings.tooltip_3_content | replace: '<p>', '<span class="hc-cas__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-cas__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign cas_desc = cas_desc | replace: cas_t3, cas_w3 -%}
+{%- endif -%}
+
+<style>
+  .hc-cas {
+    --hc-cas-bg: {{ bg_color }};
+    --hc-cas-text: {{ text_color }};
+    --hc-cas-accent: {{ accent_color }};
+    --hc-cas-desc: {{ desc_color }};
+    --hc-cas-border: rgba(31, 41, 55, 1);
+    --hc-cas-border-strong: rgba(17, 24, 39, 1);
+    --hc-cas-card-bg: rgba(3, 7, 18, 0.5);
+    --hc-cas-muted: #6b7280;
+    --hc-cas-icon-bg: #1f2937;
+
+    background-color: var(--hc-cas-bg);
+    border-bottom: 1px solid #000;
+  }
+
+  @keyframes hc-cas-pulse {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 0.12;
+    }
+  }
+
+  .hc-cas__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-cas__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-cas-text);
+    order: 1;
+    border-bottom: 1px solid var(--hc-cas-border);
+  }
+
+  .hc-cas__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-cas-bg);
+    order: 2;
+  }
+
+  .hc-cas__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-cas-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-cas__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-cas-text);
+  }
+
+  .hc-cas__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-cas-desc);
+    white-space: pre-line;
+  }
+
+  .hc-cas__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hc-cas__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-cas__tooltip-trigger:hover strong {
+    color: var(--hc-cas-accent);
+  }
+
+  .hc-cas__tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    width: 320px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-cas__tooltip-trigger:hover .hc-cas__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-cas__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+  }
+
+  .hc-cas__tooltip-content {
+    display: block;
+  }
+
+  .hc-cas__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-cas__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-cas__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-cas-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-cas__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-cas__tooltip {
+      width: 450px;
+    }
+  }
+
+  .hc-cas__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-cas__card {
+    background-color: var(--hc-cas-bg);
+    padding: 2rem;
+    border: 1px solid var(--hc-cas-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--hc-cas-text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-cas__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-cas__arch-title {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--hc-cas-muted);
+    margin-bottom: 3rem;
+  }
+
+  .hc-cas__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .hc-cas__mini-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid var(--hc-cas-border-strong);
+    background-color: var(--hc-cas-card-bg);
+    border-radius: 0.75rem;
+    width: 100%;
+  }
+
+  .hc-cas__mini-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--hc-cas-icon-bg);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    color: #9ca3af;
+  }
+
+  .hc-cas__mini-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .hc-cas__mini-title {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .hc-cas__mini-sub {
+    font-size: 0.5rem;
+    color: var(--hc-cas-muted);
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  .hc-cas__plus {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #374151;
+  }
+
+  .hc-cas__equals {
+    margin: 2rem 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #374151;
+  }
+
+  .hc-cas__result {
+    width: 100%;
+    padding: 2rem;
+    border: 2px solid color-mix(in srgb, var(--hc-cas-accent) 30%, transparent);
+    background-color: color-mix(in srgb, var(--hc-cas-accent) 5%, transparent);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .hc-cas__result-pulse {
+    position: absolute;
+    inset: 0;
+    background-color: color-mix(in srgb, var(--hc-cas-accent) 5%, transparent);
+    border-radius: 1rem;
+    animation: hc-cas-pulse 2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .hc-cas__result svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--hc-cas-accent);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hc-cas__result-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hc-cas__badges {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hc-cas__badge {
+    padding: 0.25rem 0.5rem;
+    background-color: var(--hc-cas-bg);
+    border: 1px solid color-mix(in srgb, var(--hc-cas-accent) 40%, transparent);
+    border-radius: 0.25rem;
+    font-size: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--hc-cas-accent);
+  }
+
+  @supports not (color: color-mix(in srgb, red, blue)) {
+    .hc-cas__result {
+      border-color: rgba(180, 83, 9, 0.3);
+      background-color: rgba(180, 83, 9, 0.05);
+    }
+
+    .hc-cas__result-pulse {
+      background-color: rgba(180, 83, 9, 0.05);
+    }
+
+    .hc-cas__badge {
+      border-color: rgba(180, 83, 9, 0.4);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hc-cas__text-col {
+      padding: 6rem;
+    }
+
+    .hc-cas__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-cas__heading {
+      font-size: 3rem;
+    }
+
+    .hc-cas__card {
+      padding: 2rem 4rem;
+    }
+
+    .hc-cas__row {
+      flex-direction: row;
+    }
+
+    .hc-cas__mini-card {
+      width: 33.333%;
+    }
+
+    .hc-cas__result-title {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-cas__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-cas__text-col {
+      border-bottom: none;
+    }
+
+    .hc-cas__grid--default .hc-cas__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-cas-border);
+    }
+
+    .hc-cas__grid--default .hc-cas__visual-col {
+      order: 2;
+    }
+
+    .hc-cas__grid--reversed .hc-cas__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-cas-border);
+    }
+
+    .hc-cas__grid--reversed .hc-cas__visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section id="charcoal-ash-system" class="hc-cas animate-fade-in-up" {{ block.shopify_attributes }}>
+  <div class="hc-cas__grid {% if is_reversed %}hc-cas__grid--reversed{% else %}hc-cas__grid--default{% endif %}">
+
+    <div class="hc-cas__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-cas__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-cas__heading">
+        {{ block.settings.heading | default: 'The Charcoal and Ash System' }}
+      </h3>
+
+      <div class="hc-cas__desc">
+        {{ cas_desc }}
+      </div>
+    </div>
+
+    <div class="hc-cas__visual-col">
+      <div class="hc-cas__visual-inner">
+        <div class="hc-cas__card">
+          <div class="hc-cas__card-inner">
+            <h4 class="hc-cas__arch-title">{{ block.settings.architecture_title | default: 'DEEP SLEEP ARCHITECTURE' }}</h4>
+
+            <div class="hc-cas__row">
+              <div class="hc-cas__mini-card">
+                <div class="hc-cas__mini-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+                  </svg>
+                </div>
+                <span class="hc-cas__mini-title">{{ block.settings.card_1_title | default: 'Coconut Charcoal' }}</span>
+                <span class="hc-cas__mini-sub">{{ block.settings.card_1_subtitle | default: 'Odor Filter' }}</span>
+              </div>
+
+              <span class="hc-cas__plus" aria-hidden="true">+</span>
+
+              <div class="hc-cas__mini-card">
+                <div class="hc-cas__mini-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                    <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                    <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                  </svg>
+                </div>
+                <span class="hc-cas__mini-title">{{ block.settings.card_2_title | default: 'Volcanic Ash' }}</span>
+                <span class="hc-cas__mini-sub">{{ block.settings.card_2_subtitle | default: 'Humidity Pull' }}</span>
+              </div>
+            </div>
+
+            <div class="hc-cas__equals" aria-hidden="true">=</div>
+
+            <div class="hc-cas__result">
+              <div class="hc-cas__result-pulse"></div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+              </svg>
+              <span class="hc-cas__result-title">{{ block.settings.result_title | default: 'Sweat Free Deep Sleep Zone' }}</span>
+              <div class="hc-cas__badges">
+                <span class="hc-cas__badge">{{ block.settings.badge_1 | default: 'Active 24/7' }}</span>
+                <span class="hc-cas__badge">{{ block.settings.badge_2 | default: 'Zero Odor' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

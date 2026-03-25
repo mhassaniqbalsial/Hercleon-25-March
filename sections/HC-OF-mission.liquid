@@ -1,0 +1,204 @@
+{% comment %}
+  HC of Mission section
+  All class names prefixed with: hc-of-mission
+{% endcomment %}
+
+{% style %}
+  #shopify-section-{{ section.id }} .hc-of-mission {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+{% endstyle %}
+
+<div
+  class="hc-of-mission"
+  id="hc-of-mission-{{ section.id }}"
+  aria-labelledby="hc-of-mission-heading-{{ section.id }}"
+>
+  <div class="hc-of-mission__inner">
+    <h2
+      id="hc-of-mission-heading-{{ section.id }}"
+      class="hc-of-mission__heading"
+    >
+      {{ section.settings.heading | default: 'My Mission' }}
+    </h2>
+
+    <div class="hc-of-mission__grid">
+      <div class="hc-of-mission__grid-line" aria-hidden="true"></div>
+
+      {% for block in section.blocks %}
+        <div
+          class="hc-of-mission__card"
+          {{ block.shopify_attributes }}
+        >
+          <span class="hc-of-mission__card-number">
+            {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+          </span>
+          <h3 class="hc-of-mission__card-title">
+            {{ block.settings.title }}
+          </h3>
+          <p class="hc-of-mission__card-text">
+            {{ block.settings.text }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .hc-of-mission {
+    background-color: #000;
+    color: #fff;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 750px) {
+    .hc-of-mission {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hc-of-mission__inner {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-of-mission__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 6rem;
+    font-family: var(--font-heading-family), sans-serif;
+    color: #ffffff;
+  }
+  @media (min-width: 750px) {
+    .hc-of-mission__heading {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-of-mission__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    position: relative;
+  }
+  @media (min-width: 750px) {
+    .hc-of-mission__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .hc-of-mission__grid-line {
+    display: none !important;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #1f2937;
+    z-index: 0;
+  }
+  @media (min-width: 750px) {
+    .hc-of-mission__grid-line {
+      display: block !important;
+    }
+  }
+
+  .hc-of-mission__card {
+    position: relative;
+    z-index: 1;
+    background-color: #000;
+    padding: 1.5rem;
+    border: 1px solid #1f2937;
+    transition: border-color 0.2s ease;
+  }
+  .hc-of-mission__card:hover {
+    border-color: #b45309;
+  }
+
+  .hc-of-mission__card-number {
+    display: block;
+    font-size: 3.75rem;
+    font-weight: 700;
+    color: #b45309;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading-family), sans-serif;
+  }
+
+  .hc-of-mission__card-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+
+  .hc-of-mission__card-text {
+    color: #6b7280;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC OF Mission",
+  "tag": "section",
+  "class": "section-hc-of-mission",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "My Mission"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mission_item",
+      "name": "Mission item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OF Mission",
+      "blocks": [
+        {
+          "type": "mission_item",
+          "settings": {
+            "title": "Remove Friction",
+            "text": "Eliminate the daily burdens of laundry, packing, and odor anxiety."
+          }
+        },
+        {
+          "type": "mission_item",
+          "settings": {
+            "title": "Bio-Compatability",
+            "text": "Create clothing that works in harmony with human biology, not against it."
+          }
+        },
+        {
+          "type": "mission_item",
+          "settings": {
+            "title": "Expand Life",
+            "text": "Help people live lighter, travel further, and experience more."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

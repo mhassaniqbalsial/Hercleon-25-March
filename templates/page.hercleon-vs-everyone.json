@@ -1,0 +1,1038 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "custom_section_dhXgt8": {
+      "type": "custom-section",
+      "blocks": {
+        "text_yyefpC": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<h4>Comparative Analysis</h4>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "custom",
+            "custom_width": 100,
+            "alignment": "center",
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        },
+        "text_DPXrdx": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<h1>The Truth Is Simple:<br/>Most Clothes Only Fight <strong>1 </strong> Type of Odor.<br/>We Fight All <strong>5</strong>.</h1>",
+            "text_font": "heading",
+            "text_size": "text-base lg:text-lg",
+            "text_max_size": 64,
+            "text_line_height": 1.1,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "custom",
+            "custom_width": 100,
+            "alignment": "center",
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        },
+        "text_AgzRUV": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<p>Traditional fabrics — even premium ones like merino wool and silver-infused shirts — only neutralize one odor type: fresh sweat. The other four breakthrough odors (stress, oil, hormonal, and embedded fabric odor) still show up. HercLeón is the first clothing engineered to handle all five.</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "custom",
+            "custom_width": 71,
+            "alignment": "center",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_yyefpC",
+        "text_DPXrdx",
+        "text_AgzRUV"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "HC-science-smell-one-cu-class HC-hercleon-text-css HC-herc-vs-ev-rich",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "#000000",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "custom_section_YTEWbR": {
+      "type": "custom-section",
+      "blocks": {
+        "group_hHCJjd": {
+          "type": "group",
+          "name": "t:blocks.group.name",
+          "settings": {
+            "link": "",
+            "accessibility_info": "",
+            "open_in_new_tab": false,
+            "content_direction": "col",
+            "vertical_on_mobile": true,
+            "content_wrap": false,
+            "horizontal_alignment": "start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "start",
+            "vertical_alignment_flex_direction_column": "start",
+            "gap": 14,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "solid",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#f9fafb",
+            "overlay_style": "gradient",
+            "gradient_direction": "to bottom",
+            "custom_colors": true,
+            "color_text": "",
+            "color_background": "#f9fafb",
+            "gradient_background": "",
+            "color_button_text": "",
+            "color_button_background": "",
+            "color_button_gradient": "",
+            "padding-block-start": 28,
+            "padding-block-end": 28,
+            "padding-inline-start": 28,
+            "padding-inline-end": 28
+          },
+          "blocks": {
+            "heading_dfRJFT": {
+              "type": "heading",
+              "name": "t:blocks.heading.name",
+              "settings": {
+                "heading": "Merino Wool",
+                "heading_size": "title-md",
+                "heading_tag": "h2",
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left",
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle",
+                "highlighted_reveal": false
+              },
+              "blocks": {}
+            },
+            "text_apnAix": {
+              "type": "text",
+              "name": "t:blocks.text.name",
+              "settings": {
+                "text": "<h5>Soft and breathable, but only blocks fresh sweat odor. Strong stress odor and body oils break through fast.</h5>",
+                "text_font": "body",
+                "text_size": "text-base",
+                "text_max_size": 12,
+                "text_line_height": 1.6,
+                "text_letter_spacing": 0,
+                "text_capitalize": false,
+                "secondary_color": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle"
+              },
+              "blocks": {}
+            },
+            "subheading_qzgDXX": {
+              "type": "subheading",
+              "name": "t:blocks.subheading.name",
+              "settings": {
+                "heading": "× Fails on Stress Odor",
+                "heading_size": "subtitle-md",
+                "secondary_color": false,
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_dfRJFT",
+            "text_apnAix",
+            "subheading_qzgDXX"
+          ]
+        },
+        "group_NxV3q6": {
+          "type": "group",
+          "name": "t:blocks.group.name",
+          "settings": {
+            "link": "",
+            "accessibility_info": "",
+            "open_in_new_tab": false,
+            "content_direction": "col",
+            "vertical_on_mobile": true,
+            "content_wrap": false,
+            "horizontal_alignment": "start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "start",
+            "vertical_alignment_flex_direction_column": "start",
+            "gap": 14,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "solid",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "custom_colors": true,
+            "color_text": "",
+            "color_background": "#f9fafb",
+            "gradient_background": "",
+            "color_button_text": "",
+            "color_button_background": "",
+            "color_button_gradient": "",
+            "padding-block-start": 28,
+            "padding-block-end": 28,
+            "padding-inline-start": 28,
+            "padding-inline-end": 28
+          },
+          "blocks": {
+            "heading_FjtFrE": {
+              "type": "heading",
+              "name": "t:blocks.heading.name",
+              "settings": {
+                "heading": "Cotton",
+                "heading_size": "title-md",
+                "heading_tag": "h2",
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left",
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle",
+                "highlighted_reveal": false
+              },
+              "blocks": {}
+            },
+            "text_GFGcEJ": {
+              "type": "text",
+              "name": "t:blocks.text.name",
+              "settings": {
+                "text": "<h5>Absorbs sweat deeply and traps odor molecules permanently. The perfect breeding ground for bacteria.</h5>",
+                "text_font": "body",
+                "text_size": "text-base",
+                "text_max_size": 12,
+                "text_line_height": 1.6,
+                "text_letter_spacing": 0,
+                "text_capitalize": false,
+                "secondary_color": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle"
+              },
+              "blocks": {}
+            },
+            "subheading_6Y7yGQ": {
+              "type": "subheading",
+              "name": "t:blocks.subheading.name",
+              "settings": {
+                "heading": "× Traps All Odor",
+                "heading_size": "subtitle-md",
+                "secondary_color": false,
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_FjtFrE",
+            "text_GFGcEJ",
+            "subheading_6Y7yGQ"
+          ]
+        },
+        "group_BkDHGE": {
+          "type": "group",
+          "name": "t:blocks.group.name",
+          "settings": {
+            "link": "",
+            "accessibility_info": "",
+            "open_in_new_tab": false,
+            "content_direction": "col",
+            "vertical_on_mobile": true,
+            "content_wrap": false,
+            "horizontal_alignment": "start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "start",
+            "vertical_alignment_flex_direction_column": "start",
+            "gap": 14,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "solid",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "custom_colors": true,
+            "color_text": "",
+            "color_background": "#f9fafb",
+            "gradient_background": "",
+            "color_button_text": "",
+            "color_button_background": "",
+            "color_button_gradient": "",
+            "padding-block-start": 28,
+            "padding-block-end": 28,
+            "padding-inline-start": 28,
+            "padding-inline-end": 28
+          },
+          "blocks": {
+            "heading_QJYjbL": {
+              "type": "heading",
+              "name": "t:blocks.heading.name",
+              "settings": {
+                "heading": "Polyester",
+                "heading_size": "title-md",
+                "heading_tag": "h2",
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left",
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle",
+                "highlighted_reveal": false
+              },
+              "blocks": {}
+            },
+            "text_KeEFxX": {
+              "type": "text",
+              "name": "t:blocks.text.name",
+              "settings": {
+                "text": "<h5>Hydrophobic and oil-binding. It literally bonds with your body oils to create a permanent \"gym smell\".</h5>",
+                "text_font": "body",
+                "text_size": "text-base",
+                "text_max_size": 12,
+                "text_line_height": 1.6,
+                "text_letter_spacing": 0,
+                "text_capitalize": false,
+                "secondary_color": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle"
+              },
+              "blocks": {}
+            },
+            "subheading_dL3NUp": {
+              "type": "subheading",
+              "name": "t:blocks.subheading.name",
+              "settings": {
+                "heading": "× Permanent Stink",
+                "heading_size": "subtitle-md",
+                "secondary_color": false,
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_QJYjbL",
+            "text_KeEFxX",
+            "subheading_dL3NUp"
+          ]
+        },
+        "group_FmNrqd": {
+          "type": "group",
+          "name": "t:blocks.group.name",
+          "settings": {
+            "link": "",
+            "accessibility_info": "",
+            "open_in_new_tab": false,
+            "content_direction": "col",
+            "vertical_on_mobile": true,
+            "content_wrap": false,
+            "horizontal_alignment": "start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "start",
+            "vertical_alignment_flex_direction_column": "start",
+            "gap": 14,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "solid",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "custom_colors": true,
+            "color_text": "",
+            "color_background": "#f9fafb",
+            "gradient_background": "",
+            "color_button_text": "",
+            "color_button_background": "",
+            "color_button_gradient": "",
+            "padding-block-start": 28,
+            "padding-block-end": 28,
+            "padding-inline-start": 28,
+            "padding-inline-end": 28
+          },
+          "blocks": {
+            "heading_RKdKrw": {
+              "type": "heading",
+              "name": "t:blocks.heading.name",
+              "settings": {
+                "heading": "Silver-Infused",
+                "heading_size": "title-md",
+                "heading_tag": "h2",
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left",
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle",
+                "highlighted_reveal": false
+              },
+              "blocks": {}
+            },
+            "text_DzHVJ8": {
+              "type": "text",
+              "name": "t:blocks.text.name",
+              "settings": {
+                "text": "<h5>Relies on surface coatings that wash out over time. Only targets bacteria, not oil or hormone-based odor.</h5>",
+                "text_font": "body",
+                "text_size": "text-base",
+                "text_max_size": 12,
+                "text_line_height": 1.6,
+                "text_letter_spacing": 0,
+                "text_capitalize": false,
+                "secondary_color": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle"
+              },
+              "blocks": {}
+            },
+            "subheading_NweHiy": {
+              "type": "subheading",
+              "name": "t:blocks.subheading.name",
+              "settings": {
+                "heading": "× Temporary Solution",
+                "heading_size": "subtitle-md",
+                "secondary_color": false,
+                "width": "fill",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "alignment_mobile": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_RKdKrw",
+            "text_DzHVJ8",
+            "subheading_NweHiy"
+          ]
+        }
+      },
+      "block_order": [
+        "group_hHCJjd",
+        "group_NxV3q6",
+        "group_BkDHGE",
+        "group_FmNrqd"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "HC-hercleon-every-cards-css",
+        "custom-id": "",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 42,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "#000000",
+        "color_background": "#ffffff",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "hc_science_performance_Np3BkW": {
+      "type": "HC-science-performance",
+      "blocks": {
+        "feature_row_izU3rg": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "5 Odor Types",
+            "merino_count": 1,
+            "silver_count": 1,
+            "cotton_count": 0,
+            "poly_count": 0
+          }
+        },
+        "feature_row_gTBjGn": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Odor Longevity",
+            "merino_count": 2,
+            "silver_count": 2,
+            "cotton_count": 0,
+            "poly_count": 0
+          }
+        },
+        "feature_row_FYHnxC": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Bacteria Control",
+            "merino_count": 2,
+            "silver_count": 2,
+            "cotton_count": 0,
+            "poly_count": 0
+          }
+        },
+        "feature_row_BPEyEG": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Oil/Sebum Block",
+            "merino_count": 0,
+            "silver_count": 0,
+            "cotton_count": 0,
+            "poly_count": 1
+          }
+        },
+        "feature_row_Q9LaT9": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Stress Odor Control",
+            "merino_count": 0,
+            "silver_count": 0,
+            "cotton_count": 0,
+            "poly_count": 0
+          }
+        },
+        "feature_row_zitMUH": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Embedded Odor",
+            "merino_count": 0,
+            "silver_count": 0,
+            "cotton_count": 0,
+            "poly_count": 0
+          }
+        },
+        "feature_row_mt7Bjg": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Moisture Mgmt",
+            "merino_count": 3,
+            "silver_count": 2,
+            "cotton_count": 2,
+            "poly_count": 4
+          }
+        },
+        "feature_row_HmKNy7": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Softness",
+            "merino_count": 4,
+            "silver_count": 2,
+            "cotton_count": 2,
+            "poly_count": 1
+          }
+        },
+        "feature_row_WYYhtp": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Durability",
+            "merino_count": 2,
+            "silver_count": 2,
+            "cotton_count": 3,
+            "poly_count": 5
+          }
+        },
+        "feature_row_cH3Ug9": {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Wash Frequency",
+            "merino_count": 2,
+            "silver_count": 2,
+            "cotton_count": 1,
+            "poly_count": 1
+          }
+        },
+        "rating_row_8hEEb7": {
+          "type": "rating_row",
+          "settings": {
+            "rating_label": "Overall SPR™ Rating",
+            "hercleon_rating": "9–10",
+            "merino_rating": "1",
+            "silver_rating": "2–3",
+            "cotton_rating": "0",
+            "poly_rating": "0"
+          }
+        }
+      },
+      "block_order": [
+        "feature_row_izU3rg",
+        "feature_row_gTBjGn",
+        "feature_row_FYHnxC",
+        "feature_row_BPEyEG",
+        "feature_row_Q9LaT9",
+        "feature_row_zitMUH",
+        "feature_row_mt7Bjg",
+        "feature_row_HmKNy7",
+        "feature_row_WYYhtp",
+        "feature_row_cH3Ug9",
+        "rating_row_8hEEb7"
+      ],
+      "name": "HC Science Performance",
+      "settings": {
+        "heading": "Smell-Proof Performance At A Glance",
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_mobile": 96,
+        "padding_bottom_mobile": 96,
+        "col_feature": "Feature",
+        "col_hercleon": "HercLeón",
+        "col_merino": "Merino",
+        "col_silver": "Silver",
+        "col_cotton": "Cotton",
+        "col_poly": "Poly"
+      }
+    },
+    "hc_odor_standard_scale_bxW3Uf": {
+      "type": "HC-Odor-Standard",
+      "blocks": {
+        "hc_odor_card_zKQiFG": {
+          "type": "hc_odor_card",
+          "settings": {
+            "hc_rating_text": "SPR 1-3",
+            "hc_rating_number": "10",
+            "hc_card_title": "BASIC ODOR CONTROL",
+            "hc_card_description": "Cotton, Polyester, Likenra, Bamboo. Handles only fresh sweat.",
+            "hc_is_highlighted": false
+          }
+        },
+        "hc_odor_card_736NWm": {
+          "type": "hc_odor_card",
+          "settings": {
+            "hc_rating_text": "SPR 4-6",
+            "hc_rating_number": "10",
+            "hc_card_title": "BASIC ODOR CONTROL",
+            "hc_card_description": "Cotton, Polyester, Likenra, Bamboo. Handles only fresh sweat.",
+            "hc_is_highlighted": false
+          }
+        },
+        "hc_odor_card_P4czAe": {
+          "type": "hc_odor_card",
+          "settings": {
+            "hc_rating_text": "SPR",
+            "hc_rating_number": "10",
+            "hc_card_title": "BASIC ODOR CONTROL",
+            "hc_card_description": "Cotton, Polyester, Likenra, Bamboo. Handles only fresh sweat.",
+            "hc_is_highlighted": true
+          }
+        }
+      },
+      "block_order": [
+        "hc_odor_card_zKQiFG",
+        "hc_odor_card_736NWm",
+        "hc_odor_card_P4czAe"
+      ],
+      "name": "Odor Standard Scale",
+      "settings": {
+        "hc_page_width": 1050,
+        "hc_top_label": "THE STANDARD",
+        "hc_main_title": "<p>LIKE SPF FOR ODOR.</p><p>A CLEAR STANDARD.</p>"
+      }
+    },
+    "hc_science_odor_control_QCXFNN": {
+      "type": "HC-science-odor-control",
+      "blocks": {
+        "comparison_dmtGUc": {
+          "type": "comparison",
+          "settings": {
+            "title": "01 — Odor Control",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Neutralizes all 5 odor types",
+            "others_label": "Others",
+            "others_text": "Only fresh sweat (or none)"
+          }
+        },
+        "comparison_zQGAwB": {
+          "type": "comparison",
+          "settings": {
+            "title": "02 — Longevity",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Wears for days or weeks",
+            "others_label": "Others",
+            "others_text": "1–2 wears max"
+          }
+        },
+        "comparison_BR7YAU": {
+          "type": "comparison",
+          "settings": {
+            "title": "03 — Washing Frequency",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Every 10–100 wears",
+            "others_label": "Others",
+            "others_text": "Every 1–2 wears"
+          }
+        },
+        "comparison_Nqn9aU": {
+          "type": "comparison",
+          "settings": {
+            "title": "04 — Confidence",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Stops invisible stress odor",
+            "others_label": "Others",
+            "others_text": "Cannot handle stress sweat"
+          }
+        },
+        "comparison_eQzC3B": {
+          "type": "comparison",
+          "settings": {
+            "title": "05 — Travel Efficiency",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Pack 1–2 shirts for a week",
+            "others_label": "Others",
+            "others_text": "Pack 5–10 shirts"
+          }
+        },
+        "comparison_dthxPr": {
+          "type": "comparison",
+          "settings": {
+            "title": "06 — Cost Efficiency",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Lasts years (less washing)",
+            "others_label": "Others",
+            "others_text": "Replaced often due to smell"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_dmtGUc",
+        "comparison_zQGAwB",
+        "comparison_BR7YAU",
+        "comparison_Nqn9aU",
+        "comparison_eQzC3B",
+        "comparison_dthxPr"
+      ],
+      "name": "HC Science Odor Control",
+      "settings": {
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_mobile": 96,
+        "padding_bottom_mobile": 96
+      }
+    },
+    "hc_life_difference_section_yKEi6n": {
+      "type": "HC-Life-Difference",
+      "blocks": {
+        "feature_card_Mkc7hm": {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "TRAVEL",
+            "card_description": "Travel with half the clothing. Stop worrying about laundry."
+          }
+        },
+        "feature_card_wx8iVd": {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "WORK",
+            "card_description": "Go from flight to meeting to dinner without changing."
+          }
+        },
+        "feature_card_dfKBDL": {
+          "type": "feature_card",
+          "settings": {
+            "card_title": "LIFE",
+            "card_description": "Save hours of laundry time and money on replacements."
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_Mkc7hm",
+        "feature_card_wx8iVd",
+        "feature_card_dfKBDL"
+      ],
+      "name": "HC Real Life Difference",
+      "settings": {
+        "show_heading": true,
+        "main_title": "THE REAL-LIFE DIFFERENCE",
+        "subtitle": "When your clothing doesn't smell, your entire lifestyle opens up. This is the upgrade most people never knew they needed.",
+        "page_width": 1000,
+        "header_margin_bottom": 55,
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "background_color": "#000000",
+        "title_color": "#ffffff",
+        "subtitle_color": "#9ca3af",
+        "title_font_size": 42,
+        "title_font_weight": "700",
+        "title_letter_spacing": 0,
+        "title_margin_bottom": 42,
+        "subtitle_font_size": 17,
+        "cards_per_row": 3,
+        "cards_gap": 25,
+        "card_background": "#000000",
+        "card_border_color": "#1f2937",
+        "card_border_width": 1,
+        "card_border_radius": 0,
+        "card_padding": 30,
+        "card_text_align": "center",
+        "card_hover_transform": -2,
+        "card_hover_transition": 0.7,
+        "card_title_color": "#b45309",
+        "card_title_font_size": 16,
+        "card_title_font_weight": "700",
+        "card_title_margin_bottom": 15,
+        "card_description_color": "#6b7280",
+        "card_description_font_size": 12
+      }
+    },
+    "hc_science_category_3zycAH": {
+      "type": "HC-science-category",
+      "name": "HC Science Category",
+      "settings": {
+        "title": "It's A Different Category.",
+        "body": "<p>Cotton → No protection<br/>Polyester → Traps odor<br/>Merino → 1 odor type<br/>HercLeón → All 5 odor types</p>",
+        "button_label": "Upgrade To Smell-Proof",
+        "button_link": "",
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128,
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 128
+      }
+    },
+    "hc_floating_nav_page_LkFU3g": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_tdYBPn": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_4ptBFL": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_MiJUAk": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_tdYBPn",
+        "clearance_item_4ptBFL",
+        "clearance_item_MiJUAk"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "custom_section_dhXgt8",
+    "custom_section_YTEWbR",
+    "hc_science_performance_Np3BkW",
+    "hc_odor_standard_scale_bxW3Uf",
+    "hc_science_odor_control_QCXFNN",
+    "hc_life_difference_section_yKEi6n",
+    "hc_science_category_3zycAH",
+    "hc_floating_nav_page_LkFU3g"
+  ]
+}

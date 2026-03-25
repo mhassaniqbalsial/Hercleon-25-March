@@ -1,0 +1,208 @@
+{% comment %}
+  HC of Purpose section
+  Class prefix: hc-os-purpose-
+{% endcomment %}
+
+{% style %}
+  .hc-os-purpose {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .hc-os-purpose__heading {
+    text-align: center;
+    font-size: 1.875rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .hc-os-purpose__heading {
+      font-size: 3rem;
+    }
+  }
+  .hc-os-purpose__tagline {
+    text-align: center;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 4rem;
+  }
+  .hc-os-purpose__box {
+    border: 1px solid #000;
+    padding: 2rem;
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: 768px) {
+    .hc-os-purpose__box {
+      padding: 4rem;
+    }
+  }
+  .hc-os-purpose__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  @media (min-width: 768px) {
+    .hc-os-purpose__row {
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 1rem;
+    }
+  }
+  .hc-os-purpose__item {
+    text-align: center;
+  }
+  .hc-os-purpose__item-label {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .hc-os-purpose__item--old .hc-os-purpose__item-label,
+  .hc-os-purpose__item--old .hc-os-purpose__item-value {
+    color: #9ca3af;
+  }
+  .hc-os-purpose__item--lost .hc-os-purpose__item-label {
+    color: #9ca3af;
+  }
+  .hc-os-purpose__item--lost .hc-os-purpose__item-value {
+    color: #d1d5db;
+    text-decoration: line-through;
+    text-decoration-color: #000;
+  }
+  .hc-os-purpose__item--new .hc-os-purpose__item-label,
+  .hc-os-purpose__item--new .hc-os-purpose__item-value {
+    color: #B45309;
+  }
+  .hc-os-purpose__divider {
+    display: none !important;
+    width: 6rem;
+    height: 1px;
+    background-color: #d1d5db;
+  }
+  @media (min-width: 768px) {
+    .hc-os-purpose__divider {
+      display: block !important;
+    }
+  }
+
+  .hc-lost-purpose {
+    text-decoration: line-through;
+    text-decoration-color: #000;
+  }
+{% endstyle %}
+
+<div class="hc-os-purpose">
+  <div class="page-width">
+    <h2 class="hc-os-purpose__heading">
+      {% if section.settings.heading != blank %}
+        {{ section.settings.heading }}{% if section.settings.heading_line_2 != blank %}<br>{{ section.settings.heading_line_2 }}{% endif %}
+      {% else %}
+        Clothing Used to Help Humans Go Farther.<br>Somewhere Along the Way, That Purpose Got Lost.
+      {% endif %}
+    </h2>
+    <p class="hc-os-purpose__tagline">
+      {{ section.settings.tagline | default: "I'm building HercLeón to bring it back." }}
+    </p>
+    <div class="hc-os-purpose__box">
+      <div class="hc-os-purpose__row">
+        <div class="hc-os-purpose__item hc-os-purpose__item--old">
+          <span class="hc-os-purpose__item-label">{{ section.settings.old_label | default: "Old Purpose" }}</span>
+          <span class="hc-os-purpose__item-value">{{ section.settings.old_value | default: "Protection & Utility" }}</span>
+        </div>
+        <div class="hc-os-purpose__divider" aria-hidden="true"></div>
+        <div class="hc-os-purpose__item hc-os-purpose__item--lost">
+          <span class="hc-lost-purpose hc-os-purpose__item-label">{{ section.settings.lost_label | default: "Lost Purpose" }}</span>
+          <span class="hc-os-purpose__item-value">{{ section.settings.lost_value | default: "Status & Trend" }}</span>
+        </div>
+        <div class="hc-os-purpose__divider" aria-hidden="true"></div>
+        <div class="hc-os-purpose__item hc-os-purpose__item--new">
+          <span class="hc-os-purpose__item-label">{{ section.settings.new_label | default: "New Purpose" }}</span>
+          <span class="hc-os-purpose__item-value">{{ section.settings.new_value | default: "Freedom & Expansion" }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "HC OF Purpose",
+  "tag": "section",
+  "class": "section-hc-os-purpose",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading line 1",
+      "default": "Clothing Used to Help Humans Go Farther."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading line 2",
+      "default": "Somewhere Along the Way, That Purpose Got Lost."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "I'm building HercLeón to bring it back."
+    },
+    {
+      "type": "text",
+      "id": "old_label",
+      "label": "Old purpose label",
+      "default": "Old Purpose"
+    },
+    {
+      "type": "text",
+      "id": "old_value",
+      "label": "Old purpose value",
+      "default": "Protection & Utility"
+    },
+    {
+      "type": "text",
+      "id": "lost_label",
+      "label": "Lost purpose label",
+      "default": "Lost Purpose"
+    },
+    {
+      "type": "text",
+      "id": "lost_value",
+      "label": "Lost purpose value",
+      "default": "Status & Trend"
+    },
+    {
+      "type": "text",
+      "id": "new_label",
+      "label": "New purpose label",
+      "default": "New Purpose"
+    },
+    {
+      "type": "text",
+      "id": "new_value",
+      "label": "New purpose value",
+      "default": "Freedom & Expansion"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OF Purpose"
+    }
+  ]
+}
+{% endschema %}

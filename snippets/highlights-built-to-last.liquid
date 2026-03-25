@@ -1,0 +1,366 @@
+<style>
+  /* Built to Last Block Styles */
+  .hc-built-to-last-block {
+    border-bottom: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .hc-built-to-last-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    direction: rtl;
+  }
+
+  .hc-built-to-last-block__grid > * {
+  direction: ltr;
+}
+
+  .hc-built-to-last-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+  }
+
+  .hc-built-to-last-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  .hc-built-to-last-block__subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #1f2937;
+  }
+
+  .hc-built-to-last-block__description p {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #4b5563;
+  }
+
+  .hc-built-to-last-block__data-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #fff;
+  }
+
+  .hc-built-to-last-block__data-container {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-built-to-last-block__comparison-section {
+    margin-bottom: 2rem;
+  }
+
+  .hc-built-to-last-block__comparison-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #b45309;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .hc-built-to-last-block__comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .hc-built-to-last-block__comparison-item {
+    border: 1px solid #000;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .hc-built-to-last-block__comparison-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .hc-built-to-last-block__comparison-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+  }
+
+  .hc-built-to-last-block__durability-section {
+    margin-bottom: 2rem;
+  }
+
+  .hc-built-to-last-block__durability-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #b45309;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .hc-built-to-last-block__table-wrapper {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    border: 1px solid #000;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+
+  .hc-built-to-last-block__table {
+    width: 100%;
+    text-align: left; 
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    box-shadow: none;s
+  }
+
+  .hc-built-to-last-block__table thead tr {
+    border-bottom: 1px solid #e5e7eb;
+    color: #9ca3af;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-built-to-last-block__table thead th {
+    padding: 0.5rem 1rem 0.5rem 0;
+    font-weight: 700;
+    font-size: 0.625rem;
+    background: transparent;
+  }
+
+  .hc-built-to-last-block__table thead th:first-child {
+    width: 6rem;
+  }
+
+  .hc-built-to-last-block__table thead th:nth-child(2) {
+    width: 8rem;
+  }
+
+  .hc-built-to-last-block__table thead th:nth-child(n+3) {
+    text-align: center;
+    padding-right: 0.5rem;
+  }
+
+  .hc-built-to-last-block__table thead th:last-child {
+    color: #b45309;
+  }
+
+  .hc-built-to-last-block__table tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .hc-built-to-last-block__table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .hc-built-to-last-block__table tbody td {
+    padding: 0.75rem 0.5rem 0.75rem 0;
+    font-size: 0.625rem;
+  }
+
+  .hc-built-to-last-block__table tbody td:first-child {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .hc-built-to-last-block__table tbody td:nth-child(2) {
+    color: #6b7280;
+  }
+
+  .hc-built-to-last-block__table tbody td:nth-child(n+3) {
+    text-align: center;
+    letter-spacing: -0.05em;
+  }
+
+  .hc-built-to-last-block__table tbody td:nth-child(3),
+  .hc-built-to-last-block__table tbody td:nth-child(4) {
+    color: #9ca3af;
+  }
+
+  .hc-built-to-last-block__table tbody td:last-child {
+    color: #b45309;
+  }
+
+  @media (min-width: 768px) {
+    .hc-built-to-last-block__content {
+      padding: 6rem;
+    }
+
+    .hc-built-to-last-block__data-wrapper {
+      padding: 3rem;
+    }
+
+    .hc-built-to-last-block__title {
+      font-size: 3rem;
+    }
+
+    .hc-built-to-last-block__table {
+      font-size: 0.75rem;
+    }
+
+    .hc-built-to-last-block__table thead th:nth-child(2) {
+      display: table-cell;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-built-to-last-block__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-built-to-last-block__content {
+      border-left: 1px solid #000;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hc-built-to-last-block__table thead th:nth-child(2) {
+      display: none;
+    }
+
+    .hc-built-to-last-block__table tbody td:nth-child(2) {
+      display: none;
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+  .hc-built-to-last-block__content {
+    padding: 32px 20px;
+}
+.hc-built-to-last-block__data-wrapper {
+    padding: 32px 20px;
+}
+}
+
+</style>
+
+<div class="hc-built-to-last-block" {{ block.shopify_attributes }}>
+              <div class="hc-built-to-last-block__grid">
+                <div class="hc-built-to-last-block__content">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="hc-built-to-last-block__title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.subtitle != blank -%}
+                    <p class="hc-built-to-last-block__subtitle">{{ block.settings.subtitle }}</p>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.description != blank -%}
+  <div class="hc-built-to-last-block__description">
+    {{ block.settings.description }}
+  </div>
+{%- endif -%}
+
+                </div>
+
+                <div class="hc-built-to-last-block__data-wrapper">
+                  <div class="hc-built-to-last-block__data-container">
+                    {%- comment -%} Comparison Grid {%- endcomment -%}
+                    <div class="hc-built-to-last-block__comparison-section">
+                      <p class="hc-built-to-last-block__comparison-title">{{ block.settings.comparison_title | default: 'HercFiber™ is more durable than others by:' }}</p>
+                      <div class="hc-built-to-last-block__comparison-grid">
+                        <div class="hc-built-to-last-block__comparison-item">
+                          <span class="hc-built-to-last-block__comparison-value">{{ block.settings.comparison_1_value | default: '1.9x' }}</span>
+                          <span class="hc-built-to-last-block__comparison-label">{{ block.settings.comparison_1_label | default: 'Cotton' }}</span>
+                        </div>
+                        <div class="hc-built-to-last-block__comparison-item">
+                          <span class="hc-built-to-last-block__comparison-value">{{ block.settings.comparison_2_value | default: '2x' }}</span>
+                          <span class="hc-built-to-last-block__comparison-label">{{ block.settings.comparison_2_label | default: 'Viscose' }}</span>
+                        </div>
+                        <div class="hc-built-to-last-block__comparison-item">
+                          <span class="hc-built-to-last-block__comparison-value">{{ block.settings.comparison_3_value | default: '3x' }}</span>
+                          <span class="hc-built-to-last-block__comparison-label">{{ block.settings.comparison_3_label | default: 'Merino Wool' }}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {%- comment -%} Durability Table {%- endcomment -%}
+                    <div class="hc-built-to-last-block__durability-section">
+                      <p class="hc-built-to-last-block__durability-title">{{ block.settings.durability_title | default: 'HercFiber Is Durable In Every Way' }}</p>
+                      <div class="hc-built-to-last-block__table-wrapper">
+                        <table class="hc-built-to-last-block__table">
+                          <thead>
+                            <tr>
+                              <th>Category</th>
+                              <th>Meaning</th>
+                              <th>Cot</th>
+                              <th>Mer</th>
+                              <th>Herc</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ block.settings.row_1_category | default: 'Tensile Strength' }}</td>
+                              <td>{{ block.settings.row_1_meaning | default: 'Resistance to breaking' }}</td>
+                              <td>{{ block.settings.row_1_cotton | default: '★★' }}</td>
+                              <td>{{ block.settings.row_1_merino | default: '★' }}</td>
+                              <td>{{ block.settings.row_1_herc | default: '★★★' }}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ block.settings.row_2_category | default: 'Abrasion Resistance' }}</td>
+                              <td>{{ block.settings.row_2_meaning | default: 'Handles rubbing/friction' }}</td>
+                              <td>{{ block.settings.row_2_cotton | default: '★★' }}</td>
+                              <td>{{ block.settings.row_2_merino | default: '★' }}</td>
+                              <td>{{ block.settings.row_2_herc | default: '★★★' }}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ block.settings.row_3_category | default: 'Pilling Resistance' }}</td>
+                              <td>{{ block.settings.row_3_meaning | default: 'Avoids fiber balls' }}</td>
+                              <td>{{ block.settings.row_3_cotton | default: '★★' }}</td>
+                              <td>{{ block.settings.row_3_merino | default: '★' }}</td>
+                              <td>{{ block.settings.row_3_herc | default: '★★★' }}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ block.settings.row_4_category | default: 'Shape Retention' }}</td>
+                              <td>{{ block.settings.row_4_meaning | default: 'Keeps shape/fit' }}</td>
+                              <td>{{ block.settings.row_4_cotton | default: '★' }}</td>
+                              <td>{{ block.settings.row_4_merino | default: '★★★' }}</td>
+                              <td>{{ block.settings.row_4_herc | default: '★★' }}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ block.settings.row_5_category | default: 'Heat/Wash Stability' }}</td>
+                              <td>{{ block.settings.row_5_meaning | default: 'Tolerates washing' }}</td>
+                              <td>{{ block.settings.row_5_cotton | default: '★★' }}</td>
+                              <td>{{ block.settings.row_5_merino | default: '★' }}</td>
+                              <td>{{ block.settings.row_5_herc | default: '★★★' }}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ block.settings.row_6_category | default: 'Moisture Strength' }}</td>
+                              <td>{{ block.settings.row_6_meaning | default: 'Strength when wet' }}</td>
+                              <td>{{ block.settings.row_6_cotton | default: '★★' }}</td>
+                              <td>{{ block.settings.row_6_merino | default: '★' }}</td>
+                              <td>{{ block.settings.row_6_herc | default: '★★★' }}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ block.settings.row_7_category | default: 'Overall Durability' }}</td>
+                              <td>{{ block.settings.row_7_meaning | default: 'Real-world lifespan' }}</td>
+                              <td>{{ block.settings.row_7_cotton | default: '★★' }}</td>
+                              <td>{{ block.settings.row_7_merino | default: '★' }}</td>
+                              <td>{{ block.settings.row_7_herc | default: '★★★' }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

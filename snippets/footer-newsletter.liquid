@@ -1,0 +1,34 @@
+{%- doc -%}
+  Renders newsletter signup block in the footer with optional collapsible wrapper.
+
+  Displays newsletter subscription form either directly or within an expandable section.
+
+  @param {object} block - Shopify block object with settings and attributes
+
+  @example
+  {% render 'footer-newsletter', block: block %}
+{%- enddoc -%}
+
+{%- if block.settings.heading != blank -%}
+  {%- capture block_content -%}
+    <div class="details__content">
+      {%- if block.settings.text != blank -%}
+        <div class="rte text-sm leading-tight mb-4">{{ block.settings.text }}</div>
+      {%- endif -%}
+      {%- render 'newsletter-form-footer', section_id: block.id, context: 'footer' -%}
+    </div>
+    <style>
+      @media (min-width: 1280px) {
+        .footer__item--{{ block.id }} { width: calc({{ block.settings.container_width }}% - var(--sp-12)); }
+      }
+    </style>
+  {%- endcapture -%}
+
+  <details class="footer__item--{{ block.id }} details active {{ block.settings.cus_class }}" is="footer-details"{% if block.settings.opened %} data-opened{% endif %} {{ block.shopify_attributes }}>
+    <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+      <span class="heading text-base-2xl font-medium lg:font-heading">{{ block.settings.heading | escape }}</span>
+      {%- render 'icon', icon: 'chevron-up' -%}
+    </summary>
+    {{- block_content -}}
+  </details>
+{%- endif -%}

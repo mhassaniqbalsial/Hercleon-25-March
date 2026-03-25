@@ -1,0 +1,131 @@
+/* ##Collection Page Start */
+.template-collection .collection.page-width--full {
+    padding: 0;
+}
+
+.template-collection .collection .card-grid {
+    gap: 0px;
+}
+
+.template-collection .collection__topbar {
+    margin: 0;
+    display: none;
+}
+
+/* #Filters Start */
+.filter-nav-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .filter-nav-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .filter-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+  
+  .filter-button {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+    color: #9ca3af;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    white-space: nowrap;
+  }
+  
+  .filter-button:hover {
+    color: #000000;
+  }
+  
+  .filter-button-active {
+    color: #B45309;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+ .template-collection .collection__content {
+    margin: 0;
+  }
+  
+  .collection__content #FacetFiltersContainer {
+      flex: var(--facets-width) 0 0;
+      width: 0px !important;
+      height: 0px !important;
+      display: flex !important;
+      position: absolute;
+      top: 0;
+      z-index: -999;
+  }
+  
+  div#FacetFiltersActive {
+      display: none;
+  }
+  
+  facet-sticky.facet-sticky {
+      display: none;
+  }
+  
+  /* Responsive */
+  @media (min-width: 768px) {
+    .filter-nav-container {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+  }
+  }
+  
+  @media (max-width: 640px) {
+  .filter-button:hover {
+      color: #B45309;
+  }
+  
+    .filter-nav-wrapper {
+      top: 4rem;
+    } 
+    
+    .filter-nav-container {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      gap: 1.5rem;
+    }
+  }
+/* #Filters End */
+
+/* #Richtext */
+
+.collection-page-richtext h2.heading {
+    font-size: 3.75rem;
+}
+
+.collection-page-richtext .rte p {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .collection-page-richtext h2.heading {
+        font-size: 2.25rem;
+    }
+}
+
+/* #Rixhtext End */
+
+
+
+/* ##Collection Page End */

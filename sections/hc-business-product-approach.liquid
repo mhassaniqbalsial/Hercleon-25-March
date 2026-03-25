@@ -1,0 +1,560 @@
+{%- liquid
+  assign product_bg = section.settings.product_background_image
+  assign product_bg_url = ''
+  if product_bg != blank
+    assign product_bg_url = product_bg | image_url: width: 1200
+  endif
+-%}
+
+<section
+  {% if section.settings.section_anchor_id != blank %}id="{{ section.settings.section_anchor_id | strip }}"{% endif %}
+  class="hc-business-product"
+  style="
+    --hc-bp-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-bp-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-bp-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-bp-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-business-product__container">
+    <div class="hc-business-product__grid">
+
+      {%- comment -%} Left: business {%- endcomment -%}
+      <div class="hc-business-product__col hc-business-product__col--business">
+        {%- if section.settings.business_eyebrow != blank -%}
+          <span class="hc-business-product__business-eyebrow">{{ section.settings.business_eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.business_heading != blank -%}
+          <h2 class="hc-business-product__business-heading">{{ section.settings.business_heading | newline_to_br }}</h2>
+        {%- endif -%}
+        {%- if section.settings.business_body != blank -%}
+          <div class="hc-business-product__business-body">
+            {{ section.settings.business_body }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Right: product card {%- endcomment -%}
+      <div class="hc-business-product__col hc-business-product__col--product">
+        <div class="hc-business-product__product-card">
+          {%- if product_bg_url != blank -%}
+            <img
+              class="hc-business-product__product-media"
+              src="{{ product_bg_url }}"
+              alt="{{ section.settings.product_image_alt | escape }}"
+              width="{{ product_bg.width }}"
+              height="{{ product_bg.height }}"
+              loading="lazy"
+            >
+          {%- endif -%}
+          <div class="hc-business-product__product-shade" aria-hidden="true"></div>
+
+          <div class="hc-business-product__product-inner">
+            {%- if section.settings.product_eyebrow != blank -%}
+              <span class="hc-business-product__product-eyebrow">{{ section.settings.product_eyebrow }}</span>
+            {%- endif -%}
+            {%- if section.settings.product_heading != blank -%}
+              <h2 class="hc-business-product__product-heading">{{ section.settings.product_heading | newline_to_br }}</h2>
+            {%- endif -%}
+
+            {%- if section.settings.product_intro != blank -%}
+              <div class="hc-business-product__product-intro">
+                {{ section.settings.product_intro }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.blocks.size > 0 -%}
+              <ul class="hc-business-product__product-list">
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'approach_point' -%}
+                    <li class="hc-business-product__product-item" {{ block.shopify_attributes }}>
+                      <span class="hc-business-product__product-arrow" aria-hidden="true">{% if block.settings.arrow_symbol != blank %}{{ block.settings.arrow_symbol }}{% else %}→{% endif %}</span>
+                      <span class="hc-business-product__product-item-text">
+                        {%- if block.settings.point_title != blank -%}
+                          <strong class="hc-business-product__product-item-strong">{{ block.settings.point_title }}</strong>
+                        {%- endif -%}
+                        {%- if block.settings.point_body != blank -%}
+                          {{ block.settings.point_body }}
+                        {%- endif -%}
+                      </span>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            <div class="hc-business-product__product-footer">
+              {%- if section.settings.product_footer_lead != blank -%}
+                <p class="hc-business-product__product-footer-lead">{{ section.settings.product_footer_lead }}</p>
+              {%- endif -%}
+              {%- if section.settings.product_footer_taglines != blank -%}
+                <p class="hc-business-product__product-footer-taglines">{{ section.settings.product_footer_taglines | newline_to_br }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .hc-business-product {
+    background-color: #fff;
+    padding-top: var(--hc-bp-pt-mobile);
+    padding-bottom: var(--hc-bp-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-business-product {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-business-product {
+      padding-top: var(--hc-bp-pt-desktop);
+      padding-bottom: var(--hc-bp-pb-desktop);
+    }
+  }
+
+  .hc-business-product__container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-business-product__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-business-product__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+  }
+
+  .hc-business-product__col--business {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-business-product__col--business {
+      padding-top: 4rem;
+    }
+  }
+
+  .hc-business-product__business-eyebrow {
+    display: block;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-business-product__business-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #111827;
+    margin: 0 0 2rem;
+    line-height: 1.15;
+  }
+
+  @media (min-width: 768px) {
+    .hc-business-product__business-heading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-business-product__business-body {
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: #4b5563;
+    line-height: 1.75;
+  }
+
+  .hc-business-product__business-body > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .hc-business-product__business-body p {
+    margin: 0;
+  }
+
+  /* Product card */
+  .hc-business-product__product-card {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .hc-business-product__product-card {
+      padding: 4rem;
+    }
+  }
+
+  .hc-business-product__product-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    filter: grayscale(100%);
+    mix-blend-mode: lighten;
+    pointer-events: none;
+  }
+
+  .hc-business-product__product-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hc-business-product__product-inner {
+    position: relative;
+    z-index: 10;
+  }
+
+  .hc-business-product__product-eyebrow {
+    display: block;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-business-product__product-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 2rem;
+    line-height: 1.15;
+  }
+
+  @media (min-width: 768px) {
+    .hc-business-product__product-heading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-business-product__product-intro {
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: #d1d5db;
+    line-height: 1.75;
+  }
+
+  .hc-business-product__product-intro > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .hc-business-product__product-intro p {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .hc-business-product__product-list {
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hc-business-product__product-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: #d1d5db;
+    line-height: 1.75;
+  }
+
+  .hc-business-product__product-arrow {
+    flex-shrink: 0;
+    color: #B45309;
+    margin-top: 0.25rem;
+    line-height: 1;
+  }
+
+  .hc-business-product__product-item-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hc-business-product__product-item-strong {
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .hc-business-product__product-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1f2937;
+  }
+
+  .hc-business-product__product-footer-lead {
+    font-size: 1.125rem;
+    color: #fff;
+    margin: 0 0 1rem;
+    line-height: 1.75;
+  }
+
+  .hc-business-product__product-footer-taglines {
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #B45309;
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Business Approach",
+  "tag": "section",
+  "class": "hc-business-product-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section anchor"
+    },
+    {
+      "type": "text",
+      "id": "section_anchor_id",
+      "label": "Section HTML id",
+      "default": "approach",
+      "info": "For jump links (no #). Leave blank to omit id."
+    },
+    {
+      "type": "header",
+      "content": "Business column (left)"
+    },
+    {
+      "type": "text",
+      "id": "business_eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Business Approach"
+    },
+    {
+      "type": "textarea",
+      "id": "business_heading",
+      "label": "Heading (line break = new line)",
+      "default": "No Shareholders. \nNo Private Jets."
+    },
+    {
+      "type": "richtext",
+      "id": "business_body",
+      "label": "Body",
+      "default": "<p>People often ask why big clothing brands don't just do what we do. The honest answer: their incentives won't let them.</p><p>Most large brands answer to shareholders. That means every decision — materials, manufacturing, pricing — gets filtered through one question: what's best for the stock price? Better materials cost more. Higher standards cut into margins. In that system, you're not really the customer. You're a line item with a credit card.</p><p>We decided early on that we didn't want to build that way.</p><p>It wasn't easy. Our founder Wen spent everything he had to buy out our early shareholders — and came dangerously close to losing it all. At some point, faced with the choice between going broke or going hollow, he picked broke. Turns out an empty wallet is easier to live with than an empty conscience.</p><p>So today, HercLeón is fully independent. No shareholders to answer to. No quarterly earnings call to dress up. Just us, our products, and the people who wear them.</p><p>There's an African proverb we keep coming back to: \"If you want to go fast, go alone. If you want to go far, go together.\" We're not trying to be the fastest brand in the room — just the one still standing when it matters. And the only way to do that is to stay honest, stay independent, and occasionally remind ourselves that a great jacket outlasts a great stock tip.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Product column (right card)"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_background_image",
+      "label": "Background image",
+      "info": "Optional texture/photo behind the dark overlay."
+    },
+    {
+      "type": "text",
+      "id": "product_image_alt",
+      "label": "Background image alt text",
+      "default": "Fabric yarns and fibers"
+    },
+    {
+      "type": "text",
+      "id": "product_eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Product Approach"
+    },
+    {
+      "type": "textarea",
+      "id": "product_heading",
+      "label": "Heading (line break = new line)",
+      "default": "Engineering first. \nAlways."
+    },
+    {
+      "type": "richtext",
+      "id": "product_intro",
+      "label": "Intro paragraph",
+      "default": "<p>We don't design products to follow trends. We design them to solve problems real ones, that real people deal with every day. That means doing the work most brands skip:</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "product_footer_lead",
+      "label": "Footer — lead sentence",
+      "default": "If something can be meaningfully improved, we feel responsible for trying."
+    },
+    {
+      "type": "textarea",
+      "id": "product_footer_taglines",
+      "label": "Footer — taglines (line break = new line)",
+      "default": "Even when it's difficult.\nEven when it's expensive.\nEven when most brands wouldn't bother."
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "blocks": [
+    {
+      "type": "approach_point",
+      "name": "Product approach point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "arrow_symbol",
+          "label": "Bullet symbol",
+          "default": "→"
+        },
+        {
+          "type": "text",
+          "id": "point_title",
+          "label": "Bold lead",
+          "default": "Starting with humans, not mood boards."
+        },
+        {
+          "type": "textarea",
+          "id": "point_body",
+          "label": "Body text (after the bold lead)",
+          "default": " We study biology, psychology, and daily habits before we ever touch a fabric. If we don't understand the problem completely, we have no business designing the solution."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Business Approach",
+      "blocks": [
+        {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Starting with humans, not mood boards.",
+            "point_body": " We study biology, psychology, and daily habits before we ever touch a fabric. If we don't understand the problem completely, we have no business designing the solution."
+          }
+        },
+        {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Bringing in the right minds.",
+            "point_body": " We collaborate with chemists, biologists, and physicists to make sure the science behind every product is as strong as the story around it."
+          }
+        },
+        {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Obsessing over the details nobody sees.",
+            "point_body": " Fiber selection, yarn spinning, knit construction, finishing treatments; each one is analyzed, tested, and refined until it earns its place in the final product."
+          }
+        },
+        {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Connecting all the dots.",
+            "point_body": " Great materials mean nothing without great manufacturing. We marry what we know about human needs, material science, and production to create products that are aligned in every direction."
+          }
+        },
+        {
+          "type": "approach_point",
+          "settings": {
+            "arrow_symbol": "→",
+            "point_title": "Taking the time it actually takes.",
+            "point_body": " We've spent years, sometimes a decade, refining a single product before releasing it. Not because we're slow, but because we'd rather keep working than hand you something we know could be better."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

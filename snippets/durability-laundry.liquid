@@ -1,0 +1,347 @@
+{% comment %}
+  Durability - Laundry Time Block (Time Freedom)
+  Section id: time_freedom
+{% endcomment %}
+
+<style>
+  .hc-durability-laundry-block {
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+    animation: hc-durability-laundry-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-durability-laundry-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-durability-laundry-block__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-durability-laundry-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-laundry-block__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-durability-laundry-block__content {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+  }
+
+  .hc-durability-laundry-block__eyebrow {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hc-durability-laundry-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.25;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-laundry-block__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-durability-laundry-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 32rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+
+  .hc-durability-laundry-block__chart-wrapper {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-laundry-block__chart-wrapper {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-durability-laundry-block__chart-wrapper {
+      order: 1;
+    }
+  }
+
+  .hc-durability-laundry-block__chart-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 0;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .hc-durability-laundry-block__comparison {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-laundry-block__comparison {
+      flex-direction: row;
+      gap: 3rem;
+    }
+  }
+
+  .hc-durability-laundry-block__comparison-divider {
+    font-size: 2.25rem;
+    font-weight: 300;
+    color: #d1d5db;
+  }
+
+  .hc-durability-laundry-block__comparison-item {
+    text-align: center;
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .hc-durability-laundry-block__bar-container {
+    height: 16rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background-color: #f3f4f6;
+    position: relative;
+  }
+
+  .hc-durability-laundry-block__bar {
+    width: 6rem;
+    position: relative;
+  }
+
+  .hc-durability-laundry-block__bar--hero {
+    background-color: #b45309;
+  }
+
+  .hc-durability-laundry-block__bar--competitor {
+    background-color: #9ca3af;
+  }
+
+  .hc-durability-laundry-block__bar-label {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+
+  .hc-durability-laundry-block__bar-label--hero {
+    color: #b45309;
+  }
+
+  .hc-durability-laundry-block__bar-label--competitor {
+    color: #4b5563;
+  }
+
+  .hc-durability-laundry-block__comparison-name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    color: #000;
+  }
+
+  .hc-durability-laundry-block__comparison-caption {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+  }
+
+  .hc-durability-laundry-block__reclaimed {
+    border-top: 1px solid #000;
+    padding-top: 2rem;
+  }
+
+  .hc-durability-laundry-block__reclaimed-title {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #b45309;
+  }
+
+  .hc-durability-laundry-block__reclaimed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .hc-durability-laundry-block__reclaimed-card {
+    border: 1px solid #e5e7eb;
+    padding: 1rem;
+    background-color: #f9fafb;
+  }
+
+  .hc-durability-laundry-block__reclaimed-value {
+    display: block;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .hc-durability-laundry-block__reclaimed-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+  }
+
+  @keyframes hc-durability-laundry-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .hc-durability-laundry-block__content {
+      padding: 2rem 1.25rem;
+    }
+    .hc-durability-laundry-block__chart-wrapper {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>
+
+<section id="time_freedom" class="hc-durability-laundry-block" {{ block.shopify_attributes }}>
+  <div class="hc-durability-laundry-block__grid">
+    {%- comment -%} Text content - appears right on desktop (order 2) {%- endcomment -%}
+    <div class="hc-durability-laundry-block__content">
+      {%- assign eyebrow = block.settings.eyebrow_text -%}
+      {%- if eyebrow != blank -%}
+        <span class="hc-durability-laundry-block__eyebrow">{{ eyebrow }}</span>
+      {%- endif -%}
+      <h3 class="hc-durability-laundry-block__title">
+        {{ block.settings.title | default: 'Use your limited time for living not laundry' }}
+      </h3>
+      {%- if block.settings.description != blank -%}
+        <div class="hc-durability-laundry-block__description">
+          {{ block.settings.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Chart - appears left on desktop (order 1) {%- endcomment -%}
+    <div class="hc-durability-laundry-block__chart-wrapper">
+      <div class="hc-durability-laundry-block__chart-inner">
+        <div class="hc-durability-laundry-block__comparison">
+          <div class="hc-durability-laundry-block__comparison-item">
+            <div class="hc-durability-laundry-block__bar-container">
+              <div class="hc-durability-laundry-block__bar hc-durability-laundry-block__bar--hero" style="height: {{ block.settings.hercleon_bar_height | default: '15' }}%;">
+                <span class="hc-durability-laundry-block__bar-label hc-durability-laundry-block__bar-label--hero">
+                  {{ block.settings.hercleon_hours | default: '1071h' }}
+                </span>
+              </div>
+            </div>
+            <p class="hc-durability-laundry-block__comparison-name">
+              {{ block.settings.hercleon_name | default: 'HercLéon' }}
+            </p>
+            <p class="hc-durability-laundry-block__comparison-caption">
+              {{ block.settings.hercleon_caption | default: 'Life spent doing laundry' }}
+            </p>
+          </div>
+
+          <div class="hc-durability-laundry-block__comparison-divider" aria-hidden="true"></div>
+
+          <div class="hc-durability-laundry-block__comparison-item">
+            <div class="hc-durability-laundry-block__bar-container">
+              <div class="hc-durability-laundry-block__bar hc-durability-laundry-block__bar--competitor" style="height: {{ block.settings.competitor_bar_height | default: '100' }}%;">
+                <span class="hc-durability-laundry-block__bar-label hc-durability-laundry-block__bar-label--competitor">
+                  {{ block.settings.competitor_hours | default: '7133h' }}
+                </span>
+              </div>
+            </div>
+            <p class="hc-durability-laundry-block__comparison-name">
+              {{ block.settings.competitor_name | default: 'Others' }}
+            </p>
+            <p class="hc-durability-laundry-block__comparison-caption">
+              {{ block.settings.competitor_caption | default: 'Life spent doing laundry' }}
+            </p>
+          </div>
+        </div>
+
+        <div class="hc-durability-laundry-block__reclaimed">
+          <p class="hc-durability-laundry-block__reclaimed-title">
+            {{ block.settings.reclaimed_title | default: 'Total Time Reclaimed' }}
+          </p>
+          <div class="hc-durability-laundry-block__reclaimed-grid">
+            <div class="hc-durability-laundry-block__reclaimed-card">
+              <span class="hc-durability-laundry-block__reclaimed-value">
+                {{ block.settings.reclaimed_days | default: '253' }}
+              </span>
+              <span class="hc-durability-laundry-block__reclaimed-label">
+                {{ block.settings.reclaimed_days_label | default: 'Days' }}
+              </span>
+            </div>
+            <div class="hc-durability-laundry-block__reclaimed-card">
+              <span class="hc-durability-laundry-block__reclaimed-value">
+                {{ block.settings.reclaimed_weeks | default: '36' }}
+              </span>
+              <span class="hc-durability-laundry-block__reclaimed-label">
+                {{ block.settings.reclaimed_weeks_label | default: 'Weeks' }}
+              </span>
+            </div>
+            <div class="hc-durability-laundry-block__reclaimed-card">
+              <span class="hc-durability-laundry-block__reclaimed-value">
+                {{ block.settings.reclaimed_months | default: '8.4' }}
+              </span>
+              <span class="hc-durability-laundry-block__reclaimed-label">
+                {{ block.settings.reclaimed_months_label | default: 'Months' }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,267 @@
+<style>
+  /* Experience Laundry Freedom Block Styles */
+  .hc-exp-laundry-block {
+    border-bottom: 1px solid #000;
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  .hc-exp-laundry-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-exp-laundry-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+  }
+
+  .hc-exp-laundry-block__eyebrow {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hc-exp-laundry-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .hc-exp-laundry-block__subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #1f2937;
+  }
+
+  .hc-exp-laundry-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #9ca3af;
+    white-space: pre-line;
+}
+
+  .hc-exp-laundry-block__visual-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #000000;
+  }
+
+  .hc-exp-laundry-block__visual-container {
+    width: 100%;
+    max-width: 36rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+  }
+
+  .hc-exp-laundry-block__card {
+    width: 100%;
+    max-width: 28rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem;
+    border: 1px solid #f3f4f6;
+  }
+
+  .hc-exp-laundry-block__card-title {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #9ca3af;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+  }
+
+  .hc-exp-laundry-block__metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hc-exp-laundry-block__metric {
+    /* No specific styles needed */
+  }
+
+  .hc-exp-laundry-block__metric-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+    font-weight: 400;
+  }
+
+  .hc-exp-laundry-block__metric-value {
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .hc-exp-laundry-block__progress-bar {
+    height: 0.5rem;
+    width: 100%;
+    background-color: #f3f4f6;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .hc-exp-laundry-block__progress-fill {
+    height: 100%;
+    background-color: #c56326;
+    border-radius: 9999px;
+    transition: width 0.6s ease;
+    display: flex !important;
+  }
+
+  .hc-exp-laundry-block__footer {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .hc-exp-laundry-block__footer-text {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  @media (min-width: 768px) {
+    .hc-exp-laundry-block__content {
+      padding: 6rem;
+    }
+
+    .hc-exp-laundry-block__visual-wrapper {
+      padding: 3rem;
+    }
+
+    .hc-exp-laundry-block__title {
+      font-size: 3rem;
+    }
+
+    .hc-exp-laundry-block__card {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-exp-laundry-block__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-exp-laundry-block__content {
+    border-right: 1px solid #1f2937;
+}
+  }
+
+  @media screen and (max-width: 1024px) {
+    .hc-exp-laundry-block__content {
+      padding: 32px 20px;
+    }
+    .hc-exp-laundry-block__visual-wrapper {
+      padding: 32px 20px;
+    }
+    .hc-exp-laundry-block__card {
+    padding: 20px;
+}
+  }
+</style>
+
+<div class="hc-exp-laundry-block {{ block.settings.custom_class }}" {{ block.shopify_attributes }}>
+              <div class="hc-exp-laundry-block__grid">
+                <div class="hc-exp-laundry-block__content">
+                  {%- if block.settings.eyebrow_text != blank -%}
+                    <span class="hc-exp-laundry-block__eyebrow">{{ block.settings.eyebrow_text }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="hc-exp-laundry-block__title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.subtitle != blank -%}
+                    <p class="hc-exp-laundry-block__subtitle">{{ block.settings.subtitle }}</p>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.description != blank -%}
+                    <p class="hc-exp-laundry-block__description">{{ block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+
+                <div class="hc-exp-laundry-block__visual-wrapper">
+                  <div class="hc-exp-laundry-block__visual-container">
+                    <div class="hc-exp-laundry-block__card">
+                      <h4 class="hc-exp-laundry-block__card-title">{{ block.settings.card_title | default: 'Life Efficiency' }}</h4>
+                      
+                      <div class="hc-exp-laundry-block__metrics">
+                        {%- comment -%} Metric 1 {%- endcomment -%}
+                        <div class="hc-exp-laundry-block__metric">
+                          <div class="hc-exp-laundry-block__metric-header">
+                            <span>{{ block.settings.metric_1_label | default: 'Laundry Reduction' }}</span>
+                            <span class="hc-exp-laundry-block__metric-value">{{ block.settings.metric_1_value | default: '90' }}%</span>
+                          </div>
+                          <div class="hc-exp-laundry-block__progress-bar">
+                            <div class="hc-exp-laundry-block__progress-fill" style="width: {{ block.settings.metric_1_value | default: 90 }}%;"></div>
+                          </div>
+                        </div>
+
+                        {%- comment -%} Metric 2 {%- endcomment -%}
+                        <div class="hc-exp-laundry-block__metric">
+                          <div class="hc-exp-laundry-block__metric-header">
+                            <span>{{ block.settings.metric_2_label | default: 'Water Savings' }}</span>
+                            <span class="hc-exp-laundry-block__metric-value">{{ block.settings.metric_2_value | default: '85' }}%</span>
+                          </div>
+                          <div class="hc-exp-laundry-block__progress-bar">
+                            <div class="hc-exp-laundry-block__progress-fill" style="width: {{ block.settings.metric_2_value | default: 85 }}%;"></div>
+                          </div>
+                        </div>
+
+                        {%- comment -%} Metric 3 {%- endcomment -%}
+                        <div class="hc-exp-laundry-block__metric">
+                          <div class="hc-exp-laundry-block__metric-header">
+                            <span>{{ block.settings.metric_3_label | default: 'Energy Saved' }}</span>
+                            <span class="hc-exp-laundry-block__metric-value">{{ block.settings.metric_3_value | default: '90' }}%</span>
+                          </div>
+                          <div class="hc-exp-laundry-block__progress-bar">
+                            <div class="hc-exp-laundry-block__progress-fill" style="width: {{ block.settings.metric_3_value | default: 90 }}%;"></div>
+                          </div>
+                        </div>
+
+                        {%- comment -%} Metric 4 {%- endcomment -%}
+                        <div class="hc-exp-laundry-block__metric">
+                          <div class="hc-exp-laundry-block__metric-header">
+                            <span>{{ block.settings.metric_4_label | default: 'Reduced mental load' }}</span>
+                            <span class="hc-exp-laundry-block__metric-value">{{ block.settings.metric_4_value | default: '50' }}%</span>
+                          </div>
+                          <div class="hc-exp-laundry-block__progress-bar">
+                            <div class="hc-exp-laundry-block__progress-fill" style="width: {{ block.settings.metric_4_value | default: 50 }}%;"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="hc-exp-laundry-block__footer">
+                        <p class="hc-exp-laundry-block__footer-text">{{ block.settings.footer_text | default: 'HercLeón removes the hidden burdens of clothing.' }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

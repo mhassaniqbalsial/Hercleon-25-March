@@ -1,0 +1,217 @@
+<div
+  class="hc-science-media-press-section"
+  style="
+    --hc-science-media-press-pt-desk: {{ section.settings.padding_top_desktop | default: 128 }}px;
+    --hc-science-media-press-pb-desk: {{ section.settings.padding_bottom_desktop | default: 128 }}px;
+    --hc-science-media-press-pt-mob: {{ section.settings.padding_top_mobile | default: 128 }}px;
+    --hc-science-media-press-pb-mob: {{ section.settings.padding_bottom_mobile | default: 64 }}px;
+  "
+>
+  <div class="hc-science-media-press-container">
+    <div class="hc-science-media-press-header">
+      <h2 class="hc-science-media-press-title">{{ section.settings.heading | default: 'In The Media' }}</h2>
+    </div>
+
+    <div class="hc-science-media-press-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'media_item' %}
+          <article class="hc-science-media-press-card" {{ block.shopify_attributes }}>
+            <h3 class="hc-science-media-press-source">{{ block.settings.source }}</h3>
+            <p class="hc-science-media-press-quote">"{{ block.settings.quote }}"</p>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .hc-science-media-press-section {
+    background-color: #fff;
+    padding-top: var(--hc-science-media-press-pt-mob);
+    padding-bottom: var(--hc-science-media-press-pb-mob);
+  }
+
+  @media (min-width: 750px) {
+    .hc-science-media-press-section {
+      padding-top: var(--hc-science-media-press-pt-desk);
+      padding-bottom: var(--hc-science-media-press-pb-desk);
+    }
+  }
+
+
+  .hc-science-media-press-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .hc-science-media-press-title {
+    font-size: 2.25rem;
+}
+
+  @media (min-width: 750px) {
+    .hc-science-media-press-title {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-science-media-press-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid #000;
+  }
+
+  @media (min-width: 750px) {
+    .hc-science-media-press-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .hc-science-media-press-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .hc-science-media-press-card {
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    padding: 3rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .hc-science-media-press-card:hover {
+    background-color: #f9fafb;
+  }
+
+  .hc-science-media-press-source {
+    font-size: 1.875rem;
+    color: #9ca3af;
+    margin: 0 0 1.5rem;
+}
+
+  .hc-science-media-press-quote {
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC Press Media",
+  "tag": "section",
+  "class": "section-hc-science-media-press",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "In The Media"
+    },
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top_desktop",
+      "label": "Padding top (desktop)",
+      "default": 0,
+      "info": "Value in pixels"
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom (desktop)",
+      "default": 0,
+      "info": "Value in pixels"
+    },
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "number",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "default": 0,
+      "info": "Value in pixels"
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "default": 0,
+      "info": "Value in pixels"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "media_item",
+      "name": "Media item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "source",
+          "label": "Source name"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Press Media",
+      "blocks": [
+        {
+          "type": "media_item",
+          "settings": {
+            "source": "CNN",
+            "quote": "The shirt that could end laundry day forever."
+          }
+        },
+        {
+          "type": "media_item",
+          "settings": {
+            "source": "Gear Junkie",
+            "quote": "We wore it for a week straight in the summer heat. It smelled like nothing. Impressive."
+          }
+        },
+        {
+          "type": "media_item",
+          "settings": {
+            "source": "Lonely Planet",
+            "quote": "The ultimate travel hack. One shirt, one trip."
+          }
+        },
+        {
+          "type": "media_item",
+          "settings": {
+            "source": "Men's Journal",
+            "quote": "Hercléon is disrupting the activewear industry with biology."
+          }
+        },
+        {
+          "type": "media_item",
+          "settings": {
+            "source": "Shark Tank",
+            "quote": "The technology is undeniable."
+          }
+        },
+        {
+          "type": "media_item",
+          "settings": {
+            "source": "Wonderful Engineering",
+            "quote": "Material science at its finest."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

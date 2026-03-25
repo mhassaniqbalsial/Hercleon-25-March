@@ -1,0 +1,431 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "hc_science_sayonara_txFhqe": {
+      "type": "hc-science-sayonara",
+      "name": "HC Science Sayonara",
+      "settings": {
+        "heading_line_1": "We said",
+        "heading_line_2": "Sayonara to Smell.",
+        "subtext": "Body odor is completely natural, but smelly clothes don't have to be. Instead of relying on constant washing to keep your clothes fresh, we engineered a fabric that actively prevents odor-causing bacteria from growing in the first place. The result? Clothing that stays clean, smells fresh, and rarely needs to see the inside of a washing machine.",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_biological_scent_acegzn": {
+      "type": "hc-biological-scent",
+      "name": "HC Biological Scent",
+      "settings": {
+        "heading": "The Biological \nScent Gap",
+        "body_text": "<p>For decades, the perfume and clothing industry has focused on masking odor or absorbing sweat. They conveniently forgot this fundamental truth: <strong>sweat itself is odorless.</strong></p><p>Odor is the byproduct of bacteria on your skin and in your clothes consuming the proteins and lipids in your sweat, then off-gassing (yep, bacteria farts). Said in another way, when your clothes smell that means you're constantly being crop dusted by bacteria so the issue isn't necessarily your sweat, it's what's eating your sweat.</p>",
+        "card_top_label": "Sweat + Bacteria",
+        "card_bottom_label": "Odor",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_engines_of_sweet_z9BnGd": {
+      "type": "hc-engines-of-sweet",
+      "blocks": {
+        "card_pfNngx": {
+          "type": "card",
+          "settings": {
+            "color_theme": "blue",
+            "icon": "💧",
+            "title": "Eccrine Glands",
+            "subtitle": "The Cooling System",
+            "body": "Located all over your body. They produce a clear, odorless fluid that is 99% water and 1% salt. Their only job is to keep you from overheating. Bacteria don't care about this sweat."
+          }
+        },
+        "card_fNrpU4": {
+          "type": "card",
+          "settings": {
+            "color_theme": "orange",
+            "icon": "🥩",
+            "title": "Apocrine Glands",
+            "subtitle": "The Buffet",
+            "body": "Located in your armpits and groin. They produce a thick, milky sweat packed with proteins and lipids (fats). This is the ultimate feast for skin bacteria, leading directly to body odor."
+          }
+        },
+        "card_VJ6yrX": {
+          "type": "card",
+          "settings": {
+            "color_theme": "purple",
+            "icon": "🧬",
+            "title": "Apoeccrine Glands",
+            "subtitle": "The Hybrid",
+            "body": "Developing during puberty, these hybrid glands produce a massive volume of watery sweat but share traits with Apocrine glands. They are the reason teenagers suddenly start smelling."
+          }
+        }
+      },
+      "block_order": [
+        "card_pfNngx",
+        "card_fNrpU4",
+        "card_VJ6yrX"
+      ],
+      "name": "HC Engines Sweet",
+      "settings": {
+        "eyebrow": "The Source",
+        "heading": "The 3 Engines of Sweat",
+        "subtext": "Humans are the sweatiest primates on earth. We have three distinct types of sweat glands, each with a completely different job.",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_types_of_odor_WBikVe": {
+      "type": "hc-types-of-odor",
+      "blocks": {
+        "odor_card_aLaMeC": {
+          "type": "odor_card",
+          "settings": {
+            "icon": "💧",
+            "title": "Fresh Sweat",
+            "body": "The standard watery sweat from heat or exercise. Easy to manage."
+          }
+        },
+        "odor_card_hejqee": {
+          "type": "odor_card",
+          "settings": {
+            "icon": "⚡",
+            "title": "Emotion Sweat",
+            "body": "Thick, lipid-rich sweat triggered by stress, fear, or excitement. Bacteria's favorite food."
+          }
+        },
+        "odor_card_GpeUhw": {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🛢️",
+            "title": "Body Oils (Sebum)",
+            "body": "Waxy oils that bind to synthetic fabrics and trap odor permanently."
+          }
+        },
+        "odor_card_GXT8ae": {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🧬",
+            "title": "Hormonal Odor",
+            "body": "Complex chemical signatures that change with diet, age, and hormones."
+          }
+        },
+        "odor_card_rH7djH": {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🦠",
+            "title": "Embedded Odor",
+            "body": "The 'permastink' that lives inside the fibers of old workout clothes."
+          }
+        },
+        "odor_card_qtzLDk": {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🌫️",
+            "title": "Environmental",
+            "body": "Smells from your surroundings—like smoke, food, or pollution—that cling to standard fabrics."
+          }
+        }
+      },
+      "block_order": [
+        "odor_card_aLaMeC",
+        "odor_card_hejqee",
+        "odor_card_GpeUhw",
+        "odor_card_GXT8ae",
+        "odor_card_rH7djH",
+        "odor_card_qtzLDk"
+      ],
+      "name": "HC Odor Types",
+      "settings": {
+        "heading": "The 6 Types of Odor",
+        "subtext": "Most \"anti-odor\" shirts only fight one. We engineered HercLeón to neutralize all six.",
+        "show_footer": true,
+        "footer_left_icon": "🧬",
+        "footer_left_heading": "The Genetic Lottery",
+        "footer_left_body": "<p>Not everyone smells. A fascinating mutation in the ABCC11 gene—highly prevalent in East Asian populations—actually prevents the body from pumping proteins and lipids into apocrine sweat. Without those specific nutrients, the bacteria on your skin have absolutely nothing to eat, which means they produce zero body odor. Interestingly, this same gene is also responsible for determining whether you have dry or wet earwax! For the lucky few, deodorant is entirely optional. But for the rest of us, we have HercLeón.</p>",
+        "footer_right_icon": "👃",
+        "footer_right_heading": "Speaking in Scent",
+        "footer_right_body": "<p>Before complex language, humans communicated through smell. Our body odor wasn't a faux pas; it was a highly evolved broadcast system used to signal fear, identify family, broadcast health, and even find genetically compatible mates; truthfully, no dating app can match you better than body's odor.</p><p>Ever wonder why animals like dogs and cats can tell when you're sad or sick? It's because your body is constantly broadcasting its current state. This is also why some people can instantly tell when something is \"off\" with another person; it might not be intuition, it's probably just smell.</p>",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_stages_of_odor_mqwmx8": {
+      "type": "hc-stages-of-odor",
+      "blocks": {
+        "stage_dLcAeH": {
+          "type": "stage",
+          "settings": {
+            "theme": "light",
+            "step_number": "01",
+            "title": "Prevention",
+            "body": "<p>The best way to handle odor-causing bacteria is to not have it in the first place. The most effective way of prevention is moisture management. The more you can prevent the bacteria from getting to your sweat, the better. We used one of the most powerful fibers as the core of our clothing so few other clothing prevents odor as effectively as HercLeón.</p><p>This is why plastic fibers (polyester, nylon, acrylic, etc.) are the worst because it's like wearing a plastic bag, they act like a greenhouse, trapping heat and forcing you to sweat more. It's literally the worst thing you can wear if you want to smell good. That's why within an hour of wearing polyester or nylon clothing they usually start to stink.</p><p>Now, of course, if you wear things like cotton, viscose, silk, linen and animal hair (aka wool), your clothes will be able to handle the moisture better which will help it stay cleaner longer.</p>"
+          }
+        },
+        "stage_NEaxwx": {
+          "type": "stage",
+          "settings": {
+            "theme": "dark",
+            "step_number": "02",
+            "title": "Neutralization",
+            "body": "<p>Very few fibers actually perform this crucial step. While natural fibers manage moisture, they don't actively fight the bacteria that inevitably arrive. This is why neutralization is an essential part of handling and preventing odor.</p><p>This is where our proprietary matrix comes in. We embed a permanent blend of minerals and metals that actively pierce bacterial cell walls and disrupt their DNA. We don't just slow them down; we neutralize the odor-causing bacteria on contact, preventing the off-gassing process entirely. There's no clothing on earth that we're aware of that comes close to ours in this aspect. Even military grade is beneath us at this point.</p>"
+          }
+        },
+        "stage_4fgYkj": {
+          "type": "stage",
+          "settings": {
+            "theme": "light",
+            "step_number": "03",
+            "title": "Absorption & Adsorption",
+            "body": "<p>Even with perfect prevention and neutralization, complex hormonal odors and environmental smells can still occur.</p><p>To combat this, we utilize highly porous materials (like volcanic ash and coconut charcoal) that act as microscopic sponges. Through both absorption and <strong>adsorption</strong>, they catch and trap any extra odor molecules that might happen naturally, locking them deep inside the fiber matrix so it helps keep your clothing smelling as good as possible. Most companies never solve for this but we also excel in this category as well.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "stage_dLcAeH",
+        "stage_NEaxwx",
+        "stage_4fgYkj"
+      ],
+      "name": "HC Odor Stages",
+      "settings": {
+        "eyebrow": "The Methodology",
+        "heading": "3 Stages of Odor Control",
+        "subtext": "We don't just react to odor; we preempt it. Our fabrics are engineered to perform across three critical stages of the biological scent cycle.",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_super_smell_xMBNp7": {
+      "type": "hc-super-smell",
+      "name": "HC Super Smell",
+      "settings": {
+        "heading": "Super Smell: Plastic's Special Ability To Smell Worse",
+        "body": "<p>Plastic fibers (polyester, nylon, acrylic, etc.) have a special, terrible ability: they are oleophilic (oil-loving). They act like magnets for the lipid-rich body oils in your sweat. Once those oils bind to a synthetic shirt, they are nearly impossible to wash out. This creates a permanent buffet for bacteria, meaning your workout clothes will start to smell worse and worse over time, even right after being washed. This is the dreaded \"permastink.\" Furthermore, the hormone-disrupting chemicals found in many plastics can negatively impact your body's natural balance, which can actually make your natural body odor worse. Which is why if you care about how you smell, your health or your hormones, avoid wearing plastic disguised as clothing.</p>",
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48,
+        "padding_top_desktop": 48,
+        "padding_bottom_desktop": 48
+      }
+    },
+    "hc_metals_and_minerals_hy3dT4": {
+      "type": "hc-metals-and-minerals",
+      "blocks": {
+        "mineral_7Kx7qA": {
+          "type": "mineral",
+          "settings": {
+            "title": "Copper (Cu+)",
+            "body": "Releases ions that rupture bacterial cell walls on contact, preventing them from feeding on sweat."
+          }
+        },
+        "mineral_xNyCNc": {
+          "type": "mineral",
+          "settings": {
+            "title": "Zinc (Zn)",
+            "body": "A powerful antimicrobial agent that binds to bacterial DNA, stopping reproduction and off-gassing."
+          }
+        },
+        "mineral_JYDHij": {
+          "type": "mineral",
+          "settings": {
+            "title": "Silver (Ag+)",
+            "body": "A classic, highly effective antibacterial metal that disrupts the biological engines of odor-causing microbes."
+          }
+        },
+        "mineral_frE3QC": {
+          "type": "mineral",
+          "settings": {
+            "title": "Coconut Charcoal",
+            "body": "Highly porous carbon structure that acts as a microscopic sponge, trapping odor molecules before they escape."
+          }
+        },
+        "mineral_7p3pNt": {
+          "type": "mineral",
+          "settings": {
+            "title": "Volcanic Ash",
+            "body": "Naturally absorbent and purifying, it pulls in moisture and traps complex hormonal odor compounds."
+          }
+        },
+        "mineral_dNG7Wf": {
+          "type": "mineral",
+          "settings": {
+            "title": "Gold (Au)",
+            "body": "Provides advanced catalytic properties, enhancing the efficacy of other metals in extreme performance conditions."
+          }
+        },
+        "mineral_bzMD8G": {
+          "type": "mineral",
+          "settings": {
+            "title": "Ruthenium (Ru)",
+            "body": "A rare transition metal used in specialized blends to accelerate the breakdown of stubborn lipid-based odors."
+          }
+        },
+        "mineral_7FKgrP": {
+          "type": "mineral",
+          "settings": {
+            "title": "Cytosine",
+            "body": "A fundamental building block of DNA, utilized in advanced formulations to specifically target and neutralize complex biological scent signatures."
+          }
+        },
+        "mineral_Pq49eY": {
+          "type": "mineral",
+          "settings": {
+            "title": "Silica",
+            "body": "A naturally occurring compound that drastically improves moisture wicking and temperature regulation."
+          }
+        },
+        "mineral_mFhB8M": {
+          "type": "mineral",
+          "settings": {
+            "title": "FIR (Far Infrared Rays)",
+            "body": "Reflects the body's natural heat back as far infrared energy, improving circulation and recovery."
+          }
+        },
+        "mineral_pDcn7a": {
+          "type": "mineral",
+          "settings": {
+            "title": "Zeolites",
+            "body": "Microporous minerals that trap toxins, heavy metals, and environmental odors at a molecular level."
+          }
+        },
+        "mineral_m9E3Jp": {
+          "type": "mineral",
+          "settings": {
+            "title": "Platinum (Pt)",
+            "body": "A highly stable noble metal that acts as a powerful catalyst to continuously refresh the fabric's odor-fighting properties."
+          }
+        }
+      },
+      "block_order": [
+        "mineral_7Kx7qA",
+        "mineral_xNyCNc",
+        "mineral_JYDHij",
+        "mineral_frE3QC",
+        "mineral_7p3pNt",
+        "mineral_dNG7Wf",
+        "mineral_bzMD8G",
+        "mineral_7FKgrP",
+        "mineral_Pq49eY",
+        "mineral_mFhB8M",
+        "mineral_pDcn7a",
+        "mineral_m9E3Jp"
+      ],
+      "name": "HC Metal Minerals",
+      "settings": {
+        "eyebrow": "The HercLeón Matrix",
+        "heading": "Metals & Minerals In Our Arsenal",
+        "subtext": "We use a unique, proprietary blend of these elements. The exact composition changes based on the garment and what is necessary to deliver the desired performance.",
+        "matrix_eyebrow": "Proprietary Blend",
+        "matrix_title": "HercLeón\nMatrix",
+        "badge_top_icon": "🦠",
+        "badge_top_label": "Bacteria ❌",
+        "badge_right_icon": "💨",
+        "badge_right_label": "Odor Molecules ❌",
+        "badge_left_icon": "🧬",
+        "badge_left_label": "Lipids ❌",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_freedom_GtXRrJ": {
+      "type": "hc-freedom",
+      "blocks": {
+        "benefit_VKWzXX": {
+          "type": "benefit",
+          "settings": {
+            "title": "Travel Lighter",
+            "body": "Pack for a month in a single carry-on. One shirt, infinite possibilities."
+          }
+        },
+        "benefit_LMxB9J": {
+          "type": "benefit",
+          "settings": {
+            "title": "Live Cleaner",
+            "body": "Hyper-hygienic materials mean you stay fresh, even when you're pushing your limits."
+          }
+        },
+        "benefit_Jq7r6t": {
+          "type": "benefit",
+          "settings": {
+            "title": "Waste Less",
+            "body": "Less washing means less water waste, fewer microplastics, and clothes that last years longer."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_VKWzXX",
+        "benefit_LMxB9J",
+        "benefit_Jq7r6t"
+      ],
+      "name": "HC Freedom",
+      "settings": {
+        "eyebrow": "The Result",
+        "heading": "Uncompromising \nFreedom.",
+        "intro": "By understanding the biology of odor and engineering materials that actively work with your body, we've created more than just a shirt. We've created a tool that gives you back your time, your confidence, and your freedom to move through the world without limitations.",
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    },
+    "hc_upgrade_life_NEWPtK": {
+      "type": "hc-upgrade-life",
+      "name": "HC Upgrade Life",
+      "settings": {
+        "eyebrow": "Ready to upgrade your life?",
+        "heading": "Experience The Science",
+        "subtext": "Stop wearing mediocre clothing made for living a mediocre life. Upgrade to the only clothes designed to help you live a freer, lighter and better life.",
+        "button_label": "Shop HercLeón",
+        "button_link": "",
+        "button_link_blank": false,
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "padding_top_desktop": 128,
+        "padding_bottom_desktop": 128
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "hc_science_sayonara_txFhqe",
+    "hc_biological_scent_acegzn",
+    "hc_engines_of_sweet_z9BnGd",
+    "hc_types_of_odor_WBikVe",
+    "hc_stages_of_odor_mqwmx8",
+    "hc_super_smell_xMBNp7",
+    "hc_metals_and_minerals_hy3dT4",
+    "hc_freedom_GtXRrJ",
+    "hc_upgrade_life_NEWPtK"
+  ]
+}

@@ -1,0 +1,118 @@
+{% comment %} HC Product SeenOn {% endcomment %}
+
+<div class="hc-prod-seen-on-section">
+   <div class="page-width page-width--full">
+  <div class="hc-prod-seen-on-inner">
+    <span class="hc-prod-seen-on-label">{{ section.settings.label }}</span>
+    <div class="hc-prod-seen-on-track">
+      {% for block in section.blocks %}
+        <span class="hc-prod-seen-on-item" {{ block.shopify_attributes }}>{{ block.settings.name }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+</div>
+
+<style>
+  .hc-prod-seen-on-section {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #1f2937;
+    overflow: hidden;
+  }
+
+  .hc-prod-seen-on-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+  }
+
+  .hc-prod-seen-on-label {
+    font-family: var(--font-heading-family);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #B45309;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+  .hc-prod-seen-on-track {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hc-prod-seen-on-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hc-prod-seen-on-item {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #6b7280;
+    white-space: nowrap;
+    cursor: default;
+    transition: color 0.2s ease;
+}
+
+  .hc-prod-seen-on-item:hover {
+    color: #fff;
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "HC Product SeenOn",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "As Seen On:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Publication"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Product SeenOn",
+      "settings": {
+        "label": "As Seen On:"
+      },
+      "blocks": [
+        { "type": "logo", "settings": { "name": "Shark Tank" } },
+        { "type": "logo", "settings": { "name": "Wonderful Engineering" } },
+        { "type": "logo", "settings": { "name": "Men's Journal" } },
+        { "type": "logo", "settings": { "name": "Gear Junkie" } },
+        { "type": "logo", "settings": { "name": "CNN" } },
+        { "type": "logo", "settings": { "name": "Lonely Planet" } },
+        { "type": "logo", "settings": { "name": "MPR" } },
+        { "type": "logo", "settings": { "name": "Pioneer Press" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,311 @@
+<style>
+  /* Stay Fresh Block Styles */
+  .hc-briefing-stay-fresh-block {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background: #000000;
+    border-bottom: 1px solid #111827;
+}
+
+.hc-briefing-stay-fresh-block__rich-text {
+    padding-top: 6rem;
+}
+
+.hc-briefing-stay-fresh-block__rich-text p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.625;
+    color: #9ca3af;
+    text-align: left;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+  .hc-briefing-stay-fresh-block__container {
+    text-align: center;
+  }
+
+  .hc-briefing-stay-fresh-block__heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hc-briefing-stay-fresh-block__title {
+    display: block;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .hc-briefing-stay-fresh-block__description {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #9ca3af;
+    max-width: 42rem;
+    margin: 0 auto 3rem;
+  }
+
+  .hc-briefing-stay-fresh-block__grids-wrapper {
+    border-top: 1px solid #1f2937;
+    padding-top: 3rem;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .hc-briefing-stay-fresh-block__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .hc-briefing-stay-fresh-block__grid + .hc-briefing-stay-fresh-block__grid {
+    margin-top: 1rem;
+  }
+
+  .hc-briefing-stay-fresh-block__label {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    padding-right: 2rem;
+    border-right: 1px solid #1f2937;
+  }
+
+  .hc-briefing-stay-fresh-block__label-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-briefing-stay-fresh-block__label-text--competitor {
+    color: #6b7280;
+  }
+
+  .hc-briefing-stay-fresh-block__label-text--hercleon {
+    color: #b45309;
+  }
+
+  .hc-briefing-stay-fresh-block__item {
+    padding: 1rem;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-briefing-stay-fresh-block__item--competitor {
+    border-color: #1f2937;
+    background-color: #000;
+    opacity: 0.4;
+    filter: grayscale(100%);
+  }
+
+  .hc-briefing-stay-fresh-block__item--competitor-1 {
+    opacity: 1;
+    background-color: #111827;
+    filter: grayscale(0%);
+  }
+
+  .hc-briefing-stay-fresh-block__item--hercleon {
+    border-color: #b45309;
+    background-color: rgba(180, 83, 9, 0.1);
+  }
+
+  .hc-briefing-stay-fresh-block__item-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-briefing-stay-fresh-block__item-title--competitor {
+    color: #fff;
+}
+
+  .hc-briefing-stay-fresh-block__item-title--hercleon {
+    color: #fff;
+  }
+
+  .hc-briefing-stay-fresh-block__item-status {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-briefing-stay-fresh-block__item-status--competitor {
+    color: #9ca3af;
+  }
+
+  .hc-briefing-stay-fresh-block__item-status--hercleon {
+    color: #b45309;
+  }
+
+  @media (min-width: 768px) {
+    .hc-briefing-stay-fresh-block {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .hc-briefing-stay-fresh-block__heading {
+      font-size: 2.25rem;
+    }
+
+    .hc-briefing-stay-fresh-block__title {
+      font-size: 2.25rem;
+    }
+
+    .hc-briefing-stay-fresh-block__grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .hc-briefing-stay-fresh-block__label {
+      grid-column: span 1;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+  .hc-briefing-stay-fresh-block__title {
+    font-size: 1.5rem;
+}
+}
+
+@media screen and (max-width: 380px) {
+  .hc-briefing-stay-fresh-block__grid {
+    gap: 0.5rem;
+}
+.hc-briefing-stay-fresh-block__item-title {
+    font-size: 0.875rem;
+}
+}
+
+
+
+</style>
+
+<div class="hc-briefing-stay-fresh-block" {{ block.shopify_attributes }}>
+              <div class="hc-briefing-stay-fresh-block__container page-width">
+                <h3 class="hc-briefing-stay-fresh-block__heading">
+                  {%- if block.settings.title != blank -%}
+                    <span class="hc-briefing-stay-fresh-block__title">{{ block.settings.title }}</span>
+                  {%- endif -%}
+                </h3>
+                
+                {%- if block.settings.description != blank -%}
+                  <p class="hc-briefing-stay-fresh-block__description">{{ block.settings.description }}</p>
+                {%- endif -%}
+
+                <div class="hc-briefing-stay-fresh-block__grids-wrapper">
+                  {%- comment -%} Competitor Row {%- endcomment -%}
+                  <div class="hc-briefing-stay-fresh-block__grid">
+                    <div class="hc-briefing-stay-fresh-block__label">
+                      <span class="hc-briefing-stay-fresh-block__label-text hc-briefing-stay-fresh-block__label-text--competitor">
+                        {{ block.settings.competitor_label | default: 'Silver-infused, Merino Wool, Anti-bacterial, etc.' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--competitor hc-briefing-stay-fresh-block__item--competitor-1">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--competitor">
+                        {{ block.settings.odor_1_name | default: 'Bacteria' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--competitor">
+                        {{ block.settings.competitor_odor_1_status | default: 'Covered' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--competitor">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--competitor">
+                        {{ block.settings.odor_2_name | default: 'Fungus' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--competitor">
+                        {{ block.settings.competitor_odor_2_status | default: 'Ignored' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--competitor">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--competitor">
+                        {{ block.settings.odor_3_name | default: 'Body Oils' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--competitor">
+                        {{ block.settings.competitor_odor_3_status | default: 'Ignored' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--competitor">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--competitor">
+                        {{ block.settings.odor_4_name | default: 'Environment' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--competitor">
+                        {{ block.settings.competitor_odor_4_status | default: 'Ignored' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--competitor">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--competitor">
+                        {{ block.settings.odor_5_name | default: 'Hormones' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--competitor">
+                        {{ block.settings.competitor_odor_5_status | default: 'Ignored' }}
+                      </span>
+                    </div>
+                  </div>
+
+                  {%- comment -%} HercLeon Row {%- endcomment -%}
+                  <div class="hc-briefing-stay-fresh-block__grid">
+                    <div class="hc-briefing-stay-fresh-block__label">
+                      <span class="hc-briefing-stay-fresh-block__label-text hc-briefing-stay-fresh-block__label-text--hercleon">
+                        {{ block.settings.hercleon_label | default: 'HercLeon' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--hercleon">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--hercleon">
+                        {{ block.settings.odor_1_name | default: 'Bacteria' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--hercleon">
+                        {{ block.settings.hercleon_odor_1_status | default: 'Neutralized' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--hercleon">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--hercleon">
+                        {{ block.settings.odor_2_name | default: 'Fungus' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--hercleon">
+                        {{ block.settings.hercleon_odor_2_status | default: 'Neutralized' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--hercleon">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--hercleon">
+                        {{ block.settings.odor_3_name | default: 'Body Oils' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--hercleon">
+                        {{ block.settings.hercleon_odor_3_status | default: 'Neutralized' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--hercleon">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--hercleon">
+                        {{ block.settings.odor_4_name | default: 'Environment' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--hercleon">
+                        {{ block.settings.hercleon_odor_4_status | default: 'Neutralized' }}
+                      </span>
+                    </div>
+                    <div class="hc-briefing-stay-fresh-block__item hc-briefing-stay-fresh-block__item--hercleon">
+                      <span class="hc-briefing-stay-fresh-block__item-title hc-briefing-stay-fresh-block__item-title--hercleon">
+                        {{ block.settings.odor_5_name | default: 'Hormones' }}
+                      </span>
+                      <span class="hc-briefing-stay-fresh-block__item-status hc-briefing-stay-fresh-block__item-status--hercleon">
+                        {{ block.settings.hercleon_odor_5_status | default: 'Neutralized' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {%- if block.settings.additional_rich_text != blank -%}
+              <div class="hc-briefing-stay-fresh-block__rich-text">
+                <div class="page-width">
+                    {{ block.settings.additional_rich_text }}
+                  </div>
+                </div>
+              {%- endif -%}
+
+            </div>

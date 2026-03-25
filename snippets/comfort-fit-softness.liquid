@@ -1,0 +1,331 @@
+{% comment %}
+  Comfort & Fit - Softness Block
+{% endcomment %}
+
+<style>
+  .hc-comfort-softness-block {
+    border-bottom: 1px solid #000;
+    background-color: #fff;
+    animation: hc-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-comfort-softness-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-comfort-softness-block__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hc-comfort-softness-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+    order: 1;
+  }
+
+  @media (min-width: 768px) {
+    .hc-comfort-softness-block__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-comfort-softness-block__content {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+  }
+
+  .hc-comfort-softness-block__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-comfort-softness-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-comfort-softness-block__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-comfort-softness-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+
+  .hc-comfort-softness-block__chart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #fff;
+    order: 2;
+  }
+
+  @media (min-width: 768px) {
+    .hc-comfort-softness-block__chart-wrapper {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-comfort-softness-block__chart-wrapper {
+      order: 1;
+    }
+  }
+
+  .hc-comfort-softness-block__chart-container {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-comfort-softness-block__chart {
+    background-color: #fff;
+    color: #000;
+    padding: 2rem;
+    border: 1px solid #000;
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .hc-comfort-softness-block__chart-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    display: block;
+    color: #9ca3af;
+  }
+
+  .hc-comfort-softness-block__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hc-comfort-softness-block__bar-item {
+    position: relative;
+  }
+
+  .hc-comfort-softness-block__bar-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    width: 100%;
+    gap: 2rem;
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-comfort-softness-block__bar-header {
+      font-size: 1rem;
+    }
+  }
+
+  .hc-comfort-softness-block__bar-label {
+    color: #6b7280;
+  }
+
+  .hc-comfort-softness-block__bar-label--hero {
+    color: #B45309;
+    font-size: 1.25rem;
+  }
+
+  .hc-comfort-softness-block__bar-value {
+    color: #000;
+  }
+
+  .hc-comfort-softness-block__bar-track {
+    height: 1.5rem;
+    background-color: #f3f4f6;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hc-comfort-softness-block__bar-fill {
+    height: 100%;
+    display: flex !important;
+}
+
+  .hc-comfort-softness-block__bar-fill--1 {
+    background-color: #d1d5db;
+  }
+
+  .hc-comfort-softness-block__bar-fill--2 {
+    background-color: #9ca3af;
+  }
+
+  .hc-comfort-softness-block__bar-fill--3 {
+    background-color: #6b7280;
+  }
+
+  .hc-comfort-softness-block__bar-fill--4 {
+    background-color: #4b5563;
+  }
+
+  .hc-comfort-softness-block__bar-fill--hero {
+    background-color: #B45309;
+  }
+
+  @keyframes hc-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+  .hc-comfort-softness-block__content {
+    padding: 32px 20px;
+}
+.hc-comfort-softness-block__chart-wrapper {
+    padding: 32px 20px;
+}
+.hc-comfort-softness-block__chart {
+    padding: 20px;
+}
+}
+
+</style>
+
+<section class="hc-comfort-softness-block" {{ block.shopify_attributes }}>
+  <div class="hc-comfort-softness-block__grid">
+    
+    {%- comment -%} Right Content {%- endcomment -%}
+    <div class="hc-comfort-softness-block__content">
+      <span class="hc-comfort-softness-block__eyebrow">
+        {{ block.settings.eyebrow | default: '02 — Gear You Would Want To Wear All Day' }}
+      </span>
+      <h3 class="hc-comfort-softness-block__title">
+        {{ block.settings.title | default: 'More Softness. Less Smell.' }}
+      </h3>
+      <div class="hc-comfort-softness-block__description">
+        {{ block.settings.description | default: 'We engineered our fabric to be softer than cashmere...' }}
+      </div>
+    </div>
+
+    {%- comment -%} Left Chart {%- endcomment -%}
+    <div class="hc-comfort-softness-block__chart-wrapper">
+      <div class="hc-comfort-softness-block__chart-container">
+        <div class="hc-comfort-softness-block__chart">
+          <span class="hc-comfort-softness-block__chart-title">
+            {{ block.settings.chart_title | default: 'Micron Count (Lower is Softer)' }}
+          </span>
+          
+          <div class="hc-comfort-softness-block__bars">
+            
+            {%- comment -%} Material 1 - Cotton {%- endcomment -%}
+            <div class="hc-comfort-softness-block__bar-item">
+              <div class="hc-comfort-softness-block__bar-header">
+                <span class="hc-comfort-softness-block__bar-label">
+                  {{ block.settings.material_1_name | default: 'Cotton' }}
+                </span>
+                <span class="hc-comfort-softness-block__bar-value">
+                  {{ block.settings.material_1_value | default: '20μm' }}
+                </span>
+              </div>
+              <div class="hc-comfort-softness-block__bar-track">
+                <div class="hc-comfort-softness-block__bar-fill hc-comfort-softness-block__bar-fill--1" style="width: {{ block.settings.material_1_width | default: '20' }}%;"></div>
+              </div>
+            </div>
+
+            {%- comment -%} Material 2 - Merino Wool {%- endcomment -%}
+            <div class="hc-comfort-softness-block__bar-item">
+              <div class="hc-comfort-softness-block__bar-header">
+                <span class="hc-comfort-softness-block__bar-label">
+                  {{ block.settings.material_2_name | default: 'Merino Wool' }}
+                </span>
+                <span class="hc-comfort-softness-block__bar-value">
+                  {{ block.settings.material_2_value | default: '18μm' }}
+                </span>
+              </div>
+              <div class="hc-comfort-softness-block__bar-track">
+                <div class="hc-comfort-softness-block__bar-fill hc-comfort-softness-block__bar-fill--2" style="width: {{ block.settings.material_2_width | default: '18' }}%;"></div>
+              </div>
+            </div>
+
+            {%- comment -%} Material 3 - Cashmere {%- endcomment -%}
+            <div class="hc-comfort-softness-block__bar-item">
+              <div class="hc-comfort-softness-block__bar-header">
+                <span class="hc-comfort-softness-block__bar-label">
+                  {{ block.settings.material_3_name | default: 'Cashmere' }}
+                </span>
+                <span class="hc-comfort-softness-block__bar-value">
+                  {{ block.settings.material_3_value | default: '15μm' }}
+                </span>
+              </div>
+              <div class="hc-comfort-softness-block__bar-track">
+                <div class="hc-comfort-softness-block__bar-fill hc-comfort-softness-block__bar-fill--3" style="width: {{ block.settings.material_3_width | default: '15' }}%;"></div>
+              </div>
+            </div>
+
+            {%- comment -%} Material 4 - Silk {%- endcomment -%}
+            <div class="hc-comfort-softness-block__bar-item">
+              <div class="hc-comfort-softness-block__bar-header">
+                <span class="hc-comfort-softness-block__bar-label">
+                  {{ block.settings.material_4_name | default: 'Silk' }}
+                </span>
+                <span class="hc-comfort-softness-block__bar-value">
+                  {{ block.settings.material_4_value | default: '12μm' }}
+                </span>
+              </div>
+              <div class="hc-comfort-softness-block__bar-track">
+                <div class="hc-comfort-softness-block__bar-fill hc-comfort-softness-block__bar-fill--4" style="width: {{ block.settings.material_4_width | default: '12' }}%;"></div>
+              </div>
+            </div>
+
+            {%- comment -%} Material 5 - HercFiber (Hero) {%- endcomment -%}
+            <div class="hc-comfort-softness-block__bar-item">
+              <div class="hc-comfort-softness-block__bar-header">
+                <span class="hc-comfort-softness-block__bar-label hc-comfort-softness-block__bar-label--hero">
+                  {{ block.settings.material_5_name | default: 'HercFiber™' }}
+                </span>
+                <span class="hc-comfort-softness-block__bar-value">
+                  {{ block.settings.material_5_value | default: '10μm' }}
+                </span>
+              </div>
+              <div class="hc-comfort-softness-block__bar-track">
+                <div class="hc-comfort-softness-block__bar-fill hc-comfort-softness-block__bar-fill--hero" style="width: {{ block.settings.material_5_width | default: '10' }}%;"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

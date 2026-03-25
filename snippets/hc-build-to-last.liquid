@@ -1,0 +1,279 @@
+{% comment %}
+  HC Build To Last Block
+  Section: structural integrity / built to last
+{% endcomment %}
+
+<style>
+  .hc-build-to-last {
+    border-bottom: 1px solid #000;
+    background-color: #000;
+    animation: hc-build-to-last-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-build-to-last__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-build-to-last__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-build-to-last__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-build-to-last__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-build-to-last__content {
+      order: 2;
+      border-left: 1px solid #1f2937;
+    }
+  }
+
+  .hc-build-to-last__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hc-build-to-last__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.25;
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-build-to-last__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-build-to-last__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 32rem;
+    color: #9ca3af;
+    white-space: pre-line;
+  }
+
+  .hc-build-to-last__card-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-build-to-last__card-wrap {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-build-to-last__card-wrap {
+      order: 1;
+    }
+  }
+
+  .hc-build-to-last__card-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-build-to-last__card {
+    background-color: #fff;
+    color: #000;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (min-width: 768px) {
+    .hc-build-to-last__card {
+      padding: 3rem;
+    }
+  }
+
+  .hc-build-to-last__card-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 1rem;
+  }
+
+  .hc-build-to-last__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hc-build-to-last__row {
+    display: block;
+  }
+
+  .hc-build-to-last__row-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-build-to-last__row-header {
+      font-size: 0.75rem;
+    }
+  }
+
+  .hc-build-to-last__row-header--muted {
+    color: #9ca3af;
+  }
+
+  .hc-build-to-last__row-header--accent {
+    color: #C56326;
+  }
+
+  .hc-build-to-last__bar-track {
+    height: 0.75rem;
+    width: 100%;
+    background-color: #f3f4f6;
+    overflow: hidden;
+  }
+
+  .hc-build-to-last__bar-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+
+  .hc-build-to-last__bar-fill--muted {
+    background-color: #9ca3af;
+    display: block !important;
+  }
+
+  .hc-build-to-last__bar-fill--accent {
+    background-color: #C56326;
+    box-shadow: 0 0 15px rgba(197, 99, 38, 0.5);
+    display: block !important;
+  }
+
+  .hc-build-to-last__footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f3f4f6;
+  }
+
+  .hc-build-to-last__footer-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #C56326;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-build-to-last__footer-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #9ca3af;
+  }
+
+  @keyframes hc-build-to-last-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<section
+  id="build_to_last"
+  class="hc-build-to-last {{ block.settings.custom_class }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-build-to-last__grid">
+    <div class="hc-build-to-last__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+        <span class="hc-build-to-last__eyebrow">{{ block.settings.eyebrow_text }}</span>
+      {%- endif -%}
+      {%- if block.settings.title != blank -%}
+        <h3 class="hc-build-to-last__title">{{ block.settings.title }}</h3>
+      {%- endif -%}
+      {%- if block.settings.description != blank -%}
+        <p class="hc-build-to-last__description">{{ block.settings.description }}</p>
+      {%- endif -%}
+    </div>
+    <div class="hc-build-to-last__card-wrap">
+      <div class="hc-build-to-last__card-inner">
+        <div class="hc-build-to-last__card">
+          {%- if block.settings.card_title != blank -%}
+            <h4 class="hc-build-to-last__card-title">{{ block.settings.card_title }}</h4>
+          {%- endif -%}
+          <div class="hc-build-to-last__rows">
+            <div class="hc-build-to-last__row">
+              <div class="hc-build-to-last__row-header hc-build-to-last__row-header--muted">
+                <span>{{ block.settings.row_1_label | default: 'Cotton / Poly / Merino' }}</span>
+                <span>{{ block.settings.row_1_value | default: '6 - 18 Months' }}</span>
+              </div>
+              <div class="hc-build-to-last__bar-track">
+                <div class="hc-build-to-last__bar-fill hc-build-to-last__bar-fill--muted" style="width: {{ block.settings.row_1_bar_width | default: 15 }}%;"></div>
+              </div>
+            </div>
+            <div class="hc-build-to-last__row">
+              <div class="hc-build-to-last__row-header hc-build-to-last__row-header--accent">
+                <span>{{ block.settings.row_2_label | default: 'HercLéon' }}</span>
+                <span>{{ block.settings.row_2_value | default: 'Up To 10 Years' }}</span>
+              </div>
+              <div class="hc-build-to-last__bar-track">
+                <div class="hc-build-to-last__bar-fill hc-build-to-last__bar-fill--accent" style="width: {{ block.settings.row_2_bar_width | default: 100 }}%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="hc-build-to-last__footer">
+            {%- if block.settings.footer_number != blank -%}
+              <span class="hc-build-to-last__footer-number">{{ block.settings.footer_number }}</span>
+            {%- endif -%}
+            {%- if block.settings.footer_label != blank -%}
+              <span class="hc-build-to-last__footer-label">{{ block.settings.footer_label }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

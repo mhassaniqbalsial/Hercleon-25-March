@@ -1,0 +1,238 @@
+{% comment %}
+  HC of Wen Story Section
+  Class prefix: hc-of-wen-story
+{% endcomment %}
+
+{% style %}
+  .hc-of-wen-story {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+{% endstyle %}
+
+<div class="hc-of-wen-story">
+  <div class="hc-of-wen-story__inner">
+    <div class="hc-of-wen-story__content">
+      {% if section.settings.image != blank %}
+        <div class="hc-of-wen-story__image-wrap">
+          <div class="hc-of-wen-story__image-box">
+            {{
+              section.settings.image
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                alt: section.settings.image_alt | default: section.settings.heading,
+                class: 'hc-of-wen-story__image'
+            }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="hc-of-wen-story__heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="hc-of-wen-story__subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="hc-of-wen-story__description">{{ section.settings.description }}</p>
+      {% endif %}
+
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="hc-of-wen-story__button">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .hc-of-wen-story {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .hc-of-wen-story {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  .hc-of-wen-story__inner {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .hc-of-wen-story__content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  .hc-of-wen-story__image-wrap {
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+  }
+  .hc-of-wen-story__image-box {
+    width: 16rem;
+    height: 16rem;
+    border-radius: 50%;
+    overflow: hidden;
+    filter: grayscale(1) contrast(1.25);
+    border: 1px solid #e5e7eb;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  }
+  @media (min-width: 768px) {
+    .hc-of-wen-story__image-box {
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+  .hc-of-wen-story__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hc-of-wen-story__heading {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    color: #111827;
+  }
+
+  @media (min-width: 768px) {
+    .hc-of-wen-story__heading {
+      font-size: 4.5rem;
+    }
+  }
+
+  .hc-of-wen-story__subheading {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 2rem;
+}
+
+  .hc-of-wen-story__description {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.25;
+    color: #4b5563;
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .hc-of-wen-story__description {
+      font-size: 2.25rem;
+    }
+  }
+  .hc-of-wen-story__button {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #000;
+    padding-bottom: 0.25rem;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    color: #111827;
+  }
+  .hc-of-wen-story__button:hover {
+    color: #b45309;
+    border-bottom-color: #b45309;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC OF Wen Story",
+  "tag": "section",
+  "class": "section-hc-of-wen-story",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hi, I'm Wen."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Founder & Chief Textile Engineer"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "I created HercLeón to remove the biggest limitation clothing has ever had: odor."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Read My Story ↓"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Mobile (px)"
+    },
+    {
+      "type": "number",
+      "id": "padding_top_mobile",
+      "label": "Padding top mobile (px)",
+      "default": 128
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom mobile (px)",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OF Wen Story"
+    }
+  ]
+}
+{% endschema %}

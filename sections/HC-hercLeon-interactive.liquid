@@ -1,0 +1,1797 @@
+{% comment %}
+  HercLéon Benefits Section - Why People Love Smell-Proof
+  Interactive benefits with dynamic content on hover/click
+  Uses Shopify blocks and settings for full customization
+{% endcomment %}
+
+<section class="hc-people-love-section" style="background-color: {{ section.settings.section_bg }}; border-bottom: {{ section.settings.border_width }}px solid {{ section.settings.border_color }};">
+  <div class="page-width">
+    
+    {%- comment -%} Section Header {%- endcomment -%}
+    <div class="hc-people-love-header">
+      {%- if section.settings.section_label != blank -%}
+        <span class="hc-people-love-label" style="color: {{ section.settings.accent_color }};">{{ section.settings.section_label }}</span>
+      {%- endif -%}
+      {%- if section.settings.section_title != blank -%}
+        <h2 class="hc-people-love-title">{{ section.settings.section_title }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Main Grid Layout {%- endcomment -%}
+    <div class="hc-people-love-grid">
+      
+      {%- comment -%} Left Side - Benefits List {%- endcomment -%}
+      <div class="hc-people-love-benefits">
+        
+        {%- for block in section.blocks -%}
+          <div class="hc-people-love-benefit {% if forloop.first %}hc-people-love-benefit-active{% endif %}" 
+               data-benefit="{{ block.id }}" 
+               {{ block.shopify_attributes }}>
+            <div class="hc-people-love-benefit-header">
+              <h3 class="hc-people-love-benefit-title">{{ block.settings.benefit_title }}</h3>
+              <span class="hc-people-love-benefit-number" style="color: {{ section.settings.accent_color }};">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            </div>
+            <p class="hc-people-love-benefit-description">{{ block.settings.benefit_subtitle }}</p>
+          </div>
+        {%- endfor -%}
+
+      </div>
+
+      {%- comment -%} Right Side - Dynamic Content Box {%- endcomment -%}
+      <div class="hc-people-love-display" style="border: {{ section.settings.border_width }}px solid {{ section.settings.border_color }};">
+        
+        {%- for block in section.blocks -%}
+          
+          {%- comment -%} Content Type: Baggage Comparison {%- endcomment -%}
+          {%- if block.settings.content_type == 'baggage' -%}
+            <div class="hc-people-love-content {% if forloop.first %}hc-people-love-content-active{% endif %}" data-content="{{ block.id }}">
+              <div class="hc-people-love-baggage-box">
+                <p class="hc-people-love-baggage-label">{{ block.settings.baggage_label }}</p>
+                
+                <div class="hc-people-love-baggage-standard">
+                  <div class="hc-people-love-baggage-info">
+                    <span>{{ block.settings.standard_label }}</span>
+                    <span>{{ block.settings.standard_weight }}</span>
+                  </div>
+                  <div class="hc-people-love-baggage-items">
+                    {%- for i in (1..block.settings.standard_items) -%}
+                      <div class="hc-people-love-baggage-item"></div>
+                    {%- endfor -%}
+                  </div>
+                </div>
+
+                <div class="hc-people-love-baggage-hercleon">
+                  <div class="hc-people-love-baggage-info">
+                    <span>{{ block.settings.herc_label }}</span>
+                    <span>{{ block.settings.herc_weight }}</span>
+                  </div>
+                  <div class="hc-people-love-baggage-items">
+                    <div class="hc-people-love-baggage-item-herc" style="background-color: {{ section.settings.accent_color }};"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hc-people-love-text-center">
+                <p class="hc-people-love-display-title">{{ block.settings.display_title }}</p>
+                <p class="hc-people-love-display-description">{{ block.settings.display_description }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Content Type: Micron Count {%- endcomment -%}
+          {%- if block.settings.content_type == 'micron' -%}
+            <div class="hc-people-love-content {% if forloop.first %}hc-people-love-content-active{% endif %}" data-content="{{ block.id }}">
+              <div class="hc-people-love-micron-box">
+                <span class="hc-people-love-micron-label">{{ block.settings.micron_label }}</span>
+                
+                <div class="hc-people-love-micron-bars">
+                  {%- if block.settings.show_cotton -%}
+                    <div class="hc-people-love-micron-item">
+                      <div class="hc-people-love-micron-header">
+                        <span class="hc-people-love-micron-name">Cotton</span>
+                        <span class="hc-people-love-micron-value">20μm</span>
+                      </div>
+                      <div class="hc-people-love-micron-bar">
+                        <div class="hc-people-love-micron-fill" style="width: 20%; background-color: #d1d5db;"></div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                  {%- if block.settings.show_merino -%}
+                    <div class="hc-people-love-micron-item">
+                      <div class="hc-people-love-micron-header">
+                        <span class="hc-people-love-micron-name">Merino Wool</span>
+                        <span class="hc-people-love-micron-value">18μm</span>
+                      </div>
+                      <div class="hc-people-love-micron-bar">
+                        <div class="hc-people-love-micron-fill" style="width: 18%; background-color: #9ca3af;"></div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                  {%- if block.settings.show_cashmere -%}
+                    <div class="hc-people-love-micron-item">
+                      <div class="hc-people-love-micron-header">
+                        <span class="hc-people-love-micron-name">Cashmere</span>
+                        <span class="hc-people-love-micron-value">15μm</span>
+                      </div>
+                      <div class="hc-people-love-micron-bar">
+                        <div class="hc-people-love-micron-fill" style="width: 15%; background-color: #6b7280;"></div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                  {%- if block.settings.show_silk -%}
+                    <div class="hc-people-love-micron-item">
+                      <div class="hc-people-love-micron-header">
+                        <span class="hc-people-love-micron-name">Silk</span>
+                        <span class="hc-people-love-micron-value">12μm</span>
+                      </div>
+                      <div class="hc-people-love-micron-bar">
+                        <div class="hc-people-love-micron-fill" style="width: 12%; background-color: #4b5563;"></div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                  <div class="hc-people-love-micron-item">
+                    <div class="hc-people-love-micron-header">
+                      <span class="hc-people-love-micron-name hc-people-love-micron-herc">{{ block.settings.herc_name }}</span>
+                      <span class="hc-people-love-micron-value">10μm</span>
+                    </div>
+                    <div class="hc-people-love-micron-bar">
+                      <div class="hc-people-love-micron-fill" style="width: 10%; background-color: {{ section.settings.accent_color }};"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hc-people-love-text-center">
+                <p class="hc-people-love-display-title">{{ block.settings.display_title }}</p>
+                <p class="hc-people-love-display-description">{{ block.settings.display_description }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Content Type: Stats Grid {%- endcomment -%}
+          {%- if block.settings.content_type == 'stats' -%}
+            <div class="hc-people-love-content {% if forloop.first %}hc-people-love-content-active{% endif %}" data-content="{{ block.id }}">
+              <div class="hc-people-love-stats-grid">
+                {%- if block.settings.stat_1_value != blank -%}
+                  <div class="hc-people-love-stat-box">
+                    <p class="hc-people-love-stat-number">{{ block.settings.stat_1_value }}</p>
+                    <p class="hc-people-love-stat-label {% if block.settings.stat_1_highlight %}hc-people-love-stat-label-orange{% endif %}" 
+                       {% if block.settings.stat_1_highlight %}style="color: {{ section.settings.accent_color }};"{% endif %}>
+                      {{ block.settings.stat_1_label }}
+                    </p>
+                  </div>
+                {%- endif -%}
+                
+                {%- if block.settings.stat_2_value != blank -%}
+                  <div class="hc-people-love-stat-box">
+                    <p class="hc-people-love-stat-number">{{ block.settings.stat_2_value }}</p>
+                    <p class="hc-people-love-stat-label {% if block.settings.stat_2_highlight %}hc-people-love-stat-label-orange{% endif %}"
+                       {% if block.settings.stat_2_highlight %}style="color: {{ section.settings.accent_color }};"{% endif %}>
+                      {{ block.settings.stat_2_label }}
+                    </p>
+                  </div>
+                {%- endif -%}
+                
+                {%- if block.settings.stat_3_value != blank -%}
+                  <div class="hc-people-love-stat-box">
+                    <p class="hc-people-love-stat-number">{{ block.settings.stat_3_value }}</p>
+                    <p class="hc-people-love-stat-label {% if block.settings.stat_3_highlight %}hc-people-love-stat-label-orange{% endif %}"
+                       {% if block.settings.stat_3_highlight %}style="color: {{ section.settings.accent_color }};"{% endif %}>
+                      {{ block.settings.stat_3_label }}
+                    </p>
+                  </div>
+                {%- endif -%}
+                
+                {%- if block.settings.stat_4_value != blank -%}
+                  <div class="hc-people-love-stat-box">
+                    <p class="hc-people-love-stat-number">{{ block.settings.stat_4_value }}</p>
+                    <p class="hc-people-love-stat-label {% if block.settings.stat_4_highlight %}hc-people-love-stat-label-orange{% endif %}"
+                       {% if block.settings.stat_4_highlight %}style="color: {{ section.settings.accent_color }};"{% endif %}>
+                      {{ block.settings.stat_4_label }}
+                    </p>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="hc-people-love-text-center">
+                <p class="hc-people-love-display-title">{{ block.settings.display_title }}</p>
+                <p class="hc-people-love-display-description">{{ block.settings.display_description }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Content Type: Timeline {%- endcomment -%}
+          {%- if block.settings.content_type == 'timeline' -%}
+            <div class="hc-people-love-content {% if forloop.first %}hc-people-love-content-active{% endif %}" data-content="{{ block.id }}">
+              <div class="hc-people-love-timeline">
+                {%- if block.settings.timeline_1_time != blank -%}
+                  <div class="hc-people-love-timeline-item">
+                    <div class="hc-people-love-timeline-icon" style="background-color: {{ section.settings.accent_color }};">
+                      <svg class="hc-people-love-timeline-check" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                    <span class="hc-people-love-timeline-time">{{ block.settings.timeline_1_time }}</span>
+                    <span class="hc-people-love-timeline-text">{{ block.settings.timeline_1_text }}</span>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.timeline_2_time != blank -%}
+                  <div class="hc-people-love-timeline-item">
+                    <div class="hc-people-love-timeline-icon" style="background-color: {{ section.settings.accent_color }};">
+                      <svg class="hc-people-love-timeline-check" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                    <span class="hc-people-love-timeline-time">{{ block.settings.timeline_2_time }}</span>
+                    <span class="hc-people-love-timeline-text">{{ block.settings.timeline_2_text }}</span>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.timeline_3_time != blank -%}
+                  <div class="hc-people-love-timeline-item">
+                    <div class="hc-people-love-timeline-icon" style="background-color: {{ section.settings.accent_color }};">
+                      <svg class="hc-people-love-timeline-check" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                    <span class="hc-people-love-timeline-time">{{ block.settings.timeline_3_time }}</span>
+                    <span class="hc-people-love-timeline-text">{{ block.settings.timeline_3_text }}</span>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.timeline_4_time != blank -%}
+                  <div class="hc-people-love-timeline-item">
+                    <div class="hc-people-love-timeline-icon" style="background-color: {{ section.settings.accent_color }};">
+                      <svg class="hc-people-love-timeline-check" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                    <span class="hc-people-love-timeline-time">{{ block.settings.timeline_4_time }}</span>
+                    <span class="hc-people-love-timeline-text">{{ block.settings.timeline_4_text }}</span>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="hc-people-love-text-center">
+                <p class="hc-people-love-display-title">{{ block.settings.display_title }}</p>
+                <p class="hc-people-love-display-description">{{ block.settings.display_description }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Content Type: Comparison {%- endcomment -%}
+          {%- if block.settings.content_type == 'comparison' -%}
+            <div class="hc-people-love-content {% if forloop.first %}hc-people-love-content-active{% endif %}" data-content="{{ block.id }}">
+              <div class="hc-people-love-chores-grid">
+                <div class="hc-people-love-chores-standard">
+                  <p class="hc-people-love-chores-title">{{ block.settings.standard_title }}</p>
+                  <ul class="hc-people-love-chores-list">
+                    {%- if block.settings.standard_item_1 != blank -%}<li>{{ block.settings.standard_item_1 }}</li>{%- endif -%}
+                    {%- if block.settings.standard_item_2 != blank -%}<li>{{ block.settings.standard_item_2 }}</li>{%- endif -%}
+                    {%- if block.settings.standard_item_3 != blank -%}<li>{{ block.settings.standard_item_3 }}</li>{%- endif -%}
+                    {%- if block.settings.standard_item_4 != blank -%}<li>{{ block.settings.standard_item_4 }}</li>{%- endif -%}
+                    {%- if block.settings.standard_item_5 != blank -%}<li>{{ block.settings.standard_item_5 }}</li>{%- endif -%}
+                    {%- if block.settings.standard_item_6 != blank -%}<li>{{ block.settings.standard_item_6 }}</li>{%- endif -%}
+                  </ul>
+                </div>
+
+                <div class="hc-people-love-chores-herc" style="background-color: {{ section.settings.accent_color }};">
+                  <p class="hc-people-love-chores-title">{{ block.settings.herc_title }}</p>
+                  <div class="hc-people-love-chores-zero">
+                    <p class="hc-people-love-chores-zero-text">{{ block.settings.herc_text }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hc-people-love-text-center">
+                <p class="hc-people-love-display-title">{{ block.settings.display_title }}</p>
+                <p class="hc-people-love-display-description">{{ block.settings.display_description }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Content Type: Durability {%- endcomment -%}
+          {%- if block.settings.content_type == 'durability' -%}
+            <div class="hc-people-love-content {% if forloop.first %}hc-people-love-content-active{% endif %}" data-content="{{ block.id }}">
+              <div class="hc-people-love-durability-wrapper">
+                <p class="hc-people-love-durability-label" style="color: {{ section.settings.accent_color }};">{{ block.settings.durability_label }}</p>
+                <div class="hc-people-love-durability-grid">
+                  {%- if block.settings.durability_1_value != blank -%}
+                    <div class="hc-people-love-durability-box">
+                      <span class="hc-people-love-durability-number">{{ block.settings.durability_1_value }}</span>
+                      <span class="hc-people-love-durability-text">{{ block.settings.durability_1_label }}</span>
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.durability_2_value != blank -%}
+                    <div class="hc-people-love-durability-box">
+                      <span class="hc-people-love-durability-number">{{ block.settings.durability_2_value }}</span>
+                      <span class="hc-people-love-durability-text">{{ block.settings.durability_2_label }}</span>
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.durability_3_value != blank -%}
+                    <div class="hc-people-love-durability-box">
+                      <span class="hc-people-love-durability-number">{{ block.settings.durability_3_value }}</span>
+                      <span class="hc-people-love-durability-text">{{ block.settings.durability_3_label }}</span>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              <div class="hc-people-love-text-center">
+                <p class="hc-people-love-display-title">{{ block.settings.display_title }}</p>
+                <p class="hc-people-love-display-description">{{ block.settings.display_description }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Content Type: Antibacterial Table {%- endcomment -%}
+          {%- if block.settings.content_type == 'table' -%}
+            <div class="hc-people-love-content {% if forloop.first %}hc-people-love-content-active{% endif %}" data-content="{{ block.id }}">
+              <div class="hc-people-love-table-wrapper">
+                <table class="hc-people-love-table">
+                  <thead>
+                    <tr class="hc-people-love-table-head-row">
+                      <th class="hc-people-love-table-th">Material</th>
+                      <th class="hc-people-love-table-th hc-people-love-table-hide-mobile">Mechanism</th>
+                      <th class="hc-people-love-table-th">Reduction</th>
+                      <th class="hc-people-love-table-th hc-people-love-table-align-right">Speed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%- if block.settings.show_polyester -%}
+                      <tr class="hc-people-love-table-row">
+                        <td class="hc-people-love-table-td hc-people-love-table-bold">Polyester</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-hide-mobile">No antibacterial abilities</td>
+                        <td class="hc-people-love-table-td">0%</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-align-right">☆☆☆☆☆</td>
+                      </tr>
+                    {%- endif -%}
+
+                    {%- if block.settings.show_cotton -%}
+                      <tr class="hc-people-love-table-row">
+                        <td class="hc-people-love-table-td hc-people-love-table-bold">Cotton</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-hide-mobile">Minimize moisture availability</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-white">5%</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-align-right">★☆☆☆☆</td>
+                      </tr>
+                    {%- endif -%}
+
+                    {%- if block.settings.show_merino -%}
+                      <tr class="hc-people-love-table-row hc-people-love-table-row-white">
+                        <td class="hc-people-love-table-td hc-people-love-table-bold">Merino Wool</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-hide-mobile hc-people-love-table-gray">Resists but doesn't kill</td>
+                        <td class="hc-people-love-table-td">30%</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-align-right hc-people-love-table-orange" style="color: {{ section.settings.accent_color }};">★☆☆☆☆</td>
+                      </tr>
+                    {%- endif -%}
+
+                    {%- if block.settings.show_silver -%}
+                      <tr class="hc-people-love-table-row hc-people-love-table-row-white">
+                        <td class="hc-people-love-table-td hc-people-love-table-bold">Silver-Infused</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-hide-mobile hc-people-love-table-gray">Ions kill on contact</td>
+                        <td class="hc-people-love-table-td">99.9%</td>
+                        <td class="hc-people-love-table-td hc-people-love-table-align-right hc-people-love-table-orange" style="color: {{ section.settings.accent_color }};">★★★☆☆</td>
+                      </tr>
+                    {%- endif -%}
+
+                    <tr class="hc-people-love-table-row hc-people-love-table-row-herc">
+                      <td class="hc-people-love-table-td hc-people-love-table-bold hc-people-love-table-orange" style="color: {{ section.settings.accent_color }};">{{ block.settings.herc_name }}</td>
+                      <td class="hc-people-love-table-td hc-people-love-table-hide-mobile hc-people-love-table-opacity">Multi-mineral matrix</td>
+                      <td class="hc-people-love-table-td hc-people-love-table-bold">99.9%</td>
+                      <td class="hc-people-love-table-td hc-people-love-table-align-right hc-people-love-table-orange" style="color: {{ section.settings.accent_color }};">★★★★★</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="hc-people-love-text-center">
+                <p class="hc-people-love-display-title">{{ block.settings.display_title }}</p>
+                <p class="hc-people-love-display-description">{{ block.settings.display_description }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+        {%- endfor -%}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* Base Section Styles */
+.hc-people-love-section { 
+  padding-top: 96px;    
+  padding-bottom: 96px;
+}
+
+/* Header */
+.hc-people-love-header {
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.hc-people-love-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.hc-people-love-title {
+  font-size: 48px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Main Grid */
+.hc-people-love-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 48px;
+  align-items: start;
+}
+
+/* Benefits List */
+.hc-people-love-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hc-people-love-benefit {
+  padding: 24px 32px;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  background-color: #fff;
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+
+.hc-people-love-benefit:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.hc-people-love-benefit-active {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hc-people-love-benefit-active h3.hc-people-love-benefit-title {
+  color: #fff;
+}
+
+.hc-people-love-benefit-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hc-people-love-benefit-title {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.hc-people-love-benefit-number {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hc-people-love-benefit:hover .hc-people-love-benefit-number,
+.hc-people-love-benefit-active .hc-people-love-benefit-number {
+  opacity: 1;
+}
+
+.hc-people-love-benefit-description {
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 448px;
+  margin: 0;
+  display: none;
+}
+
+.hc-people-love-benefit-active .hc-people-love-benefit-description {
+  display: block;
+  color: #9ca3af;
+}
+
+/* Display Box */
+.hc-people-love-display {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hc-people-love-content {
+  display: none;
+  width: 100%;
+}
+
+.hc-people-love-content-active {
+  display: block;
+}
+
+.hc-people-love-text-center {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.hc-people-love-display-title {
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hc-people-love-display-description {
+  color: #4b5563;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 448px;
+  margin: 0 auto;
+}
+
+/* Content - Baggage */
+.hc-people-love-baggage-box {
+  background-color: #f9fafb;
+  padding: 32px;
+  color: #000;
+  border: 1px solid #000;
+  max-width: 448px;
+  margin: 0 auto;
+}
+
+.hc-people-love-baggage-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  display: block;
+}
+
+.hc-people-love-baggage-standard {
+  opacity: 0.5;
+  filter: grayscale(100%);
+  margin-bottom: 24px;
+}
+
+.hc-people-love-baggage-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hc-people-love-baggage-items {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.hc-people-love-baggage-item {
+    width: 24px;
+    height: 32px;
+    border: 1px solid #000;
+    background-color: #fff;
+    display: block !important;
+}
+
+.hc-people-love-baggage-hercleon .hc-people-love-baggage-info {
+  font-weight: 700;
+}
+
+.hc-people-love-baggage-item-herc {
+    width: 24px;
+    height: 32px;
+    display: block !important;
+}
+
+/* Content - Micron */
+.hc-people-love-micron-box {
+  background-color: #fff;
+  color: #000;
+  padding: 32px;
+  border: 1px solid #000;
+  width: 100%;
+  max-width: 672px;
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.hc-people-love-micron-label {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 32px;
+  display: block;
+  color: #9ca3af;
+}
+
+.hc-people-love-micron-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hc-people-love-micron-item {
+  position: relative;
+}
+
+.hc-people-love-micron-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  width: 100%;
+  gap: 32px;
+  font-size: 14px;
+}
+
+.hc-people-love-micron-name {
+  color: #6b7280;
+}
+
+.hc-people-love-micron-herc {
+  font-size: 20px;
+}
+
+.hc-people-love-micron-bar {
+  height: 24px;
+  background-color: #f3f4f6;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hc-people-love-micron-fill {
+  height: 100%;
+  display: block !important;
+}
+
+/* Content - Stats */
+.hc-people-love-stats-grid {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  background-color: #000;
+}
+
+.hc-people-love-stat-box {
+  text-align: center;
+  padding: 24px 12px;
+  border: 1px solid #374151;
+  background-color: #fff;
+  color: #000;
+}
+
+.hc-people-love-stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.025em;
+}
+
+.hc-people-love-stat-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.hc-people-love-stat-label-orange {
+  color: #B45309;
+}
+
+/* Content - Timeline */
+.hc-people-love-timeline {
+  position: relative;
+  border-left: 2px solid #000;
+  padding-left: 32px;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  color: #000;
+}
+
+.hc-people-love-timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.hc-people-love-timeline-icon {
+  position: absolute;
+  left: -41px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hc-people-love-timeline-check {
+  width: 12px;
+  height: 12px;
+  color: #fff;
+} 
+
+.hc-people-love-timeline-time {
+  font-size: 12px;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.hc-people-love-timeline-text {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+/* Content - Comparison/Chores */
+.hc-people-love-chores-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hc-people-love-chores-standard {
+    background-color: #f3f4f6;
+    padding: 1.5rem;
+    opacity: 0.6;
+    color: #000;
+}
+
+.hc-people-love-chores-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 8px;
+}
+
+.hc-people-love-chores-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.hc-people-love-chores-herc {
+    padding: 1.5rem;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hc-people-love-chores-herc .hc-people-love-chores-title {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.hc-people-love-chores-zero {
+  padding: 16px 0;
+  margin: auto 0;
+}
+
+.hc-people-love-chores-zero-text {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+}
+
+/* Content - Durability */
+.hc-people-love-durability-wrapper {
+  width: 100%;
+}
+
+.hc-people-love-durability-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.hc-people-love-durability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hc-people-love-durability-box {
+  border: 1px solid #000;
+  padding: 16px;
+  text-align: center;
+}
+
+.hc-people-love-durability-number {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.hc-people-love-durability-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #6b7280;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .hc-people-love-title {
+    font-size: 72px;
+  }
+
+  .hc-people-love-benefit {
+    padding: 32px;
+  }
+
+  .hc-people-love-benefit-title {
+    font-size: 24px;
+  }
+
+  .hc-people-love-stat-number {
+    font-size: 40px;
+  }
+
+  .hc-people-love-timeline-text {
+    font-size: 18px;
+  }
+
+  .hc-people-love-chores-zero-text {
+    font-size: 2.25rem;
+}
+
+  .hc-people-love-durability-number {
+    font-size: 24px;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .hc-people-love-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 96px;
+  }
+
+  .hc-people-love-display {
+    position: sticky;
+    top: 128px;
+  }
+}
+
+/* Mobile Specific */
+@media (max-width: 767px) {
+  .hc-people-love-micron-header {
+    font-size: 12px;
+  }
+
+  .hc-people-love-stat-number {
+    font-size: 32px;
+  }
+}
+
+/* Content - Antibacterial Table */
+.hc-people-love-table-wrapper {
+  padding: 32px;
+  border: 1px solid #374151;
+  overflow-x: auto;
+  background-color: #000;
+  color: #fff;
+}
+
+.hc-people-love-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.hc-people-love-table-head-row {
+  border-bottom: 1px solid #374151;
+  color: #9ca3af;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.hc-people-love-table-th {
+  padding: 8px 16px 8px 0;
+}
+
+.hc-people-love-table-align-right {
+  text-align: right;
+}
+
+.hc-people-love-table-row {
+  border-bottom: 1px solid #1f2937;
+  color: #6b7280;
+}
+
+.hc-people-love-table-row-white {
+  color: #fff;
+}
+
+.hc-people-love-table-row-herc {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.hc-people-love-table-td {
+  padding: 12px 16px 12px 0;
+}
+
+.hc-people-love-table-bold {
+  font-weight: 700;
+}
+
+.hc-people-love-table-white {
+  color: #fff;
+}
+
+.hc-people-love-table-gray {
+  color: #9ca3af;
+}
+
+.hc-people-love-table-orange {
+  color: #B45309;
+}
+
+.hc-people-love-table-opacity {
+  opacity: 0.7;
+}
+
+.hc-people-love-table-hide-mobile {
+  display: none;
+}
+
+/* Tablet and Desktop - Show mechanism column */
+@media (min-width: 768px) {
+  .hc-people-love-table {
+    font-size: 14px;
+  }
+  
+  .hc-people-love-table-hide-mobile {
+    display: table-cell;
+  }
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const benefits = document.querySelectorAll('.hc-people-love-benefit');
+  const contents = document.querySelectorAll('.hc-people-love-content');
+  
+  function isMobile() {
+    return window.innerWidth < 1024;
+  }
+  
+  benefits.forEach(benefit => {
+    const eventType = isMobile() ? 'click' : 'mouseenter';
+    
+    benefit.addEventListener(eventType, function() {
+      const benefitId = this.getAttribute('data-benefit');
+      
+      benefits.forEach(b => b.classList.remove('hc-people-love-benefit-active'));
+      this.classList.add('hc-people-love-benefit-active');
+      
+      contents.forEach(c => c.classList.remove('hc-people-love-content-active'));
+      
+      const activeContent = document.querySelector(`[data-content="${benefitId}"]`);
+      if (activeContent) {
+        activeContent.classList.add('hc-people-love-content-active');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "HercLeon Interactive",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "The Problem & The Solution"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Why People Love Smell-Proof"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Background Color",
+      "default": "#F8F8F8"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#B45309"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 1,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit_baggage",
+      "name": "Baggage Comparison",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Benefit Tab"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "Leave Baggage Behind"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Benefit Subtitle",
+          "default": "Pack lighter. Move freer."
+        },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Content Type",
+          "options": [
+            { "value": "baggage", "label": "Baggage Comparison" }
+          ],
+          "default": "baggage"
+        },
+        {
+          "type": "header",
+          "content": "Baggage Content"
+        },
+        {
+          "type": "text",
+          "id": "baggage_label",
+          "label": "Trip Label",
+          "default": "2 Weeks Long Trip"
+        },
+        {
+          "type": "text",
+          "id": "standard_label",
+          "label": "Standard Label",
+          "default": "Standard Tourist"
+        },
+        {
+          "type": "text",
+          "id": "standard_weight",
+          "label": "Standard Weight",
+          "default": "~3.5kg Load"
+        },
+        {
+          "type": "range",
+          "id": "standard_items",
+          "label": "Number of Items",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "text",
+          "id": "herc_label",
+          "label": "HercLéon Label",
+          "default": "HercLéon Operative"
+        },
+        {
+          "type": "text",
+          "id": "herc_weight",
+          "label": "HercLéon Weight",
+          "default": "~0.1kg Load"
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display Title",
+          "default": "Pack lighter. Move freer."
+        },
+        {
+          "type": "textarea",
+          "id": "display_description",
+          "label": "Display Description",
+          "default": "Traditional clothing takes up space. HercLéon gear is made to reduce how much you carry."
+        }
+      ]
+    },
+    {
+      "type": "benefit_micron",
+      "name": "Micron Count",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Benefit Tab"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "Gear You Won't Want To Take Off"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Benefit Subtitle",
+          "default": "What's the value of amazing gear if you don't love wearing it?"
+        },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Content Type",
+          "options": [
+            { "value": "micron", "label": "Micron Count" }
+          ],
+          "default": "micron"
+        },
+        {
+          "type": "header",
+          "content": "Micron Content"
+        },
+        {
+          "type": "text",
+          "id": "micron_label",
+          "label": "Micron Label",
+          "default": "Micron Count (Lower is Softer)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_cotton",
+          "label": "Show Cotton",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_merino",
+          "label": "Show Merino Wool",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_cashmere",
+          "label": "Show Cashmere",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_silk",
+          "label": "Show Silk",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "herc_name",
+          "label": "HercFiber Name",
+          "default": "HercFiber™"
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display Title",
+          "default": "What's the value of amazing gear if you don't love wearing it?"
+        },
+        {
+          "type": "textarea",
+          "id": "display_description",
+          "label": "Display Description",
+          "default": "HercLéon is not only smell-proof and anti-bacterial, it's also incredibly comfortable."
+        }
+      ]
+    },
+    {
+      "type": "benefit_stats",
+      "name": "Stats Grid",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Benefit Tab"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "Interact With More Confidence"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Benefit Subtitle",
+          "default": "Smell-proof means Sweat-Resistant"
+        },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Content Type",
+          "options": [
+            { "value": "stats", "label": "Stats Grid" }
+          ],
+          "default": "stats"
+        },
+        {
+          "type": "header",
+          "content": "Stat 1"
+        },
+        {
+          "type": "text",
+          "id": "stat_1_value",
+          "label": "Value",
+          "default": "300%"
+        },
+        {
+          "type": "text",
+          "id": "stat_1_label",
+          "label": "Label",
+          "default": "More Absorbent (Cotton)"
+        },
+        {
+          "type": "checkbox",
+          "id": "stat_1_highlight",
+          "label": "Highlight with accent color",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Stat 2"
+        },
+        {
+          "type": "text",
+          "id": "stat_2_value",
+          "label": "Value",
+          "default": "1000%"
+        },
+        {
+          "type": "text",
+          "id": "stat_2_label",
+          "label": "Label",
+          "default": "More Absorbent (Poly)"
+        },
+        {
+          "type": "checkbox",
+          "id": "stat_2_highlight",
+          "label": "Highlight with accent color",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Stat 3"
+        },
+        {
+          "type": "text",
+          "id": "stat_3_value",
+          "label": "Value",
+          "default": "130%"
+        },
+        {
+          "type": "text",
+          "id": "stat_3_label",
+          "label": "Label",
+          "default": "More Cooling (Cotton)"
+        },
+        {
+          "type": "checkbox",
+          "id": "stat_3_highlight",
+          "label": "Highlight with accent color",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Stat 4"
+        },
+        {
+          "type": "text",
+          "id": "stat_4_value",
+          "label": "Value",
+          "default": "200%"
+        },
+        {
+          "type": "text",
+          "id": "stat_4_label",
+          "label": "Label",
+          "default": "Faster Wicking (Poly)"
+        },
+        {
+          "type": "checkbox",
+          "id": "stat_4_highlight",
+          "label": "Highlight with accent color",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display Title",
+          "default": "Smell-proof means Sweat-Resistant"
+        },
+        {
+          "type": "textarea",
+          "id": "display_description",
+          "label": "Display Description",
+          "default": "Most odor starts with moisture. HercLéon fabrics wick moisture away quickly."
+        }
+      ]
+    },
+    {
+      "type": "benefit_timeline",
+      "name": "Timeline",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Benefit Tab"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "One Outfit, Many Situations"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Benefit Subtitle",
+          "default": "From flight to dinner in one move."
+        },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Content Type",
+          "options": [
+            { "value": "timeline", "label": "Timeline" }
+          ],
+          "default": "timeline"
+        },
+        {
+          "type": "header",
+          "content": "Timeline Item 1"
+        },
+        {
+          "type": "text",
+          "id": "timeline_1_time",
+          "label": "Time",
+          "default": "08:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_1_text",
+          "label": "Text",
+          "default": "International Flight"
+        },
+        {
+          "type": "header",
+          "content": "Timeline Item 2"
+        },
+        {
+          "type": "text",
+          "id": "timeline_2_time",
+          "label": "Time",
+          "default": "14:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_2_text",
+          "label": "Text",
+          "default": "Client Meeting"
+        },
+        {
+          "type": "header",
+          "content": "Timeline Item 3"
+        },
+        {
+          "type": "text",
+          "id": "timeline_3_time",
+          "label": "Time",
+          "default": "16:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_3_text",
+          "label": "Text",
+          "default": "Gym Session"
+        },
+        {
+          "type": "header",
+          "content": "Timeline Item 4"
+        },
+        {
+          "type": "text",
+          "id": "timeline_4_time",
+          "label": "Time",
+          "default": "19:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_4_text",
+          "label": "Text",
+          "default": "Dinner Date"
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display Title",
+          "default": "From flight to dinner in one move."
+        },
+        {
+          "type": "textarea",
+          "id": "display_description",
+          "label": "Display Description",
+          "default": "HercLéon adapts to wherever your day takes you."
+        }
+      ]
+    },
+    {
+      "type": "benefit_comparison",
+      "name": "Comparison",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Benefit Tab"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "Plan Adventures, Not Chores"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Benefit Subtitle",
+          "default": "Travel without the chore list."
+        },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Content Type",
+          "options": [
+            { "value": "comparison", "label": "Comparison" }
+          ],
+          "default": "comparison"
+        },
+        {
+          "type": "header",
+          "content": "Standard Side"
+        },
+        {
+          "type": "text",
+          "id": "standard_title",
+          "label": "Standard Title",
+          "default": "Standard Requirements"
+        },
+        {
+          "type": "text",
+          "id": "standard_item_1",
+          "label": "Item 1",
+          "default": "[ ] Laundry Machine"
+        },
+        {
+          "type": "text",
+          "id": "standard_item_2",
+          "label": "Item 2",
+          "default": "[ ] Detergent"
+        },
+        {
+          "type": "text",
+          "id": "standard_item_3",
+          "label": "Item 3",
+          "default": "[ ] Drying Rack"
+        },
+        {
+          "type": "text",
+          "id": "standard_item_4",
+          "label": "Item 4",
+          "default": "[ ] Iron / Steamer"
+        },
+        {
+          "type": "text",
+          "id": "standard_item_5",
+          "label": "Item 5",
+          "default": "[ ] Spare Coins"
+        },
+        {
+          "type": "text",
+          "id": "standard_item_6",
+          "label": "Item 6",
+          "default": "[ ] 2 Hours Wait"
+        },
+        {
+          "type": "header",
+          "content": "HercLéon Side"
+        },
+        {
+          "type": "text",
+          "id": "herc_title",
+          "label": "HercLéon Title",
+          "default": "HercLéon Requirements"
+        },
+        {
+          "type": "text",
+          "id": "herc_text",
+          "label": "HercLéon Text",
+          "default": "ZERO<br>CHORES",
+          "info": "Use <br> for line breaks"
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display Title",
+          "default": "Travel without the chore list."
+        },
+        {
+          "type": "textarea",
+          "id": "display_description",
+          "label": "Display Description",
+          "default": "Laundry shouldn't shape your travel plans."
+        }
+      ]
+    },
+    {
+      "type": "benefit_durability",
+      "name": "Durability",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Benefit Tab"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "Designed To Last A Decade"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Benefit Subtitle",
+          "default": "Durability that defies the industry."
+        },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Content Type",
+          "options": [
+            { "value": "durability", "label": "Durability" }
+          ],
+          "default": "durability"
+        },
+        {
+          "type": "header",
+          "content": "Durability Content"
+        },
+        {
+          "type": "text",
+          "id": "durability_label",
+          "label": "Label",
+          "default": "HercFiber™ is more durable than others by:"
+        },
+        {
+          "type": "text",
+          "id": "durability_1_value",
+          "label": "Comparison 1 Value",
+          "default": "1.9x"
+        },
+        {
+          "type": "text",
+          "id": "durability_1_label",
+          "label": "Comparison 1 Label",
+          "default": "Cotton"
+        },
+        {
+          "type": "text",
+          "id": "durability_2_value",
+          "label": "Comparison 2 Value",
+          "default": "2x"
+        },
+        {
+          "type": "text",
+          "id": "durability_2_label",
+          "label": "Comparison 2 Label",
+          "default": "Viscose"
+        },
+        {
+          "type": "text",
+          "id": "durability_3_value",
+          "label": "Comparison 3 Value",
+          "default": "3x"
+        },
+        {
+          "type": "text",
+          "id": "durability_3_label",
+          "label": "Comparison 3 Label",
+          "default": "Merino Wool"
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display Title",
+          "default": "Durability that defies the industry."
+        },
+        {
+          "type": "textarea",
+          "id": "display_description",
+          "label": "Display Description",
+          "default": "Standard clothing lasts 30 washes. HercFiber is engineered for the long haul."
+        }
+      ]
+    },
+    {
+      "type": "benefit_table",
+      "name": "Antibacterial Table",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Benefit Tab"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "Stay Fresh On The Road"
+        },
+        {
+          "type": "text",
+          "id": "benefit_subtitle",
+          "label": "Benefit Subtitle",
+          "default": "Clean travel is better travel."
+        },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Content Type",
+          "options": [
+            { "value": "table", "label": "Antibacterial Table" }
+          ],
+          "default": "table"
+        },
+        {
+          "type": "header",
+          "content": "Table Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_polyester",
+          "label": "Show Polyester",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_cotton",
+          "label": "Show Cotton",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_merino",
+          "label": "Show Merino Wool",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_silver",
+          "label": "Show Silver-Infused",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "herc_name",
+          "label": "HercFiber Name",
+          "default": "HercFiber™"
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display Title",
+          "default": "Clean travel is better travel."
+        },
+        {
+          "type": "textarea",
+          "id": "display_description",
+          "label": "Display Description",
+          "default": "HercFiber™ prevents bacteria from building up, helping garments stay fresh across long journeys."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HercLeon Interactive",
+      "blocks": [
+        {
+          "type": "benefit_baggage"
+        },
+        {
+          "type": "benefit_micron"
+        },
+        {
+          "type": "benefit_stats"
+        },
+        {
+          "type": "benefit_timeline"
+        },
+        {
+          "type": "benefit_comparison"
+        },
+        {
+          "type": "benefit_durability"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

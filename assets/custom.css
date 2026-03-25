@@ -1,0 +1,628 @@
+/* ##Homepage Start */
+
+/* #Featured-Collection Section Start */
+.hc-featured-collection .page-width--full {
+    padding: 0;
+}
+
+ .hc-featured-collection .product-grid {
+    gap: 0px;
+} 
+
+/* #Featured-Collection Section End */
+
+/* ##Homepage END */
+
+
+/* ##Science of smell Page start */
+
+.HC-science-smell-one-cu-class h5 { 
+    font-size: 0.75rem !important;
+    line-height: 1 !important;
+    font-weight: 700;
+    color: #b45309;
+}
+
+.HC-science-smell-one-cu-class h2 {
+    font-size: 3.75rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #050505;
+    margin-bottom: 20px;
+}
+
+.HC-science-smell-one-cu-class p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 300;
+    color: #4b5563;
+    margin: 0;
+}
+
+.HC-science-smell-one-max-width .rte.body.text-base {
+    margin: 0 auto;
+}
+
+
+@media (max-width: 425px) {
+
+    .HC-science-smell-one-cu-class h2 {
+        font-size: 2.25rem;
+    }
+
+    .HC-text-center p {
+        text-align: center;
+    }
+}
+
+/* ##Science of smell Page END */
+
+
+/* ##Our Founder Page Start */
+.hc-founder-page-first-section h2 {
+    font-size: 84px;
+    color: #111827;
+    font-weight: 700;
+    letter-spacing: -2.1px;
+    line-height: 1;
+    padding-bottom: 28px;
+}
+
+.hc-founder-page-first-section p.banner__subheading {
+    font-size: 10.5px;
+    color: #b45309;
+    letter-spacing: 2.1px;
+    line-height: 1.3;
+    padding-bottom: 28px;
+}
+
+.hc-founder-page-first-section .rte.body.text-base.leading-normal {
+    font-size: 31.5px;
+    color: #4b5563;
+    font-weight: 300;
+    line-height: 1.1;
+    padding-bottom: 56px;
+    max-width: 780px;
+    text-align: center;
+}
+
+.hc-founder-page-first-section span.link-text {
+    font-size: 10.5px;
+    color: #111827;
+    letter-spacing: 2.1px;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+.hc-founder-page-first-section a {
+    color: #111827;
+}
+
+.hc-founder-page-second-section p.banner__subheading {
+    font-size: 10.5px;
+    color: #b45309;
+    letter-spacing: 2.1px;
+    line-height: 1.3;
+    padding-bottom: 21px;
+}
+
+.hc-founder-page-second-section h2 {
+    font-size: 42px;
+    line-height: 1;
+    color: #111827;
+    padding-bottom: 28px;
+}
+
+.hc-founder-page-second-section .rte.body.text-base {
+    font-size: 15.75px;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
+
+.hc-founder-page-second-section img {
+    filter: grayscale(100%) contrast(1.25);
+    transition: filter 0.3s ease;
+}
+
+.hc-founder-page-third-section .section-content {
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+.hc-founder-page-third-section h2 {
+    font-size: 4.5rem;
+    line-height: 1.2;
+    padding-bottom: 2rem;
+    color: #fff;
+    max-width: 730px;
+    margin: 0 auto;
+}
+
+.hc-founder-page-third-section p.banner__subheading.heading {
+    font-size: 0.875rem;
+    line-height: 1.2;
+    padding-bottom: 4rem;
+    color: #b45309;
+    letter-spacing: 0.1em;
+}
+
+.hc-founder-page-third-section .rte.body.text-base {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #9ca3af;
+}
+
+.hc-founder-page-forth-section .column__icon.with-svg svg {
+    fill: transparent;
+}
+
+.hc-founder-page-forth-section .column__icon.with-svg {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.hc-founder-page-forth-section .column__icon.with-svg svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.hc-founder-page-forth-section .title-wrapper {
+    margin-bottom: 0px;
+}
+
+.hc-founder-page-forth-section .title-wrapper h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 6rem;
+}
+
+.hc-founder-page-forth-section p.column__title {
+    font-size: 21px;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.hc-founder-page-forth-section .column__text.rte p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    padding-top: 10px;
+}
+
+.hc-founder-page-forth-section .column:hover .column__icon {
+    background: #000;
+    color: #fff;
+}
+
+
+.hc-founder-page-forth-section .text-with-icons .column {
+    padding: 0;
+}
+
+.hc-founder-page-fifth-section h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+    max-width: 472px;
+}
+
+.hc-founder-page-fifth-section .rte.body p {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+
+.hc-founder-page-sixth-section img {
+    filter: grayscale(100%) contrast(1.25);
+    transition: filter .3s ease;
+}
+
+.hc-founder-page-sixth-section h2 {
+    font-size: 3.75rem;
+    margin-bottom: 42px;
+}
+
+.hc-founder-page-sixth-section h2 {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}  
+
+.hc-founder-page-sixth-section .rte.body.text-base.leading-normal {
+    text-align: center;
+    max-width: 50rem;
+    margin-bottom: 56px;
+}
+
+.hc-founder-page-sixth-section .rte.body.text-base.leading-normal p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.hc-founder-page-seventh-section h2 {
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 700;
+    color: #111827;
+    max-width: 1200px;
+}
+
+.hc-founder-page-seventh-section p.banner__subheading.heading {
+    font-size: 12.25px;
+    line-height: 1.25;
+    padding-bottom: 56px;
+    color: #b45309;
+    letter-spacing: 2.45px;
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+    .hc-founder-page-first-section h2 {
+        font-size: 63px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .hc-founder-page-first-section h2 {
+        font-size: 42px;
+    }
+
+    .hc-founder-page-first-section .rte.body.text-base.leading-normal {
+        max-width: 670px;
+        font-size: 21px;
+        line-height: 1.2;
+    }
+
+    .hc-founder-page-second-section h2 {
+        font-size: 31.5px;
+        line-height: 1.25;
+        max-width: 320px;
+    }
+
+    .hc-founder-page-third-section h2 {
+        font-size: 2.25rem;
+    }
+
+
+    .hc-founder-page-forth-section .title-wrapper h2 {
+        font-size: 1.875rem;
+    }
+
+    .hc-founder-page-fifth-section .group-block__content.w-full.h-full.relative.flex.flex-col.md\:flex-row.justify-center.md\:justify-start.items-start.md\:items-center.flex-nowrap.spacing-style {
+        flex-direction: column-reverse;
+    }
+
+
+    .hc-founder-page-fifth-section h2 {
+        font-size: 2.25rem;
+    }
+
+    .hc-founder-page-sixth-section h2 {
+        font-size: 2.25rem;
+    }
+
+    .hc-founder-page-seventh-section h2 {
+        font-size: 26.25px;
+    }
+}
+
+/* #Image block Start */
+
+/* Image wrapper with text */
+.hc-image-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+/* Image text at bottom left */
+.hc-image-text {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    z-index: 2;
+    background-color: #ffffff;
+    padding: 7px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #111827;
+    line-height: 1.3;
+    letter-spacing: 1px;
+}
+
+@media screen and (max-width: 749px) {
+    .hc-image-text {
+        bottom: 15px;
+        left: 15px;
+        font-size: 9px;
+        padding: 6px 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hc-image-text {
+        bottom: 12px;
+        left: 12px;
+        font-size: 8px;
+        padding: 5px 10px;
+    }
+}
+
+/* #Image block End */
+
+/* #Multicolumn with Icons Start */
+.text-with-icons.block.lg\:grid {
+    gap: var(--desktop-gap, 24px);
+}
+
+@media screen and (max-width: 1024px) {
+    .text-with-icons.mobile-column-layout {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: var(--column-gap, 24px);
+        overflow: visible !important;
+        scroll-snap-type: none !important;
+    }
+
+    .text-with-icons.mobile-column-layout .column {
+        width: 100% !important;
+        flex-shrink: 1 !important;
+        scroll-snap-align: none !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .text-with-icons.mobile-column-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: var(--column-gap, 24px);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .text-with-icons.mobile-column-layout~.carousel-navigation,
+    .text-with-icons.mobile-column-layout~.carousel-dots {
+        display: none !important;
+    }
+}
+
+/* #Multicolumn with Icons End */
+
+/* ##Our Founder Page End */
+
+/* Hercleon vs Everyone style start */
+
+.HC-hercleon-text-css h1 {
+    font-size: 3.75rem !important;
+    margin-bottom: 3rem;
+    color: #fff;
+}
+
+.HC-hercleon-text-css h1 strong{
+    color: #b45309;
+}
+.HC-hercleon-text-css h5{
+    margin-bottom: 28px;
+}
+.HC-hercleon-text-css p{
+    color: #9ca3af !important;
+    text-align: center;
+}
+
+.HC-hercleon-every-cards-css h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.HC-hercleon-every-cards-css h5 {
+    font-family: var(--font-body-family);
+    font-weight: 400;
+    font-size: 0.875rem !important;
+    line-height: 1.5!important;
+    color: #4b5563;
+}
+
+.HC-hercleon-every-cards-css p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #ef4444;
+    letter-spacing: normal;
+    margin-top: 8px;
+}
+
+.HC-hercleon-every-cards-css .group-block__content{
+    border-color: #e5e7eb;
+}
+
+.HC-herc-vs-ev-rich h4 {
+    margin-top: 0 !important;
+    color: #b45309;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem !important;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .HC-hercleon-every-cards-css .section-content {
+    flex-direction: column;
+}
+.HC-hercleon-text-css h1 {
+    font-size: 2.25rem !important;
+    text-align: center;
+}
+}
+
+/* Hercleon vs Everyone style End */
+
+
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__grid {
+  direction: ltr;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__content {
+    border-right: 1px solid #1f2937;
+    background: #000000;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-wrapper {
+    background-color: #000000;
+}
+
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__content-title {
+    color: #ffffff;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__content-text p {
+    color: #9ca3af;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-head-cell {
+    color: #9ca3af;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-cell--material {
+    color: #ffffff;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-cell--mechanism-hero {
+    color: #ffffff;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-row:not(.hc-odor-bacteria-block__table-row--hero) .hc-odor-bacteria-block__table-cell:nth-child(3) {
+    color: #ffffff;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-cell--hero-bold {
+    color: #ffffff;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-footer-box {
+    background-color: #374151;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-footer-text {
+    color: #ffffff;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-card {
+    background-color: #000000;
+}
+
+.hc-highlight-stop-bacteria .hc-odor-bacteria-block__table-row--hero {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+
+
+
+.hc-briefing-washing .hc-exp-laundry-block__grid {
+  direction: rtl;
+}
+
+.hc-briefing-washing .hc-exp-laundry-block__grid > * {
+  direction: ltr; 
+}
+
+@media screen and (min-width: 1024px) {
+.hc-briefing-washing .hc-exp-laundry-block__content {
+    border-left: 1px solid #1f2937;
+}
+}
+
+
+.hc-briefing-designed .hc-build-to-last__grid {
+  direction: rtl;
+}
+
+.hc-briefing-designed .hc-build-to-last__grid > * {
+  direction: ltr;
+}
+
+.hc-briefing-designed .hc-build-to-last__title {
+    color: #000000;
+}
+
+.hc-briefing-designed .hc-build-to-last__description {
+    color: #4b5563;
+}
+
+.hc-briefing-designed .hc-build-to-last__card-wrap {
+    background-color: #ffffff;
+}
+
+.hc-briefing-designed .hc-build-to-last__content {
+background-color: #ffffff;
+}
+
+@media (min-width: 1024px) {
+    .hc-briefing-designed .hc-build-to-last__content {
+        border-right: 1px solid #1f2937;
+    }
+}
+
+
+
+/* Product Page Css */
+
+.hc-product-page-main-section .product__price .price__regular {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+}
+
+.hc-product-page-main-section .product__text.rte.text-base {
+    font-size: 1.125rem;
+    line-height: 1.625;
+    color: #1f2937;
+}
+
+/* Selected swatch color */
+.hc-product-page-main-section input[type="radio"]:checked + .label-swatch {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Remove :after shadow on selected */
+.hc-product-page-main-section input[type="radio"]:checked + .label-swatch:after {
+  box-shadow: none;
+}
+
+.hc-product-page-main-section .form__label-inner {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+}
+
+.section-hc-product-tabs-nav {
+    position: sticky !important;
+    top: 100px;
+    z-index: 99999999999;
+    background: #ffffff;
+}
+
+
+/* Product Page Css */
+
+
+
+ 

@@ -1,0 +1,266 @@
+{% comment %}
+  Section: HC OS Fashion Metrix
+  Class prefix: hc-os-fashion-metrix-circle-
+{% endcomment %}
+
+{% style %}
+  .hc-os-fashion-metrix-circle {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-metrix-circle {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<section class="hc-os-fashion-metrix-circle" id="hc-os-fashion-metrix-circle-{{ section.id }}">
+  <div class="hc-os-fashion-metrix-circle__container">
+    <div class="hc-os-fashion-metrix-circle__grid">
+      <div class="hc-os-fashion-metrix-circle__content">
+        {% if section.settings.heading != blank %}
+          <h2 class="hc-os-fashion-metrix-circle__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <p class="hc-os-fashion-metrix-circle__description">{{ section.settings.description }}</p>
+        {% endif %}
+      </div>
+      <div class="hc-os-fashion-metrix-circle__visual">
+        <div class="hc-os-fashion-metrix-circle__visual-inner">
+          <div class="hc-os-fashion-metrix-circle__circle-wrap">
+            <div class="hc-os-fashion-metrix-circle__circle hc-os-fashion-metrix-circle__circle--outer"></div>
+            <div class="hc-os-fashion-metrix-circle__circle hc-os-fashion-metrix-circle__circle--mid"></div>
+            <div class="hc-os-fashion-metrix-circle__circle hc-os-fashion-metrix-circle__circle--inner">
+              <span class="hc-os-fashion-metrix-circle__circle-label">{{ section.settings.matrix_label }}</span>
+            </div>
+          </div>
+          {% if section.settings.tagline != blank %}
+            <p class="hc-os-fashion-metrix-circle__tagline">{{ section.settings.tagline }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hc-os-fashion-metrix-circle {
+    background-color: #111;
+    color: #fff;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-metrix-circle {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  .hc-os-fashion-metrix-circle__container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.hc-os-fashion-metrix-circle__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 6rem;
+    align-items: center;
+}
+
+  @media (min-width: 1024px) {
+    .hc-os-fashion-metrix-circle__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-os-fashion-metrix-circle__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-metrix-circle__heading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-os-fashion-metrix-circle__description {
+    font-size: 1.125rem;
+    color: #9ca3af;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  .hc-os-fashion-metrix-circle__visual {
+    position: relative;
+    border: 1px solid #1f2937;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-os-fashion-metrix-circle__visual-inner {
+    text-align: center;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #B45309;
+  }
+
+  .hc-os-fashion-metrix-circle__circle-wrap {
+    width: 256px;
+    height: 256px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-os-fashion-metrix-circle__circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 83, 9, 0.3);
+  }
+
+  .hc-os-fashion-metrix-circle__circle--outer {
+    inset: 0;
+  }
+
+  .hc-os-fashion-metrix-circle__circle--mid {
+    inset: 12.5%;
+    border-color: rgba(180, 83, 9, 0.5);
+  }
+
+  .hc-os-fashion-metrix-circle__circle--inner {
+    inset: 25%;
+    border-color: #B45309;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-os-fashion-metrix-circle__circle-label {
+    font-weight: 700;
+    color: #B45309;
+  }
+
+  .hc-os-fashion-metrix-circle__tagline {
+    color: #B45309;
+  }
+
+  .hc-os-fashion-metrix-circle__circle.hc-os-fashion-metrix-circle__circle--mid {
+    inset: 10%;
+    border-color: #B45309;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hc-os-fashion-metrix-circle__circle.hc-os-fashion-metrix-circle__circle--outer{
+    inset: 0%;
+    border-color: #B45309;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC OS Freedomwear",
+  "tag": "section",
+  "class": "section-hc-os-fashion-metrix-circle",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We're Building Freedomwear."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Clothing designed to eliminate odor, reduce laundry, last longer, pack lighter, and help people experience life with more freedom and fewer limits."
+    },
+    {
+      "type": "text",
+      "id": "matrix_label",
+      "label": "Matrix circle label",
+      "default": "HercFiber Matrix"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "[Multi-Layer Odor Defense]"
+    },
+    {
+      "type": "header",
+      "content": "Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 128
+    },
+    {
+      "type": "header",
+      "content": "Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OS Freedomwear"
+    }
+  ]
+}
+{% endschema %}

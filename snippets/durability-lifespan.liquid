@@ -1,0 +1,426 @@
+{% comment %}
+  Durability - Lifespan Block
+{% endcomment %}
+
+<style>
+  .hc-durability-lifespan-block {
+    border-bottom: 1px solid #000;
+    background-color: #fff;
+    animation: hc-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-durability-lifespan-block__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    min-height: 60vh;
+  }
+
+  .hc-prod-compare-label {
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-prod-compare-label__text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    display: inline-block;
+  }
+
+  @media (max-width: 768px) {
+    .hc-prod-compare-label {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-durability-lifespan-block__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-durability-lifespan-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-lifespan-block__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-durability-lifespan-block__content {
+      border-right: 1px solid #000;
+    }
+  }
+
+  .hc-durability-lifespan-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-lifespan-block__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-durability-lifespan-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+
+  .hc-durability-lifespan-block__stats-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-lifespan-block__stats-wrapper {
+      padding: 3rem;
+    }
+  }
+
+  .hc-durability-lifespan-block__stats-container {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  /* Comparison Cards */
+  .hc-durability-lifespan-block__comparison {
+    margin-bottom: 2rem;
+  }
+
+  .hc-durability-lifespan-block__comparison-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #B45309;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .hc-durability-lifespan-block__comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .hc-durability-lifespan-block__comparison-card {
+    border: 1px solid #000;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .hc-durability-lifespan-block__comparison-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .hc-durability-lifespan-block__comparison-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+  }
+
+  /* Table Section */
+  .hc-durability-lifespan-block__table-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #B45309;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .hc-durability-lifespan-block__table-wrapper {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    border: 1px solid #000;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+
+  .hc-durability-lifespan-block__table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    border: none;
+    box-shadow: none;
+}
+
+  @media (min-width: 768px) {
+    .hc-durability-lifespan-block__table {
+      font-size: 0.75rem;
+    }
+  }
+
+  .hc-durability-lifespan-block__table thead tr {
+    border-bottom: 1px solid #e5e7eb;
+    color: #9ca3af;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-durability-lifespan-block__table th {
+    font-size: 10px;
+    padding: 0.5rem 1rem 0.5rem 0;
+    font-weight: normal;
+    background: none;
+}
+
+  .hc-durability-lifespan-block__table th:first-child {
+    width: 6rem;
+  }
+
+  .hc-durability-lifespan-block__table th:nth-child(2) {
+    width: 8rem;
+  }
+
+  .hc-durability-lifespan-block__table th:nth-child(2) {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-lifespan-block__table th:nth-child(2) {
+      display: table-cell;
+    }
+  }
+
+  .hc-durability-lifespan-block__table th:nth-child(3),
+  .hc-durability-lifespan-block__table th:nth-child(4),
+  .hc-durability-lifespan-block__table th:nth-child(5) {
+    text-align: center;
+    padding-right: 0.5rem;
+  }
+
+  .hc-durability-lifespan-block__table th:nth-child(5) {
+    color: #B45309;
+  }
+
+  .hc-durability-lifespan-block__table tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .hc-durability-lifespan-block__table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .hc-durability-lifespan-block__table td {
+    padding: 0.75rem 0.5rem 0.75rem 0;
+  }
+
+  .hc-durability-lifespan-block__table td:first-child {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.625rem;
+  }
+
+  .hc-durability-lifespan-block__table td:nth-child(2) {
+    color: #6b7280;
+    font-size: 0.625rem;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-lifespan-block__table td:nth-child(2) {
+      display: table-cell;
+    }
+  }
+
+  .hc-durability-lifespan-block__table td:nth-child(3),
+  .hc-durability-lifespan-block__table td:nth-child(4),
+  .hc-durability-lifespan-block__table td:nth-child(5) {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.625rem;
+    letter-spacing: -0.05em;
+  }
+
+  .hc-durability-lifespan-block__table td:nth-child(5) {
+    color: #B45309;
+  }
+
+  @keyframes hc-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+  .hc-durability-lifespan-block__content {
+    padding: 32px 20px;
+}
+.hc-durability-lifespan-block__stats-wrapper {
+    padding: 32px 20px;
+}
+}
+
+</style>
+
+<section class="hc-durability-lifespan-block" {{ block.shopify_attributes }}>
+  <div class="hc-durability-lifespan-block__grid">
+    
+    {%- comment -%} Left Content {%- endcomment -%}
+    <div class="hc-durability-lifespan-block__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+      <div class="hc-prod-compare-label">
+  <span class="hc-prod-compare-label__text">
+    {{ block.settings.eyebrow_text }}
+  </span>
+</div>
+      {%- endif -%}
+      <h3 class="hc-durability-lifespan-block__title">
+        {{ block.settings.title | default: 'Less Smell = Longer Lifespan' }}
+      </h3>
+      <div class="hc-durability-lifespan-block__description">
+        {{ block.settings.description | default: 'Most clothing wears out early because it has to be washed constantly...' }}
+      </div>
+    </div>
+
+    {%- comment -%} Right Stats & Table {%- endcomment -%}
+    <div class="hc-durability-lifespan-block__stats-wrapper">
+      <div class="hc-durability-lifespan-block__stats-container">
+        
+        {%- comment -%} Comparison Cards {%- endcomment -%}
+        <div class="hc-durability-lifespan-block__comparison">
+          <p class="hc-durability-lifespan-block__comparison-title">
+            {{ block.settings.comparison_title | default: 'HercFiber™ is more durable than others by:' }}
+          </p>
+          <div class="hc-durability-lifespan-block__comparison-grid">
+            <div class="hc-durability-lifespan-block__comparison-card">
+              <span class="hc-durability-lifespan-block__comparison-value">
+                {{ block.settings.comparison_1_value | default: '1.9x' }}
+              </span>
+              <span class="hc-durability-lifespan-block__comparison-label">
+                {{ block.settings.comparison_1_label | default: 'Cotton' }}
+              </span>
+            </div>
+            <div class="hc-durability-lifespan-block__comparison-card">
+              <span class="hc-durability-lifespan-block__comparison-value">
+                {{ block.settings.comparison_2_value | default: '2x' }}
+              </span>
+              <span class="hc-durability-lifespan-block__comparison-label">
+                {{ block.settings.comparison_2_label | default: 'Viscose' }}
+              </span>
+            </div>
+            <div class="hc-durability-lifespan-block__comparison-card">
+              <span class="hc-durability-lifespan-block__comparison-value">
+                {{ block.settings.comparison_3_value | default: '3x' }}
+              </span>
+              <span class="hc-durability-lifespan-block__comparison-label">
+                {{ block.settings.comparison_3_label | default: 'Merino Wool' }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {%- comment -%} Durability Table {%- endcomment -%}
+        <p class="hc-durability-lifespan-block__table-title">
+          {{ block.settings.table_title | default: 'HercFiber Is Durable In Every Way' }}
+        </p>
+        <div class="hc-durability-lifespan-block__table-wrapper">
+          <table class="hc-durability-lifespan-block__table">
+            <thead>
+              <tr>
+                <th>{{ block.settings.header_category | default: 'Category' }}</th>
+                <th>{{ block.settings.header_meaning | default: 'Meaning' }}</th>
+                <th>{{ block.settings.header_cotton | default: 'Cot' }}</th>
+                <th>{{ block.settings.header_merino | default: 'Mer' }}</th>
+                <th>{{ block.settings.header_herc | default: 'Herc' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- comment -%} Row 1 - Tensile Strength {%- endcomment -%}
+              <tr>
+                <td>{{ block.settings.row_1_category | default: 'Tensile Strength' }}</td>
+                <td>{{ block.settings.row_1_meaning | default: 'Resistance to breaking' }}</td>
+                <td>{{ block.settings.row_1_cotton | default: '★★' }}</td>
+                <td>{{ block.settings.row_1_merino | default: '★' }}</td>
+                <td>{{ block.settings.row_1_herc | default: '★★★' }}</td>
+              </tr>
+              {%- comment -%} Row 2 - Abrasion Resistance {%- endcomment -%}
+              <tr>
+                <td>{{ block.settings.row_2_category | default: 'Abrasion Resistance' }}</td>
+                <td>{{ block.settings.row_2_meaning | default: 'Handles rubbing/friction' }}</td>
+                <td>{{ block.settings.row_2_cotton | default: '★★' }}</td>
+                <td>{{ block.settings.row_2_merino | default: '★' }}</td>
+                <td>{{ block.settings.row_2_herc | default: '★★★' }}</td>
+              </tr>
+              {%- comment -%} Row 3 - Pilling Resistance {%- endcomment -%}
+              <tr>
+                <td>{{ block.settings.row_3_category | default: 'Pilling Resistance' }}</td>
+                <td>{{ block.settings.row_3_meaning | default: 'Avoids fiber balls' }}</td>
+                <td>{{ block.settings.row_3_cotton | default: '★★' }}</td>
+                <td>{{ block.settings.row_3_merino | default: '★' }}</td>
+                <td>{{ block.settings.row_3_herc | default: '★★★' }}</td>
+              </tr>
+              {%- comment -%} Row 4 - Shape Retention {%- endcomment -%}
+              <tr>
+                <td>{{ block.settings.row_4_category | default: 'Shape Retention' }}</td>
+                <td>{{ block.settings.row_4_meaning | default: 'Keeps shape/fit' }}</td>
+                <td>{{ block.settings.row_4_cotton | default: '★' }}</td>
+                <td>{{ block.settings.row_4_merino | default: '★★★' }}</td>
+                <td>{{ block.settings.row_4_herc | default: '★★' }}</td>
+              </tr>
+              {%- comment -%} Row 5 - Heat/Wash Stability {%- endcomment -%}
+              <tr>
+                <td>{{ block.settings.row_5_category | default: 'Heat/Wash Stability' }}</td>
+                <td>{{ block.settings.row_5_meaning | default: 'Tolerates washing' }}</td>
+                <td>{{ block.settings.row_5_cotton | default: '★★' }}</td>
+                <td>{{ block.settings.row_5_merino | default: '★' }}</td>
+                <td>{{ block.settings.row_5_herc | default: '★★★' }}</td>
+              </tr>
+              {%- comment -%} Row 6 - Moisture Strength {%- endcomment -%}
+              <tr>
+                <td>{{ block.settings.row_6_category | default: 'Moisture Strength' }}</td>
+                <td>{{ block.settings.row_6_meaning | default: 'Strength when wet' }}</td>
+                <td>{{ block.settings.row_6_cotton | default: '★★' }}</td>
+                <td>{{ block.settings.row_6_merino | default: '★' }}</td>
+                <td>{{ block.settings.row_6_herc | default: '★★★' }}</td>
+              </tr>
+              {%- comment -%} Row 7 - Overall Durability {%- endcomment -%}
+              <tr>
+                <td>{{ block.settings.row_7_category | default: 'Overall Durability' }}</td>
+                <td>{{ block.settings.row_7_meaning | default: 'Real-world lifespan' }}</td>
+                <td>{{ block.settings.row_7_cotton | default: '★★' }}</td>
+                <td>{{ block.settings.row_7_merino | default: '★' }}</td>
+                <td>{{ block.settings.row_7_herc | default: '★★★' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

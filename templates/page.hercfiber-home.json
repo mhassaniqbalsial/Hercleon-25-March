@@ -1,0 +1,243 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "custom_section_hchMrg": {
+      "type": "custom-section",
+      "blocks": {
+        "text_DRf4my": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<h5>Material Science</h5>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "fit-content",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        },
+        "heading_WCGHqB": {
+          "type": "heading",
+          "name": "t:blocks.heading.name",
+          "settings": {
+            "heading": "HercFiber™",
+            "heading_size": "title-md",
+            "heading_tag": "h2",
+            "width": "fill",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "alignment_mobile": "left",
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle",
+            "highlighted_reveal": false
+          },
+          "blocks": {}
+        },
+        "text_7JXdKn": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<p>The most advanced textile in existence. A hybrid weave of nature and metallurgy.</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "fit-content",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "effects": "reveal",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_DRf4my",
+        "heading_WCGHqB",
+        "text_7JXdKn"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "HC-science-smell-one-cu-class",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "hc_ingredients_section_iCFLgR": {
+      "type": "HC-Ingredients-section",
+      "blocks": {
+        "ingredient_item_hnhKFE": {
+          "type": "ingredient_item",
+          "settings": {
+            "title": "COPPER (CU+)",
+            "description": "The primary antimicrobial agent. Lyses cell walls and destroys DNA."
+          }
+        },
+        "ingredient_item_FwhcYE": {
+          "type": "ingredient_item",
+          "settings": {
+            "title": "ZINC (ZN)",
+            "description": "Provides broad-spectrum protection against fungus and skin irritants."
+          }
+        },
+        "ingredient_item_wxmBzR": {
+          "type": "ingredient_item",
+          "settings": {
+            "title": "BAMBOO CHARCOAL",
+            "description": "The porous structure absorbs moisture and traps odors physically."
+          }
+        },
+        "ingredient_item_yHYKxd": {
+          "type": "ingredient_item",
+          "settings": {
+            "title": "MICRO-MODAL",
+            "description": "Derived from Beechwood trees. Provides the softness and temperature regulation."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_item_hnhKFE",
+        "ingredient_item_FwhcYE",
+        "ingredient_item_wxmBzR",
+        "ingredient_item_yHYKxd"
+      ],
+      "name": "HC Ingredients",
+      "settings": {
+        "gap": 60,
+        "section_padding_top": 0,
+        "section_padding_bottom": 85,
+        "background_color": "#ffffff",
+        "border_color": "#000000",
+        "border_width": 1,
+        "image_alt": "Ingredients",
+        "image_background": "#f3f4f6",
+        "image_border_radius": 0,
+        "placeholder_text": "[MICROSCOPIC FIBER ANALYSIS]"
+      }
+    },
+    "hc_floating_nav_page_4jEeHE": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_CnKUFg": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_yCVhCT": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_dL8tNY": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_CnKUFg",
+        "clearance_item_yCVhCT",
+        "clearance_item_dL8tNY"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "custom_section_hchMrg",
+    "hc_ingredients_section_iCFLgR",
+    "hc_floating_nav_page_4jEeHE"
+  ]
+}

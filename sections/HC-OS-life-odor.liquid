@@ -1,0 +1,228 @@
+{% comment %}
+  Section: HC OS Fashion Odor
+  Class prefix: hc-os-fashion-odor
+{% endcomment %}
+
+{% style %}
+  .hc-os-fashion-odor {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-odor {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<section class="hc-os-fashion-odor" id="hc-os-fashion-odor-{{ section.id }}">
+  <div class="hc-os-fashion-odor__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="hc-os-fashion-odor__title">{{ section.settings.heading | newline_to_br }}</h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="hc-os-fashion-odor__tags">
+        {% for block in section.blocks %}
+          {% if block.type == 'tag' and block.settings.label != blank %}
+            <span class="hc-os-fashion-odor__tag" {{ block.shopify_attributes }}>{{ block.settings.label }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="hc-os-fashion-odor__subtitle-wrap">
+      {% if section.settings.subtitle_line_1 != blank %}
+        <p class="hc-os-fashion-odor__subtitle">
+          {{ section.settings.subtitle_line_1 }}<br>
+          {% if section.settings.subtitle_line_2 != blank %}
+            <span class="hc-os-fashion-odor__subtitle-accent">{{ section.settings.subtitle_line_2 }}</span>
+          {% endif %}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hc-os-fashion-odor {
+    background-color: #fff;
+    text-align: center;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-odor {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  .hc-os-fashion-odor__inner {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-os-fashion-odor__title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 64px;
+    line-height: 1.2;
+    color: #111827;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-odor__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-os-fashion-odor__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 64px;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-os-fashion-odor__tag {
+    background-color: #f3f4f6;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    color: #111827;
+}
+
+  .hc-os-fashion-odor__subtitle-wrap {
+    margin: 0;
+  }
+
+  .hc-os-fashion-odor__subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #9ca3af;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .hc-os-fashion-odor__subtitle-accent {
+    color: #000;
+    font-weight: 500;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC OS Life Odor",
+  "tag": "section",
+  "class": "section-hc-os-fashion-odor",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Life Gets Lighter When\nOdor Is Removed"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_line_1",
+      "label": "Subtitle (light)",
+      "default": "This isn't fashion."
+    },
+    {
+      "type": "text",
+      "id": "subtitle_line_2",
+      "label": "Subtitle (bold)",
+      "default": "This is the next evolution of clothing."
+    },
+    {
+      "type": "header",
+      "content": "Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 128
+    },
+    {
+      "type": "header",
+      "content": "Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 128
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag",
+      "name": "Tag",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tag label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OS Life Odor",
+      "blocks": [
+        {
+          "type": "tag",
+          "settings": { "label": "You pack less" }
+        },
+        {
+          "type": "tag",
+          "settings": { "label": "You wash less" }
+        },
+        {
+          "type": "tag",
+          "settings": { "label": "You own fewer things" }
+        },
+        {
+          "type": "tag",
+          "settings": { "label": "You move with more confidence" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

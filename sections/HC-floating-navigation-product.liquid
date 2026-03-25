@@ -1,0 +1,906 @@
+{% comment %}
+  Floating Navigation with Profile Modal
+  Complete section with navigation and modal
+{% endcomment %}
+
+{% if customer %}
+  {% assign is_logged_in = true %}
+{% else %}
+  {% assign is_logged_in = false %}
+{% endif %}
+
+<!-- Floating Navigation -->
+<div class="floating-nav-wrapper floating-nav-wrapper--product">
+  <div class="floating-nav-container">
+    <nav class="floating-nav-menu">
+      {% if section.settings.benefits_text != blank %}
+        <a href="{{ section.settings.benefits_link }}" class="nav-link">
+          {{ section.settings.benefits_text }}
+        </a>
+      {% endif %}
+      
+      {% if section.settings.compare_text != blank %}
+        <a href="{{ section.settings.compare_link }}" class="nav-link">
+          {{ section.settings.compare_text }}
+        </a>
+      {% endif %}
+      
+      {% if section.settings.faq_text != blank %}
+        <a href="{{ section.settings.faq_link }}" class="nav-link">
+          {{ section.settings.faq_text }}
+        </a>
+      {% endif %}
+      
+      {% if section.settings.reviews_text != blank %}
+        <a href="{{ section.settings.reviews_link }}" class="nav-link">
+          {{ section.settings.reviews_text }}
+        </a>
+      {% endif %}
+      
+      <div class="nav-divider"></div>
+      
+      {% if section.settings.cta_text != blank %}
+        <a href="{{ section.settings.cta_link }}" class="nav-link nav-link-primary">
+          {{ section.settings.cta_text }}
+        </a>
+      {% endif %}
+    </nav>
+    
+    <button class="profile-button" onclick="openProfileModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="profile-icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Profile Modal -->
+<div class="profile-modal-overlay" id="profileModal" style="display: none;">
+  <div class="modal-backdrop" onclick="closeProfileModal()"></div>
+  
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="profile-avatar">
+          {% if customer %}
+            {% if customer.first_name != blank %}
+              {{ customer.first_name | slice: 0 | upcase }}
+            {% elsif customer.name != blank %}
+              {{ customer.name | slice: 0 | upcase }}
+            {% else %}
+              {{ customer.email | slice: 0 | upcase }}
+            {% endif %}
+          {% else %}
+            ?
+          {% endif %}
+        </div>
+        <button class="modal-close" onclick="closeProfileModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      {% if customer %}
+        <h3 class="modal-title">
+          Welcome, 
+          {% if customer.first_name != blank %}
+            {{ customer.first_name }}
+          {% elsif customer.name != blank %}
+            {{ customer.name }}
+          {% else %}
+            {{ customer.email | split: '@' | first }}
+          {% endif %}
+        </h3>
+        <p class="modal-subtitle">{{ section.settings.member_status }}</p>
+      {% else %}
+        <h3 class="modal-title">Access Restricted</h3>
+        <p class="modal-subtitle">Guest Operative</p>
+      {% endif %}
+    </div>
+    
+    <div class="modal-body">
+      {% if is_logged_in %}
+        <!-- Logged In Content -->
+        {% comment %} <div class="stats-grid">
+          <div class="stat-box">
+            <span class="stat-label">Invites Left</span>
+            <span class="stat-value">{{ section.settings.invites_left }}</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Merit Points</span>
+            <span class="stat-value">{{ section.settings.merit_points }}</span>
+          </div>
+        </div> {% endcomment %}
+        
+        <div class="clearance-section">
+          <h4 class="clearance-title">Unlocked Clearance</h4>
+          <div class="clearance-items">
+            {% for block in section.blocks %}
+              <a href="{{ block.settings.product_link }}" class="clearance-item">
+                <div class="clearance-item-content">
+                  <div class="clearance-image">
+                    {% if block.settings.product_image %}
+                      <img src="{{ block.settings.product_image | img_url: '100x100' }}" alt="{{ block.settings.product_name }}">
+                    {% endif %}
+                  </div>
+                  <span class="clearance-name">{{ block.settings.product_name }}</span>
+                </div>
+                <span class="clearance-level">{{ block.settings.clearance_level }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <a href="{{ routes.account_logout_url }}" class="modal-button modal-button-secondary">
+          Log Out
+        </a>
+      {% else %}
+        <!-- Not Logged In Content -->
+        <p class="modal-message">{{ section.settings.restricted_message }}</p>
+        
+        <a href="{{ section.settings.login_url }}" class="modal-button modal-button-primary">
+          Login
+        </a>
+        
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+/* ===========================
+   FLOATING NAVIGATION STYLES
+   =========================== */
+
+.floating-nav-wrapper {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+  transform: translateY(100px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.floating-nav-wrapper.floating-nav-wrapper--visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.floating-nav-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.floating-nav-menu {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+  padding: 0.75rem 4rem 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  overflow-x: auto;
+  margin-right: -2.5rem;
+  height: 3.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6b7280;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.floating-nav-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-link {
+  color: #6b7280;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #B45309;
+}
+
+.nav-link-primary {
+  color: #000000;
+  font-weight: 700;
+}
+
+a.nav-link.nav-link-primary {
+    background-color: #000000;
+    padding: 7px 17.5px;
+    color: #ffffff;
+    border-radius: 9999px;
+    transition: all 0.4s ease;
+    font-size: 10.5px;
+}
+
+.nav-divider {
+    height: 1rem;
+    width: 1px;
+    background-color: #d1d5db;
+    display: flex !important;
+}
+
+.profile-button {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  border: 4px solid #ffffff;
+  background-color: #ffffff;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+  color: #000000;
+  cursor: pointer;
+}
+
+.profile-button:hover {
+  transform: scale(1.1);
+}
+
+.profile-button:active {
+  transform: scale(0.95);
+}
+
+.profile-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* ===========================
+   PROFILE MODAL STYLES
+   =========================== */
+
+.profile-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    transition: all 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(12px);
+}
+
+.profile-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-container {
+  position: absolute;
+  bottom: 8rem;
+  right: 2rem;
+  width: 100%;
+  max-width: 28rem;
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  overflow: hidden;
+  transform: translateY(2rem);
+  transition: all 0.5s ease;
+}
+
+.profile-modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+/* Modal Header */
+.modal-header {
+  background-color: #000000;
+  padding: 2rem;
+  color: #ffffff;
+}
+
+.modal-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  border: 2px solid #B45309;
+  background-color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-close {
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.modal-close:hover {
+  color: #ffffff;
+}
+
+.modal-close svg {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.modal-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #B45309;
+  margin-top: 0.25rem;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-message {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.6;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-box {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border: 1px solid #f3f4f6;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Clearance Section */
+.clearance-section {
+  margin-bottom: 2rem;
+}
+
+.clearance-title {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+}
+
+.clearance-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.clearance-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid #f3f4f6;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.clearance-item:hover {
+  border-color: #000000;
+}
+
+.clearance-item-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.clearance-image {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #f3f4f6;
+  overflow: hidden;
+}
+
+.clearance-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.clearance-name {
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.clearance-level {
+  color: #B45309;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Modal Buttons */
+.modal-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.modal-button:first-child {
+  margin-top: 0;
+}
+
+.modal-button-primary {
+  background-color: #B45309;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 20px 25px -5px rgba(180, 83, 9, 0.2);
+}
+
+.modal-button-primary:hover {
+  background-color: #000000;
+}
+
+.modal-button-secondary {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.modal-button-secondary:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+  .floating-nav-wrapper {
+    bottom: 2rem;
+    right: 1rem;
+  }
+  
+  .floating-nav-menu {
+    padding: 0.5rem 3rem 0.5rem 1.5rem;
+    gap: 1rem;
+    height: 3rem;
+    font-size: 0.5625rem;
+  }
+  
+  .profile-button {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  
+  .profile-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .modal-container {
+    right: 1rem;
+    left: 1rem;
+    max-width: none;
+    bottom: 6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-nav-wrapper {
+    right: 0.5rem;
+  }
+  
+  .floating-nav-menu {
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    gap: 0.75rem;
+    height: 2.75rem;
+    font-size: 0.5rem;
+  }
+  
+  .profile-button {
+    width: 3rem;
+    height: 3rem;
+    border-width: 3px;
+  }
+  
+  .profile-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .modal-container {
+    bottom: 5rem;
+  }
+  
+  .modal-header,
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .profile-avatar {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+  }
+}
+</style>
+
+<script>
+function openProfileModal() {
+  var modal = document.getElementById('profileModal');
+  modal.style.display = 'block';
+  setTimeout(function() {
+    modal.classList.add('active');
+  }, 10);
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProfileModal() {
+  var modal = document.getElementById('profileModal');
+  modal.classList.remove('active');
+  setTimeout(function() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 500);
+}
+
+// Close modal when clicking backdrop
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal-backdrop')) {
+    closeProfileModal();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' || e.keyCode === 27) {
+    var modal = document.getElementById('profileModal');
+    if (modal && modal.classList.contains('active')) {
+      closeProfileModal();
+    }
+  }
+});
+
+// Floating Nav Visibility Control (similar to sticky buy button)
+document.addEventListener('DOMContentLoaded', function() {
+  var floatingNav = document.querySelector('.floating-nav-wrapper');
+  
+  if (!floatingNav) return;
+  
+  // Find the product form (buy button area) and footer
+  var scopeFrom = document.querySelector('product-form') || document.querySelector('.product-form') || document.querySelector('[id^="product-form"]');
+  var scopeTo = document.querySelector('.footer-group') || document.querySelector('footer');
+  
+  if (!scopeFrom || !scopeTo) {
+    // If elements not found, show the nav by default
+    floatingNav.classList.add('floating-nav-wrapper--visible');
+    return;
+  }
+  
+  var scopeFromPassed = false;
+  var scopeToReached = false;
+  
+  function updateVisibility() {
+    if (scopeFromPassed && !scopeToReached) {
+      floatingNav.classList.add('floating-nav-wrapper--visible');
+    } else {
+      floatingNav.classList.remove('floating-nav-wrapper--visible');
+    }
+  }
+  
+  // Create IntersectionObserver to watch buy button and footer
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.target === scopeFrom) {
+        scopeFromPassed = entry.boundingClientRect.bottom < 0;
+      }
+      if (entry.target === scopeTo) {
+        scopeToReached = entry.isIntersecting;
+      }
+    });
+    
+    updateVisibility();
+  });
+  
+  observer.observe(scopeFrom);
+  observer.observe(scopeTo);
+});
+
+// Smooth scroll for navigation links with hash/section IDs
+document.addEventListener('DOMContentLoaded', function() {
+  var navLinks = document.querySelectorAll('.floating-nav-menu .nav-link');
+  
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      
+      // Check if it's a hash link (starts with #)
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        
+        var targetId = href.substring(1);
+        var targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          // Check if target is in a sticky/fixed header
+          var isHeaderElement = targetElement.closest('.header-sticky, .header-section, header');
+          
+          if (isHeaderElement) {
+            // If it's a header element, scroll to top of page
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          } else {
+            // Normal scroll for other sections
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+          
+          // Update URL hash without jumping
+          if (history.pushState) {
+            history.pushState(null, null, href);
+          } else {
+            window.location.hash = href;
+          }
+        }
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "HC Floating Nav Product",
+  "tag": "section",
+  "class": "floating-navigation-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation Links"
+    },
+    {
+      "type": "text",
+      "id": "benefits_text",
+      "label": "Benefits Text",
+      "default": "Benefits"
+    },
+    {
+      "type": "url",
+      "id": "benefits_link",
+      "label": "Benefits Link"
+    },
+    {
+      "type": "text",
+      "id": "compare_text",
+      "label": "Compare Text",
+      "default": "Compare"
+    },
+    {
+      "type": "url",
+      "id": "compare_link",
+      "label": "Compare Link"
+    },
+    {
+      "type": "text",
+      "id": "faq_text",
+      "label": "FAQ Text",
+      "default": "FAQ"
+    },
+    {
+      "type": "url",
+      "id": "faq_link",
+      "label": "FAQ Link"
+    },
+    {
+      "type": "text",
+      "id": "reviews_text",
+      "label": "Reviews Text",
+      "default": "Reviews"
+    },
+    {
+      "type": "url",
+      "id": "reviews_link",
+      "label": "Reviews Link"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "header",
+      "content": "Guest Modal Settings"
+    },
+    {
+      "type": "textarea",
+      "id": "restricted_message",
+      "label": "Restricted Access Message",
+      "default": "\"Hercléon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\""
+    },
+    {
+      "type": "url",
+      "id": "login_url",
+      "label": "Login URL"
+    },
+    {
+      "type": "header",
+      "content": "Member Modal Settings"
+    },
+    {
+      "type": "text",
+      "id": "member_status",
+      "label": "Member Status Text",
+      "default": "Founding Member"
+    },
+    {
+      "type": "number",
+      "id": "invites_left",
+      "label": "Invites Left",
+      "default": 3
+    },
+    {
+      "type": "number",
+      "id": "merit_points",
+      "label": "Merit Points",
+      "default": 1250
+    }
+  ],
+  "blocks": [
+    {
+      "type": "clearance_item",
+      "name": "Clearance Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "HercShirt"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link"
+        },
+        {
+          "type": "text",
+          "id": "clearance_level",
+          "label": "Clearance Level",
+          "default": "CLEARANCE LEVEL 1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Floating Nav Product",
+      "blocks": [
+        {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

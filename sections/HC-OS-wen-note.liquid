@@ -1,0 +1,181 @@
+{% comment %}
+  HC OS Fashion Wen Note Section
+  Class prefix: hc-os-fashion-wen-note
+{% endcomment %}
+
+{% style %}
+  .hc-os-fashion-wen-note {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-wen-note {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+  .hc-os-fashion-wen-note__inner {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    padding: 3rem 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+  }
+  @media (min-width: 768px) {
+    .hc-os-fashion-wen-note__inner {
+      padding: 6rem 3rem;
+    }
+  }
+  .hc-os-fashion-wen-note__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B45309;
+    margin-bottom: 2rem;
+    display: block;
+    text-align: center;
+  }
+  .hc-os-fashion-wen-note__quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #374151;
+    line-height: 1.625;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .hc-os-fashion-wen-note__author-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hc-os-fashion-wen-note__author-name {
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #111827;
+  }
+  .hc-os-fashion-wen-note__author-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
+{% endstyle %}
+
+<section
+  class="hc-os-fashion-wen-note"
+  style="padding-left: 1.5rem; padding-right: 1.5rem; background: #FAFAFA; border-top: 1px solid #e5e7eb;"
+  aria-labelledby="hc-os-fashion-wen-note-heading"
+>
+  <div class="hc-os-fashion-wen-note__inner">
+    <span class="hc-os-fashion-wen-note__label" id="hc-os-fashion-wen-note-heading">
+      {{ section.settings.label }}
+    </span>
+    <div class="hc-os-fashion-wen-note__quote">
+      {{ section.settings.quote }}
+    </div>
+    <div class="hc-os-fashion-wen-note__author-block">
+      <span class="hc-os-fashion-wen-note__author-name">
+        {{ section.settings.author_name }}
+      </span>
+      <span class="hc-os-fashion-wen-note__author-title">
+        {{ section.settings.author_title }}
+      </span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HC OS Wen Note",
+  "tag": "section",
+  "class": "section-hc-os-fashion-wen-note",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 128
+    },
+    {
+      "type": "header",
+      "content": "Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 128
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "A Note From Wen"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "\"I created HercLeón because odor was the one limitation that clothing never solved. I wanted a life where I could travel with less, worry less, and feel more alive. I hope these clothes serve you as well as they have served me.\""
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author name",
+      "default": "Wen"
+    },
+    {
+      "type": "text",
+      "id": "author_title",
+      "label": "Author title",
+      "default": "Founder & Chief Textile Engineer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OS Wen Note"
+    }
+  ]
+}
+{% endschema %}

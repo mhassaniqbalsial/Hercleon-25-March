@@ -1,0 +1,330 @@
+<section
+  class="hc-question-bigger hc-question-bigger--root"
+  style="
+    --hc-qb-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-qb-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-qb-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-qb-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-question-bigger__band hc-question-bigger__band--light">
+    <div class="hc-question-bigger__container">
+
+      {%- if section.settings.prelude != blank -%}
+        <p class="hc-question-bigger__prelude">{{ section.settings.prelude }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.transition != blank -%}
+        <p class="hc-question-bigger__transition">{{ section.settings.transition }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.main_question != blank -%}
+        <h2 class="hc-question-bigger__question">{{ section.settings.main_question }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.closing_line != blank -%}
+        <p class="hc-question-bigger__closing">{{ section.settings.closing_line }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.footer_line != blank -%}
+        <p class="hc-question-bigger__footer">{{ section.settings.footer_line }}</p>
+      {%- endif -%}
+
+    </div>
+  </div>
+
+  {%- if section.settings.show_cta -%}
+    <div class="hc-question-bigger__band hc-question-bigger__band--dark">
+      <div class="hc-question-bigger__cta-inner">
+        {%- if section.settings.cta_heading != blank -%}
+          <h2 class="hc-question-bigger__cta-heading">{{ section.settings.cta_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.cta_button_label != blank -%}
+          <a
+            class="hc-question-bigger__cta-button"
+            href="{% if section.settings.cta_button_link != blank %}{{ section.settings.cta_button_link }}{% else %}#{% endif %}"
+            {% if section.settings.cta_button_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
+            {{ section.settings.cta_button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<style>
+  .hc-question-bigger--root {
+    margin: 0;
+  }
+
+  .hc-question-bigger__band {
+    padding-top: var(--hc-qb-pt-mobile);
+    padding-bottom: var(--hc-qb-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .hc-question-bigger__band {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-question-bigger__band {
+      padding-top: var(--hc-qb-pt-desktop);
+      padding-bottom: var(--hc-qb-pb-desktop);
+    }
+  }
+
+  .hc-question-bigger__band--light {
+    background-color: #fff;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .hc-question-bigger__band--dark {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .hc-question-bigger__container {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-question-bigger__cta-inner {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-question-bigger__cta-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0 0 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-question-bigger__cta-heading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-question-bigger__cta-button {
+    display: inline-block;
+    background-color: #B45309;
+    color: #fff;
+    padding: 1.25rem 3rem;
+    border-radius: 9999px;
+    font-family: monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+
+  .hc-question-bigger__cta-button:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-4px);
+  }
+
+  .hc-question-bigger__cta-button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
+
+  .hc-question-bigger__prelude {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #6b7280;
+    line-height: 1.75;
+    margin: 0 0 2rem;
+  }
+
+  .hc-question-bigger__transition {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #000;
+    line-height: 1.5;
+    margin: 0 0 4rem;
+  }
+
+  .hc-question-bigger__question {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #B45309;
+    line-height: 1.15;
+    margin: 0 0 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-question-bigger__question {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-question-bigger__closing {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+  }
+
+  .hc-question-bigger__footer {
+    font-family: monospace;
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+    line-height: 1.75;
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Question Bigger",
+  "tag": "section",
+  "class": "hc-question-bigger-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content — light band"
+    },
+    {
+      "type": "textarea",
+      "id": "prelude",
+      "label": "Opening line",
+      "default": "We started by asking why clothes smell."
+    },
+    {
+      "type": "textarea",
+      "id": "transition",
+      "label": "Transition line",
+      "default": "Today, the question is bigger."
+    },
+    {
+      "type": "textarea",
+      "id": "main_question",
+      "label": "Main question (large accent heading)",
+      "default": "How much better could life feel if the essentials were truly built for freedom?"
+    },
+    {
+      "type": "text",
+      "id": "closing_line",
+      "label": "Closing statement",
+      "default": "We're here to find out."
+    },
+    {
+      "type": "text",
+      "id": "footer_line",
+      "label": "Footer line (mono style)",
+      "default": "And we're just getting started."
+    },
+    {
+      "type": "header",
+      "content": "CTA — dark band"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA band",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "Experience the Freedom"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_label",
+      "label": "Button label",
+      "default": "Shop The Gear"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_button_new_tab",
+      "label": "Open button link in new tab",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "Padding below applies to both the light and dark bands."
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 160
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Question Bigger"
+    }
+  ]
+}
+{% endschema %}

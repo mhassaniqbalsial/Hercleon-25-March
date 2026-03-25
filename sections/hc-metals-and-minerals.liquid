@@ -1,0 +1,560 @@
+<section
+  class="hc-met-min"
+  style="
+    --hc-mm-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-mm-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-mm-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-mm-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-met-min__grid-bg" aria-hidden="true"></div>
+
+  <div class="hc-met-min__container">
+
+    <div class="hc-met-min__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="hc-met-min__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hc-met-min__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtext != blank -%}
+        <p class="hc-met-min__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="hc-met-min__matrix-wrap">
+      <div class="hc-met-min__matrix">
+        <div class="hc-met-min__matrix-ring hc-met-min__matrix-ring--outer" aria-hidden="true"></div>
+        <div class="hc-met-min__matrix-ring hc-met-min__matrix-ring--inner" aria-hidden="true"></div>
+
+        <div class="hc-met-min__matrix-core">
+          {%- if section.settings.matrix_eyebrow != blank -%}
+            <span class="hc-met-min__matrix-eyebrow">{{ section.settings.matrix_eyebrow }}</span>
+          {%- endif -%}
+          <h3 class="hc-met-min__matrix-title">
+            {{ section.settings.matrix_title | newline_to_br }}
+          </h3>
+        </div>
+
+        {%- if section.settings.badge_top_label != blank -%}
+          <div class="hc-met-min__badge hc-met-min__badge--top">
+            {%- if section.settings.badge_top_icon != blank -%}
+              <span class="hc-met-min__badge-icon" aria-hidden="true">{{ section.settings.badge_top_icon }}</span>
+            {%- endif -%}
+            <span class="hc-met-min__badge-text">{{ section.settings.badge_top_label }}</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.badge_right_label != blank -%}
+          <div class="hc-met-min__badge hc-met-min__badge--right">
+            {%- if section.settings.badge_right_icon != blank -%}
+              <span class="hc-met-min__badge-icon" aria-hidden="true">{{ section.settings.badge_right_icon }}</span>
+            {%- endif -%}
+            <span class="hc-met-min__badge-text">{{ section.settings.badge_right_label }}</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.badge_left_label != blank -%}
+          <div class="hc-met-min__badge hc-met-min__badge--left">
+            {%- if section.settings.badge_left_icon != blank -%}
+              <span class="hc-met-min__badge-icon" aria-hidden="true">{{ section.settings.badge_left_icon }}</span>
+            {%- endif -%}
+            <span class="hc-met-min__badge-text">{{ section.settings.badge_left_label }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="hc-met-min__cards">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'mineral' -%}
+            <article class="hc-met-min__card" {{ block.shopify_attributes }}>
+              {%- if block.settings.title != blank -%}
+                <h4 class="hc-met-min__card-title">{{ block.settings.title }}</h4>
+              {%- endif -%}
+              {%- if block.settings.body != blank -%}
+                <p class="hc-met-min__card-body">{{ block.settings.body }}</p>
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .hc-met-min {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    padding-top: var(--hc-mm-pt-mobile);
+    padding-bottom: var(--hc-mm-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-met-min {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-met-min {
+      padding-top: var(--hc-mm-pt-desktop);
+      padding-bottom: var(--hc-mm-pb-desktop);
+    }
+  }
+
+  .hc-met-min__grid-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image:
+      linear-gradient(#333 1px, transparent 1px),
+      linear-gradient(90deg, #333 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hc-met-min__container {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-met-min__header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .hc-met-min__eyebrow {
+    display: block;
+    color: #B45309;
+    font-family: monospace;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+
+  .hc-met-min__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .hc-met-min__heading {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-met-min__subtext {
+    font-size: 1.25rem;
+    color: #9ca3af;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;
+  }
+
+  /* Matrix circle */
+  .hc-met-min__matrix-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+
+  .hc-met-min__matrix {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+    max-width: 28rem;
+    border-radius: 9999px;
+    border: 1px solid #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .hc-met-min__matrix-ring {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+  }
+
+  .hc-met-min__matrix-ring--outer {
+    inset: 0;
+    border: 1px solid rgba(180, 83, 9, 0.3);
+    animation: hc-met-min-spin 20s linear infinite;
+  }
+
+  .hc-met-min__matrix-ring--inner {
+    inset: 2rem;
+    border: 1px solid #374151;
+    animation: hc-met-min-spin-reverse 15s linear infinite;
+  }
+
+  @keyframes hc-met-min-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes hc-met-min-spin-reverse {
+    from { transform: rotate(360deg); }
+    to   { transform: rotate(0deg); }
+  }
+
+  .hc-met-min__matrix-core {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .hc-met-min__matrix-eyebrow {
+    display: block;
+    color: #B45309;
+    font-family: monospace;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+
+  .hc-met-min__matrix-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .hc-met-min__matrix-title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-met-min__badge {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #111827;
+    border: 1px solid rgba(127, 29, 29, 0.5);
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-family: monospace;
+    font-size: 0.875rem;
+    color: #6b7280;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    text-decoration: line-through;
+    text-decoration-color: #ef4444;
+    text-decoration-thickness: 2px;
+  }
+
+  .hc-met-min__badge--top {
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hc-met-min__badge--right {
+    bottom: 1rem;
+    right: -1rem;
+  }
+
+  @media (max-width: 480px) {
+    .hc-met-min__badge--right {
+      right: 0;
+      max-width: calc(100% - 1rem);
+      white-space: normal;
+      text-align: center;
+    }
+  }
+
+  .hc-met-min__badge--left {
+    bottom: 1rem;
+    left: -1rem;
+  }
+
+  @media (max-width: 480px) {
+    .hc-met-min__badge--left {
+      left: 0;
+      max-width: calc(100% - 1rem);
+      white-space: normal;
+      text-align: center;
+    }
+  }
+
+  .hc-met-min__badge-icon {
+    font-size: 1.25rem;
+    opacity: 0.5;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .hc-met-min__badge-text {
+    line-height: 1.2;
+  }
+
+  /* Mineral cards grid */
+  .hc-met-min__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-met-min__cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-met-min__cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hc-met-min__cards {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .hc-met-min__card {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .hc-met-min__card:hover {
+    border-color: #B45309;
+  }
+
+  .hc-met-min__card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+  }
+
+  .hc-met-min__card:hover .hc-met-min__card-title {
+    color: #B45309;
+  }
+
+  .hc-met-min__card-body {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .hc-met-min__matrix-ring.hc-met-min__matrix-ring--outer {
+    display: block;
+}
+
+.hc-met-min__matrix-ring.hc-met-min__matrix-ring--inner {
+    display: block;
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC Metal Minerals",
+  "tag": "section",
+  "class": "hc-met-min-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The HercLeón Matrix"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Metals & Minerals In Our Arsenal"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "We use a unique, proprietary blend of these elements. The exact composition changes based on the garment and what is necessary to deliver the desired performance."
+    },
+    {
+      "type": "header",
+      "content": "Matrix (center circle)"
+    },
+    {
+      "type": "text",
+      "id": "matrix_eyebrow",
+      "label": "Matrix eyebrow",
+      "default": "Proprietary Blend"
+    },
+    {
+      "type": "textarea",
+      "id": "matrix_title",
+      "label": "Matrix title (line break = new line)",
+      "default": "HercLeón\nMatrix"
+    },
+    {
+      "type": "header",
+      "content": "Matrix badges"
+    },
+    {
+      "type": "text",
+      "id": "badge_top_icon",
+      "label": "Top badge — Icon (emoji)",
+      "default": "🦠"
+    },
+    {
+      "type": "text",
+      "id": "badge_top_label",
+      "label": "Top badge — Label",
+      "default": "Bacteria ❌"
+    },
+    {
+      "type": "text",
+      "id": "badge_right_icon",
+      "label": "Bottom-right badge — Icon",
+      "default": "💨"
+    },
+    {
+      "type": "text",
+      "id": "badge_right_label",
+      "label": "Bottom-right badge — Label",
+      "default": "Odor Molecules ❌"
+    },
+    {
+      "type": "text",
+      "id": "badge_left_icon",
+      "label": "Bottom-left badge — Icon",
+      "default": "🧬"
+    },
+    {
+      "type": "text",
+      "id": "badge_left_label",
+      "label": "Bottom-left badge — Label",
+      "default": "Lipids ❌"
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mineral",
+      "name": "Mineral / element",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Copper (Cu+)"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+          "default": "Releases ions that rupture bacterial cell walls on contact, preventing them from feeding on sweat."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Metal Minerals",
+      "blocks": [
+        { "type": "mineral", "settings": { "title": "Copper (Cu+)", "body": "Releases ions that rupture bacterial cell walls on contact, preventing them from feeding on sweat." } },
+        { "type": "mineral", "settings": { "title": "Zinc (Zn)", "body": "A powerful antimicrobial agent that binds to bacterial DNA, stopping reproduction and off-gassing." } },
+        { "type": "mineral", "settings": { "title": "Silver (Ag+)", "body": "A classic, highly effective antibacterial metal that disrupts the biological engines of odor-causing microbes." } },
+        { "type": "mineral", "settings": { "title": "Coconut Charcoal", "body": "Highly porous carbon structure that acts as a microscopic sponge, trapping odor molecules before they escape." } },
+        { "type": "mineral", "settings": { "title": "Volcanic Ash", "body": "Naturally absorbent and purifying, it pulls in moisture and traps complex hormonal odor compounds." } },
+        { "type": "mineral", "settings": { "title": "Gold (Au)", "body": "Provides advanced catalytic properties, enhancing the efficacy of other metals in extreme performance conditions." } },
+        { "type": "mineral", "settings": { "title": "Ruthenium (Ru)", "body": "A rare transition metal used in specialized blends to accelerate the breakdown of stubborn lipid-based odors." } },
+        { "type": "mineral", "settings": { "title": "Cytosine", "body": "A fundamental building block of DNA, utilized in advanced formulations to specifically target and neutralize complex biological scent signatures." } },
+        { "type": "mineral", "settings": { "title": "Silica", "body": "A naturally occurring compound that drastically improves moisture wicking and temperature regulation." } },
+        { "type": "mineral", "settings": { "title": "FIR (Far Infrared Rays)", "body": "Reflects the body's natural heat back as far infrared energy, improving circulation and recovery." } },
+        { "type": "mineral", "settings": { "title": "Zeolites", "body": "Microporous minerals that trap toxins, heavy metals, and environmental odors at a molecular level." } },
+        { "type": "mineral", "settings": { "title": "Platinum (Pt)", "body": "A highly stable noble metal that acts as a powerful catalyst to continuously refresh the fabric's odor-fighting properties." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

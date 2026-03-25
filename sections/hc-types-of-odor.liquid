@@ -1,0 +1,457 @@
+<section
+  class="hc-types-odor"
+  style="
+    --hc-to-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-to-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-to-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-to-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-types-odor__container">
+
+    <div class="hc-types-odor__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hc-types-odor__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtext != blank -%}
+        <p class="hc-types-odor__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="hc-types-odor__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'odor_card' -%}
+            <article class="hc-types-odor__card" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != blank -%}
+                <span class="hc-types-odor__card-icon" aria-hidden="true">{{ block.settings.icon }}</span>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h3 class="hc-types-odor__card-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.body != blank -%}
+                <p class="hc-types-odor__card-body">{{ block.settings.body }}</p>
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.show_footer -%}
+      <div class="hc-types-odor__footer">
+        <div class="hc-types-odor__footer-grid">
+
+          <div class="hc-types-odor__footer-col">
+            {%- if section.settings.footer_left_icon != blank -%}
+              <span class="hc-types-odor__footer-icon" aria-hidden="true">{{ section.settings.footer_left_icon }}</span>
+            {%- endif -%}
+            {%- if section.settings.footer_left_heading != blank -%}
+              <h4 class="hc-types-odor__footer-heading">{{ section.settings.footer_left_heading }}</h4>
+            {%- endif -%}
+            {%- if section.settings.footer_left_body != blank -%}
+              <div class="hc-types-odor__footer-body">{{ section.settings.footer_left_body }}</div>
+            {%- endif -%}
+          </div>
+
+          <div class="hc-types-odor__footer-col">
+            {%- if section.settings.footer_right_icon != blank -%}
+              <span class="hc-types-odor__footer-icon" aria-hidden="true">{{ section.settings.footer_right_icon }}</span>
+            {%- endif -%}
+            {%- if section.settings.footer_right_heading != blank -%}
+              <h4 class="hc-types-odor__footer-heading">{{ section.settings.footer_right_heading }}</h4>
+            {%- endif -%}
+            {%- if section.settings.footer_right_body != blank -%}
+              <div class="hc-types-odor__footer-body">{{ section.settings.footer_right_body }}</div>
+            {%- endif -%}
+          </div>
+
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .hc-types-odor {
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    padding-top: var(--hc-to-pt-mobile);
+    padding-bottom: var(--hc-to-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-types-odor {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-types-odor {
+      padding-top: var(--hc-to-pt-desktop);
+      padding-bottom: var(--hc-to-pb-desktop);
+    }
+  }
+
+  .hc-types-odor__container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-types-odor__header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .hc-types-odor__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #050505;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .hc-types-odor__heading {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-types-odor__subtext {
+    font-size: 1.25rem;
+    color: #6b7280;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;
+  }
+
+  .hc-types-odor__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-types-odor__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-types-odor__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .hc-types-odor__card {
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f4f6;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .hc-types-odor__card:hover {
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.12);
+    border-color: rgba(180, 83, 9, 0.3);
+  }
+
+  .hc-types-odor__card-icon {
+    display: block;
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+  }
+
+  .hc-types-odor__card:hover .hc-types-odor__card-icon {
+    transform: scale(1.1);
+  }
+
+  .hc-types-odor__card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #050505;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hc-types-odor__card-body {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .hc-types-odor__footer {
+    margin-top: 5rem;
+    background-color: rgba(180, 83, 9, 0.1);
+    border: 1px solid rgba(180, 83, 9, 0.2);
+    border-radius: 1.5rem;
+    padding: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-types-odor__footer {
+      padding: 3rem;
+    }
+  }
+
+  .hc-types-odor__footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-types-odor__footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .hc-types-odor__footer-col {
+    text-align: left;
+  }
+
+  .hc-types-odor__footer-icon {
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+
+  .hc-types-odor__footer-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #B45309;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hc-types-odor__footer-body {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.75;
+  }
+
+  .hc-types-odor__footer-body p {
+    margin-bottom: 1rem;
+  }
+
+  .hc-types-odor__footer-body p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Odor Types",
+  "tag": "section",
+  "class": "hc-types-odor-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The 6 Types of Odor"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Most \"anti-odor\" shirts only fight one. We engineered HercLeón to neutralize all six."
+    },
+    {
+      "type": "header",
+      "content": "Footer panel"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show bottom info panel",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "footer_left_icon",
+      "label": "Left column — Icon (emoji)",
+      "default": "🧬"
+    },
+    {
+      "type": "text",
+      "id": "footer_left_heading",
+      "label": "Left column — Heading",
+      "default": "The Genetic Lottery"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_left_body",
+      "label": "Left column — Body",
+      "default": "<p>Not everyone smells. A fascinating mutation in the ABCC11 gene—highly prevalent in East Asian populations—actually prevents the body from pumping proteins and lipids into apocrine sweat. Without those specific nutrients, the bacteria on your skin have absolutely nothing to eat, which means they produce zero body odor. Interestingly, this same gene is also responsible for determining whether you have dry or wet earwax! For the lucky few, deodorant is entirely optional. But for the rest of us, we have HercLeón.</p>"
+    },
+    {
+      "type": "text",
+      "id": "footer_right_icon",
+      "label": "Right column — Icon (emoji)",
+      "default": "👃"
+    },
+    {
+      "type": "text",
+      "id": "footer_right_heading",
+      "label": "Right column — Heading",
+      "default": "Speaking in Scent"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_right_body",
+      "label": "Right column — Body",
+      "default": "<p>Before complex language, humans communicated through smell. Our body odor wasn't a faux pas; it was a highly evolved broadcast system used to signal fear, identify family, broadcast health, and even find genetically compatible mates; truthfully, no dating app can match you better than body's odor.</p><p>Ever wonder why animals like dogs and cats can tell when you're sad or sick? It's because your body is constantly broadcasting its current state. This is also why some people can instantly tell when something is \"off\" with another person; it might not be intuition, it's probably just smell.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "blocks": [
+    {
+      "type": "odor_card",
+      "name": "Odor type",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "💧"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Fresh Sweat"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+          "default": "The standard watery sweat from heat or exercise. Easy to manage."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Odor Types",
+      "blocks": [
+        {
+          "type": "odor_card",
+          "settings": {
+            "icon": "💧",
+            "title": "Fresh Sweat",
+            "body": "The standard watery sweat from heat or exercise. Easy to manage."
+          }
+        },
+        {
+          "type": "odor_card",
+          "settings": {
+            "icon": "⚡",
+            "title": "Emotion Sweat",
+            "body": "Thick, lipid-rich sweat triggered by stress, fear, or excitement. Bacteria's favorite food."
+          }
+        },
+        {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🛢️",
+            "title": "Body Oils (Sebum)",
+            "body": "Waxy oils that bind to synthetic fabrics and trap odor permanently."
+          }
+        },
+        {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🧬",
+            "title": "Hormonal Odor",
+            "body": "Complex chemical signatures that change with diet, age, and hormones."
+          }
+        },
+        {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🦠",
+            "title": "Embedded Odor",
+            "body": "The 'permastink' that lives inside the fibers of old workout clothes."
+          }
+        },
+        {
+          "type": "odor_card",
+          "settings": {
+            "icon": "🌫️",
+            "title": "Environmental",
+            "body": "Smells from your surroundings—like smoke, food, or pollution—that cling to standard fabrics."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

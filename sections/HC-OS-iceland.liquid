@@ -1,0 +1,230 @@
+{% comment %}
+  HC of Fashion IWT - Story / Origin section
+  Class prefix: hc-os-fashion-iwt-
+{% endcomment %}
+
+<style>
+  .hc-os-fashion-iwt-section {
+    border-top: 1px solid #f3f4f6;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .hc-os-fashion-iwt-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-os-fashion-iwt-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hc-os-fashion-iwt-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: {{ section.settings.label_color }};
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hc-os-fashion-iwt-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #111827;
+  }
+
+  @media (min-width: 768px) {
+    .hc-os-fashion-iwt-heading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-os-fashion-iwt-content {
+    font-size: 1.125rem;
+    color: #4b5563;
+    font-weight: 300;
+    line-height: 1.625;
+  }
+
+  .hc-os-fashion-iwt-content p + p {
+    margin-top: 1.5rem;
+  }
+
+  .hc-os-fashion-iwt-content .hc-os-fashion-iwt-highlight {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #000;
+    font-style: italic;
+  }
+
+  .hc-os-fashion-iwt-image-wrap {
+    position: relative;
+    height: 600px;
+    background: #f3f4f6;
+    overflow: hidden;
+  }
+
+  .hc-os-fashion-iwt-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.25);
+    opacity: 0.9;
+  }
+
+  .hc-os-fashion-iwt-caption-box {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background: #fff;
+    padding: 0.5rem 1rem;
+        display: flex;
+  }
+
+  .hc-os-fashion-iwt-caption {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 768px) {
+    .hc-os-fashion-iwt-image-wrap {
+    height: auto;
+}
+  }
+</style>
+
+<div
+  id="{{ section.settings.section_id | default: 'story-start' }}"
+  class="hc-os-fashion-iwt-section"
+  aria-labelledby="hc-os-fashion-iwt-heading-{{ section.id }}"
+>
+<div class="page-width hc-os-fashion-iwt-section-sub">
+  <div class="hc-os-fashion-iwt-container">
+    <div class="hc-os-fashion-iwt-text-block">
+      {% if section.settings.label != blank %}
+        <span class="hc-os-fashion-iwt-label">{{ section.settings.label }}</span>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 id="hc-os-fashion-iwt-heading-{{ section.id }}" class="hc-os-fashion-iwt-heading">
+          {{ section.settings.heading | newline_to_br }}
+        </h2>
+      {% endif %}
+
+      <div class="hc-os-fashion-iwt-content">
+        {% if section.settings.paragraph_1 != blank %}
+          <p>{{ section.settings.paragraph_1 }}</p>
+        {% endif %}
+        {% if section.settings.paragraph_2 != blank %}
+          <p>{{ section.settings.paragraph_2 }}</p>
+        {% endif %}
+        {% if section.settings.highlight_text != blank %}
+          <p class="hc-os-fashion-iwt-highlight">{{ section.settings.highlight_text }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="hc-os-fashion-iwt-image-wrap">
+      {% if section.settings.image != blank %}
+        <img
+          class="hc-os-fashion-iwt-image"
+          src="{{ section.settings.image | image_url: width: 1000 }}"
+          alt="{{ section.settings.image.alt | default: section.settings.image_alt }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          loading="lazy"
+        >
+      {% endif %}
+
+      {% if section.settings.caption != blank %}
+        <div class="hc-os-fashion-iwt-caption-box">
+          <span class="hc-os-fashion-iwt-caption">{{ section.settings.caption }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "HC os Iceland",
+  "tag": "section",
+  "class": "section-hc-os-fashion-iwt",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID (for anchor links)",
+      "default": "story-start"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "The Origin"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#B45309"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "It All Began\nIn Iceland."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "It was a trip where clothes began to smell too fast. A realization that odor — not design, not style — is what truly limits clothing."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "A question that refused to let go:"
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Highlight / quote text",
+      "default": "\"Do clothes actually have to smell?\""
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text (if image has no alt)"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Image caption",
+      "default": "Reykjavik, 2017"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC os Iceland"
+    }
+  ]
+}
+{% endschema %}

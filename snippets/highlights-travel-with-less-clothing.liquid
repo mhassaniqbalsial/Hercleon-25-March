@@ -1,0 +1,230 @@
+<style>
+  /* Travel With Less Clothing Block Styles */
+  .hc-travel-with-less-clothing-block {
+    border-bottom: 1px solid #000;
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  .hc-travel-with-less-clothing-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-travel-with-less-clothing-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    order: 2;
+  }
+
+  .hc-travel-with-less-clothing-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #000000;
+  }
+
+  .hc-travel-with-less-clothing-block__subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #d1d5db;
+  }
+
+  .hc-travel-with-less-clothing-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+
+  .hc-travel-with-less-clothing-block__visual-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #ffffff;
+    order: 1;
+  }
+
+  .hc-travel-with-less-clothing-block__visual-container {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-travel-with-less-clothing-block__comparison-box {
+    background-color: #f9fafb;
+    padding: 2rem;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+  .hc-travel-with-less-clothing-block__comparison-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+  }
+
+  .hc-travel-with-less-clothing-block__tourist-section {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-travel-with-less-clothing-block__section-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-travel-with-less-clothing-block__section-header--hercleon {
+    color: #b45309;
+    font-weight: 700;
+  }
+
+  .hc-travel-with-less-clothing-block__items-grid {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-travel-with-less-clothing-block__item {
+    width: 1.5rem;
+    height: 2rem;
+    border: 1px solid #000;
+    background-color: #fff;
+    display: flex !important;
+}
+
+  .hc-travel-with-less-clothing-block__item--hercleon {
+    background-color: #b45309;
+    border: none;
+  }
+
+  .hc-travel-with-less-clothing-block__section-note {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-travel-with-less-clothing-block__section-note--hercleon {
+    color: #b45309;
+  }
+
+  .hc-travel-with-less-clothing-block__hercleon-section {
+    /* No additional styling needed */
+  }
+
+  @media (min-width: 768px) {
+    .hc-travel-with-less-clothing-block__content {
+      padding: 6rem;
+    }
+
+    .hc-travel-with-less-clothing-block__visual-wrapper {
+      padding: 3rem;
+    }
+
+    .hc-travel-with-less-clothing-block__title {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-travel-with-less-clothing-block__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-travel-with-less-clothing-block__content {
+      order: 2;
+      border-left: 1px solid #1f2937;
+    }
+
+    .hc-travel-with-less-clothing-block__visual-wrapper {
+      order: 1;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .hc-travel-with-less-clothing-block__content {
+      padding: 32px 20px;
+      order: unset;
+    }
+    .hc-travel-with-less-clothing-block__visual-wrapper {
+      padding: 32px 20px;
+      order: unset;
+    }
+  }
+</style>
+
+<div class="hc-travel-with-less-clothing-block" {{ block.shopify_attributes }}>
+              <div class="hc-travel-with-less-clothing-block__grid">
+                <div class="hc-travel-with-less-clothing-block__content">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="hc-travel-with-less-clothing-block__title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.subtitle != blank -%}
+                    <p class="hc-travel-with-less-clothing-block__subtitle">{{ block.settings.subtitle }}</p>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.description != blank -%}
+                    <p class="hc-travel-with-less-clothing-block__description">{{ block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+
+                <div class="hc-travel-with-less-clothing-block__visual-wrapper">
+                  <div class="hc-travel-with-less-clothing-block__visual-container">
+                    <div class="hc-travel-with-less-clothing-block__comparison-box">
+                      <p class="hc-travel-with-less-clothing-block__comparison-title">{{ block.settings.comparison_title | default: '2 Weeks Long Trip' }}</p>
+                      
+                      {%- comment -%} Tourist Section {%- endcomment -%}
+                      <div class="hc-travel-with-less-clothing-block__tourist-section">
+                        <div class="hc-travel-with-less-clothing-block__section-header">
+                          <span>{{ block.settings.tourist_label | default: 'Standard Tourist' }}</span>
+                          <span>{{ block.settings.tourist_weight | default: '~3.5kg Load' }}</span>
+                        </div>
+                        <div class="hc-travel-with-less-clothing-block__items-grid">
+                          {%- assign tourist_items = block.settings.tourist_items | default: 14 -%}
+                          {%- for i in (1..tourist_items) -%}
+                            <div class="hc-travel-with-less-clothing-block__item"></div>
+                          {%- endfor -%}
+                        </div>
+                        <p class="hc-travel-with-less-clothing-block__section-note">{{ block.settings.tourist_note | default: 'Requires 14 items OR Laundry' }}</p>
+                      </div>
+
+                      {%- comment -%} HercLeon Section {%- endcomment -%}
+                      <div class="hc-travel-with-less-clothing-block__hercleon-section">
+                        <div class="hc-travel-with-less-clothing-block__section-header hc-travel-with-less-clothing-block__section-header--hercleon">
+                          <span>{{ block.settings.hercleon_label | default: 'HercLeon Operative' }}</span>
+                          <span>{{ block.settings.hercleon_weight | default: '~0.1kg Load' }}</span>
+                        </div>
+                        <div class="hc-travel-with-less-clothing-block__items-grid">
+                          {%- assign hercleon_items = block.settings.hercleon_items | default: 1 -%}
+                          {%- for i in (1..hercleon_items) -%}
+                            <div class="hc-travel-with-less-clothing-block__item hc-travel-with-less-clothing-block__item--hercleon"></div>
+                          {%- endfor -%}
+                        </div>
+                        <p class="hc-travel-with-less-clothing-block__section-note hc-travel-with-less-clothing-block__section-note--hercleon">{{ block.settings.hercleon_note | default: 'Requires 1 Item. Zero Laundry.' }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

@@ -1,0 +1,760 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "hc_of_wen_story_xCRQqN": {
+      "type": "HC-OF-wen-story",
+      "name": "HC of Wen Story",
+      "settings": {
+        "image": "shopify://shop_images/photo-1507003211169-0a1dd7228f2d.avif",
+        "image_alt": "",
+        "heading": "Hi, I'm Wen.",
+        "subheading": "Founder & Chief Textile Engineer",
+        "description": "I created HercLeón to remove the biggest limitation clothing has ever had: odor.",
+        "button_label": "Read My Story ↓",
+        "button_link": "#really-started",
+        "padding_top_mobile": 128,
+        "padding_bottom_mobile": 64
+      }
+    },
+    "hc_os_fashion_iwt_ni7cnr": {
+      "type": "HC-OS-iceland",
+      "name": "HC os Fashion IWT",
+      "settings": {
+        "section_id": "really-started",
+        "label": "The Origin",
+        "label_color": "#b45309",
+        "heading": "Where It Really Started: \n3AM, Wide Awake, \nAsking “Why?”",
+        "paragraph_1": "It was 3AM in a small hostel in Reykjavik. My backpack was stuffed with \"just in case\" shirts, yet I had nothing clean to wear for the glacier hike the next morning. The smell of travel—stale, lived-in, exhausted—filled the small room.",
+        "paragraph_2": "I realized then: Odor is a wall. It stops you from moving freely. It forces you to carry burdens you don't need. I spent the rest of that night staring at the ceiling, wondering why, in a world of self-driving cars and pocket supercomputers, our shirts still failed us after one day.",
+        "highlight_text": "",
+        "image": "shopify://shop_images/photo-1520250497591-112f2f40a3f4.avif",
+        "image_alt": "",
+        "caption": "Iceland, 2017"
+      }
+    },
+    "custom_section_pjAJtq": {
+      "type": "custom-section",
+      "blocks": {
+        "heading_p3QKqQ": {
+          "type": "heading",
+          "name": "t:blocks.heading.name",
+          "settings": {
+            "heading": "Odor Isn’t a Scent. It’s a Limitation.",
+            "heading_size": "title-md",
+            "heading_tag": "h2",
+            "width": "fill",
+            "custom_width": 100,
+            "alignment": "center",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "alignment_mobile": "center",
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle",
+            "highlighted_reveal": false
+          },
+          "blocks": {}
+        },
+        "subheading_gERRbb": {
+          "type": "subheading",
+          "name": "t:blocks.subheading.name",
+          "settings": {
+            "heading": "And limitations steal freedom.",
+            "heading_size": "subtitle-md",
+            "secondary_color": false,
+            "width": "fill",
+            "custom_width": 100,
+            "alignment": "center",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "alignment_mobile": "center"
+          },
+          "blocks": {}
+        },
+        "group_AMDnFK": {
+          "type": "group",
+          "name": "t:blocks.group.name",
+          "settings": {
+            "link": "",
+            "accessibility_info": "",
+            "open_in_new_tab": false,
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "content_wrap": false,
+            "horizontal_alignment": "start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 56,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "custom_colors": false,
+            "color_text": "",
+            "color_background": "",
+            "gradient_background": "",
+            "color_button_text": "",
+            "color_button_background": "",
+            "color_button_gradient": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_JhFn7A": {
+              "type": "text",
+              "name": "t:blocks.text.name",
+              "settings": {
+                "text": "<p>When clothing smells, it dictates your life. It tells you when to go home. It tells you how much luggage to carry. It creates a subtle, constant friction in your day—a worry that you aren't presenting your best self.</p><p>We accept this burden because we think it's natural. It isn't. It's a failure of design.</p>",
+                "text_font": "body",
+                "text_size": "text-base",
+                "text_max_size": 32,
+                "text_line_height": 1.6,
+                "text_letter_spacing": 0,
+                "text_capitalize": false,
+                "secondary_color": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "alignment": "left",
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "effects": "none",
+                "highlighted_text": "text",
+                "highlighted_scribble": "circle"
+              },
+              "blocks": {}
+            },
+            "limitation_flow_fXRfn8": {
+              "type": "limitation-flow",
+              "name": "Flow Diagram",
+              "settings": {
+                "step_1": "ODOR",
+                "box_1_bg_color": "rgba(0,0,0,0)",
+                "box_1_text_color": "#ffffff",
+                "box_1_border_color": "#ffffff66",
+                "step_2": "LIMITATION",
+                "box_2_bg_color": "rgba(0,0,0,0)",
+                "box_2_text_color": "#ffffff",
+                "box_2_border_color": "#ffffff66",
+                "step_3": "FRICTION",
+                "box_3_bg_color": "rgba(0,0,0,0)",
+                "box_3_text_color": "#ffffff",
+                "box_3_border_color": "#ffffff66",
+                "step_4": "BURDEN",
+                "box_4_bg_color": "#ffffff",
+                "box_4_text_color": "#000000",
+                "box_4_border_color": "#ffffff",
+                "arrow_color": "#b45309",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_JhFn7A",
+            "limitation_flow_fXRfn8"
+          ]
+        }
+      },
+      "block_order": [
+        "heading_p3QKqQ",
+        "subheading_gERRbb",
+        "group_AMDnFK"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "hc-founder-page-third-section",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "#000000",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "multicolumn_with_icons_JpzHYa": {
+      "type": "multicolumn-with-icons",
+      "blocks": {
+        "column_mMz6re": {
+          "type": "column",
+          "settings": {
+            "icon": "support",
+            "custom_icon": "<svg class=\"w-8 h-8\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M12 19l9 2-9-18-9 18 9-2zm0 0v-8\"></path></svg>",
+            "heading": "Freedom",
+            "text": "<p>To move through the world without friction. To say yes to the unexpected adventure because your gear can handle it.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "column_q4e6nN": {
+          "type": "column",
+          "settings": {
+            "icon": "box",
+            "custom_icon": "<svg class=\"w-8 h-8\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z\"></path></svg>",
+            "heading": "Lightness",
+            "text": "<p>Carry less. Worry less. Wash less. Physical lightness creates mental clarity.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "column_NLALCd": {
+          "type": "column",
+          "settings": {
+            "icon": "shield",
+            "custom_icon": "<svg class=\"w-8 h-8\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z\"></path></svg>",
+            "heading": "Trust",
+            "text": "<p>Know your clothing will always support you. It will never quit before you do.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "column_mMz6re",
+        "column_q4e6nN",
+        "column_NLALCd"
+      ],
+      "name": "t:sections.multicolumn-with-icons.name",
+      "settings": {
+        "custom_class": "hc-founder-page-forth-section",
+        "style": "none",
+        "desktop_gap": 42,
+        "columns": 3,
+        "mobile_layout": "column",
+        "column_gap": 42,
+        "text_alignment": "center",
+        "heading": "What Clothing Should Give You",
+        "heading_size": "title-md",
+        "heading_alignment": "text-center md:items-center",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "button_label": "",
+        "button_link": "",
+        "button_external": false,
+        "button_icon": true,
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "highlighted_reveal": false,
+        "color_text": "#000000",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "full_width": false,
+        "rounded": false
+      }
+    },
+    "custom_section_KRtRzj": {
+      "type": "custom-section",
+      "blocks": {
+        "group_bynkmG": {
+          "type": "group",
+          "name": "t:blocks.group.name",
+          "settings": {
+            "link": "",
+            "accessibility_info": "",
+            "open_in_new_tab": false,
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "content_wrap": false,
+            "horizontal_alignment": "start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 84,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "custom_colors": false,
+            "color_text": "",
+            "color_background": "",
+            "gradient_background": "",
+            "color_button_text": "",
+            "color_button_background": "",
+            "color_button_gradient": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image_eGTiHr": {
+              "type": "image",
+              "name": "t:blocks.image.name",
+              "settings": {
+                "aspect_ratio": "adapt",
+                "link": "",
+                "accessibility_info": "",
+                "external": false,
+                "aspect_ratio_mobile": "adapt",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "image_text": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            },
+            "group_w3RYgf": {
+              "type": "group",
+              "name": "t:blocks.group.name",
+              "settings": {
+                "link": "",
+                "accessibility_info": "",
+                "open_in_new_tab": false,
+                "content_direction": "col",
+                "vertical_on_mobile": true,
+                "content_wrap": false,
+                "horizontal_alignment": "start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 28,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "custom_colors": false,
+                "color_text": "",
+                "color_background": "",
+                "gradient_background": "",
+                "color_button_text": "",
+                "color_button_background": "",
+                "color_button_gradient": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "heading_LAxjA6": {
+                  "type": "heading",
+                  "name": "t:blocks.heading.name",
+                  "settings": {
+                    "heading": "I’m Not a Designer. I’m a Problem Solver.",
+                    "heading_size": "title-md",
+                    "heading_tag": "h2",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "alignment": "left",
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "alignment_mobile": "left",
+                    "effects": "none",
+                    "highlighted_text": "text",
+                    "highlighted_scribble": "circle",
+                    "highlighted_reveal": false
+                  },
+                  "blocks": {}
+                },
+                "text_Dzgk9y": {
+                  "type": "text",
+                  "name": "t:blocks.text.name",
+                  "settings": {
+                    "text": "<p>I didn't go to fashion school. I taught myself textile engineering out of necessity. I spent years experimenting with copper ions, volcanic ash, and plant-based polymers, reading papers on microbiology and fiber physics late into the night.</p><p>Fashion designers care about how a shirt looks on a runway. I care about how it smells after a 14-hour flight. My obsession isn't style—it's the human experience.</p>",
+                    "text_font": "body",
+                    "text_size": "text-base",
+                    "text_max_size": 32,
+                    "text_line_height": 1.6,
+                    "text_letter_spacing": 0,
+                    "text_capitalize": false,
+                    "secondary_color": false,
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "alignment": "left",
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100,
+                    "effects": "none",
+                    "highlighted_text": "text",
+                    "highlighted_scribble": "circle"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "heading_LAxjA6",
+                "text_Dzgk9y"
+              ]
+            }
+          },
+          "block_order": [
+            "image_eGTiHr",
+            "group_w3RYgf"
+          ]
+        }
+      },
+      "block_order": [
+        "group_bynkmG"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "hc-founder-page-fifth-section",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "custom_section_hCwJz9": {
+      "type": "custom-section",
+      "blocks": {
+        "heading_nagjRF": {
+          "type": "heading",
+          "name": "t:blocks.heading.name",
+          "settings": {
+            "heading": "Minimalism Isn’t About Owning Less. It’s About Feeling More Alive.",
+            "heading_size": "title-md",
+            "heading_tag": "h2",
+            "width": "fill",
+            "custom_width": 72,
+            "alignment": "center",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "alignment_mobile": "center",
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle",
+            "highlighted_reveal": false
+          },
+          "blocks": {}
+        },
+        "text_Q89U7z": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<p>True minimalism is spiritual lightness. It's the removal of distraction so you can focus on what matters: connection, experience, and presence. Hercléon is a tool for that focus.</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "fit-content",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        },
+        "image_nEtftG": {
+          "type": "image",
+          "name": "t:blocks.image.name",
+          "settings": {
+            "image": "shopify://shop_images/photo-plant.avif",
+            "aspect_ratio": "landscape",
+            "link": "",
+            "accessibility_info": "",
+            "external": false,
+            "aspect_ratio_mobile": "portrait",
+            "width": "custom",
+            "custom_width": 70,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "image_text": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading_nagjRF",
+        "text_Q89U7z",
+        "image_nEtftG"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "hc-founder-page-sixth-section",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "#f9fafb",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "hc_of_purpose_bJDiPp": {
+      "type": "HC-OF-purpose",
+      "name": "HC of Purpose",
+      "settings": {
+        "heading": "Clothing Used to Help Humans Go Farther.",
+        "heading_line_2": "Somewhere Along the Way, That Purpose Got Lost.",
+        "tagline": "I'm building HercLeón to bring it back.",
+        "old_label": "Old Purpose",
+        "old_value": "Protection & Utility",
+        "lost_label": "Lost Purpose",
+        "lost_value": "Status & Trend",
+        "new_label": "New Purpose",
+        "new_value": "Freedom & Expansion"
+      }
+    },
+    "hc_of_mission_hHUVXm": {
+      "type": "HC-OF-mission",
+      "blocks": {
+        "mission_item_tTMcNV": {
+          "type": "mission_item",
+          "settings": {
+            "title": "Remove Friction",
+            "text": "Eliminate the daily burdens of laundry, packing, and odor anxiety."
+          }
+        },
+        "mission_item_twPKKX": {
+          "type": "mission_item",
+          "settings": {
+            "title": "Bio-Compatability",
+            "text": "Create clothing that works in harmony with human biology, not against it."
+          }
+        },
+        "mission_item_amB3NC": {
+          "type": "mission_item",
+          "settings": {
+            "title": "Expand Life",
+            "text": "Help people live lighter, travel further, and experience more."
+          }
+        }
+      },
+      "block_order": [
+        "mission_item_tTMcNV",
+        "mission_item_twPKKX",
+        "mission_item_amB3NC"
+      ],
+      "name": "HC of Mission",
+      "settings": {
+        "heading": "My Mission"
+      }
+    },
+    "hc_of_wen_note_CLh97h": {
+      "type": "HC-OF-wen-note",
+      "name": "HC of Wen Note",
+      "settings": {
+        "label": "A Note From Me",
+        "quote": "\"Thank you. If you're here reading this, thank you. You are part of a small group of people who demand more from the objects in their life. You are the reason I keep pushing the boundaries of what fabric can do. I hope these clothes serve you as well as they have served me.\"",
+        "author_name": "WEN",
+        "author_title": "Founder & Chief Textile Engineer"
+      }
+    },
+    "hc_floating_nav_page_geThyK": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_MURQAY": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_BLhNRF": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_GiGJEn": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_MURQAY",
+        "clearance_item_BLhNRF",
+        "clearance_item_GiGJEn"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "hc_of_wen_story_xCRQqN",
+    "hc_os_fashion_iwt_ni7cnr",
+    "custom_section_pjAJtq",
+    "multicolumn_with_icons_JpzHYa",
+    "custom_section_KRtRzj",
+    "custom_section_hCwJz9",
+    "hc_of_purpose_bJDiPp",
+    "hc_of_mission_hHUVXm",
+    "hc_of_wen_note_CLh97h",
+    "hc_floating_nav_page_geThyK"
+  ]
+}

@@ -1,0 +1,197 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign heading_color = block.settings.heading_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign description_color = block.settings.description_color | default: '#9ca3af'
+-%}
+
+<style>
+  .hc-sfm {
+    --hc-sfm-bg: {{ bg_color }};
+    --hc-sfm-heading: {{ heading_color }};
+    --hc-sfm-accent: {{ accent_color }};
+    --hc-sfm-desc: {{ description_color }};
+
+    background-color: var(--hc-sfm-bg);
+    color: var(--hc-sfm-heading);
+    display: flex;
+    align-items: center;
+  }
+
+  .hc-sfm__inner {
+    padding: 5rem 1.5rem;
+    width: 100%;
+  }
+
+  .hc-sfm__container {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hc-sfm__content {
+    max-width: 64rem;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hc-sfm__heading {
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-sfm-heading);
+  }
+
+  .hc-sfm__subheading {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--hc-sfm-accent);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .hc-sfm__desc-wrap {
+    margin-bottom: 3.5rem;
+  }
+
+  .hc-sfm__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-sfm-desc);
+    white-space: pre-line;
+    margin: 0 auto;
+  }
+
+  .hc-sfm__cta {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+  }
+
+  .hc-sfm__cta-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--hc-sfm-desc);
+    max-width: 280px;
+    line-height: 1.6;
+    transition: color 0.3s;
+  }
+
+  .hc-sfm__cta:hover .hc-sfm__cta-label {
+    color: var(--hc-sfm-accent);
+  }
+
+  .hc-sfm__cta-circle {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .hc-sfm__cta:hover .hc-sfm__cta-circle {
+    border-color: var(--hc-sfm-accent);
+    background-color: color-mix(in srgb, var(--hc-sfm-accent) 10%, transparent);
+  }
+
+  .hc-sfm__cta-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--hc-sfm-desc);
+    animation: hc-sfm-bounce 1s infinite;
+    transition: color 0.3s;
+  }
+
+  .hc-sfm__cta:hover .hc-sfm__cta-icon {
+    color: var(--hc-sfm-accent);
+  }
+
+  @keyframes hc-sfm-bounce {
+    0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+    50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+  }
+
+  @media (min-width: 768px) {
+    .hc-sfm__heading {
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .hc-sfm__subheading {
+      font-size: 1.25rem;
+    }
+
+    .hc-sfm__desc {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-sfm__heading {
+      font-size: 3.75rem;
+    }
+
+    .hc-sfm__subheading {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<section id="sheet_intro" class="hc-sfm" {{ block.shopify_attributes }}>
+  <div class="hc-sfm__inner">
+    <div class="hc-sfm__container">
+      <div class="hc-sfm__content">
+
+        <h3 class="hc-sfm__heading">
+          {{ block.settings.heading | default: 'We created the best sheets for men.' }}
+        </h3>
+
+        <p class="hc-sfm__subheading">
+          {{ block.settings.subheading | default: 'Most sheets were designed for everyone.' }}
+          <br>
+          {{ block.settings.subheading_line2 | default: 'These were designed for you.' }}
+        </p>
+
+        <div class="hc-sfm__desc-wrap">
+          <p class="hc-sfm__desc">
+            {{ block.settings.description | default: "Men's bodies operate differently. Higher body temperatures, sweatier nights, and less frequent washing than most bedding was ever built to handle. We took all of that into consideration when creating the Jax Sheets." }}
+          </p>
+        </div>
+
+        {%- if block.settings.cta_text != blank -%}
+          <button class="hc-sfm__cta" onclick="document.getElementById('{{ block.settings.scroll_target | default: 'next-section' }}')?.scrollIntoView({behavior:'smooth'})">
+            <span class="hc-sfm__cta-label">{{ block.settings.cta_text }}</span>
+            <div class="hc-sfm__cta-circle">
+              <svg class="hc-sfm__cta-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </div>
+          </button>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+</section>

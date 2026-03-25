@@ -1,0 +1,473 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign is_reversed = block.settings.reverse_layout
+-%}
+
+<style>
+  .hc-sc {
+    --hc-sc-bg: {{ bg_color }};
+    --hc-sc-text: {{ text_color }};
+    --hc-sc-accent: {{ accent_color }};
+    --hc-sc-desc: {{ desc_color }};
+
+    background-color: var(--hc-sc-bg);
+    border-bottom: 1px solid #000;
+  }
+
+  .hc-sc__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-sc__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-sc-text);
+    order: 2;
+    border-top: 1px solid #000;
+  }
+
+  .hc-sc__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-sc-bg);
+    order: 1;
+  }
+
+  .hc-sc__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-sc-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-sc__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-sc-text);
+  }
+
+  .hc-sc__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-sc-desc);
+    white-space: pre-line;
+  }
+
+  .hc-sc__tooltip-trigger {
+    position: relative;
+    display: inline-flex;
+}
+
+  .hc-sc__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-sc__tooltip-trigger:hover strong {
+    color: var(--hc-sc-accent);
+  }
+
+  .hc-sc__tooltip {
+    position: absolute;
+    display: flex;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    margin-left: 8px;
+    width: 320px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-sc__tooltip-trigger:hover .hc-sc__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-sc__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #000;
+    position: relative;
+    display: flex;
+}
+
+  .hc-sc__tooltip-box,
+  .hc-sc__tooltip-content {
+    display: block;
+  }
+
+  .hc-sc__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-sc__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-sc__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-sc-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-sc__tooltip-p strong:hover {
+    color: var(--hc-sc-accent);
+  }
+
+  .hc-sc__tooltip-arrow {
+    display: flex !important;
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+  .hc-sc__desc strong {
+    font-weight: 700;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-sc__desc strong:hover {
+    color: var(--hc-sc-accent);
+  }
+
+  @media (min-width: 768px) {
+    .hc-sc__tooltip {
+      width: 450px;
+    }
+  }
+
+  .hc-sc__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-sc__card {
+    background-color: #fff;
+    padding: 2rem;
+    border: 1px solid #000;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-sc__card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-sc__arena {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-sc__arena-dots {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image: radial-gradient(#000 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .hc-sc__shield-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-sc__shield {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 4px solid var(--hc-sc-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .hc-sc__shield-icon {
+    width: 5rem;
+    height: 5rem;
+    color: var(--hc-sc-accent);
+  }
+
+  .hc-sc__zaps {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hc-sc__zap {
+    position: absolute;
+    animation: hc-sc-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    opacity: 0.2;
+  }
+
+  .hc-sc__zap-icon {
+    width: 1rem;
+    height: 1rem;
+    color: #ef4444;
+  }
+
+  @keyframes hc-sc-ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  .hc-sc__badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 0.25rem 1rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .hc-sc__footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .hc-sc__footer-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #9ca3af;
+  }
+
+  @media (min-width: 768px) {
+    .hc-sc__text-col {
+      padding: 6rem;
+    }
+
+    .hc-sc__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-sc__heading {
+      font-size: 3rem;
+    }
+
+    .hc-sc__card {
+      padding: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-sc__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-sc__text-col {
+      border-top: none;
+    }
+
+    .hc-sc__grid--default .hc-sc__text-col {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+
+    .hc-sc__grid--default .hc-sc__visual-col {
+      order: 1;
+    }
+
+    .hc-sc__grid--reversed .hc-sc__text-col {
+      order: 1;
+      border-right: 1px solid #000;
+    }
+
+    .hc-sc__grid--reversed .hc-sc__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section id="self-cleaning" class="hc-sc" {{ block.shopify_attributes }}>
+  <div class="hc-sc__grid {% if is_reversed %}hc-sc__grid--reversed{% else %}hc-sc__grid--default{% endif %}">
+
+    <div class="hc-sc__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-sc__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-sc__heading">
+        {{ block.settings.heading | default: 'SELF-CLEANING FABRIC?' }}
+      </h3>
+
+      <div class="hc-sc__desc">
+        {%- if block.settings.tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+          {%- assign sc_trigger_html = '<strong>' | append: block.settings.tooltip_trigger | append: '</strong>' -%}
+          {%- capture sc_tooltip_html -%}<span class="hc-sc__tooltip-trigger"><strong>{{ block.settings.tooltip_trigger }}</strong><span class="hc-sc__tooltip"><span class="hc-sc__tooltip-box"><span class="hc-sc__tooltip-content">{{ block.settings.tooltip_content | replace: '<p>', '<span class="hc-sc__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-sc__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+          {{ block.settings.description | replace: sc_trigger_html, sc_tooltip_html }}
+        {%- else -%}
+          {{ block.settings.description }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hc-sc__visual-col">
+      <div class="hc-sc__visual-inner">
+        <div class="hc-sc__card">
+          <div class="hc-sc__card-content">
+            <div class="hc-sc__arena">
+              <div class="hc-sc__arena-dots"></div>
+
+              <div class="hc-sc__shield-wrap">
+                <div class="hc-sc__shield">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sc__shield-icon" aria-hidden="true">
+                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                  </svg>
+                </div>
+
+                <div class="hc-sc__zaps">
+                  <div class="hc-sc__zap" style="top:71.68%;left:31.58%;animation-duration:2.67s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sc__zap-icon" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                  </div>
+                  <div class="hc-sc__zap" style="top:73.37%;left:67.95%;animation-duration:2.65s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sc__zap-icon" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                  </div>
+                  <div class="hc-sc__zap" style="top:75.09%;left:48.30%;animation-duration:3.07s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sc__zap-icon" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                  </div>
+                  <div class="hc-sc__zap" style="top:21.10%;left:29.08%;animation-duration:3.99s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sc__zap-icon" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                  </div>
+                  <div class="hc-sc__zap" style="top:79.91%;left:65.65%;animation-duration:2.40s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sc__zap-icon" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                  </div>
+                  <div class="hc-sc__zap" style="top:55.65%;left:39.73%;animation-duration:3.41s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hc-sc__zap-icon" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                  </div>
+                </div>
+              </div>
+
+              {%- if block.settings.badge_text != blank -%}
+                <div class="hc-sc__badge">{{ block.settings.badge_text }}</div>
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.footer_text != blank -%}
+              <div class="hc-sc__footer">
+                <p class="hc-sc__footer-text">{{ block.settings.footer_text }}</p>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{%- if block.settings.tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+  <template id="hc-sc-tooltip-template">
+    <div class="hc-sc__tooltip">
+      <div class="hc-sc__tooltip-box">
+        <div class="hc-sc__tooltip-content">
+          {{ block.settings.tooltip_content }}
+        </div>
+        <div class="hc-sc__tooltip-arrow"></div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function() {
+      function initTooltip() {
+        var trigger = {{ block.settings.tooltip_trigger | json }};
+        var section = document.getElementById('self-cleaning');
+        if (!section) return;
+        var descEl = section.querySelector('.hc-sc__desc');
+        if (!descEl) return;
+        var strongs = descEl.querySelectorAll('strong');
+        strongs.forEach(function(el) {
+          if (el.textContent.trim().toLowerCase() === trigger.trim().toLowerCase()) {
+            if (el.parentNode.classList && el.parentNode.classList.contains('hc-sc__tooltip-trigger')) return;
+            var wrapper = document.createElement('span');
+            wrapper.className = 'hc-sc__tooltip-trigger';
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
+
+            var tmpl = document.getElementById('hc-sc-tooltip-template');
+            if (tmpl) {
+              wrapper.appendChild(tmpl.content.cloneNode(true));
+            }
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTooltip);
+      } else {
+        initTooltip();
+      }
+    })();
+  </script>
+{%- endif -%}  

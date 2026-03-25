@@ -1,0 +1,106 @@
+{% comment %}
+  HC Backup Needed Block
+  Section: highlight freshness / no backups needed
+{% endcomment %}
+
+<style>
+  .hc-backups-needed {
+    background-color: #000;
+    color: #fff;
+    border-bottom: 1px solid #000;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+    animation: hc-backups-needed-fade-in-up 0.6s ease forwards;
+  }
+
+  @media (min-width: 768px) {
+    .hc-backups-needed {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hc-backups-needed__container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-backups-needed__title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-backups-needed__title {
+      font-size: 4.5rem;
+    }
+  }
+
+  .hc-backups-needed__title-accent {
+    color: #B45309;
+    padding-right: 15px;
+}
+  .hc-backups-needed__content {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-backups-needed__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: rgba(229, 231, 235, 1);
+    line-height: 1.75;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    .hc-backups-needed__description {
+      font-size: 1.25rem;
+    }
+  }
+
+  @keyframes hc-backups-needed-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<section
+  id="highlight_freshness"
+  class="hc-backups-needed"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-backups-needed__container">
+    <h2 class="hc-backups-needed__title">
+      {%- if block.settings.title_accent != blank -%}
+        <span class="hc-backups-needed__title-accent">{{ block.settings.title_accent }}</span>
+      {%- endif -%}
+      {%- if block.settings.title_main != blank -%}
+        {{ block.settings.title_main }}
+      {%- endif -%}
+    </h2>
+    <div class="hc-backups-needed__content">
+      {%- if block.settings.description != blank -%}
+        <p class="hc-backups-needed__description">{{ block.settings.description }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>

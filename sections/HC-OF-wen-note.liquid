@@ -1,0 +1,126 @@
+{% comment %}
+  HC of Wen Note section
+  All class names prefixed: hc-of-wen-note
+{% endcomment %}
+
+{% capture hc_of_wen_note_quote_default %}"Thank you. If you're here reading this, thank you. You are part of a small group of people who demand more from the objects in their life. You are the reason I keep pushing the boundaries of what fabric can do. I hope these clothes serve you as well as they have served me."{% endcapture %}
+
+{% style %}
+
+  #shopify-section-{{ section.id }} .hc-of-wen-note {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .hc-of-wen-note__container {
+    max-width: 44rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .hc-of-wen-note__container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  .hc-of-wen-note__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 2rem;
+    display: block;
+  }
+  .hc-of-wen-note__quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #1f2937;
+    line-height: 1.625;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 768px) {
+    .hc-of-wen-note__quote {
+      font-size: 1.5rem;
+    }
+  }
+  .hc-of-wen-note__signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-of-wen-note__name {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: 0.1em;
+}
+
+  .hc-of-wen-note__title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
+  .hc-of-wen-note {
+    border-top: 1px solid #1f2937;
+  }
+{% endstyle %}
+
+<div class="hc-of-wen-note" aria-label="A note from Wen">
+  <div class="hc-of-wen-note__container">
+    <span class="hc-of-wen-note__label">{{ section.settings.label | default: 'A Note From Me' }}</span>
+    <div class="hc-of-wen-note__quote">
+      {{ section.settings.quote | default: hc_of_wen_note_quote_default }}
+    </div>
+    <div class="hc-of-wen-note__signature">
+      <span class="hc-of-wen-note__name">{{ section.settings.author_name | default: 'Wen' }}</span>
+      <span class="hc-of-wen-note__title">{{ section.settings.author_title | default: 'Founder & Chief Textile Engineer' }}</span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "HC OF Wen Note",
+  "tag": "section",
+  "class": "section-hc-of-wen-note",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "A Note From Me"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "\"Thank you. If you're here reading this, thank you. You are part of a small group of people who demand more from the objects in their life. You are the reason I keep pushing the boundaries of what fabric can do. I hope these clothes serve you as well as they have served me.\""
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author name",
+      "default": "Wen"
+    },
+    {
+      "type": "text",
+      "id": "author_title",
+      "label": "Author title",
+      "default": "Founder & Chief Textile Engineer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC OF Wen Note"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,153 @@
+{% comment %}
+  Section: HC Home Seen On
+  Description: Media mentions and publications showcase
+{% endcomment %}
+
+<div class="hc-home-seen-on">
+  <div class="hc-home-seen-on__container">
+    <span class="hc-home-seen-on__label">{{ section.settings.label_text }}</span>
+    
+    {% for block in section.blocks %}
+      <span class="hc-home-seen-on__item">{{ block.settings.publication_name }}</span>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .hc-home-seen-on {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 3rem 1.5rem;
+  }
+
+  .hc-home-seen-on__container {
+    max-width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem 3rem;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+    text-align: center;
+  }
+
+  .hc-home-seen-on__container:hover {
+    filter: grayscale(0%);
+  }
+
+  .hc-home-seen-on__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #B45309;
+  }
+
+  .hc-home-seen-on__item {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #9ca3af;
+    transition: color 0.3s ease;
+    cursor: default;
+    letter-spacing: -0.025em;
+  }
+
+  .hc-home-seen-on__item:hover {
+    color: #000000;
+  }
+
+  @media (max-width: 768px) {
+    .hc-home-seen-on {
+      padding: 2rem 1.5rem;
+    }
+
+    .hc-home-seen-on__container {
+      gap: 1.5rem 2rem;
+    }
+
+    .hc-home-seen-on__item {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Home Seen On",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label Text",
+      "default": "As Seen On:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "publication",
+      "name": "Publication",
+      "settings": [
+        {
+          "type": "text",
+          "id": "publication_name",
+          "label": "Publication Name",
+          "default": "Publication Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Home Seen On",
+      "blocks": [
+        {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Shark Tank"
+          }
+        },
+        {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Wonderful Engineering"
+          }
+        },
+        {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Men's Journal"
+          }
+        },
+        {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Gear Junkie"
+          }
+        },
+        {
+          "type": "publication",
+          "settings": {
+            "publication_name": "CNN"
+          }
+        },
+        {
+          "type": "publication",
+          "settings": {
+            "publication_name": "Lonely Planet"
+          }
+        },
+        {
+          "type": "publication",
+          "settings": {
+            "publication_name": "MPR"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,348 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "custom_section_6YfrAi": {
+      "type": "custom-section",
+      "blocks": {
+        "text_KxcFk4": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<h5>Fundamental Research</h5>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "fit-content",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        },
+        "heading_8Vmn8a": {
+          "type": "heading",
+          "name": "t:blocks.heading.name",
+          "settings": {
+            "heading": "The Science of Smell",
+            "heading_size": "title-md",
+            "heading_tag": "h2",
+            "width": "fill",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "alignment_mobile": "left",
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle",
+            "highlighted_reveal": false
+          },
+          "blocks": {}
+        },
+        "text_icMTQx": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<p>Most people think smell is just sweat. It isn't. Odor is a complex biological reaction involving five distinct vectors. Standard clothing ignores four of them. We ignore none.</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "custom",
+            "custom_width": 50,
+            "alignment": "left",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_KxcFk4",
+        "heading_8Vmn8a",
+        "text_icMTQx"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "HC-science-smell-one-cu-class",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "hc_science_of_smell_HJCB7k": {
+      "type": "HC-science-of-smell",
+      "blocks": {
+        "vector_card_aWbjAt": {
+          "type": "vector_card",
+          "settings": {
+            "vector_label": "VECTOR 01",
+            "vector_title": "BACTERIA",
+            "vector_description": "Microbes feeding on sweat proteins."
+          }
+        },
+        "vector_card_erVyK6": {
+          "type": "vector_card",
+          "settings": {
+            "vector_label": "VECTOR 02",
+            "vector_title": "FUNGUS",
+            "vector_description": "Yeast/mold in damp fibers."
+          }
+        },
+        "vector_card_QBabMF": {
+          "type": "vector_card",
+          "settings": {
+            "vector_label": "VECTOR 03",
+            "vector_title": "BODY OILS",
+            "vector_description": "Lipid oxidation (rancidity)."
+          }
+        },
+        "vector_card_3t8E8U": {
+          "type": "vector_card",
+          "settings": {
+            "vector_label": "VECTOR 04",
+            "vector_title": "ENVIRONMENT",
+            "vector_description": "Smoke, food, pollution absorption."
+          }
+        },
+        "vector_card_K7EjhV": {
+          "type": "vector_card",
+          "settings": {
+            "vector_label": "VECTOR 05",
+            "vector_title": "VOCS",
+            "vector_description": "Stress hormones and volatile compounds."
+          }
+        }
+      },
+      "block_order": [
+        "vector_card_aWbjAt",
+        "vector_card_erVyK6",
+        "vector_card_QBabMF",
+        "vector_card_3t8E8U",
+        "vector_card_K7EjhV"
+      ],
+      "name": "HC Science Of Smell",
+      "settings": {
+        "background_color": "#000000",
+        "padding_top": 95,
+        "padding_bottom": 95,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 60,
+        "grid_gap": 25,
+        "card_background": "#000000",
+        "card_border_color": "#1e2937",
+        "card_border_hover_color": "#b45309",
+        "card_border_width": 1,
+        "card_padding": 30,
+        "hover_lift": 0,
+        "content_gap": 10
+      }
+    },
+    "custom_section_bzb9Pt": {
+      "type": "custom-section",
+      "blocks": {
+        "heading_V8tCMr": {
+          "type": "heading",
+          "name": "t:blocks.heading.name",
+          "settings": {
+            "heading": "The Olfactory Gap",
+            "heading_size": "title-md",
+            "heading_tag": "h2",
+            "width": "fill",
+            "custom_width": 100,
+            "alignment": "center",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "alignment_mobile": "center",
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle",
+            "highlighted_reveal": false
+          },
+          "blocks": {}
+        },
+        "text_kTAYCG": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<p>Evolution designed our nose to be a warning system. It bypasses logic and hits the emotional center of the brain (the Amygdala) instantly. That's why a bad smell ruins a first impression in 0.1 seconds—faster than you can speak or be seen.</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "custom",
+            "custom_width": 70,
+            "alignment": "center",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "effects": "none",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading_V8tCMr",
+        "text_kTAYCG"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "HC-science-smell-one-cu-class HC-text-center HC-science-smell-one-max-width",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 84,
+        "padding_bottom": 84,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "hc_floating_nav_page_NfR7fw": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_zwzEEe": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_FRB4gK": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_KEyMW7": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_zwzEEe",
+        "clearance_item_FRB4gK",
+        "clearance_item_KEyMW7"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "custom_section_6YfrAi",
+    "hc_science_of_smell_HJCB7k",
+    "custom_section_bzb9Pt",
+    "hc_floating_nav_page_NfR7fw"
+  ]
+}

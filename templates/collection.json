@@ -1,0 +1,186 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "title-xl"
+          }
+        }
+      },
+      "block_order": [
+        "title"
+      ],
+      "disabled": true,
+      "settings": {
+        "transparent_header": true,
+        "show_image": false,
+        "image_height": "adapt",
+        "content_position": "md:items-end md:justify-start",
+        "text_alignment": "left",
+        "image_height_mobile": "auto",
+        "content_position_mobile": "items-end justify-start",
+        "text_alignment_mobile": "left",
+        "color_text": "#ffffff",
+        "color_background": "",
+        "gradient_background": "",
+        "color_overlay": "#000000",
+        "overlay_opacity": 40,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "divider": false,
+        "full_width": true,
+        "rounded": false,
+        "enable_parallax": false,
+        "parallax_direction": "vertical"
+      }
+    },
+    "rich_text_zVXbYt": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_JaCXXc": {
+          "type": "heading",
+          "settings": {
+            "heading": "Mission Gear",
+            "heading_size": "title-lg tracking-heading",
+            "heading_tag": "h2",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "highlighted_reveal": false
+          }
+        },
+        "text_jBmENR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Advanced equipment for the modern traveler.</p>",
+            "text_font": "body",
+            "text_size": "subtext-md",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "heading_JaCXXc",
+        "text_jBmENR"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "custom_class": "collection-page-richtext",
+        "text_alignment": "left",
+        "text_alignment_mobile": "left",
+        "heading": "",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_width": "small",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "button_label": "",
+        "button_link": "",
+        "button_external": false,
+        "button_icon": true,
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "highlighted_reveal": false,
+        "color_text": "#050505",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "divider": false,
+        "narrow": false,
+        "full_width": true,
+        "rounded": false
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "subcollections_ACYVqB": {
+          "type": "subcollections",
+          "settings": {
+            "menu": "footer-gear",
+            "show_count": true
+          }
+        }
+      },
+      "block_order": [
+        "subcollections_ACYVqB"
+      ],
+      "settings": {
+        "products_per_page": 12,
+        "columns": 3,
+        "columns_mobile": "1",
+        "pagination": "infinite",
+        "enable_filtering": true,
+        "filter_type": "sidebar",
+        "filter_collapsed": false,
+        "filter_color_swatches": true,
+        "enable_sorting": false,
+        "show_on_model": false,
+        "buttons_style": "secondary",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "divider": false,
+        "full_width": true,
+        "rounded": false
+      }
+    },
+    "hc_floating_nav_coll_VxkAhm": {
+      "type": "HC-floating-nav-coll",
+      "blocks": {
+        "clearance_item_P8xcjX": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_P8xcjX"
+      ],
+      "name": "HC Floating Nav Coll",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "/account",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-collection-banner",
+    "rich_text_zVXbYt",
+    "main-collection",
+    "hc_floating_nav_coll_VxkAhm"
+  ]
+}

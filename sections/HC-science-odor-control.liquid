@@ -1,0 +1,269 @@
+{% comment %}
+  HC Science Odor Control section
+  Class prefix: hc-science-odor-control-
+{% endcomment %}
+
+{% style %}
+  .hc-science-odor-control {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  @media (min-width: 768px) {
+    .hc-science-odor-control {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+  .hc-science-odor-control__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6rem;
+  }
+  @media (min-width: 768px) {
+    .hc-science-odor-control__container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6rem;
+    }
+  }
+  .hc-science-odor-control__card {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 32px;
+  }
+
+.hc-science-odor-control__title {
+    font-family: var(--font-body-family);
+    font-size: 0.875rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+  .hc-science-odor-control__comparison {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .hc-science-odor-control__brand-label,
+  .hc-science-odor-control__others-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .hc-science-odor-control__brand-label {
+    color: #b45309;
+  }
+  .hc-science-odor-control__others-label {
+    color: #9ca3af;
+  }
+
+.hc-science-odor-control__brand-text, 
+.hc-science-odor-control__others-text {
+    font-family: var(--font-heading-family);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+  
+  .hc-science-odor-control__brand-text {
+    color: inherit;
+  }
+  .hc-science-odor-control__others-text {
+    color: #9ca3af;
+  }
+
+  p.hc-science-odor-control__brand-text {
+    color: #050505;
+}
+{% endstyle %}
+
+<section class="hc-science-odor-control">
+<div class="page-width">
+  <div class="hc-science-odor-control__container">
+    {% for block in section.blocks %}
+      <div class="hc-science-odor-control__card" {{ block.shopify_attributes }}>
+        <h3 class="hc-science-odor-control__title">{{ block.settings.title }}</h3>
+        <div class="hc-science-odor-control__comparison">
+          <div class="hc-science-odor-control__brand">
+            <span class="hc-science-odor-control__brand-label">{{ block.settings.hercleon_label }}</span>
+            <p class="hc-science-odor-control__brand-text">{{ block.settings.hercleon_text }}</p>
+          </div>
+          <div class="hc-science-odor-control__others">
+            <span class="hc-science-odor-control__others-label">{{ block.settings.others_label }}</span>
+            <p class="hc-science-odor-control__others-text">{{ block.settings.others_text }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "HC Science Odor Control",
+  "tag": "section",
+  "class": "section-hc-science-odor-control",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 96
+    },
+    {
+      "type": "header",
+      "content": "Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison",
+      "name": "Comparison row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "01 — Odor Control"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_label",
+          "label": "HercLeón label",
+          "default": "HercLeón"
+        },
+        {
+          "type": "text",
+          "id": "hercleon_text",
+          "label": "HercLeón description",
+          "default": "Neutralizes all 5 odor types"
+        },
+        {
+          "type": "text",
+          "id": "others_label",
+          "label": "Others label",
+          "default": "Others"
+        },
+        {
+          "type": "text",
+          "id": "others_text",
+          "label": "Others description",
+          "default": "Only fresh sweat (or none)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Science Odor Control",
+      "blocks": [
+        {
+          "type": "comparison",
+          "settings": {
+            "title": "01 — Odor Control",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Neutralizes all 5 odor types",
+            "others_label": "Others",
+            "others_text": "Only fresh sweat (or none)"
+          }
+        },
+        {
+          "type": "comparison",
+          "settings": {
+            "title": "02 — Longevity",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Wears for days or weeks",
+            "others_label": "Others",
+            "others_text": "1–2 wears max"
+          }
+        },
+        {
+          "type": "comparison",
+          "settings": {
+            "title": "03 — Washing Frequency",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Every 10–100 wears",
+            "others_label": "Others",
+            "others_text": "Every 1–2 wears"
+          }
+        },
+        {
+          "type": "comparison",
+          "settings": {
+            "title": "04 — Confidence",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Stops invisible stress odor",
+            "others_label": "Others",
+            "others_text": "Cannot handle stress sweat"
+          }
+        },
+        {
+          "type": "comparison",
+          "settings": {
+            "title": "05 — Travel Efficiency",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Pack 1–2 shirts for a week",
+            "others_label": "Others",
+            "others_text": "Pack 5–10 shirts"
+          }
+        },
+        {
+          "type": "comparison",
+          "settings": {
+            "title": "06 — Cost Efficiency",
+            "hercleon_label": "HercLeón",
+            "hercleon_text": "Lasts years (less washing)",
+            "others_label": "Others",
+            "others_text": "Replaced often due to smell"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

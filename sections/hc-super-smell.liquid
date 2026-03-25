@@ -1,0 +1,160 @@
+<section
+  class="hc-super-smell"
+  style="
+    --hc-ssm-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-ssm-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-ssm-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-ssm-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-super-smell__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hc-super-smell__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <div class="hc-super-smell__body">{{ section.settings.body }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .hc-super-smell {
+    background-color: rgba(254, 242, 242, 0.5);
+    border-top: 1px solid rgba(254, 226, 226, 0.5);
+    border-bottom: 1px solid rgba(254, 226, 226, 0.5);
+    padding-top: var(--hc-ssm-pt-mobile);
+    padding-bottom: var(--hc-ssm-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-super-smell {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-super-smell {
+      padding-top: var(--hc-ssm-pt-desktop);
+      padding-bottom: var(--hc-ssm-pb-desktop);
+    }
+  }
+
+  .hc-super-smell__container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .hc-super-smell__heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(127, 29, 29, 0.8);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 768px) {
+    .hc-super-smell__heading {
+      font-size: 1.5rem;
+    }
+  }
+
+  .hc-super-smell__body {
+    font-size: 0.875rem;
+    color: rgba(153, 27, 27, 0.7);
+    line-height: 1.75;
+    text-align: center;
+  }
+
+  .hc-super-smell__body p {
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-super-smell__body p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Super Smell",
+  "tag": "section",
+  "class": "hc-super-smell-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Super Smell: Plastic's Special Ability To Smell Worse"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Plastic fibers (polyester, nylon, acrylic, etc.) have a special, terrible ability: they are oleophilic (oil-loving). They act like magnets for the lipid-rich body oils in your sweat. Once those oils bind to a synthetic shirt, they are nearly impossible to wash out. This creates a permanent buffet for bacteria, meaning your workout clothes will start to smell worse and worse over time, even right after being washed. This is the dreaded \"permastink.\" Furthermore, the hormone-disrupting chemicals found in many plastics can negatively impact your body's natural balance, which can actually make your natural body odor worse. Which is why if you care about how you smell, your health or your hormones, avoid wearing plastic disguised as clothing.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Super Smell"
+    }
+  ]
+}
+{% endschema %}

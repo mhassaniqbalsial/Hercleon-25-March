@@ -1,0 +1,333 @@
+{% comment %}
+  Types of Odor Comparison Block
+  Dark theme with comparison grid showing competitor vs HercLeon
+{% endcomment %}
+
+<style>
+  .hc-odor-types-odor-block {
+    background-color: #000;
+    color: #fff;
+    border-bottom: 1px solid #000;
+  }
+
+  .hc-odor-types-odor-block__top-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    border-bottom: 1px solid #111827;
+  }
+
+  .hc-odor-types-odor-block__container {
+    max-width: 1800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hc-odor-types-odor-block__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.hc-odor-types-odor-block__title strong {
+    color: #b45309;
+}
+
+.hc-odor-types-odor-block__title em {
+    font-style: normal;
+    border-bottom: 4px solid #b45309;
+}
+
+  .hc-odor-types-odor-block__grids-wrapper {
+    border-top: 1px solid #1f2937;
+    padding-top: 3rem;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .hc-odor-types-odor-block__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .hc-odor-types-odor-block__grid + .hc-odor-types-odor-block__grid {
+    margin-top: 1rem;
+  }
+
+  .hc-odor-types-odor-block__label {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    padding-right: 2rem;
+    border-right: 1px solid #1f2937;
+  }
+
+  .hc-odor-types-odor-block__label-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-odor-types-odor-block__label-text--competitor {
+    color: #6b7280;
+  }
+
+  .hc-odor-types-odor-block__label-text--hercleon {
+    color: #b45309;
+  }
+
+  .hc-odor-types-odor-block__item {
+    padding: 1rem;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-odor-types-odor-block__item--competitor {
+    border-color: #1f2937;
+    background-color: #000;
+    opacity: 0.4;
+    filter: grayscale(100%);
+  }
+
+  .hc-odor-types-odor-block__bottom-content p {
+    text-align: center;
+}
+
+  .hc-odor-types-odor-block__item--competitor-1 {
+    opacity: 1;
+    background-color: #111827;
+    filter: grayscale(0%);
+  }
+
+  .hc-odor-types-odor-block__item--hercleon {
+    border-color: #b45309;
+    background-color: rgba(180, 83, 9, 0.1);
+  }
+
+  .hc-odor-types-odor-block__item-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-odor-types-odor-block__item-title--competitor {
+    color: inherit;
+  }
+
+  .hc-odor-types-odor-block__item-title--hercleon {
+    color: #fff;
+  }
+
+  .hc-odor-types-odor-block__item-status {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-odor-types-odor-block__item-status--competitor {
+    color: #9ca3af;
+  }
+
+  .hc-odor-types-odor-block__item-status--hercleon { 
+    color: #b45309;
+  }
+
+  .hc-odor-types-odor-block__bottom-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background-color: #050505;
+  }
+
+  .hc-odor-types-odor-block__bottom-content p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #9ca3af;
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+  }
+
+  .hc-odor-types-odor-block__bottom-content p {
+    margin-bottom: 2rem;
+  }
+
+  .hc-odor-types-odor-block__bottom-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .hc-odor-types-odor-block__top-section {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .hc-odor-types-odor-block__title {
+      font-size: 2.25rem;
+    }
+
+    .hc-odor-types-odor-block__bottom-section {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .hc-odor-types-odor-block__grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .hc-odor-types-odor-block__label {
+      grid-column: span 1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-odor-types-odor-block__grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+@media screen and (max-width: 380px) {
+  .hc-odor-types-odor-block__grid {
+    gap: 0.5rem;
+  }
+  .hc-odor-types-odor-block__item-title {
+    font-size: 0.875rem;
+}
+}
+
+</style>
+
+<div class="hc-odor-types-odor-block" {{ block.shopify_attributes }}>
+  {%- comment -%} Top Section with Title and Comparison Grid {%- endcomment -%}
+  <div class="hc-odor-types-odor-block__top-section">
+    <div class="page-width">
+    <div class="hc-odor-types-odor-block__container">
+      {%- if block.settings.main_title != blank -%}
+        <h3 class="hc-odor-types-odor-block__title">
+          {{ block.settings.main_title }}
+        </h3>
+      {%- endif -%}
+
+      <div class="hc-odor-types-odor-block__grids-wrapper">
+        {%- comment -%} Competitor Row {%- endcomment -%}
+        <div class="hc-odor-types-odor-block__grid">
+          <div class="hc-odor-types-odor-block__label">
+            <span class="hc-odor-types-odor-block__label-text hc-odor-types-odor-block__label-text--competitor">
+              {{ block.settings.competitor_label | default: 'Silver-infused, Merino Wool, Anti-bacterial, etc.' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--competitor hc-odor-types-odor-block__item--competitor-1">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--competitor">
+              {{ block.settings.odor_1_name | default: 'Bacteria' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--competitor">
+              {{ block.settings.competitor_odor_1_status | default: 'Covered' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--competitor">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--competitor">
+              {{ block.settings.odor_2_name | default: 'Fungus' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--competitor">
+              {{ block.settings.competitor_odor_2_status | default: 'Ignored' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--competitor">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--competitor">
+              {{ block.settings.odor_3_name | default: 'Body Oils' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--competitor">
+              {{ block.settings.competitor_odor_3_status | default: 'Ignored' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--competitor">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--competitor">
+              {{ block.settings.odor_4_name | default: 'Environment' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--competitor">
+              {{ block.settings.competitor_odor_4_status | default: 'Ignored' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--competitor">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--competitor">
+              {{ block.settings.odor_5_name | default: 'Hormones' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--competitor">
+              {{ block.settings.competitor_odor_5_status | default: 'Ignored' }}
+            </span>
+          </div>
+        </div>
+
+        {%- comment -%} HercLeon Row {%- endcomment -%}
+        <div class="hc-odor-types-odor-block__grid">
+          <div class="hc-odor-types-odor-block__label">
+            <span class="hc-odor-types-odor-block__label-text hc-odor-types-odor-block__label-text--hercleon">
+              {{ block.settings.hercleon_label | default: 'HercLeon' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--hercleon">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--hercleon">
+              {{ block.settings.odor_1_name | default: 'Bacteria' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--hercleon">
+              {{ block.settings.hercleon_odor_1_status | default: 'Neutralized' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--hercleon">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--hercleon">
+              {{ block.settings.odor_2_name | default: 'Fungus' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--hercleon">
+              {{ block.settings.hercleon_odor_2_status | default: 'Neutralized' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--hercleon">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--hercleon">
+              {{ block.settings.odor_3_name | default: 'Body Oils' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--hercleon">
+              {{ block.settings.hercleon_odor_3_status | default: 'Neutralized' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--hercleon">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--hercleon">
+              {{ block.settings.odor_4_name | default: 'Environment' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--hercleon">
+              {{ block.settings.hercleon_odor_4_status | default: 'Neutralized' }}
+            </span>
+          </div>
+          <div class="hc-odor-types-odor-block__item hc-odor-types-odor-block__item--hercleon">
+            <span class="hc-odor-types-odor-block__item-title hc-odor-types-odor-block__item-title--hercleon">
+              {{ block.settings.odor_5_name | default: 'Hormones' }}
+            </span>
+            <span class="hc-odor-types-odor-block__item-status hc-odor-types-odor-block__item-status--hercleon">
+              {{ block.settings.hercleon_odor_5_status | default: 'Neutralized' }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Bottom Section with Content {%- endcomment -%}
+  <div class="hc-odor-types-odor-block__bottom-section">
+    <div class="page-width">
+    <div class="hc-odor-types-odor-block__bottom-container">
+      {%- if block.settings.bottom_content != blank -%}
+        <div class="hc-odor-types-odor-block__bottom-content">
+          {{ block.settings.bottom_content }}
+        </div>
+      {%- endif -%}
+    </div>
+    </div>
+  </div>
+</div>

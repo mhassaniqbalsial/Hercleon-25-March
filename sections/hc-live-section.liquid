@@ -1,0 +1,244 @@
+{%- liquid
+  assign bg_image = section.settings.background_image
+  assign bg_url = ''
+  if bg_image != blank
+    assign bg_url = bg_image | image_url: width: 2000
+  endif
+-%}
+
+<section
+  class="hc-live-section"
+  style="
+    --hc-ls-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-ls-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-ls-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-ls-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --hc-ls-header-offset: {{ section.settings.header_offset }}px;
+    --hc-ls-bg-opacity: {{ section.settings.background_image_opacity | divided_by: 100.0 }};
+  "
+>
+  {%- if bg_url != blank -%}
+    <div
+      class="hc-live-section__bg"
+      style="background-image: url('{{ bg_url }}');"
+      role="presentation"
+    ></div>
+  {%- endif -%}
+
+  <div class="hc-live-section__gradient" aria-hidden="true"></div>
+
+  <div class="hc-live-section__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hc-live-section__heading">{{ section.settings.heading | newline_to_br }}</h2>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .hc-live-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--hc-ls-header-offset));
+    padding-top: var(--hc-ls-pt-mobile);
+    padding-bottom: var(--hc-ls-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    animation: hc-live-section-fade-in-up 0.8s ease-out both;
+  }
+
+  @media (min-width: 768px) {
+    .hc-live-section {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-live-section {
+      padding-top: var(--hc-ls-pt-desktop);
+      padding-bottom: var(--hc-ls-pb-desktop);
+    }
+  }
+
+  @keyframes hc-live-section-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hc-live-section__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: var(--hc-ls-bg-opacity);
+    filter: grayscale(100%);
+    pointer-events: none;
+  }
+
+  .hc-live-section__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      #000 100%
+    );
+    pointer-events: none;
+  }
+
+  .hc-live-section__inner {
+    position: relative;
+    z-index: 10;
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .hc-live-section__heading {
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: #fff;
+    margin: 0 0 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-live-section__heading {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .hc-live-section__bg {
+    display: block !important;
+}
+
+.hc-live-section__gradient {
+    display: block !important;
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC Live Section",
+  "tag": "section",
+  "class": "hc-live-section-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Optional. Without an image, only the dark gradient shows."
+    },
+    {
+      "type": "range",
+      "id": "background_image_opacity",
+      "label": "Background image opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (line break = new line)",
+      "default": "Live Lighter. \nLive Better. \nLive Freer."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "header_offset",
+      "label": "Subtract from viewport height (header height)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 56,
+      "info": "Matches min-height to visible area below a fixed header."
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Live Section"
+    }
+  ]
+}
+{% endschema %}

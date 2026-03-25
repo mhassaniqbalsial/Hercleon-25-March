@@ -1,0 +1,264 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "custom_section_eYbA6y": {
+      "type": "custom-section",
+      "blocks": {
+        "text_nK39MQ": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<h5>Applied Technology</h5>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "fit-content",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "effects": "reveal",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        },
+        "heading_PNDcy6": {
+          "type": "heading",
+          "name": "t:blocks.heading.name",
+          "settings": {
+            "heading": "The Evidence",
+            "heading_size": "title-md",
+            "heading_tag": "h2",
+            "width": "fill",
+            "custom_width": 100,
+            "alignment": "left",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "alignment_mobile": "left",
+            "effects": "reveal",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle",
+            "highlighted_reveal": false
+          },
+          "blocks": {}
+        },
+        "text_9gDgQA": {
+          "type": "text",
+          "name": "t:blocks.text.name",
+          "settings": {
+            "text": "<p>We don't rely on magic. We rely on metallurgy and microbiology. HercFiber isn't just fabric; it's a weaponized fiber matrix designed to terminate microbial life on contact.</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "width": "custom",
+            "custom_width": 75,
+            "alignment": "left",
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "effects": "reveal",
+            "highlighted_text": "text",
+            "highlighted_scribble": "circle"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_nK39MQ",
+        "heading_PNDcy6",
+        "text_9gDgQA"
+      ],
+      "name": "t:sections.custom-section.name",
+      "settings": {
+        "custom-class": "HC-science-smell-one-cu-class",
+        "custom-id": "",
+        "content_direction": "col",
+        "vertical_on_mobile": true,
+        "content_wrap": false,
+        "horizontal_alignment": "start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "section_height_mobile": "auto",
+        "section_height_custom_mobile": 50,
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "hc_mechanism_action_section_h8933A": {
+      "type": "hc-mechanism-action-section",
+      "blocks": {
+        "mechanism_item_6wUWxJ": {
+          "type": "mechanism_item",
+          "settings": {
+            "number": "01",
+            "title": "ION RELEASE",
+            "description": "Moisture (sweat) activates the copper and zinc matrix, releasing charged ions."
+          }
+        },
+        "mechanism_item_xwjFaY": {
+          "type": "mechanism_item",
+          "settings": {
+            "number": "02",
+            "title": "MEMBRANE RUPTURE",
+            "description": "Ions penetrate the bacterial cell wall (lysis), causing immediate structural failure."
+          }
+        },
+        "mechanism_item_9jMPDr": {
+          "type": "mechanism_item",
+          "settings": {
+            "number": "03",
+            "title": "DNA DISRUPTION",
+            "description": "Ions penetrate the cell and bind to DNA, preventing replication and ensuring total neutralization."
+          }
+        },
+        "lab_result_CPqBNq": {
+          "type": "lab_result",
+          "settings": {
+            "bacteria_name": "Staphylococcus Aureus",
+            "reduction_percentage": ">99.99% Reduction",
+            "progress_percentage": 100
+          }
+        },
+        "lab_result_6QYL7w": {
+          "type": "lab_result",
+          "settings": {
+            "bacteria_name": "Klebsiella Pneumoniae",
+            "reduction_percentage": ">99.96% Reduction",
+            "progress_percentage": 99
+          }
+        },
+        "lab_result_xXWU4T": {
+          "type": "lab_result",
+          "settings": {
+            "bacteria_name": "MRSA (Superbug)",
+            "reduction_percentage": ">99.9% Reduction",
+            "progress_percentage": 99
+          }
+        }
+      },
+      "block_order": [
+        "mechanism_item_6wUWxJ",
+        "mechanism_item_xwjFaY",
+        "mechanism_item_9jMPDr",
+        "lab_result_CPqBNq",
+        "lab_result_6QYL7w",
+        "lab_result_xXWU4T"
+      ],
+      "name": "HC Mechanism of Action",
+      "settings": {
+        "background_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "section_title": "MECHANISM OF ACTION",
+        "lab_bg_color": "#000000",
+        "lab_results_header": "LAB RESULTS (ISO 20743)",
+        "reduction_color": "#b45309",
+        "reduction_size": 14,
+        "divider_color": "#b45309"
+      }
+    },
+    "hc_floating_nav_page_4nt9cA": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_bHa4Cg": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_HLL9P3": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_XeEqAB": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_bHa4Cg",
+        "clearance_item_HLL9P3",
+        "clearance_item_XeEqAB"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "custom_section_eYbA6y",
+    "hc_mechanism_action_section_h8933A",
+    "hc_floating_nav_page_4nt9cA"
+  ]
+}

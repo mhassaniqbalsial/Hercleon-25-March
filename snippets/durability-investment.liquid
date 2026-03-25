@@ -1,0 +1,220 @@
+{% comment %}
+  Durability - Investment Block
+{% endcomment %}
+
+<style>
+  .hc-durability-investment-block {
+    background-color: #fff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .hc-durability-investment-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-durability-investment-block__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hc-durability-investment-block__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid #e5e7eb;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-investment-block__content {
+      padding: 6rem;
+    }
+  }
+
+  .hc-durability-investment-block__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-durability-investment-block__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-investment-block__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-durability-investment-block__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #4b5563;
+  }
+
+  .hc-durability-investment-block__chart-wrapper {
+    background-color: #f9fafb;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .hc-durability-investment-block__chart-wrapper {
+      padding: 6rem;
+    }
+  }
+
+  .hc-durability-investment-block__chart-container {
+    width: 100%;
+    max-width: 28rem;
+    border: 1px solid #e5e7eb;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .hc-durability-investment-block__chart-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 1rem;
+  }
+
+  .hc-durability-investment-block__items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hc-durability-investment-block__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hc-durability-investment-block__item-label {
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+  }
+
+  .hc-durability-investment-block__item-value {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #B45309;
+    background-color: rgba(180, 83, 9, 0.1);
+    padding: 0.25rem 0.5rem;
+  }
+
+  @keyframes hc-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+  .hc-durability-investment-block__content {
+    padding: 32px 20px;
+}
+.hc-durability-investment-block__chart-wrapper {
+    padding: 32px 20px;
+}
+}
+
+</style>
+
+<section class="hc-durability-investment-block" {{ block.shopify_attributes }}>
+  <div class="hc-durability-investment-block__grid">
+    
+    {%- comment -%} Left Content {%- endcomment -%}
+    <div class="hc-durability-investment-block__content">
+      <span class="hc-durability-investment-block__eyebrow">
+        {{ block.settings.eyebrow | default: 'Financial Intelligence' }}
+      </span>
+      <h3 class="hc-durability-investment-block__title">
+        {{ block.settings.title | default: 'The Most Intelligent Investment You Can Make.' }}
+      </h3>
+      <div class="hc-durability-investment-block__description">
+        {{ block.settings.description | default: 'Smelly clothes are a liability...' }}
+      </div>
+    </div>
+
+    {%- comment -%} Right Cost Analysis {%- endcomment -%}
+    <div class="hc-durability-investment-block__chart-wrapper">
+      <div class="hc-durability-investment-block__chart-container">
+        <h4 class="hc-durability-investment-block__chart-title">
+          {{ block.settings.chart_title | default: 'Cost Reduction Analysis' }}
+        </h4>
+        
+        <div class="hc-durability-investment-block__items">
+          
+          {%- comment -%} Item 1 - Detergent {%- endcomment -%}
+          <div class="hc-durability-investment-block__item">
+            <span class="hc-durability-investment-block__item-label">
+              {{ block.settings.item_1_label | default: 'Detergent' }}
+            </span>
+            <span class="hc-durability-investment-block__item-value">
+              {{ block.settings.item_1_value | default: '-90% Usage' }}
+            </span>
+          </div>
+
+          {%- comment -%} Item 2 - Water & Power {%- endcomment -%}
+          <div class="hc-durability-investment-block__item">
+            <span class="hc-durability-investment-block__item-label">
+              {{ block.settings.item_2_label | default: 'Water & Power' }}
+            </span>
+            <span class="hc-durability-investment-block__item-value">
+              {{ block.settings.item_2_value | default: '-90% Usage' }}
+            </span>
+          </div>
+
+          {%- comment -%} Item 3 - Dryer Cycles {%- endcomment -%}
+          <div class="hc-durability-investment-block__item">
+            <span class="hc-durability-investment-block__item-label">
+              {{ block.settings.item_3_label | default: 'Dryer Cycles' }}
+            </span>
+            <span class="hc-durability-investment-block__item-value">
+              {{ block.settings.item_3_value | default: 'Eliminated' }}
+            </span>
+          </div>
+
+          {%- comment -%} Item 4 - Replacements {%- endcomment -%}
+          <div class="hc-durability-investment-block__item">
+            <span class="hc-durability-investment-block__item-label">
+              {{ block.settings.item_4_label | default: 'Replacements' }}
+            </span>
+            <span class="hc-durability-investment-block__item-value">
+              {{ block.settings.item_4_value | default: 'Every 5-10 Years' }}
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

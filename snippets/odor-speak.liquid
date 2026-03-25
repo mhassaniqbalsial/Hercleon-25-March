@@ -1,0 +1,336 @@
+{% comment %}
+  Speak For Yourself Block
+  Two-column layout with text content and sensory diagram
+{% endcomment %}
+
+<style>
+/* Speak Block */
+.hc-odor-speak-block {
+  border-bottom: 1px solid #000000;
+  background-color: #ffffff;
+}
+
+.hc-odor-speak-block__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 60vh;
+}
+
+/* Content Column */
+.hc-odor-speak-block__content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #000000;
+  order: 2;
+}
+
+.hc-odor-speak-block__content-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.hc-odor-speak-block__content-text {
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 32rem;
+  color: #4b5563;
+}
+
+/* Diagram Column */
+.hc-odor-speak-block__diagram-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
+  order: 1;
+}
+
+.hc-odor-speak-block__diagram-container {
+  width: 100%;
+  max-width: 36rem;
+}
+
+.hc-odor-speak-block__diagram-card {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 2rem;
+  border: 1px solid #000000;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Diagram Items */
+.hc-odor-speak-block__diagram-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+
+.hc-odor-speak-block__diagram-item {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid #e5e7eb;
+}
+
+.hc-odor-speak-block__diagram-item--highlight {
+  border-left: 4px solid #B45309;
+}
+
+.hc-odor-speak-block__diagram-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.hc-odor-speak-block__diagram-item-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hc-odor-speak-block__diagram-item-label--highlight {
+  color: #B45309;
+}
+
+.hc-odor-speak-block__diagram-item-time {
+  font-size: 0.625rem;
+  color: #6b7280;
+}
+
+.hc-odor-speak-block__diagram-item-time--highlight {
+  color: #B45309;
+  font-weight: 700;
+}
+
+/* Flow Diagram */
+.hc-odor-speak-block__diagram-item-flow {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  color: #9ca3af;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hc-odor-speak-block__diagram-item-flow--highlight {
+  color: #000000;
+  font-weight: 700;
+}
+
+.hc-odor-speak-block__diagram-flow-step {
+  display: inline-block;
+}
+
+.hc-odor-speak-block__diagram-flow-step--box {
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.hc-odor-speak-block__diagram-flow-step--box-highlight {
+  background-color: #B45309;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.hc-odor-speak-block__diagram-flow-step--bold {
+  font-weight: 700;
+  color: #000000;
+}
+
+.hc-odor-speak-block__diagram-flow-arrow {
+  display: inline-block;
+}
+
+.hc-odor-speak-block__diagram-flow-arrow--highlight {
+  color: #B45309;
+}
+
+.hc-odor-speak-block__diagram-item-note {
+  font-size: 0.625rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.hc-prod-compare-label {
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-prod-compare-label__text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    display: inline-block;
+  }
+
+/* Responsive - Medium screens */
+@media (min-width: 768px) {
+  .hc-odor-speak-block__content {
+    padding: 6rem;
+  }
+  
+  .hc-odor-speak-block__content-title {
+    font-size: 3rem;
+  }
+  
+  .hc-odor-speak-block__diagram-wrapper {
+    padding: 3rem;
+  }
+}
+
+/* Responsive - Large screens */
+@media (min-width: 1024px) {
+  .hc-odor-speak-block__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hc-odor-speak-block__content {
+    order: 2;
+    border-left: 1px solid #000000;
+  }
+  
+  .hc-odor-speak-block__diagram-wrapper {
+    order: 1;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hc-odor-speak-block__diagram-card {
+    padding: 20px;
+    order: unset;
+  }
+   .hc-odor-speak-block__diagram-wrapper {
+    padding: 20px;
+    order: unset;
+   }
+}
+
+
+@media screen and (max-width: 992px) {
+  .hc-odor-speak-block__content {
+    order: unset;
+    padding: 32px 20px;
+}
+
+.hc-odor-speak-block__diagram-wrapper {
+    padding: 32px 20px;
+    order: unset;
+}
+}
+
+@media (max-width: 749px) {
+    .hc-prod-compare-label {
+      margin-bottom: 1rem;
+    }
+  }
+
+
+</style>
+
+<div class="hc-odor-speak-block" {{ block.shopify_attributes }}>
+  <div class="hc-odor-speak-block__grid">
+    <!-- Text Content Column -->
+    <div class="hc-odor-speak-block__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+      <div class="hc-prod-compare-label">
+  <span class="hc-prod-compare-label__text">
+    {{ block.settings.eyebrow_text }}
+  </span>
+</div>
+      {%- endif -%}
+      <h3 class="hc-odor-speak-block__content-title">{{ block.settings.title | default: "Speak For Yourself" }}</h3>
+      <div class="hc-odor-speak-block__content-text">{{ block.settings.content }}</div>
+    </div>
+
+    <!-- Diagram Column -->
+    <div class="hc-odor-speak-block__diagram-wrapper">
+      <div class="hc-odor-speak-block__diagram-container">
+        <div class="hc-odor-speak-block__diagram-card">
+          <div class="hc-odor-speak-block__diagram-items">
+            
+            <!-- Sight -->
+            <div class="hc-odor-speak-block__diagram-item">
+              <div class="hc-odor-speak-block__diagram-item-header">
+                <span class="hc-odor-speak-block__diagram-item-label">
+                  {{ block.settings.sense_1_label | default: "Sight (How you look)" }}
+                </span>
+                <span class="hc-odor-speak-block__diagram-item-time">
+                  {{ block.settings.sense_1_time | default: "~0.5s" }}
+                </span>
+              </div>
+              <div class="hc-odor-speak-block__diagram-item-flow">
+                <span class="hc-odor-speak-block__diagram-flow-step">Retina</span>
+                <span class="hc-odor-speak-block__diagram-flow-arrow">→</span>
+                <span class="hc-odor-speak-block__diagram-flow-step hc-odor-speak-block__diagram-flow-step--box">Thalamus (Filter)</span>
+                <span class="hc-odor-speak-block__diagram-flow-arrow">→</span>
+                <span class="hc-odor-speak-block__diagram-flow-step">Cortex</span>
+                <span class="hc-odor-speak-block__diagram-flow-arrow">→</span>
+                <span class="hc-odor-speak-block__diagram-flow-step hc-odor-speak-block__diagram-flow-step--bold">Emotion</span>
+              </div>
+            </div>
+
+            <!-- Sound -->
+            <div class="hc-odor-speak-block__diagram-item">
+              <div class="hc-odor-speak-block__diagram-item-header">
+                <span class="hc-odor-speak-block__diagram-item-label">
+                  {{ block.settings.sense_2_label | default: "Sound (What you say)" }}
+                </span>
+                <span class="hc-odor-speak-block__diagram-item-time">
+                  {{ block.settings.sense_2_time | default: "~0.7s" }}
+                </span>
+              </div>
+              <div class="hc-odor-speak-block__diagram-item-flow">
+                <span class="hc-odor-speak-block__diagram-flow-step">Ear</span>
+                <span class="hc-odor-speak-block__diagram-flow-arrow">→</span>
+                <span class="hc-odor-speak-block__diagram-flow-step hc-odor-speak-block__diagram-flow-step--box">Thalamus (Filter)</span>
+                <span class="hc-odor-speak-block__diagram-flow-arrow">→</span>
+                <span class="hc-odor-speak-block__diagram-flow-step">Cortex</span>
+                <span class="hc-odor-speak-block__diagram-flow-arrow">→</span>
+                <span class="hc-odor-speak-block__diagram-flow-step hc-odor-speak-block__diagram-flow-step--bold">Emotion</span>
+              </div>
+            </div>
+
+            <!-- Scent (Highlighted) -->
+            <div class="hc-odor-speak-block__diagram-item hc-odor-speak-block__diagram-item--highlight">
+              <div class="hc-odor-speak-block__diagram-item-header">
+                <span class="hc-odor-speak-block__diagram-item-label hc-odor-speak-block__diagram-item-label--highlight">
+                  {{ block.settings.sense_3_label | default: "Scent (Your smell)" }}
+                </span>
+                <span class="hc-odor-speak-block__diagram-item-time hc-odor-speak-block__diagram-item-time--highlight">
+                  {{ block.settings.sense_3_time | default: "~0.1s (Instant)" }}
+                </span>
+              </div>
+              <div class="hc-odor-speak-block__diagram-item-flow hc-odor-speak-block__diagram-item-flow--highlight">
+                <span class="hc-odor-speak-block__diagram-flow-step">Nose</span>
+                <span class="hc-odor-speak-block__diagram-flow-arrow hc-odor-speak-block__diagram-flow-arrow--highlight">→</span>
+                <span class="hc-odor-speak-block__diagram-flow-step hc-odor-speak-block__diagram-flow-step--box-highlight">Amygdala (Emotion)</span>
+              </div>
+              <p class="hc-odor-speak-block__diagram-item-note">
+                {{ block.settings.sense_3_note | default: "Direct connection. No logic filter. Instant emotional judgment." }}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

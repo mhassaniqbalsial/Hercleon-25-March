@@ -1,0 +1,368 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign is_reversed = block.settings.reverse_layout
+-%}
+
+<style>
+  .hc-mf {
+    --hc-mf-bg: {{ bg_color }};
+    --hc-mf-text: {{ text_color }};
+    --hc-mf-accent: {{ accent_color }};
+    --hc-mf-desc: {{ desc_color }};
+
+    background-color: var(--hc-mf-bg);
+    border-bottom: 1px solid #000;
+  }
+
+  .hc-mf__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-mf__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-mf-text);
+    order: 1;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .hc-mf__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-mf-bg);
+    order: 2;
+  }
+
+  .hc-mf__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-mf-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-mf__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-mf-text);
+  }
+
+  .hc-mf__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-mf-desc);
+    white-space: pre-line;
+  }
+
+  .hc-mf__desc strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-mf__desc strong:hover {
+    color: var(--hc-mf-accent);
+  }
+
+  /* Tooltip */
+  .hc-mf__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hc-mf__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-mf__tooltip-trigger:hover strong {
+    color: var(--hc-mf-accent);
+  }
+
+  .hc-mf__tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    width: 320px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-mf__tooltip-trigger:hover .hc-mf__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-mf__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+  }
+
+  .hc-mf__tooltip-content {
+    display: block;
+  }
+
+  .hc-mf__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-mf__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-mf__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-mf-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-mf__tooltip-p strong:hover {
+    color: var(--hc-mf-accent);
+  }
+
+  .hc-mf__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-mf__tooltip {
+      width: 450px;
+    }
+  }
+
+  /* Visual card */
+  .hc-mf__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-mf__card {
+    background-color: #fff;
+    color: #000;
+    padding: 2rem;
+    border: 1px solid #000;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .hc-mf__card-title {
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 3rem;
+    color: #9ca3af;
+  }
+
+  .hc-mf__chart {
+    position: relative;
+    height: 12rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    border-left: 1px solid #e5e7eb;
+    padding: 1rem;
+  }
+
+  .hc-mf__bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hc-mf__bar {
+    display: flex !important;
+    width: 100%;
+    border-radius: 0;
+}
+
+  .hc-mf__bar--1 {
+    background-color: #f3f4f6;
+    height: 10rem;
+  }
+
+  .hc-mf__bar--2 {
+    background-color: #e5e7eb;
+    height: 8rem;
+  }
+
+  .hc-mf__bar--3 {
+    background-color: var(--hc-mf-accent);
+    height: 3rem;
+    box-shadow: 0 0 15px rgba(180, 83, 9, 0.3);
+  }
+
+  .hc-mf__bar-label {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #9ca3af;
+  }
+
+  .hc-mf__bar-label--accent {
+    color: var(--hc-mf-accent);
+  }
+
+  .hc-mf__chart-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af;
+  }
+
+  @media (min-width: 768px) {
+    .hc-mf__text-col {
+      padding: 6rem;
+    }
+
+    .hc-mf__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-mf__heading {
+      font-size: 3rem;
+    }
+
+    .hc-mf__card {
+      padding: 2rem 3rem;
+    }
+
+    .hc-mf__card-title {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-mf__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-mf__text-col {
+      border-bottom: none;
+    }
+
+    .hc-mf__grid--default .hc-mf__text-col {
+      order: 1;
+      border-right: 1px solid #1f2937;
+    }
+
+    .hc-mf__grid--default .hc-mf__visual-col {
+      order: 2;
+    }
+
+    .hc-mf__grid--reversed .hc-mf__text-col {
+      order: 2;
+      border-left: 1px solid #1f2937;
+    }
+
+    .hc-mf__grid--reversed .hc-mf__visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section id="micron-finish" class="hc-mf" {{ block.shopify_attributes }}>
+  <div class="hc-mf__grid {% if is_reversed %}hc-mf__grid--reversed{% else %}hc-mf__grid--default{% endif %}">
+
+    <div class="hc-mf__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-mf__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-mf__heading">
+        {{ block.settings.heading | default: '10 Micron Finish' }}
+      </h3>
+
+      <div class="hc-mf__desc">
+        {%- if block.settings.tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+          {%- assign mf_trigger_html = '<strong>' | append: block.settings.tooltip_trigger | append: '</strong>' -%}
+          {%- capture mf_tooltip_html -%}<span class="hc-mf__tooltip-trigger"><strong>{{ block.settings.tooltip_trigger }}</strong><span class="hc-mf__tooltip"><span class="hc-mf__tooltip-box"><span class="hc-mf__tooltip-content">{{ block.settings.tooltip_content | replace: '<p>', '<span class="hc-mf__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-mf__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+          {{ block.settings.description | replace: mf_trigger_html, mf_tooltip_html }}
+        {%- else -%}
+          {{ block.settings.description }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hc-mf__visual-col">
+      <div class="hc-mf__visual-inner">
+        <div class="hc-mf__card">
+          <h4 class="hc-mf__card-title">{{ block.settings.card_title | default: 'SURFACE FRICTION COEFFICIENT' }}</h4>
+          <div class="hc-mf__chart">
+            <div class="hc-mf__bar-group">
+              <div class="hc-mf__bar hc-mf__bar--1"></div>
+              <span class="hc-mf__bar-label">{{ block.settings.bar_1_label | default: 'Cotton' }}</span>
+            </div>
+            <div class="hc-mf__bar-group">
+              <div class="hc-mf__bar hc-mf__bar--2"></div>
+              <span class="hc-mf__bar-label">{{ block.settings.bar_2_label | default: 'Silk' }}</span>
+            </div>
+            <div class="hc-mf__bar-group">
+              <div class="hc-mf__bar hc-mf__bar--3"></div>
+              <span class="hc-mf__bar-label hc-mf__bar-label--accent">{{ block.settings.bar_3_label | default: 'HercLeón' }}</span>
+            </div>
+          </div>
+          <p class="hc-mf__chart-footer">{{ block.settings.chart_footer | default: 'Lower value indicates smoother surface & less skin irritation' }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

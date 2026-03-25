@@ -1,0 +1,97 @@
+{% comment %}
+  HC Cleaner Planet Block
+  Section: sustainability / built for a cleaner planet
+{% endcomment %}
+
+<style>
+  .hc-cleaner-planet {
+    background-color: #fff;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    animation: hc-cleaner-planet-fade-in-up 0.6s ease forwards;
+  }
+
+  @media (min-width: 768px) {
+    .hc-cleaner-planet {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hc-cleaner-planet__container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-cleaner-planet__title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-cleaner-planet__title {
+      font-size: 4.5rem;
+    }
+  }
+
+  .hc-cleaner-planet__title-accent {
+    color: #b45309;
+  }
+
+  .hc-cleaner-planet__description {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #4b5563;
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .hc-cleaner-planet__description {
+      font-size: 1.5rem;
+    }
+  }
+
+  @keyframes hc-cleaner-planet-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<section
+  id="sustainability_shirt_cleaner_planet"
+  class="hc-cleaner-planet"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-cleaner-planet__container">
+    <h2 class="hc-cleaner-planet__title">
+      {%- if block.settings.title_main != blank -%}
+        {{ block.settings.title_main }}
+      {%- endif -%}
+      {%- if block.settings.title_accent != blank -%}
+        <span class="hc-cleaner-planet__title-accent">{{ block.settings.title_accent }}</span>
+      {%- endif -%}
+    </h2>
+    {%- if block.settings.description != blank -%}
+      <p class="hc-cleaner-planet__description">{{ block.settings.description }}</p>
+    {%- endif -%}
+  </div>
+</section>

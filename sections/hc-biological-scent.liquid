@@ -1,0 +1,329 @@
+<section
+  class="hc-biological-scent"
+  style="
+    --hc-bs-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-bs-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-bs-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-bs-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-biological-scent__container">
+
+    {%- comment -%} Left — Text column {%- endcomment -%}
+    <div class="hc-biological-scent__text-col">
+
+      <div class="hc-biological-scent__icon-wrap" aria-hidden="true">
+        <svg class="hc-biological-scent__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+        </svg>
+      </div>
+
+      <h2 class="hc-biological-scent__heading">
+        {{ section.settings.heading | newline_to_br }}
+      </h2>
+
+      <div class="hc-biological-scent__body">
+        {{ section.settings.body_text }}
+      </div>
+
+    </div>
+
+    {%- comment -%} Right — Visual card column {%- endcomment -%}
+    <div class="hc-biological-scent__visual-col">
+
+      <div class="hc-biological-scent__blob hc-biological-scent__blob--blue"   aria-hidden="true"></div>
+      <div class="hc-biological-scent__blob hc-biological-scent__blob--yellow" aria-hidden="true"></div>
+      <div class="hc-biological-scent__blob hc-biological-scent__blob--orange" aria-hidden="true"></div>
+
+      <div class="hc-biological-scent__card">
+        <span class="hc-biological-scent__card-top">
+          {{ section.settings.card_top_label }}
+        </span>
+        <span class="hc-biological-scent__card-arrow" aria-hidden="true">↓</span>
+        <span class="hc-biological-scent__card-bottom">
+          {{ section.settings.card_bottom_label }}
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hc-biological-scent {
+    background-color: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    padding-top: var(--hc-bs-pt-mobile);
+    padding-bottom: var(--hc-bs-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-biological-scent {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-biological-scent {
+      padding-top: var(--hc-bs-pt-desktop);
+      padding-bottom: var(--hc-bs-pb-desktop);
+    }
+  }
+
+  /* Container */
+  .hc-biological-scent__container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-biological-scent__container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Icon */
+  .hc-biological-scent__icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    background-color: #f3f4f6;
+    color: #B45309;
+    margin-bottom: 2rem;
+  }
+
+  .hc-biological-scent__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  /* Heading */
+  .hc-biological-scent__heading {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: #050505;
+  }
+
+  /* Body text */
+  .hc-biological-scent__body {
+    font-size: 1.125rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hc-biological-scent__body p {
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-biological-scent__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-biological-scent__body strong {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  /* Visual column */
+  .hc-biological-scent__visual-col {
+    position: relative;
+    height: 500px;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Blobs */
+  .hc-biological-scent__blob {
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 9999px;
+    mix-blend-mode: multiply;
+    filter: blur(40px);
+    opacity: 0.7;
+    animation: hc-biological-scent-pulse 4s ease-in-out infinite;
+  }
+
+  .hc-biological-scent__blob--blue   { background-color: #dbeafe; }
+  .hc-biological-scent__blob--yellow { background-color: #fef9c3; animation-delay: 2s; }
+  .hc-biological-scent__blob--orange { background-color: #ffedd5; animation-delay: 4s; }
+
+  @keyframes hc-biological-scent-pulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50%       { opacity: 0.9; transform: scale(1.05); }
+  }
+
+  /* Info card */
+  .hc-biological-scent__card {
+    position: relative;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    text-align: center;
+    max-width: 20rem;
+    transition: transform 0.5s ease;
+  }
+
+  .hc-biological-scent__visual-col:hover .hc-biological-scent__card {
+    transform: scale(1.05);
+  }
+
+  .hc-biological-scent__card-top {
+    display: block;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.5rem;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .hc-biological-scent__card-arrow {
+    display: block;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+  }
+
+  .hc-biological-scent__card-bottom {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #B45309;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .hc-biological-scent__blob.hc-biological-scent__blob--orange {
+    display: block;
+}
+
+.hc-biological-scent__blob.hc-biological-scent__blob--yellow {
+    display: block;
+}
+
+.hc-biological-scent__blob.hc-biological-scent__blob--blue {
+    display: block;
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC Biological Scent",
+  "tag": "section",
+  "class": "hc-biological-scent-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Biological \nScent Gap"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "<p>For decades, the perfume and clothing industry has focused on masking odor or absorbing sweat. They conveniently forgot this fundamental truth: <strong>sweat itself is odorless.</strong></p><p>Odor is the byproduct of bacteria on your skin and in your clothes consuming the proteins and lipids in your sweat, then off-gassing (yep, bacteria farts). Said in another way, when your clothes smell that means you're constantly being crop dusted by bacteria so the issue isn't necessarily your sweat, it's what's eating your sweat.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Info Card"
+    },
+    {
+      "type": "text",
+      "id": "card_top_label",
+      "label": "Card — Top Label",
+      "default": "Sweat + Bacteria"
+    },
+    {
+      "type": "text",
+      "id": "card_bottom_label",
+      "label": "Card — Bottom Label",
+      "default": "Odor"
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Biological Scent"
+    }
+  ]
+}
+{% endschema %}

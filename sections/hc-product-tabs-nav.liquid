@@ -1,0 +1,388 @@
+{% comment %}
+  Tab Navigation Section - Controls visibility of sections based on active tab
+  
+  Usage:
+  1. Add this section to your product template
+  2. Add sections below this that should be tab-controlled
+  3. In those sections, add a setting for "tab_id" to link them to specific tabs
+  4. Those sections should check: {% if section.settings.tab_id == blank or section.settings.tab_id == body_data_tab %}
+{% endcomment %}
+
+{%- style -%}
+  .hc-prod-tabs-nav {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .hc-prod-tabs-nav__container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 2rem;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 1rem 0;
+  }
+
+  .hc-prod-tabs-nav__container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hc-prod-tabs-nav__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 1rem;
+    white-space: nowrap;
+    display: none;
+  }
+
+  .hc-prod-tabs-nav__list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hc-prod-tabs-nav__item {
+    margin: 0;
+    padding: 0;
+  }
+
+  .hc-prod-tabs-nav__button {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    padding-bottom: 0.25rem;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #9ca3af;
+}
+
+  .hc-prod-tabs-nav__button:hover {
+    color: #000;
+    border-bottom-color: #d1d5db;
+  }
+
+  .hc-prod-tabs-nav__button--active {
+    color: #b45309;
+    border-bottom-color: #b45309;
+  }
+
+  .hc-prod-tabs-nav__button--active:hover {
+    color: #b45309;
+    border-bottom-color: #b45309;
+  }
+
+  .hc-prod-tabs-nav__no-content {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #666;
+    font-size: 1rem;
+  }
+
+  .hc-prod-tabs-nav__no-content-message {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-prod-tabs-nav__no-content-help {
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  @media (min-width: 768px) {
+
+    .hc-prod-tabs-nav__container {
+      gap: 3rem;
+      justify-content: center;
+    }
+
+    .hc-prod-tabs-nav__label {
+      display: block;
+    }
+
+    .hc-prod-tabs-nav__button {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hc-prod-tabs-nav__no-content {
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+{%- endstyle -%}
+
+<div id="{{ section.settings.custom_id }}" class="hc-prod-tabs-nav {{ section.settings.custom_class }}">
+  <div class="hc-prod-tabs-nav__wrapper page-width">
+    <div class="hc-prod-tabs-nav__container">
+      {%- if section.settings.show_label and section.settings.label_text != blank -%}
+        <span class="hc-prod-tabs-nav__label">{{ section.settings.label_text }}</span>
+      {%- endif -%}
+      
+      <ul class="hc-prod-tabs-nav__list" role="tablist">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tab' -%}
+            {%- liquid
+              # Check if content is hidden for current product
+              assign content_hidden = false
+              
+              if block.settings.hide_from_products != blank
+                # Check if current product is in the hide list
+                for product_item in block.settings.hide_from_products
+                  if product_item.id == product.id
+                    assign content_hidden = true
+                    break
+                  endif
+                endfor
+              endif
+            -%}
+            
+            <li class="hc-prod-tabs-nav__item" role="presentation">
+              <button
+                class="hc-prod-tabs-nav__button {% if forloop.first %}hc-prod-tabs-nav__button--active{% endif %}"
+                role="tab"
+                data-tab-id="{{ block.settings.tab_id }}"
+                data-content-hidden="{{ content_hidden }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.tab_title }}
+              </button>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    {%- comment -%} Fallback message for tabs with hidden content {%- endcomment -%}
+    <div class="hc-prod-tabs-nav__no-content" style="display: none;" data-fallback-message>
+      <div class="hc-prod-tabs-nav__no-content-message">
+        No content available for this product
+      </div>
+      <div class="hc-prod-tabs-nav__no-content-help">
+        Content for this tab is hidden from this product. Configure in the customizer to show content.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  if (!window.HCProductTabsNav) {
+    window.HCProductTabsNav = class HCProductTabsNav {
+      constructor() {
+        this.buttons = document.querySelectorAll('.hc-prod-tabs-nav__button');
+        this.init();
+      }
+
+      init() {
+        // Set initial active tab on body
+        const firstActiveButton = document.querySelector('.hc-prod-tabs-nav__button--active');
+        if (firstActiveButton) {
+          const firstTabId = firstActiveButton.getAttribute('data-tab-id');
+          const contentHidden = firstActiveButton.getAttribute('data-content-hidden') === 'true';
+          document.body.setAttribute('data-active-tab', firstTabId);
+          document.body.setAttribute('data-tab-content-hidden', contentHidden);
+        }
+
+        // Add click handlers
+        this.buttons.forEach(button => {
+          button.addEventListener('click', (e) => this.handleTabClick(e));
+        });
+
+        // Trigger visibility check on page load
+        this.triggerVisibilityCheck();
+        this.updateFallbackVisibility();
+      }
+
+      handleTabClick(e) {
+        const button = e.currentTarget;
+        const tabId = button.getAttribute('data-tab-id');
+        const contentHidden = button.getAttribute('data-content-hidden') === 'true';
+
+        // Update active state on buttons
+        this.buttons.forEach(btn => {
+          btn.classList.remove('hc-prod-tabs-nav__button--active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+
+        button.classList.add('hc-prod-tabs-nav__button--active');
+        button.setAttribute('aria-selected', 'true'); 
+
+        // Update body data attributes
+        document.body.setAttribute('data-active-tab', tabId);
+        document.body.setAttribute('data-tab-content-hidden', contentHidden);
+
+        // Trigger visibility check
+        this.triggerVisibilityCheck();
+        this.updateFallbackVisibility();
+
+        // Smooth scroll to top of tabs (optional)
+        const navElement = document.querySelector('.hc-prod-tabs-nav');
+        if (navElement) {
+          const yOffset = -100;
+          const y = navElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+
+      updateFallbackVisibility() {
+        const contentHidden = document.body.getAttribute('data-tab-content-hidden') === 'true';
+        const fallbackMessage = document.querySelector('[data-fallback-message]');
+        
+        if (fallbackMessage) {
+          if (contentHidden) {
+            fallbackMessage.style.display = 'block';
+          } else {
+            fallbackMessage.style.display = 'none';
+          }
+        }
+      }
+
+      triggerVisibilityCheck() {
+        // Dispatch custom event that sections can listen to
+        const event = new CustomEvent('hc-tab-changed', {
+          detail: { activeTab: document.body.getAttribute('data-active-tab') }
+        });
+        document.dispatchEvent(event);
+      }
+    };
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new window.HCProductTabsNav();
+    });
+  } else {
+    new window.HCProductTabsNav();
+  }
+
+  // Reinitialize on Shopify section render (theme editor)
+  document.addEventListener('shopify:section:load', (event) => {
+    if (event.target.querySelector('.hc-prod-tabs-nav')) {
+      new window.HCProductTabsNav();
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Tabs Navigation", 
+  "tag": "section",
+  "class": "section-hc-product-tabs-nav",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_id",
+      "label": "Custom ID"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_label",
+      "label": "Show Label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label Text",
+      "default": "Mission Focus:",
+      "info": "Label text shown before tabs (hidden on mobile)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_id",
+          "label": "Tab ID",
+          "info": "Unique identifier for this tab (e.g., 'overview', 'features', 'specs'). Use this same ID in sections you want to show for this tab.",
+          "default": "tab-1"
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Tab Title"
+        },
+        {
+          "type": "product_list",
+          "id": "hide_from_products",
+          "label": "Hide from Products",
+          "info": "Leave empty to show content on all products. Select products to hide content (tab will still show but display 'No content available' message)."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tabs Navigation",
+      "settings": {
+        "show_label": true,
+        "label_text": "Mission Focus:"
+      },
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "highlights",
+            "tab_title": "Highlights"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "odor-control",
+            "tab_title": "Odor Control"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "comfort-fit",
+            "tab_title": "Comfort & Fit"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "durability",
+            "tab_title": "Durability"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "travel-freedom",
+            "tab_title": "Travel Freedom"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "full-briefing",
+            "tab_title": "Full Briefing"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,191 @@
+<div class="hc-os-fashion-section" id="section-{{ section.id }}">
+  <div class="hc-os-fashion-container">
+    <div class="hc-os-fashion-content">
+      {% if section.settings.heading != blank %}
+        <h1 class="hc-os-fashion-heading">
+          {{ section.settings.heading | newline_to_br }}
+        </h1>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="hc-os-fashion-subheading">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+      {% if section.settings.tagline != blank %}
+        <p class="hc-os-fashion-tagline">
+          {{ section.settings.tagline }}
+        </p>
+      {% endif %}
+      {% if section.settings.cta_text != blank %}
+        {% if section.settings.cta_link != blank %}
+          <a href="{{ section.settings.cta_link }}" class="hc-os-fashion-cta" aria-label="{{ section.settings.cta_text | escape }}">
+            {{ section.settings.cta_text }}
+          </a>
+        {% else %}
+          <button type="button" class="hc-os-fashion-cta" aria-label="{{ section.settings.cta_text | escape }}">
+            {{ section.settings.cta_text }}
+          </button>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  #section-{{ section.id }}.hc-os-fashion-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    #section-{{ section.id }}.hc-os-fashion-section {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hc-os-fashion-section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #FAFAFA;
+  }
+
+  .hc-os-fashion-container {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .hc-os-fashion-content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hc-os-fashion-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+    line-height: 0.9;
+    color: #111827;
+  }
+
+  @media (min-width: 768px) {
+    .hc-os-fashion-heading {
+      font-size: 4.375rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-os-fashion-heading {
+      font-size: 5rem;
+    }
+  }
+
+  .hc-os-fashion-subheading {
+    font-size: 1.875rem;
+    font-weight: 300;
+    color: #9ca3af;
+    line-height: 1.25;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-os-fashion-subheading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-os-fashion-tagline {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 3rem;
+  }
+
+  .hc-os-fashion-cta {
+    font-size: 0.75rem;
+    color: #111827;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #111827;
+    padding-bottom: 0.25rem;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .hc-os-fashion-cta:hover {
+    color: #B45309;
+    border-color: #B45309;
+  }
+
+  a.hc-os-fashion-cta {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC os Fashion",
+  "tag": "section",
+  "class": "section-hc-os-fashion",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We Didn't Start\nWith Fashion."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We Started With a Problem."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Clothing shouldn't limit your freedom — it should expand it."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Scroll to learn our story ↓"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link",
+      "info": "Leave blank to show as button only (no link)."
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC os Fashion",
+      "settings": {
+        "heading": "We Didn't Start\nWith Fashion.",
+        "subheading": "We Started With a Problem.",
+        "tagline": "Clothing shouldn't limit your freedom — it should expand it.",
+        "cta_text": "Scroll to learn our story ↓",
+      }
+    }
+  ]
+}
+{% endschema %}

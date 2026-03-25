@@ -1,0 +1,361 @@
+{% comment %}
+  Speak For Yourself Section
+  Two-column layout with text content and sensory diagram
+{% endcomment %}
+
+<section class="hc-speak-section">
+  <div class="hc-speak-grid">
+    <!-- Text Content Column -->
+    <div class="hc-speak-content">
+      <h3 class="hc-speak-content-title">{{ section.settings.title | default: "Speak For Yourself" }}</h3>
+      <div class="hc-speak-content-text">{{ section.settings.content }}</div>
+    </div>
+
+    <!-- Diagram Column -->
+    <div class="hc-speak-diagram-wrapper">
+      <div class="hc-speak-diagram-container">
+        <div class="hc-speak-diagram-card">
+          <div class="hc-speak-diagram-items">
+            
+            <!-- Sight -->
+            <div class="hc-speak-diagram-item">
+              <div class="hc-speak-diagram-item-header">
+                <span class="hc-speak-diagram-item-label">
+                  {{ section.settings.sense_1_label | default: "Sight (How you look)" }}
+                </span>
+                <span class="hc-speak-diagram-item-time">
+                  {{ section.settings.sense_1_time | default: "~0.5s" }}
+                </span>
+              </div>
+              <div class="hc-speak-diagram-item-flow">
+                <span class="hc-speak-diagram-flow-step">Retina</span>
+                <span class="hc-speak-diagram-flow-arrow">→</span>
+                <span class="hc-speak-diagram-flow-step hc-speak-diagram-flow-step-box">Thalamus (Filter)</span>
+                <span class="hc-speak-diagram-flow-arrow">→</span>
+                <span class="hc-speak-diagram-flow-step">Cortex</span>
+                <span class="hc-speak-diagram-flow-arrow">→</span>
+                <span class="hc-speak-diagram-flow-step hc-speak-diagram-flow-step-bold">Emotion</span>
+              </div>
+            </div>
+
+            <!-- Sound -->
+            <div class="hc-speak-diagram-item">
+              <div class="hc-speak-diagram-item-header">
+                <span class="hc-speak-diagram-item-label">
+                  {{ section.settings.sense_2_label | default: "Sound (What you say)" }}
+                </span>
+                <span class="hc-speak-diagram-item-time">
+                  {{ section.settings.sense_2_time | default: "~0.7s" }}
+                </span>
+              </div>
+              <div class="hc-speak-diagram-item-flow">
+                <span class="hc-speak-diagram-flow-step">Ear</span>
+                <span class="hc-speak-diagram-flow-arrow">→</span>
+                <span class="hc-speak-diagram-flow-step hc-speak-diagram-flow-step-box">Thalamus (Filter)</span>
+                <span class="hc-speak-diagram-flow-arrow">→</span>
+                <span class="hc-speak-diagram-flow-step">Cortex</span>
+                <span class="hc-speak-diagram-flow-arrow">→</span>
+                <span class="hc-speak-diagram-flow-step hc-speak-diagram-flow-step-bold">Emotion</span>
+              </div>
+            </div>
+
+            <!-- Scent (Highlighted) -->
+            <div class="hc-speak-diagram-item hc-speak-diagram-item-highlight">
+              <div class="hc-speak-diagram-item-header">
+                <span class="hc-speak-diagram-item-label hc-speak-diagram-item-label-highlight">
+                  {{ section.settings.sense_3_label | default: "Scent (Your smell)" }}
+                </span>
+                <span class="hc-speak-diagram-item-time hc-speak-diagram-item-time-highlight">
+                  {{ section.settings.sense_3_time | default: "~0.1s (Instant)" }}
+                </span>
+              </div>
+              <div class="hc-speak-diagram-item-flow hc-speak-diagram-item-flow-highlight">
+                <span class="hc-speak-diagram-flow-step">Nose</span>
+                <span class="hc-speak-diagram-flow-arrow hc-speak-diagram-flow-arrow-highlight">→</span>
+                <span class="hc-speak-diagram-flow-step hc-speak-diagram-flow-step-box-highlight">Amygdala (Emotion)</span>
+              </div>
+              <p class="hc-speak-diagram-item-note">
+                {{ section.settings.sense_3_note | default: "Direct connection. No logic filter. Instant emotional judgment." }}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Speak Section */
+.hc-speak-section {
+  border-bottom: 1px solid #000000;
+  background-color: #ffffff;
+}
+
+.hc-speak-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 60vh;
+}
+
+/* Content Column */
+.hc-speak-content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #000000;
+  order: 2;
+}
+
+.hc-speak-content-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.hc-speak-content-text {
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 32rem;
+  color: #4b5563;
+  white-space: pre-line;
+}
+
+/* Diagram Column */
+.hc-speak-diagram-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
+  order: 1;
+}
+
+.hc-speak-diagram-container {
+  width: 100%;
+  max-width: 36rem;
+}
+
+.hc-speak-diagram-card {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 2rem;
+  border: 1px solid #000000;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Diagram Items */
+.hc-speak-diagram-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+
+.hc-speak-diagram-item {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid #e5e7eb;
+}
+
+.hc-speak-diagram-item-highlight {
+  border-left: 4px solid #B45309;
+}
+
+.hc-speak-diagram-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.hc-speak-diagram-item-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hc-speak-diagram-item-label-highlight {
+  color: #B45309;
+}
+
+.hc-speak-diagram-item-time {
+  font-size: 0.625rem;
+  color: #6b7280;
+}
+
+.hc-speak-diagram-item-time-highlight {
+  color: #B45309;
+  font-weight: 700;
+}
+
+/* Flow Diagram */
+.hc-speak-diagram-item-flow {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  color: #9ca3af;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hc-speak-diagram-item-flow-highlight {
+  color: #000000;
+  font-weight: 700;
+}
+
+.hc-speak-diagram-flow-step {
+  display: inline-block;
+}
+
+.hc-speak-diagram-flow-step-box {
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.hc-speak-diagram-flow-step-box-highlight {
+  background-color: #B45309;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.hc-speak-diagram-flow-step-bold {
+  font-weight: 700;
+  color: #000000;
+}
+
+.hc-speak-diagram-flow-arrow {
+  display: inline-block;
+}
+
+.hc-speak-diagram-flow-arrow-highlight {
+  color: #B45309;
+}
+
+.hc-speak-diagram-item-note {
+  font-size: 0.625rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Responsive - Medium screens */
+@media (min-width: 768px) {
+  .hc-speak-content {
+    padding: 6rem;
+  }
+  
+  .hc-speak-content-title {
+    font-size: 3rem;
+  }
+  
+  .hc-speak-diagram-wrapper {
+    padding: 3rem;
+  }
+}
+
+/* Responsive - Large screens */
+@media (min-width: 1024px) {
+  .hc-speak-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hc-speak-content {
+    order: 2;
+    border-left: 1px solid #000000;
+  }
+  
+  .hc-speak-diagram-wrapper {
+    order: 1;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "HC Speak Section",
+  "tag": "section",
+  "class": "speak-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Speak For Yourself"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Recent research shows that smell shapes first impressions instantly. It's the only sense that bypasses your logical mind and goes straight into emotion and memory. People don't think about how you smell — they feel it. And what they feel becomes your \"vibe.\"</p><p>That's why we engineered HercLeón to support you in the moments that matter most. Whether it's a first date, a business meeting, or simply stepping out into the world, our smell-proof clothing keeps odor out of the way so your presence comes through clearly.</p><p>You show up confident.<br>You show up intentional.<br>You show up unmistakably you.</p><p>HercLeón gives you the freedom to choose your first impression — instead of letting odor choose it for you.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Sensory Diagram"
+    },
+    {
+      "type": "text",
+      "id": "sense_1_label",
+      "label": "Sense 1 Label",
+      "default": "Sight (How you look)"
+    },
+    {
+      "type": "text",
+      "id": "sense_1_time",
+      "label": "Sense 1 Time",
+      "default": "~0.5s"
+    },
+    {
+      "type": "text",
+      "id": "sense_2_label",
+      "label": "Sense 2 Label",
+      "default": "Sound (What you say)"
+    },
+    {
+      "type": "text",
+      "id": "sense_2_time",
+      "label": "Sense 2 Time",
+      "default": "~0.7s"
+    },
+    {
+      "type": "text",
+      "id": "sense_3_label",
+      "label": "Sense 3 Label (Highlighted)",
+      "default": "Scent (Your smell)"
+    },
+    {
+      "type": "text",
+      "id": "sense_3_time",
+      "label": "Sense 3 Time",
+      "default": "~0.1s (Instant)"
+    },
+    {
+      "type": "textarea",
+      "id": "sense_3_note",
+      "label": "Sense 3 Note",
+      "default": "Direct connection. No logic filter. Instant emotional judgment."
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Speak Section"
+    }
+  ]
+}
+{% endschema %}

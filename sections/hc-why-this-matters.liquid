@@ -1,0 +1,238 @@
+<section
+  {% if section.settings.section_anchor_id != blank %}id="{{ section.settings.section_anchor_id | strip }}"{% endif %}
+  class="hc-why-this-matters"
+  style="
+    --hc-wtm-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-wtm-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-wtm-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-wtm-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-why-this-matters__container">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="hc-why-this-matters__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hc-why-this-matters__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.lead != blank -%}
+      <p class="hc-why-this-matters__lead">{{ section.settings.lead }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.body_paragraph_1 != blank -%}
+      <p class="hc-why-this-matters__body">{{ section.settings.body_paragraph_1 }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.body_paragraph_2 != blank -%}
+      <p class="hc-why-this-matters__body">{{ section.settings.body_paragraph_2 }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.closing != blank -%}
+      <p class="hc-why-this-matters__closing">{{ section.settings.closing }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .hc-why-this-matters {
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    padding-top: var(--hc-wtm-pt-mobile);
+    padding-bottom: var(--hc-wtm-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-why-this-matters {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-why-this-matters {
+      padding-top: var(--hc-wtm-pt-desktop);
+      padding-bottom: var(--hc-wtm-pb-desktop);
+    }
+  }
+
+  .hc-why-this-matters__container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .hc-why-this-matters__eyebrow {
+    display: block;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B45309;
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-why-this-matters__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #111827;
+    margin: 0 0 2rem;
+    line-height: 1.15;
+  }
+
+  @media (min-width: 768px) {
+    .hc-why-this-matters__heading {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-why-this-matters__lead {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #000;
+    line-height: 1.5;
+    margin: 0 0 2rem;
+  }
+
+  .hc-why-this-matters__body {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #4b5563;
+    line-height: 1.75;
+    margin: 0 0 3rem;
+  }
+
+  .hc-why-this-matters__closing {
+    font-family: monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #B45309;
+    line-height: 1.75;
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Why This Matters",
+  "tag": "section",
+  "class": "hc-why-this-matters-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section anchor"
+    },
+    {
+      "type": "text",
+      "id": "section_anchor_id",
+      "label": "Section HTML id",
+      "default": "purpose",
+      "info": "For jump links (no #). Leave blank to omit id."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Impact"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why this matters"
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Lead paragraph (larger, bold weight)",
+      "default": "We didn't set out to build a clothing company. We set out to stop people from missing out on their own lives."
+    },
+    {
+      "type": "textarea",
+      "id": "body_paragraph_1",
+      "label": "Body paragraph 1",
+      "default": "That's what bad gear actually costs you — not money, but moments. The evening you stayed in. The trip you overpacked for. The morning lost to laundry instead of living."
+    },
+    {
+      "type": "textarea",
+      "id": "body_paragraph_2",
+      "label": "Body paragraph 2",
+      "default": "HercLeón exists to give that back. Clothes that stay fresh longer mean less water wasted and less gear in landfills. But the real return is personal — the confidence to show up without second-guessing, the freedom to move through life without your closet calling the shots."
+    },
+    {
+      "type": "textarea",
+      "id": "closing",
+      "label": "Closing line (accent style)",
+      "default": "Better design makes better clothes. But more importantly, it makes more room for everything that actually matters."
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Why This Matters"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,232 @@
+<section
+  class="hc-upgrade-life"
+  style="
+    --hc-ul-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hc-ul-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hc-ul-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hc-ul-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  "
+>
+  <div class="hc-upgrade-life__container">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="hc-upgrade-life__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hc-upgrade-life__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtext != blank -%}
+      <p class="hc-upgrade-life__subtext">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <a
+        class="hc-upgrade-life__button"
+        href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#{% endif %}"
+        {% if section.settings.button_link_blank %}target="_blank" rel="noopener noreferrer"{% endif %}
+      >
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .hc-upgrade-life {
+    background-color: #B45309;
+    color: #fff;
+    text-align: center;
+    padding-top: var(--hc-ul-pt-mobile);
+    padding-bottom: var(--hc-ul-pb-mobile);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-upgrade-life {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-upgrade-life {
+      padding-top: var(--hc-ul-pt-desktop);
+      padding-bottom: var(--hc-ul-pb-desktop);
+    }
+  }
+
+  .hc-upgrade-life__container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-upgrade-life__eyebrow {
+    display: block;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-upgrade-life__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .hc-upgrade-life__heading {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hc-upgrade-life__subtext {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hc-upgrade-life__button {
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+    padding: 1.25rem 3rem;
+    font-family: monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    border-radius: 9999px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .hc-upgrade-life__button:hover {
+    background-color: #000;
+    color: #fff;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HC Upgrade Life",
+  "tag": "section",
+  "class": "hc-upgrade-life-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Ready to upgrade your life?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Experience The Science"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Stop wearing mediocre clothing made for living a mediocre life. Upgrade to the only clothes designed to help you live a freer, lighter and better life."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop HercLeón"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_link_blank",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    }
+  ],
+  "presets": [
+    {
+      "name": "HC Upgrade Life"
+    }
+  ]
+}
+{% endschema %}

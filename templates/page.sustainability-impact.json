@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "heading_size": "title-xl tracking-heading",
+        "heading_alignment": "text-left",
+        "heading_tag": "h1",
+        "text_size": "text-base",
+        "padding_top": 72,
+        "padding_bottom": 120,
+        "divider": false,
+        "narrow": true,
+        "rounded": false
+      }
+    },
+    "hc_sust_report_y6mQx4": {
+      "type": "HC-Sust-report",
+      "name": "HC Sustainability Report",
+      "settings": {
+        "eyebrow": "Sustainability Report",
+        "title": "The Most Sustainable Shirt\nIs The One You Don't Wash"
+      }
+    },
+    "hc_sust_benefits_Dnihbw": {
+      "type": "HC-Sust-benefits",
+      "blocks": {
+        "card_DXPJ4p": {
+          "type": "card",
+          "settings": {
+            "stat": "35%",
+            "label": "Of Ocean Microplastics",
+            "description": "Come from laundering synthetic clothes. Hercléon reduces washing by ~90%."
+          }
+        },
+        "card_iC3XKd": {
+          "type": "card",
+          "settings": {
+            "stat": "3,000L",
+            "label": "Water Saved Per Year",
+            "description": "By switching to a low-wash laundry cycle with Hercléon gear."
+          }
+        },
+        "card_F3eqht": {
+          "type": "card",
+          "settings": {
+            "stat": "10x",
+            "label": "Longer Lifespan",
+            "description": "Washing destroys fabric. Washing less means keeping your gear years longer."
+          }
+        }
+      },
+      "block_order": [
+        "card_DXPJ4p",
+        "card_iC3XKd",
+        "card_F3eqht"
+      ],
+      "name": "HC Sustainability Profit",
+      "settings": {
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_mobile": 96,
+        "padding_bottom_mobile": 96
+      }
+    },
+    "hc_floating_nav_page_xqne4y": {
+      "type": "HC-floating-nav-page",
+      "blocks": {
+        "clearance_item_ziYQLh": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_6rVD3R": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_W7TYX6": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_ziYQLh",
+        "clearance_item_6rVD3R",
+        "clearance_item_W7TYX6"
+      ],
+      "name": "HC Floating Nav Page",
+      "settings": {
+        "return_home_text": "Return Home",
+        "return_home_link": "/",
+        "shop_gear_text": "Shop Gear",
+        "shop_gear_link": "shopify://collections/all",
+        "show_profile_button": false,
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "hc_sust_report_y6mQx4",
+    "hc_sust_benefits_Dnihbw",
+    "hc_floating_nav_page_xqne4y"
+  ]
+}

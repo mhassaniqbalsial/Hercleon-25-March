@@ -1,0 +1,305 @@
+{%- capture size_style -%}
+  {%- render 'section-size-style', settings: block.settings -%}
+{%- endcapture -%}
+
+<div class="limitation-flow-block size-style" style="{{ size_style }}" {{ block.shopify_attributes }}>
+  <div class="limitation-flow-diagram">
+    <div class="flow-items">
+      {%- if block.settings.step_1 != blank -%}
+        <div class="flow-item" style="border-color: {{ block.settings.box_1_border_color }}; background-color: {{ block.settings.box_1_bg_color }};">
+          <span style="color: {{ block.settings.box_1_text_color }};">{{ block.settings.step_1 }}</span>
+        </div>
+      {%- endif -%}
+      
+      {%- if block.settings.step_2 != blank -%}
+        <span class="flow-arrow" style="color: {{ block.settings.arrow_color }};">→</span>
+        <div class="flow-item" style="border-color: {{ block.settings.box_2_border_color }}; background-color: {{ block.settings.box_2_bg_color }};">
+          <span style="color: {{ block.settings.box_2_text_color }};">{{ block.settings.step_2 }}</span>
+        </div>
+      {%- endif -%}
+      
+      {%- if block.settings.step_3 != blank -%}
+        <span class="flow-arrow" style="color: {{ block.settings.arrow_color }};">→</span>
+        <div class="flow-item" style="border-color: {{ block.settings.box_3_border_color }}; background-color: {{ block.settings.box_3_bg_color }};">
+          <span style="color: {{ block.settings.box_3_text_color }};">{{ block.settings.step_3 }}</span>
+        </div>
+      {%- endif -%}
+      
+      {%- if block.settings.step_4 != blank -%}
+        <span class="flow-arrow" style="color: {{ block.settings.arrow_color }};">→</span>
+        <div class="flow-item" style="border-color: {{ block.settings.box_4_border_color }}; background-color: {{ block.settings.box_4_bg_color }};">
+          <span style="color: {{ block.settings.box_4_text_color }};">{{ block.settings.step_4 }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .limitation-flow-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+ .limitation-flow-diagram {
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+    border: 1px solid #ffffff33;
+    width: 100%;
+}
+  
+  .flow-items {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+.flow-item {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 10px;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 3.5px;
+    border-radius: 0.25rem;
+}
+
+  
+  .flow-arrow {
+    font-size: 18px;
+    font-weight: 300;
+  }
+  
+  @media (max-width: 749px) {
+    .limitation-flow-diagram {
+      padding: 42px;
+    }
+    
+    .flow-items {
+      gap: 14px;
+      flex-direction: column;
+    }
+    
+    .flow-arrow {
+      font-size: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Flow Diagram",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Box 1"
+    },
+    {
+      "type": "text",
+      "id": "step_1",
+      "label": "Box 1 text",
+      "default": "ODOR"
+    },
+    {
+      "type": "color",
+      "id": "box_1_bg_color",
+      "label": "Box 1 background color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "box_1_text_color",
+      "label": "Box 1 text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "box_1_border_color",
+      "label": "Box 1 border color",
+      "default": "rgb(255 255 255 / 0.4)"
+    },
+    {
+      "type": "header",
+      "content": "Box 2"
+    },
+    {
+      "type": "text",
+      "id": "step_2",
+      "label": "Box 2 text",
+      "default": "LIMITATION"
+    },
+    {
+      "type": "color",
+      "id": "box_2_bg_color",
+      "label": "Box 2 background color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "box_2_text_color",
+      "label": "Box 2 text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "box_2_border_color",
+      "label": "Box 2 border color",
+      "default": "rgb(255 255 255 / 0.4)"
+    },
+    {
+      "type": "header",
+      "content": "Box 3"
+    },
+    {
+      "type": "text",
+      "id": "step_3",
+      "label": "Box 3 text",
+      "default": "FRICTION"
+    },
+    {
+      "type": "color",
+      "id": "box_3_bg_color",
+      "label": "Box 3 background color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "box_3_text_color",
+      "label": "Box 3 text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "box_3_border_color",
+      "label": "Box 3 border color",
+      "default": "rgb(255 255 255 / 0.4)"
+    },
+    {
+      "type": "header",
+      "content": "Box 4"
+    },
+    {
+      "type": "text",
+      "id": "step_4",
+      "label": "Box 4 text",
+      "default": "BURDEN"
+    },
+    {
+      "type": "color",
+      "id": "box_4_bg_color",
+      "label": "Box 4 background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "box_4_text_color",
+      "label": "Box 4 text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "box_4_border_color",
+      "label": "Box 4 border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Arrow Styling"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.group.settings.header__size.content"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:blocks.group.settings.width.label",
+      "options": [
+        {
+          "value": "fit-content",
+          "label": "t:blocks.group.settings.width.options__1.label"
+        },
+        {
+          "value": "fill",
+          "label": "t:blocks.group.settings.width.options__2.label"
+        },
+        {
+          "value": "custom",
+          "label": "t:blocks.group.settings.width.options__3.label"
+        }
+      ],
+      "default": "fill"
+    },
+    {
+      "type": "range",
+      "id": "custom_width",
+      "label": "t:blocks.group.settings.custom_width.label",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.width == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "width_mobile",
+      "label": "t:blocks.group.settings.width_mobile.label",
+      "options": [
+        {
+          "value": "fit-content",
+          "label": "t:blocks.group.settings.width.options__1.label"
+        },
+        {
+          "value": "fill",
+          "label": "t:blocks.group.settings.width.options__2.label"
+        },
+        {
+          "value": "custom",
+          "label": "t:blocks.group.settings.width.options__3.label"
+        }
+      ],
+      "default": "fill"
+    },
+    {
+      "type": "range",
+      "id": "custom_width_mobile",
+      "label": "t:blocks.group.settings.custom_width.label",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.width_mobile == 'custom' }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flow Diagram",
+      "category": "t:categories.basic",
+      "settings": {
+        "step_1": "ODOR",
+        "step_2": "LIMITATION",
+        "step_3": "FRICTION",
+        "step_4": "BURDEN",
+        "box_4_bg_color": "#ffffff",
+        "box_4_text_color": "#000000"
+      }
+    }
+  ]
+}
+{% endschema %}

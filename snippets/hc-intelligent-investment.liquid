@@ -1,0 +1,224 @@
+{% comment %}
+  HC Intelligent Investment Block
+  Section: financial intelligence / cost reduction analysis
+{% endcomment %}
+
+<style>
+  .hc-intelligent-investment {
+    border-bottom: 1px solid #000;
+    background-color: #fff;
+    animation: hc-intelligent-investment-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-intelligent-investment__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hc-intelligent-investment__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hc-intelligent-investment__content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-intelligent-investment__content {
+      padding: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-intelligent-investment__content {
+      border-right: 1px solid #000;
+    }
+  }
+
+  .hc-intelligent-investment__eyebrow {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b45309;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .hc-intelligent-investment__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.25;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-intelligent-investment__title {
+      font-size: 3rem;
+    }
+  }
+
+  .hc-intelligent-investment__description {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 32rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+
+  .hc-intelligent-investment__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .hc-intelligent-investment__right {
+      padding: 3rem;
+    }
+  }
+
+  .hc-intelligent-investment__card-wrap {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-intelligent-investment__card {
+    background-color: #fff;
+    padding: 2.5rem;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-intelligent-investment__card {
+      padding: 3rem;
+    }
+  }
+
+  .hc-intelligent-investment__card-title {
+    text-align: center;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 2.5rem;
+    color: #111827;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 1rem;
+  }
+
+  .hc-intelligent-investment__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hc-intelligent-investment__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f9fafb;
+    padding-bottom: 1rem;
+    margin-top: 28px;
+}
+
+  .hc-intelligent-investment__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .hc-intelligent-investment__item-label {
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    color: #111827;
+  }
+
+  .hc-intelligent-investment__item-value {
+    background-color: #FFEAD5;
+    color: #C56326;
+    padding: 0.25rem 0.75rem;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @keyframes hc-intelligent-investment-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<section
+  id="financial_intelligence"
+  class="hc-intelligent-investment"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-intelligent-investment__grid">
+    <div class="hc-intelligent-investment__content">
+      {%- if block.settings.eyebrow_text != blank -%}
+        <span class="hc-intelligent-investment__eyebrow">{{ block.settings.eyebrow_text }}</span>
+      {%- endif -%}
+      {%- if block.settings.title != blank -%}
+        <h3 class="hc-intelligent-investment__title">{{ block.settings.title }}</h3>
+      {%- endif -%}
+      {%- if block.settings.description != blank -%}
+        <p class="hc-intelligent-investment__description">{{ block.settings.description }}</p>
+      {%- endif -%}
+    </div>
+    <div class="hc-intelligent-investment__right">
+      <div class="hc-intelligent-investment__card-wrap">
+        <div class="hc-intelligent-investment__card">
+          {%- if block.settings.card_title != blank -%}
+            <h4 class="hc-intelligent-investment__card-title">{{ block.settings.card_title }}</h4>
+          {%- endif -%}
+          <div class="hc-intelligent-investment__list">
+            <div class="hc-intelligent-investment__item">
+              <span class="hc-intelligent-investment__item-label">{{ block.settings.item_1_label | default: 'DETERGENT' }}</span>
+              <span class="hc-intelligent-investment__item-value">{{ block.settings.item_1_value | default: '−90% Usage' }}</span>
+            </div>
+            <div class="hc-intelligent-investment__item">
+              <span class="hc-intelligent-investment__item-label">{{ block.settings.item_2_label | default: 'WATER & POWER' }}</span>
+              <span class="hc-intelligent-investment__item-value">{{ block.settings.item_2_value | default: '−90% Usage' }}</span>
+            </div>
+            <div class="hc-intelligent-investment__item">
+              <span class="hc-intelligent-investment__item-label">{{ block.settings.item_3_label | default: 'DRYER CYCLES' }}</span>
+              <span class="hc-intelligent-investment__item-value">{{ block.settings.item_3_value | default: 'Eliminated' }}</span>
+            </div>
+            <div class="hc-intelligent-investment__item">
+              <span class="hc-intelligent-investment__item-label">{{ block.settings.item_4_label | default: 'REPLACEMENTS' }}</span>
+              <span class="hc-intelligent-investment__item-value">{{ block.settings.item_4_value | default: 'Every 5–10 Years' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
