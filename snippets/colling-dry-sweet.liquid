@@ -1,0 +1,677 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign wick_color = block.settings.wick_color | default: '#3b82f6'
+  assign wick_bar_fill = wick_color | color_modify: 'alpha', 0.4
+  assign wick_border_soft = wick_color | color_modify: 'alpha', 0.35
+  assign is_reversed = block.settings.reverse_layout
+  assign ds_desc = block.settings.description
+-%}
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  {%- assign ds_t1 = '<strong>' | append: block.settings.tooltip_1_trigger | append: '</strong>' -%}
+  {%- capture ds_w1 -%}<span class="hc-dry-sweet__tooltip-trigger"><strong>{{ block.settings.tooltip_1_trigger }}</strong><span class="hc-dry-sweet__tooltip"><span class="hc-dry-sweet__tooltip-box"><span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-dry-sweet__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-dry-sweet__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign ds_desc = ds_desc | replace: ds_t1, ds_w1 -%}
+{%- endif -%}
+{%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+  {%- assign ds_t2 = '<strong>' | append: block.settings.tooltip_2_trigger | append: '</strong>' -%}
+  {%- capture ds_w2 -%}<span class="hc-dry-sweet__tooltip-trigger"><strong>{{ block.settings.tooltip_2_trigger }}</strong><span class="hc-dry-sweet__tooltip"><span class="hc-dry-sweet__tooltip-box"><span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_2_content | replace: '<p>', '<span class="hc-dry-sweet__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-dry-sweet__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign ds_desc = ds_desc | replace: ds_t2, ds_w2 -%}
+{%- endif -%}
+{%- if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank -%}
+  {%- assign ds_t3 = '<strong>' | append: block.settings.tooltip_3_trigger | append: '</strong>' -%}
+  {%- capture ds_w3 -%}<span class="hc-dry-sweet__tooltip-trigger"><strong>{{ block.settings.tooltip_3_trigger }}</strong><span class="hc-dry-sweet__tooltip"><span class="hc-dry-sweet__tooltip-box"><span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_3_content | replace: '<p>', '<span class="hc-dry-sweet__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-dry-sweet__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign ds_desc = ds_desc | replace: ds_t3, ds_w3 -%}
+{%- endif -%}
+
+<style>
+  .hc-dry-sweet {
+    --hc-dry-sweet-bg: {{ bg_color }};
+    --hc-dry-sweet-text: {{ text_color }};
+    --hc-dry-sweet-accent: {{ accent_color }};
+    --hc-dry-sweet-desc: {{ desc_color }};
+    --hc-dry-sweet-wick: {{ wick_color }};
+    --hc-dry-sweet-wick-soft: {{ wick_bar_fill }};
+    --hc-dry-sweet-wick-border: {{ wick_border_soft }};
+    --hc-dry-sweet-card-border: #e5e7eb;
+    --hc-dry-sweet-arena-bg: #f9fafb;
+    --hc-dry-sweet-line-bg: rgba(229, 231, 235, 0.2);
+
+    background-color: var(--hc-dry-sweet-bg);
+    border-bottom: 1px solid #000;
+  }
+
+  @keyframes hc-dry-sweet-wicking {
+    0% {
+      left: -20%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes hc-dry-sweet-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.35rem);
+    }
+  }
+
+  @keyframes hc-dry-sweet-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  .hc-dry-sweet__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-dry-sweet__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-dry-sweet-text);
+    order: 1;
+    border-bottom: 1px solid #000;
+  }
+
+  .hc-dry-sweet__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-dry-sweet-bg);
+    order: 2;
+  }
+
+  .hc-dry-sweet__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-dry-sweet-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-dry-sweet__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-dry-sweet-text);
+  }
+
+  .hc-dry-sweet__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-dry-sweet-desc);
+    white-space: pre-line;
+  }
+
+  .hc-dry-sweet__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  .hc-dry-sweet__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hc-dry-sweet__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-dry-sweet__tooltip-trigger:hover strong {
+    color: var(--hc-dry-sweet-accent);
+  }
+
+  .hc-dry-sweet__tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.65rem;
+    width: min(100vw - 2rem, 22rem);
+    max-width: calc(100vw - 2rem);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-dry-sweet__tooltip-trigger:hover .hc-dry-sweet__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-dry-sweet__tooltip-box {
+    background-color: #fff;
+    color: #111;
+    padding: 1.75rem 1.5rem 1.5rem;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.08),
+      0 20px 40px -12px rgba(0, 0, 0, 0.22);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+    text-align: left;
+  }
+
+  .hc-dry-sweet__tooltip-content {
+    display: block;
+    font-family: var(--font-body-family, var(--font-heading-family, ui-sans-serif, system-ui, sans-serif));
+  }
+
+  .hc-dry-sweet__tooltip-content p {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    font-weight: 400;
+    margin: 0 0 0.75rem;
+    color: #111;
+  }
+
+  .hc-dry-sweet__tooltip-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-dry-sweet__tooltip-content p:has(strong):not(:first-child) {
+    margin-top: 1.25rem;
+  }
+
+  .hc-dry-sweet__tooltip-content p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    margin-bottom: 0.45rem;
+    color: var(--hc-dry-sweet-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-dry-sweet__tooltip-p {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    font-weight: 400;
+    margin: 0 0 0.75rem;
+    color: #111;
+  }
+
+  .hc-dry-sweet__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-dry-sweet__tooltip-p:has(strong):not(:first-child) {
+    margin-top: 1.25rem;
+  }
+
+  .hc-dry-sweet__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    margin-bottom: 0.45rem;
+    color: var(--hc-dry-sweet-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-dry-sweet__tooltip-p strong:hover {
+    color: var(--hc-dry-sweet-accent);
+  }
+
+  .hc-dry-sweet__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+  .hc-dry-sweet__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-dry-sweet__card {
+    background-color: var(--hc-dry-sweet-bg);
+    color: var(--hc-dry-sweet-text);
+    border: 1px solid var(--hc-dry-sweet-card-border);
+    padding: 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-dry-sweet__arena {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    border: 1px solid var(--hc-dry-sweet-card-border);
+    background-color: var(--hc-dry-sweet-arena-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hc-dry-sweet__wick-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem 0;
+  }
+
+  .hc-dry-sweet__wick-line {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background-color: var(--hc-dry-sweet-line-bg);
+  }
+
+  .hc-dry-sweet__wick-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height: 100%;
+    width: 20%;
+    background-color: var(--hc-dry-sweet-wick-soft);
+    animation: hc-dry-sweet-wicking 3s linear infinite;
+    display: block !important;
+  }
+
+  .hc-dry-sweet__center-wrap {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-dry-sweet__arrows-top {
+    position: absolute;
+    top: -3rem;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .hc-dry-sweet__arrow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: hc-dry-sweet-bounce 1.2s ease-in-out infinite;
+  }
+
+  .hc-dry-sweet__arrow-col--delay {
+    animation-delay: 0.2s;
+  }
+
+  .hc-dry-sweet__arrow-up {
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--hc-dry-sweet-wick);
+  }
+
+  .hc-dry-sweet__arrow-label {
+    font-size: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--hc-dry-sweet-wick);
+  }
+
+  .hc-dry-sweet__icon-box {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 1rem;
+    border: 2px solid var(--hc-dry-sweet-wick-border);
+    background-color: var(--hc-dry-sweet-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  .hc-dry-sweet__icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--hc-dry-sweet-wick);
+    margin-bottom: 0.5rem;
+    animation: hc-dry-sweet-pulse 2s ease-in-out infinite;
+  }
+
+  .hc-dry-sweet__icon-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--hc-dry-sweet-text);
+  }
+
+  .hc-dry-sweet__badge {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: var(--hc-dry-sweet-bg);
+    border: 1px solid var(--hc-dry-sweet-wick-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hc-dry-sweet__badge-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--hc-dry-sweet-wick);
+    animation: hc-dry-sweet-pulse 2s ease-in-out infinite;
+  }
+
+  .hc-dry-sweet__badge-text {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--hc-dry-sweet-wick);
+  }
+
+  .hc-dry-sweet__schematic-label {
+    margin-top: 2rem;
+    text-align: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #9ca3af;
+  }
+
+  @media (min-width: 768px) {
+    .hc-dry-sweet__text-col {
+      padding: 6rem;
+    }
+
+    .hc-dry-sweet__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-dry-sweet__heading {
+      font-size: 3rem;
+    }
+
+    .hc-dry-sweet__card {
+      padding: 4rem;
+    }
+
+    .hc-dry-sweet__tooltip {
+      width: min(100vw - 3rem, 30rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-dry-sweet__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-dry-sweet__text-col {
+      border-bottom: none;
+    }
+
+    .hc-dry-sweet__grid--default .hc-dry-sweet__text-col {
+      order: 1;
+      border-right: 1px solid #000;
+    }
+
+    .hc-dry-sweet__grid--default .hc-dry-sweet__visual-col {
+      order: 2;
+    }
+
+    .hc-dry-sweet__grid--reversed .hc-dry-sweet__text-col {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+
+    .hc-dry-sweet__grid--reversed .hc-dry-sweet__visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section id="dry-sleep-system" class="hc-dry-sweet animate-fade-in-up" {{ block.shopify_attributes }}>
+  <div class="hc-dry-sweet__grid {% if is_reversed %}hc-dry-sweet__grid--reversed{% else %}hc-dry-sweet__grid--default{% endif %}">
+    <div class="hc-dry-sweet__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-dry-sweet__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-dry-sweet__heading">
+        {{ block.settings.heading | default: 'The Dry-Sleep System' }}
+      </h3>
+
+      <div class="hc-dry-sweet__desc">
+        {{ ds_desc }}
+      </div>
+    </div>
+
+    <div class="hc-dry-sweet__visual-col">
+      <div class="hc-dry-sweet__visual-inner">
+        <div class="hc-dry-sweet__card">
+          <div class="hc-dry-sweet__arena">
+            <div class="hc-dry-sweet__wick-lines" aria-hidden="true">
+              <div class="hc-dry-sweet__wick-line">
+                <div class="hc-dry-sweet__wick-bar" style="animation-delay: 0s;"></div>
+              </div>
+              <div class="hc-dry-sweet__wick-line">
+                <div class="hc-dry-sweet__wick-bar" style="animation-delay: 0.5s;"></div>
+              </div>
+              <div class="hc-dry-sweet__wick-line">
+                <div class="hc-dry-sweet__wick-bar" style="animation-delay: 1s;"></div>
+              </div>
+              <div class="hc-dry-sweet__wick-line">
+                <div class="hc-dry-sweet__wick-bar" style="animation-delay: 1.5s;"></div>
+              </div>
+            </div>
+
+            <div class="hc-dry-sweet__center-wrap">
+              <div class="hc-dry-sweet__arrows-top" aria-hidden="true">
+                <div class="hc-dry-sweet__arrow-col">
+                  <span class="hc-dry-sweet__arrow-up">↑</span>
+                  <span class="hc-dry-sweet__arrow-label">{{ block.settings.vapor_label | default: 'Vapor' }}</span>
+                </div>
+                <div class="hc-dry-sweet__arrow-col hc-dry-sweet__arrow-col--delay">
+                  <span class="hc-dry-sweet__arrow-up">↑</span>
+                  <span class="hc-dry-sweet__arrow-label">{{ block.settings.heat_label | default: 'Heat' }}</span>
+                </div>
+              </div>
+
+              <div class="hc-dry-sweet__icon-box">
+                <svg
+                  class="hc-dry-sweet__icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path>
+                  <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path>
+                </svg>
+                <span class="hc-dry-sweet__icon-label">{{ block.settings.center_label | default: 'Dry-Sleep' }}</span>
+              </div>
+            </div>
+
+            {%- if block.settings.badge_text != blank -%}
+              <div class="hc-dry-sweet__badge">
+                <span class="hc-dry-sweet__badge-dot"></span>
+                <span class="hc-dry-sweet__badge-text">{{ block.settings.badge_text }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.schematic_footer != blank -%}
+            <p class="hc-dry-sweet__schematic-label">{{ block.settings.schematic_footer }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- liquid
+  assign ds_tt_js = false
+  if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank
+    assign ds_tt_js = true
+  endif
+  if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank
+    assign ds_tt_js = true
+  endif
+  if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank
+    assign ds_tt_js = true
+  endif
+-%}
+
+{%- if ds_tt_js -%}
+  {%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+    <template id="hc-dry-sweet-tooltip-template-1">
+      <span class="hc-dry-sweet__tooltip">
+        <span class="hc-dry-sweet__tooltip-box">
+          <span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_1_content }}</span>
+          <span class="hc-dry-sweet__tooltip-arrow"></span>
+        </span>
+      </span>
+    </template>
+  {%- endif -%}
+  {%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+    <template id="hc-dry-sweet-tooltip-template-2">
+      <span class="hc-dry-sweet__tooltip">
+        <span class="hc-dry-sweet__tooltip-box">
+          <span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_2_content }}</span>
+          <span class="hc-dry-sweet__tooltip-arrow"></span>
+        </span>
+      </span>
+    </template>
+  {%- endif -%}
+  {%- if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank -%}
+    <template id="hc-dry-sweet-tooltip-template-3">
+      <span class="hc-dry-sweet__tooltip">
+        <span class="hc-dry-sweet__tooltip-box">
+          <span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_3_content }}</span>
+          <span class="hc-dry-sweet__tooltip-arrow"></span>
+        </span>
+      </span>
+    </template>
+  {%- endif -%}
+
+  <script>
+    (function () {
+      function initHcDrySweetTooltips() {
+        var section = document.getElementById('dry-sleep-system');
+        if (!section) return;
+        var descEl = section.querySelector('.hc-dry-sweet__desc');
+        if (!descEl) return;
+
+        var configs = [];
+        {%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+          configs.push({
+            trigger: {{ block.settings.tooltip_1_trigger | json }},
+            templateId: 'hc-dry-sweet-tooltip-template-1'
+          });
+        {%- endif -%}
+        {%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+          configs.push({
+            trigger: {{ block.settings.tooltip_2_trigger | json }},
+            templateId: 'hc-dry-sweet-tooltip-template-2'
+          });
+        {%- endif -%}
+        {%- if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank -%}
+          configs.push({
+            trigger: {{ block.settings.tooltip_3_trigger | json }},
+            templateId: 'hc-dry-sweet-tooltip-template-3'
+          });
+        {%- endif -%}
+
+        configs.forEach(function (cfg) {
+          descEl.querySelectorAll('strong').forEach(function (el) {
+            if (el.textContent.trim().toLowerCase() !== String(cfg.trigger).trim().toLowerCase()) return;
+            if (el.closest('.hc-dry-sweet__tooltip-trigger')) return;
+            var wrapper = document.createElement('span');
+            wrapper.className = 'hc-dry-sweet__tooltip-trigger';
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
+            var tmpl = document.getElementById(cfg.templateId);
+            if (tmpl) wrapper.appendChild(tmpl.content.cloneNode(true));
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHcDrySweetTooltips);
+      } else {
+        initHcDrySweetTooltips();
+      }
+      document.addEventListener('shopify:section:load', initHcDrySweetTooltips);
+    })();
+  </script>
+{%- endif -%}

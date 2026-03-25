@@ -1,0 +1,437 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign card_border = block.settings.card_border_color | default: '#1f2937'
+  assign std_diagram_bg = block.settings.std_diagram_bg | default: '#111827'
+  assign jax_diagram_bg = block.settings.jax_diagram_bg | default: '#030712'
+  assign std_line_color = block.settings.std_line_color | default: '#374151'
+  assign friction_color = block.settings.friction_color | default: '#f87171'
+  assign is_reversed = block.settings.reverse_layout
+  assign jax_diagram_border = accent_color | color_modify: 'alpha', 0.3
+  assign jax_line_glow = accent_color | color_modify: 'alpha', 0.5
+  assign friction_ring_bg = friction_color | color_modify: 'alpha', 0.2
+  assign accent_ring_bg = accent_color | color_modify: 'alpha', 0.2
+-%}
+
+<style>
+  .hc-dolphing-smooth {
+    --hc-dolphing-smooth-bg: {{ bg_color }};
+    --hc-dolphing-smooth-text: {{ text_color }};
+    --hc-dolphing-smooth-accent: {{ accent_color }};
+    --hc-dolphing-smooth-desc: {{ desc_color }};
+    --hc-dolphing-smooth-card-border: {{ card_border }};
+    --hc-dolphing-smooth-std-diagram-bg: {{ std_diagram_bg }};
+    --hc-dolphing-smooth-jax-diagram-bg: {{ jax_diagram_bg }};
+    --hc-dolphing-smooth-std-line: {{ std_line_color }};
+    --hc-dolphing-smooth-friction: {{ friction_color }};
+    --hc-dolphing-smooth-jax-border: {{ jax_diagram_border }};
+    --hc-dolphing-smooth-jax-glow: {{ jax_line_glow }};
+    --hc-dolphing-smooth-friction-ring: {{ friction_ring_bg }};
+    --hc-dolphing-smooth-accent-ring: {{ accent_ring_bg }};
+
+    background-color: var(--hc-dolphing-smooth-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-dolphing-smooth__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-dolphing-smooth__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-dolphing-smooth-text);
+    order: 1;
+    border-bottom: 1px solid var(--hc-dolphing-smooth-card-border);
+    overflow: visible;
+  }
+
+  .hc-dolphing-smooth__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-dolphing-smooth-bg);
+    order: 2;
+    overflow: visible;
+  }
+
+  .hc-dolphing-smooth__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-dolphing-smooth-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-dolphing-smooth__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-dolphing-smooth-text);
+  }
+
+  .hc-dolphing-smooth__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.625;
+    max-width: 32rem;
+    color: var(--hc-dolphing-smooth-desc);
+    white-space: pre-line;
+  }
+
+  .hc-dolphing-smooth__desc p {
+    margin: 0 0 1rem;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  .hc-dolphing-smooth__desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-dolphing-smooth__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-dolphing-smooth__card {
+    background-color: var(--hc-dolphing-smooth-bg);
+    padding: 2rem;
+    border: 1px solid var(--hc-dolphing-smooth-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--hc-dolphing-smooth-text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-dolphing-smooth__compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .hc-dolphing-smooth__col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-dolphing-smooth__col-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: #6b7280;
+  }
+
+  .hc-dolphing-smooth__col-label--jax {
+    color: var(--hc-dolphing-smooth-accent);
+  }
+
+  .hc-dolphing-smooth__diagram {
+    width: 100%;
+    height: 12rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--hc-dolphing-smooth-card-border);
+  }
+
+  .hc-dolphing-smooth__diagram--std {
+    background-color: var(--hc-dolphing-smooth-std-diagram-bg);
+  }
+
+  .hc-dolphing-smooth__diagram--jax {
+    background-color: var(--hc-dolphing-smooth-jax-diagram-bg);
+    border-color: var(--hc-dolphing-smooth-jax-border);
+  }
+
+  .hc-dolphing-smooth__diagram-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+
+  .hc-dolphing-smooth__diagram-line--std {
+    background-color: var(--hc-dolphing-smooth-std-line);
+  }
+
+  .hc-dolphing-smooth__diagram-line--jax {
+    background-color: var(--hc-dolphing-smooth-accent);
+    box-shadow: 0 0 10px var(--hc-dolphing-smooth-jax-glow);
+  }
+
+  .hc-dolphing-smooth__bump {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: var(--hc-dolphing-smooth-std-line);
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: 1;
+  }
+
+  .hc-dolphing-smooth__diagram-center {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-dolphing-smooth__badge-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-dolphing-smooth__badge-text--friction {
+    color: var(--hc-dolphing-smooth-friction);
+  }
+
+  .hc-dolphing-smooth__badge-text--smooth {
+    color: var(--hc-dolphing-smooth-accent);
+  }
+
+  .hc-dolphing-smooth__icon-ring {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-dolphing-smooth__icon-ring--friction {
+    background-color: var(--hc-dolphing-smooth-friction-ring);
+    color: var(--hc-dolphing-smooth-friction);
+  }
+
+  .hc-dolphing-smooth__icon-ring--smooth {
+    background-color: var(--hc-dolphing-smooth-accent-ring);
+    color: var(--hc-dolphing-smooth-accent);
+  }
+
+  .hc-dolphing-smooth__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .hc-dolphing-smooth__outcome {
+    margin-top: 1rem;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+  }
+
+  .hc-dolphing-smooth__outcome--std {
+    color: var(--hc-dolphing-smooth-friction);
+  }
+
+  .hc-dolphing-smooth__outcome--jax {
+    color: var(--hc-dolphing-smooth-accent);
+  }
+
+  .hc-dolphing-smooth__card-footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .hc-dolphing-smooth__card-footer p {
+    margin: 0;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #4b5563;
+  }
+
+  .hc-dolphing-smooth__diagram-line.hc-dolphing-smooth__diagram-line--std {
+    display: block;
+}
+
+.hc-dolphing-smooth__diagram-line.hc-dolphing-smooth__diagram-line--jax {
+    display: block;
+}
+
+  @media (min-width: 768px) {
+    .hc-dolphing-smooth__text-col {
+      padding: 6rem;
+    }
+
+    .hc-dolphing-smooth__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-dolphing-smooth__heading {
+      font-size: 3rem;
+    }
+
+    .hc-dolphing-smooth__card {
+      padding: 2rem 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-dolphing-smooth__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-dolphing-smooth__text-col {
+      border-bottom: none;
+    }
+
+    .hc-dolphing-smooth__grid--default .hc-dolphing-smooth__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-dolphing-smooth-card-border);
+    }
+
+    .hc-dolphing-smooth__grid--default .hc-dolphing-smooth__visual-col {
+      order: 1;
+    }
+
+    .hc-dolphing-smooth__grid--reversed .hc-dolphing-smooth__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-dolphing-smooth-card-border);
+      border-left: none;
+    }
+
+    .hc-dolphing-smooth__grid--reversed .hc-dolphing-smooth__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section
+  id="dolphin-smooth"
+  class="hc-dolphing-smooth animate-fade-in-up"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-dolphing-smooth__grid {% if is_reversed %}hc-dolphing-smooth__grid--reversed{% else %}hc-dolphing-smooth__grid--default{% endif %}">
+    <div class="hc-dolphing-smooth__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-dolphing-smooth__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-dolphing-smooth__heading">
+        {{ block.settings.heading | default: 'FRICTION-FREE HAIR CARE' }}
+      </h3>
+
+      <div class="hc-dolphing-smooth__desc">
+        {{ block.settings.description }}
+      </div>
+    </div>
+
+    <div class="hc-dolphing-smooth__visual-col">
+      <div class="hc-dolphing-smooth__visual-inner">
+        <div class="hc-dolphing-smooth__card">
+          <div class="hc-dolphing-smooth__compare">
+            <div class="hc-dolphing-smooth__col">
+              <span class="hc-dolphing-smooth__col-label">
+                {{ block.settings.std_column_label | default: 'Standard Fabric' }}
+              </span>
+              <div class="hc-dolphing-smooth__diagram hc-dolphing-smooth__diagram--std">
+                <div class="hc-dolphing-smooth__diagram-line hc-dolphing-smooth__diagram-line--std"></div>
+                {%- for i in (0..9) -%}
+                  {%- assign bump_top = '45%' -%}
+                  {%- assign mod = i | modulo: 2 -%}
+                  {%- if mod == 1 -%}
+                    {%- assign bump_top = '52%' -%}
+                  {%- endif -%}
+                  <span
+                    class="hc-dolphing-smooth__bump"
+                    style="left: {{ i | times: 10 }}%; top: {{ bump_top }};"
+                  ></span>
+                {%- endfor -%}
+                <div class="hc-dolphing-smooth__diagram-center">
+                  <span class="hc-dolphing-smooth__badge-text hc-dolphing-smooth__badge-text--friction">
+                    {{ block.settings.std_badge | default: 'FRICTION' }}
+                  </span>
+                  <div class="hc-dolphing-smooth__icon-ring hc-dolphing-smooth__icon-ring--friction">
+                    <svg
+                      class="hc-dolphing-smooth__icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path>
+                      <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path>
+                      <path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <span class="hc-dolphing-smooth__outcome hc-dolphing-smooth__outcome--std">
+                {{ block.settings.std_outcome | default: 'Micro-Tears' }}
+              </span>
+            </div>
+
+            <div class="hc-dolphing-smooth__col">
+              <span class="hc-dolphing-smooth__col-label hc-dolphing-smooth__col-label--jax">
+                {{ block.settings.jax_column_label | default: 'Jax Fabric' }}
+              </span>
+              <div class="hc-dolphing-smooth__diagram hc-dolphing-smooth__diagram--jax">
+                <div class="hc-dolphing-smooth__diagram-line hc-dolphing-smooth__diagram-line--jax"></div>
+                <div class="hc-dolphing-smooth__diagram-center">
+                  <span class="hc-dolphing-smooth__badge-text hc-dolphing-smooth__badge-text--smooth">
+                    {{ block.settings.jax_badge | default: 'SMOOTH' }}
+                  </span>
+                  <div class="hc-dolphing-smooth__icon-ring hc-dolphing-smooth__icon-ring--smooth">
+                    <svg
+                      class="hc-dolphing-smooth__icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z"></path>
+                      <path d="M16 8 2 22"></path>
+                      <path d="M17.5 15H9"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <span class="hc-dolphing-smooth__outcome hc-dolphing-smooth__outcome--jax">
+                {{ block.settings.jax_outcome | default: 'Friction-Free' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="hc-dolphing-smooth__card-footer">
+            <p>{{ block.settings.comparison_footer | default: 'Surface Friction Comparison (1000x)' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -29,14 +29,16 @@
     display: block;
   }
 
+  .hc-tab-content-highlights {
+    overflow: visible;
+  }
+
   @keyframes hc-tab-fade-in {
     from {
       opacity: 0;
-      transform: translateY(10px);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
     }
   }
 
@@ -115,8 +117,16 @@
             {% render 'highlights-self-cleaning', block: block %}
           {%- when 'sweat-management' -%}
             {% render 'highlights-sweat-management', block: block %}
+          {%- when 'dry-sweet' -%}
+            {% render 'colling-dry-sweet', block: block %}
+          {%- when 'steady-temperature-speed' -%}
+            {% render 'hc-steady-temperature-speed', block: block %}
           {%- when 'acne-shield' -%}
             {% render 'highlights-acne-shield', block: block %}
+          {%- when 'dolphin-smooth' -%}
+            {% render 'hc-dolphin-smooth', block: block %}
+          {%- when 'breathable-surface' -%}
+            {% render 'hc-breathable-surface', block: block %}
           {%- when 'micron-finish' -%}
             {% render 'highlights-micron-finish', block: block %}
           {%- when 'longevity-designed' -%}
@@ -1264,6 +1274,278 @@
       ]
     },
     {
+      "type": "dry-sweet",
+      "name": "Dry-Sleep Humidity",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "02 — HUMIDITY & MOISTURE CONTROL"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "The Dry-Sleep System"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>While PCM manages the heat, our embedded <strong>Volcanic Ash</strong> and <strong>Coconut Charcoal</strong> manage the humidity. These materials work to pull moisture away from your skin before it can even turn into visible sweat. By instantly evaporating skin humidity, the fabric prevents that damp, \"clammy\" feeling common with traditional bedding. This ensures your sleep environment remains dry and breathable, keeping you comfortable even in high-humidity environments or through changing seasons.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "center_label",
+          "label": "Center icon label",
+          "default": "Dry-Sleep"
+        },
+        {
+          "type": "text",
+          "id": "vapor_label",
+          "label": "Top arrow label (left)",
+          "default": "Vapor"
+        },
+        {
+          "type": "text",
+          "id": "heat_label",
+          "label": "Top arrow label (right)",
+          "default": "Heat"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Corner badge text",
+          "default": "Active Wicking"
+        },
+        {
+          "type": "text",
+          "id": "schematic_footer",
+          "label": "Schematic caption",
+          "default": "Hydro-Dynamic Evaporation Schematic"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": true,
+          "info": "Matches the original Dry-Sleep layout on large screens"
+        },
+        {
+          "type": "header",
+          "content": "Tooltips"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Tooltip 1 trigger",
+          "info": "Must match bold text in the description",
+          "default": "Volcanic Ash"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip 1 content",
+          "info": "Use bold for section titles (e.g. WHAT IS… / WHY IS IT IN JAX SHEETS?).",
+          "default": "<p><strong>WHAT IS VOLCANIC ASH?</strong></p><p>Volcanic ash in textiles means ultra-fine mineral particles from volcanic rock. Embedded in fibers, they create microscopic pathways that help absorb and move moisture vapor away from the skin instead of letting it sit on the surface.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>Jax Sheets weave volcanic ash into the fabric so humidity is pulled away from your body before it can feel damp or clammy. That keeps the sleep surface drier and more breathable on warm or humid nights.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_2_trigger",
+          "label": "Tooltip 2 trigger",
+          "default": "Coconut Charcoal"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_2_content",
+          "label": "Tooltip 2 content",
+          "info": "Use bold for section titles (e.g. WHAT IS… / WHY IS IT IN JAX SHEETS?).",
+          "default": "<p><strong>WHAT IS COCONUT CHARCOAL?</strong></p><p>Coconut charcoal is activated carbon made from coconut shells. Its porous structure adsorbs odor molecules and helps manage moisture in fabrics—similar to premium filters that use carbon to trap impurities at a microscopic level.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>In Jax Sheets, coconut charcoal works with the rest of the fiber system to reduce odors and balance humidity in your bedding. The result is a cleaner-smelling, less clammy sleep surface between washes.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_3_trigger",
+          "label": "Tooltip 3 trigger",
+          "info": "Optional. Must match bold text in the description (e.g. a second phrase)."
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_3_content",
+          "label": "Tooltip 3 content"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & text color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, tooltip titles)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description color",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "wick_color",
+          "label": "Wicking / diagram blue",
+          "default": "#3b82f6"
+        }
+      ]
+    },
+    {
+      "type": "steady-temperature-speed",
+      "name": "Steady-Temp FIR",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "steady-temperature-fir",
+          "info": "Used for anchor links; lowercase, no spaces (will be handleized)."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — FIR Bio-Ceramic Technology"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Steady-Temperature Sleep"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Most bedding is passive, it either traps heat or lets it escape. The <strong>FIR Bio-Ceramics</strong> in the Jax Sheets actively work with your body's natural heat output, re-emitting it as far infrared energy that encourages circulation and helps your body regulate its own temperature more efficiently through the night. The result is fewer of those subtle temperature fluctuations that pull you out of deep sleep without you ever realizing why.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "center_label",
+          "label": "Center circle label",
+          "default": "FIR"
+        },
+        {
+          "type": "text",
+          "id": "body_heat_label",
+          "label": "Top arrow label",
+          "default": "Body Heat"
+        },
+        {
+          "type": "text",
+          "id": "reflected_label",
+          "label": "Bottom arrow label",
+          "default": "Reflected Energy"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Corner badge text",
+          "default": "Bio-Active"
+        },
+        {
+          "type": "text",
+          "id": "schematic_footer",
+          "label": "Schematic caption",
+          "default": "Thermal Mirror Schematic"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout",
+          "default": false,
+          "info": "Swap text and visual columns on large screens"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Trigger (bold text)",
+          "default": "FIR Bio-Ceramics"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip content",
+          "info": "Use bold for section titles.",
+          "default": "<p><strong>WHAT IS FIR BIO-CERAMICS?</strong></p><p>FIR (far infrared) bio-ceramics are mineral materials embedded in fibers that absorb body heat and re-emit it as gentle far infrared energy—supporting micro-circulation and a more stable thermal feel through the night.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>Jax Sheets use FIR bio-ceramics so passive heat from your body is recycled into comfortable infrared warmth instead of building up as trapped hot spots. That helps reduce the small temperature swings that can disturb deep sleep.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & UI text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, tooltip titles)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "energy_color",
+          "label": "FIR / energy red",
+          "default": "#ef4444"
+        },
+        {
+          "type": "color",
+          "id": "heat_arrow_color",
+          "label": "Body heat arrow",
+          "default": "#fb923c"
+        }
+      ]
+    },
+    {
       "type": "acne-shield",
       "name": "Acne Shield",
       "limit": 1,
@@ -1346,6 +1628,17 @@
           "default": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction.</p><p><strong>How does it fight acne?</strong></p><p>The silver ions continuously neutralize the bacteria that cause breakouts — Propionibacterium acnes and Staphylococcus aureus — directly on the fabric surface. Your skin rests on a cleaner environment every night without any additional effort.</p>"
         },
         {
+          "type": "select",
+          "id": "tooltip_position",
+          "label": "Tooltip horizontal placement",
+          "options": [
+            { "value": "center", "label": "Centered on the word" },
+            { "value": "align_start", "label": "Aligned with word (extends right)" }
+          ],
+          "default": "center",
+          "info": "Aligned with word reduces cutoff on the left edge of the screen."
+        },
+        {
           "type": "header",
           "content": "Colors"
         },
@@ -1373,6 +1666,348 @@
           "id": "desc_color",
           "label": "Description Color",
           "default": "#4b5563"
+        }
+      ]
+    },
+    {
+      "type": "dolphin-smooth",
+      "name": "Dolphin-Smooth Texture",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Line",
+          "default": "02 — The \"Dolphin-Smooth\" Texture"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "FRICTION-FREE HAIR CARE"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Standard cotton and polyester fabrics have microscopic irregularities that catch on hair cuticles as you move through the night, causing frizz, micro-tears, and breakage over time. The Jax Sheets are engineered at a fiber level to be exceptionally smooth, significantly reducing that physical drag against your hair. Your cuticles are less likely to snag or break during sleep, helping to maintain smoother, healthier hair over time, without the heat trapping qualities that make traditional silk uncomfortable for most sleepers.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Comparison card"
+        },
+        {
+          "type": "text",
+          "id": "std_column_label",
+          "label": "Standard column label",
+          "default": "Standard Fabric"
+        },
+        {
+          "type": "text",
+          "id": "jax_column_label",
+          "label": "Jax column label",
+          "default": "Jax Fabric"
+        },
+        {
+          "type": "text",
+          "id": "std_badge",
+          "label": "Standard badge (center)",
+          "default": "FRICTION"
+        },
+        {
+          "type": "text",
+          "id": "jax_badge",
+          "label": "Jax badge (center)",
+          "default": "SMOOTH"
+        },
+        {
+          "type": "text",
+          "id": "std_outcome",
+          "label": "Standard outcome caption",
+          "default": "Micro-Tears"
+        },
+        {
+          "type": "text",
+          "id": "jax_outcome",
+          "label": "Jax outcome caption",
+          "default": "Friction-Free"
+        },
+        {
+          "type": "text",
+          "id": "comparison_footer",
+          "label": "Card footer",
+          "default": "Surface Friction Comparison (1000x)"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (text left, visual right)",
+          "default": false,
+          "info": "Default: visual on the left, text on the right (desktop)."
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading / card text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (Jax / smooth)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Borders",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "std_diagram_bg",
+          "label": "Standard diagram background",
+          "default": "#111827"
+        },
+        {
+          "type": "color",
+          "id": "jax_diagram_bg",
+          "label": "Jax diagram background",
+          "default": "#030712"
+        },
+        {
+          "type": "color",
+          "id": "std_line_color",
+          "label": "Rough line / bumps",
+          "default": "#374151"
+        },
+        {
+          "type": "color",
+          "id": "friction_color",
+          "label": "Friction / micro-tears",
+          "default": "#f87171"
+        }
+      ]
+    },
+    {
+      "type": "breathable-surface",
+      "name": "Breathable Surface",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — A Breathable Surface for Clearer Skin"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "OIL & HUMIDITY MANAGEMENT"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Skin inflammation often occurs when sweat and excess sebum (oil) are trapped against the skin in a damp environment. To manage this, we've woven in <strong>Volcanic Ash</strong> and <strong>Coconut Charcoal</strong>. The ash acts as a natural desiccant, pulling humidity away from your skin before it becomes liquid sweat, while the charcoal helps absorb excess oils. By keeping the sleep surface dry and oil-neutral, the fabric prevents the \"clammy\" environment that leads to congested pores and morning puffiness.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Schematic"
+        },
+        {
+          "type": "text",
+          "id": "skin_bar_label",
+          "label": "Top bar label",
+          "default": "Skin Surface"
+        },
+        {
+          "type": "text",
+          "id": "humidity_label",
+          "label": "Left flow label",
+          "default": "Humidity"
+        },
+        {
+          "type": "text",
+          "id": "oil_label",
+          "label": "Right flow label",
+          "default": "Excess Oil"
+        },
+        {
+          "type": "text",
+          "id": "charcoal_label",
+          "label": "Charcoal column label",
+          "default": "Charcoal"
+        },
+        {
+          "type": "text",
+          "id": "ash_label",
+          "label": "Ash column label",
+          "default": "Volcanic Ash"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "default": "Active Desiccant System"
+        },
+        {
+          "type": "text",
+          "id": "schematic_footer",
+          "label": "Schematic caption",
+          "default": "Humidity & Sebum Management Schematic"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left)",
+          "default": false,
+          "info": "Default: text on the left, schematic on the right (desktop)."
+        },
+        {
+          "type": "header",
+          "content": "Tooltips"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Tooltip 1 trigger",
+          "info": "Must match bold text in the description",
+          "default": "Volcanic Ash"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip 1 content",
+          "default": "<p><strong>WHAT IS VOLCANIC ASH?</strong></p><p>Volcanic ash in textiles means ultra-fine mineral particles from volcanic rock. Embedded in fibers, they create microscopic pathways that help absorb and move moisture vapor away from the skin instead of letting it sit on the surface.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>Jax Sheets weave volcanic ash into the fabric so humidity is pulled away from your body before it can feel damp or clammy. That keeps the sleep surface drier and more breathable on warm or humid nights.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_2_trigger",
+          "label": "Tooltip 2 trigger",
+          "default": "Coconut Charcoal"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_2_content",
+          "label": "Tooltip 2 content",
+          "default": "<p><strong>WHAT IS COCONUT CHARCOAL?</strong></p><p>Coconut charcoal is activated carbon made from coconut shells. Its porous structure adsorbs odor molecules and helps manage moisture in fabrics—similar to premium filters that use carbon to trap impurities at a microscopic level.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>In Jax Sheets, coconut charcoal works with the rest of the fiber system to reduce odors and balance humidity in your bedding. The result is a cleaner-smelling, less clammy sleep surface between washes.</p>"
+        },
+        {
+          "type": "select",
+          "id": "tooltip_position",
+          "label": "Tooltip horizontal placement",
+          "options": [
+            { "value": "center", "label": "Centered on the word" },
+            { "value": "align_start", "label": "Aligned with word (extends right)" }
+          ],
+          "default": "center",
+          "info": "Use aligned start if tooltips clip on the left edge."
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading / card text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, tooltip titles)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card / diagram borders",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "diagram_bg",
+          "label": "Diagram frame background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "color",
+          "id": "diagram_inner_border",
+          "label": "Diagram frame border",
+          "default": "#e5e7eb"
+        },
+        {
+          "type": "color",
+          "id": "skin_strip_bg",
+          "label": "Skin strip background",
+          "default": "#ffedd5"
+        },
+        {
+          "type": "color",
+          "id": "skin_strip_border",
+          "label": "Skin strip border",
+          "default": "#fed7aa"
+        },
+        {
+          "type": "color",
+          "id": "skin_strip_text",
+          "label": "Skin strip text",
+          "default": "#fb923c"
+        },
+        {
+          "type": "color",
+          "id": "humidity_color",
+          "label": "Humidity arrow",
+          "default": "#60a5fa"
+        },
+        {
+          "type": "color",
+          "id": "oil_color",
+          "label": "Oil arrow",
+          "default": "#ca8a04"
+        },
+        {
+          "type": "color",
+          "id": "charcoal_icon_bg",
+          "label": "Charcoal icon circle",
+          "default": "#111827"
+        },
+        {
+          "type": "color",
+          "id": "ash_icon_bg",
+          "label": "Ash icon circle",
+          "default": "#9ca3af"
         }
       ]
     },
