@@ -1,0 +1,271 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign muted_color = block.settings.muted_color | default: '#4b5563'
+  assign grid_line_color = block.settings.grid_line_color | default: '#000000'
+  assign card_hover_bg = block.settings.card_hover_bg | default: '#f9fafb'
+  assign aside_bg = block.settings.aside_bg | default: '#f9fafb'
+  assign aside_muted = block.settings.aside_muted_color | default: '#9ca3af'
+  assign ht_scope_id = 'hc-honest-truth-' | append: block.id
+-%}
+
+<style>
+  @keyframes hc-honest-truth-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #{{ ht_scope_id }}.hc-honest-truth-section {
+    --hc-honest-truth-bg: {{ bg_color }};
+    --hc-honest-truth-text: {{ text_color }};
+    --hc-honest-truth-accent: {{ accent_color }};
+    --hc-honest-truth-muted: {{ muted_color }};
+    --hc-honest-truth-grid-line: {{ grid_line_color }};
+    --hc-honest-truth-card-hover: {{ card_hover_bg }};
+    --hc-honest-truth-aside-bg: {{ aside_bg }};
+    --hc-honest-truth-aside-muted: {{ aside_muted }};
+
+    background-color: var(--hc-honest-truth-bg);
+    border-bottom: 1px solid var(--hc-honest-truth-grid-line);
+    padding: 6rem 1.5rem;
+    animation: hc-honest-truth-fade-in-up 0.6s ease forwards;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-inner {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-eyebrow {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--hc-honest-truth-accent);
+    margin-bottom: 1rem;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--hc-honest-truth-text);
+    margin: 0;
+    line-height: 1.1;
+    font-family: var(--font-heading-family, inherit);
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-lead {
+    margin: 1rem auto 0;
+    max-width: 42rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--hc-honest-truth-muted);
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background-color: var(--hc-honest-truth-grid-line);
+    border: 1px solid var(--hc-honest-truth-grid-line);
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-cell {
+    background-color: var(--hc-honest-truth-bg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    transition: background-color 0.2s ease;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-cell:hover {
+    background-color: var(--hc-honest-truth-card-hover);
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-cell-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-cell-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--hc-honest-truth-accent);
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-cell-heading {
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--hc-honest-truth-text);
+    line-height: 1.25;
+    margin: 0;
+    font-family: var(--font-heading-family, inherit);
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-cell-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.625;
+    color: var(--hc-honest-truth-muted);
+    white-space: pre-line;
+    margin: 0;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-aside {
+    background-color: var(--hc-honest-truth-aside-bg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100%;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-aside-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-aside-brand {
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 0.2em;
+    color: var(--hc-honest-truth-text);
+    margin: 0;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-aside-rule {
+    width: 3rem;
+    height: 1px;
+    background-color: var(--hc-honest-truth-grid-line);
+    margin: 0 auto;
+    border: none;
+  }
+
+  #{{ ht_scope_id }} .hc-honest-truth-aside-tagline {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--hc-honest-truth-aside-muted);
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    #{{ ht_scope_id }}.hc-honest-truth-section {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+
+    #{{ ht_scope_id }} .hc-honest-truth-title {
+      font-size: 3.75rem;
+    }
+
+    #{{ ht_scope_id }} .hc-honest-truth-cell {
+      padding: 2.5rem;
+    }
+
+    #{{ ht_scope_id }} .hc-honest-truth-cell-heading {
+      font-size: 1.25rem;
+    }
+
+    #{{ ht_scope_id }} .hc-honest-truth-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #{{ ht_scope_id }} .hc-honest-truth-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
+
+<section
+  id="{{ ht_scope_id }}"
+  class="hc-honest-truth-section"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-honest-truth-inner">
+    <header class="hc-honest-truth-header">
+      <span class="hc-honest-truth-eyebrow">{{ block.settings.eyebrow | default: 'Transparency' }}</span>
+      <h2 class="hc-honest-truth-title">{{ block.settings.heading | default: 'The Honest Truth' }}</h2>
+      <p class="hc-honest-truth-lead">{{ block.settings.lead | default: "We're not for everyone. Here's why you might NOT want to buy from us." }}</p>
+    </header>
+
+    <div class="hc-honest-truth-grid">
+      <article class="hc-honest-truth-cell">
+        <div class="hc-honest-truth-cell-top">
+          <span class="hc-honest-truth-cell-num">{{ block.settings.card_1_num | default: '01' }}</span>
+          <h3 class="hc-honest-truth-cell-heading">{{ block.settings.card_1_title | default: "Jax Sheets Aren't Cheap" }}</h3>
+        </div>
+        <p class="hc-honest-truth-cell-body">{{ block.settings.card_1_body | default: "They cost more than most people expect - and that's fair. Every fiber and finish was chosen for performance, longevity, and health, not price. Yes, it's a higher upfront cost - but Jax Sheets are designed to last 5-10 years while staying soft, cool, and clean. Over time, they end up costing less than replacing cheaper sheets every year." }}</p>
+      </article>
+
+      <article class="hc-honest-truth-cell">
+        <div class="hc-honest-truth-cell-top">
+          <span class="hc-honest-truth-cell-num">{{ block.settings.card_2_num | default: '02' }}</span>
+          <h3 class="hc-honest-truth-cell-heading">{{ block.settings.card_2_title | default: 'Oil Stains Can Happen' }}</h3>
+        </div>
+        <p class="hc-honest-truth-cell-body">{{ block.settings.card_2_body | default: "Jax Sheets are highly absorbent - that's part of what makes them breathable - but it also means they can hold onto oil from skin, hair, or skincare a bit more than cotton. Luckily, they wash out easily with proper care, and Jax 2.0 handles this better than ever but still not perfect." }}</p>
+      </article>
+
+      <article class="hc-honest-truth-cell">
+        <div class="hc-honest-truth-cell-top">
+          <span class="hc-honest-truth-cell-num">{{ block.settings.card_3_num | default: '03' }}</span>
+          <h3 class="hc-honest-truth-cell-heading">{{ block.settings.card_3_title | default: 'They Need Some Care When Washing' }}</h3>
+        </div>
+        <p class="hc-honest-truth-cell-body">{{ block.settings.card_3_body | default: "Jax Sheets are performance fabrics, not indestructible gym towels. Avoid harsh soaps, bleach, fabric softeners and rough loads with jeans or zippers. Treat them right and they'll last up to a decade - ignore them and they'll last a few years." }}</p>
+      </article>
+
+      <article class="hc-honest-truth-cell">
+        <div class="hc-honest-truth-cell-top">
+          <span class="hc-honest-truth-cell-num">{{ block.settings.card_4_num | default: '04' }}</span>
+          <h3 class="hc-honest-truth-cell-heading">{{ block.settings.card_4_title | default: "They might feel different than what you're used to" }}</h3>
+        </div>
+        <p class="hc-honest-truth-cell-body">{{ block.settings.card_4_body | default: "They don't feel like crisp cotton or slick silk - they're somewhere in between. Some people love that balance of smoothness and breathability; others prefer something more traditional." }}</p>
+      </article>
+
+      <article class="hc-honest-truth-cell">
+        <div class="hc-honest-truth-cell-top">
+          <span class="hc-honest-truth-cell-num">{{ block.settings.card_5_num | default: '05' }}</span>
+          <h3 class="hc-honest-truth-cell-heading">{{ block.settings.card_5_title | default: 'You Might Start Disliking Every Other Bed Sheet You Sleep In' }}</h3>
+        </div>
+        <p class="hc-honest-truth-cell-body">{{ block.settings.card_5_body | default: "We once had a customer who lost his set of Jax Sheets in his divorce and others who plan their laundry day around being able to put Jax back on their bed, so you've been warned. Jax Sheets will ruin other sheets for you." }}</p>
+      </article>
+
+      <div class="hc-honest-truth-aside">
+        <div class="hc-honest-truth-aside-inner">
+          <p class="hc-honest-truth-aside-brand">{{ block.settings.closing_brand | default: 'HercLeon' }}</p>
+          <div class="hc-honest-truth-aside-rule" aria-hidden="true"></div>
+          <p class="hc-honest-truth-aside-tagline">{{ block.settings.closing_tagline | default: 'Built for the 1% who demand more.' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

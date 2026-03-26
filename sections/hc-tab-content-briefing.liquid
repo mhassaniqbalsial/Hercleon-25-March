@@ -97,6 +97,10 @@
             {% render 'hc-intelligent-investment', block: block %}
           {%- when 'cleaner-planet' -%}
             {% render 'hc-cleaner-planet', block: block %}
+          {%- when 'hc-reduced-washing' -%}
+            {% render 'hc-reduced-washing', block: block %}
+          {%- when 'hc-honest-truth' -%}
+            {% render 'hc-honest-truth', block: block %}
           {%- when 'over-consumption' -%}
             {% render 'hc-over-consumption', block: block %}
         {%- endcase -%}
@@ -1790,6 +1794,88 @@
         { "type": "text", "id": "title_main", "label": "Title (before accent)", "default": "BUILT FOR A CLEANER " },
         { "type": "text", "id": "title_accent", "label": "Title Accent (colored)", "default": "PLANET" },
         { "type": "textarea", "id": "description", "label": "Description", "default": "The fashion industry is the second largest polluter in the world. By creating clothing that doesn't need to be washed nearly as often as regular clothing, HercLéon is a commitment to a cleaner future." }
+      ]
+    },
+    {
+      "type": "hc-reduced-washing",
+      "name": "HC Reduced Washing",
+      "settings": [
+        { "type": "header", "content": "Main content" },
+        { "type": "text", "id": "tag", "label": "Tag line", "default": "01 — Reduced Washing" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "LESS WASHING MEANS LESS WASTE." },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Laundering bedding is one of the most resource-intensive household tasks. Because of their sheer volume, washing and drying a set of sheets requires significant amounts of water and energy, along with detergents and chemicals that eventually enter our waterways. Jax Sheets are engineered to stay fresh for much longer than traditional fabrics, which means they need to be washed far less often. This reduction in laundry cycles directly translates to a lower environmental footprint—saving thousands of gallons of water and reducing energy consumption and chemical pollution over the life of your sheets.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "chart_on_left",
+          "label": "Chart on left (desktop)",
+          "default": true,
+          "info": "When off, the text column is on the left on large screens."
+        },
+        { "type": "header", "content": "Chart card" },
+        { "type": "text", "id": "card_title", "label": "Card title", "default": "SMARTER USE, LESS WASTE" },
+        { "type": "text", "id": "bar_1_label", "label": "Bar 1 label", "default": "Laundry Reduction" },
+        { "type": "range", "id": "bar_1_width", "min": 0, "max": 100, "step": 1, "default": 90, "label": "Bar 1 fill %" },
+        { "type": "text", "id": "bar_2_label", "label": "Bar 2 label", "default": "Water Savings" },
+        { "type": "range", "id": "bar_2_width", "min": 0, "max": 100, "step": 1, "default": 85, "label": "Bar 2 fill %" },
+        { "type": "text", "id": "bar_3_label", "label": "Bar 3 label", "default": "Energy Saved" },
+        { "type": "range", "id": "bar_3_width", "min": 0, "max": 100, "step": 1, "default": 90, "label": "Bar 3 fill %" },
+        { "type": "text", "id": "bar_4_label", "label": "Bar 4 label", "default": "Reduced detergent use" },
+        { "type": "range", "id": "bar_4_width", "min": 0, "max": 100, "step": 1, "default": 90, "label": "Bar 4 fill %" },
+        { "type": "text", "id": "footnote", "label": "Footnote", "default": "Fewer washes, fewer replacements, lower impact." },
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "bg_color", "label": "Background", "default": "#000000" },
+        { "type": "color", "id": "text_color", "label": "Heading text", "default": "#ffffff" },
+        { "type": "color", "id": "desc_color", "label": "Description", "default": "#9ca3af" },
+        { "type": "color", "id": "accent_color", "label": "Accent & tag", "default": "#B45309" },
+        { "type": "color", "id": "column_rule_color", "label": "Column divider", "default": "#1f2937" },
+        { "type": "color", "id": "card_bg", "label": "Card background", "default": "#ffffff" }
+      ]
+    },
+    {
+      "type": "hc-honest-truth",
+      "name": "HC Honest Truth",
+      "settings": [
+        { "type": "header", "content": "Intro" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Transparency" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "The Honest Truth" },
+        { "type": "textarea", "id": "lead", "label": "Subtitle", "default": "We're not for everyone. Here's why you might NOT want to buy from us." },
+        { "type": "header", "content": "Card 1" },
+        { "type": "text", "id": "card_1_num", "label": "Number", "default": "01" },
+        { "type": "text", "id": "card_1_title", "label": "Title", "default": "Jax Sheets Aren't Cheap" },
+        { "type": "textarea", "id": "card_1_body", "label": "Body", "default": "They cost more than most people expect - and that's fair. Every fiber and finish was chosen for performance, longevity, and health, not price. Yes, it's a higher upfront cost - but Jax Sheets are designed to last 5-10 years while staying soft, cool, and clean. Over time, they end up costing less than replacing cheaper sheets every year." },
+        { "type": "header", "content": "Card 2" },
+        { "type": "text", "id": "card_2_num", "label": "Number", "default": "02" },
+        { "type": "text", "id": "card_2_title", "label": "Title", "default": "Oil Stains Can Happen" },
+        { "type": "textarea", "id": "card_2_body", "label": "Body", "default": "Jax Sheets are highly absorbent - that's part of what makes them breathable - but it also means they can hold onto oil from skin, hair, or skincare a bit more than cotton. Luckily, they wash out easily with proper care, and Jax 2.0 handles this better than ever but still not perfect." },
+        { "type": "header", "content": "Card 3" },
+        { "type": "text", "id": "card_3_num", "label": "Number", "default": "03" },
+        { "type": "text", "id": "card_3_title", "label": "Title", "default": "They Need Some Care When Washing" },
+        { "type": "textarea", "id": "card_3_body", "label": "Body", "default": "Jax Sheets are performance fabrics, not indestructible gym towels. Avoid harsh soaps, bleach, fabric softeners and rough loads with jeans or zippers. Treat them right and they'll last up to a decade - ignore them and they'll last a few years." },
+        { "type": "header", "content": "Card 4" },
+        { "type": "text", "id": "card_4_num", "label": "Number", "default": "04" },
+        { "type": "text", "id": "card_4_title", "label": "Title", "default": "They might feel different than what you're used to" },
+        { "type": "textarea", "id": "card_4_body", "label": "Body", "default": "They don't feel like crisp cotton or slick silk - they're somewhere in between. Some people love that balance of smoothness and breathability; others prefer something more traditional." },
+        { "type": "header", "content": "Card 5" },
+        { "type": "text", "id": "card_5_num", "label": "Number", "default": "05" },
+        { "type": "text", "id": "card_5_title", "label": "Title", "default": "You Might Start Disliking Every Other Bed Sheet You Sleep In" },
+        { "type": "textarea", "id": "card_5_body", "label": "Body", "default": "We once had a customer who lost his set of Jax Sheets in his divorce and others who plan their laundry day around being able to put Jax back on their bed, so you've been warned. Jax Sheets will ruin other sheets for you." },
+        { "type": "header", "content": "Closing tile" },
+        { "type": "text", "id": "closing_brand", "label": "Brand line", "default": "HercLeon" },
+        { "type": "text", "id": "closing_tagline", "label": "Tagline", "default": "Built for the 1% who demand more." },
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
+        { "type": "color", "id": "text_color", "label": "Headings", "default": "#000000" },
+        { "type": "color", "id": "accent_color", "label": "Eyebrow & numbers", "default": "#B45309" },
+        { "type": "color", "id": "muted_color", "label": "Body text", "default": "#4b5563" },
+        { "type": "color", "id": "grid_line_color", "label": "Grid & bottom border", "default": "#000000" },
+        { "type": "color", "id": "card_hover_bg", "label": "Card hover", "default": "#f9fafb" },
+        { "type": "color", "id": "aside_bg", "label": "Closing tile background", "default": "#f9fafb" },
+        { "type": "color", "id": "aside_muted_color", "label": "Closing tagline", "default": "#9ca3af" }
       ]
     },
     {

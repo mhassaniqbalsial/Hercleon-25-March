@@ -1,0 +1,728 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign energy_color = block.settings.energy_color | default: '#ef4444'
+  assign heat_arrow_color = block.settings.heat_arrow_color | default: '#fb923c'
+  assign ping_border = energy_color | color_modify: 'alpha', 0.3
+  assign energy_glow = energy_color | color_modify: 'alpha', 0.2
+  assign is_reversed = block.settings.reverse_layout
+  assign sts_desc = block.settings.description
+  assign sts_section_id = block.settings.section_id | default: 'steady-temperature-fir' | handleize
+-%}
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  {%- assign sts_t1 = '<strong>' | append: block.settings.tooltip_1_trigger | append: '</strong>' -%}
+  {%- capture sts_w1 -%}<span class="hc-ste-tem-speed-tooltip-trigger"><strong>{{ block.settings.tooltip_1_trigger }}</strong><span class="hc-ste-tem-speed-tooltip"><span class="hc-ste-tem-speed-tooltip-box"><span class="hc-ste-tem-speed-tooltip-content">{{ block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-ste-tem-speed-tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-ste-tem-speed-tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign sts_desc = sts_desc | replace: sts_t1, sts_w1 -%}
+{%- endif -%}
+
+<style>
+  @keyframes hc-ste-tem-speed-fade-in-up {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .hc-ste-tem-speed-fade-in-up {
+    animation: hc-ste-tem-speed-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-ste-tem-speed {
+    --sts-bg: {{ bg_color }};
+    --sts-text: {{ text_color }};
+    --sts-accent: {{ accent_color }};
+    --sts-desc: {{ desc_color }};
+    --sts-energy: {{ energy_color }};
+    --sts-heat-arrow: {{ heat_arrow_color }};
+    --sts-ping-border: {{ ping_border }};
+    --sts-energy-glow: {{ energy_glow }};
+    --sts-border: rgba(31, 41, 55, 1);
+    --sts-arena-bg: #030712;
+    --sts-arena-border: #111827;
+
+    background-color: var(--sts-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  @keyframes hc-ste-tem-speed-ping {
+    75%,
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes hc-ste-tem-speed-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0.35rem);
+    }
+  }
+
+  @keyframes hc-ste-tem-speed-pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+
+  .hc-ste-tem-speed-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-ste-tem-speed-text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--sts-text);
+    order: 1;
+    border-bottom: 1px solid var(--sts-border);
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-ste-tem-speed-visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--sts-bg);
+    order: 2;
+    overflow: visible;
+  }
+
+  .hc-ste-tem-speed-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sts-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-ste-tem-speed-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--sts-text);
+  }
+
+  .hc-ste-tem-speed-desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--sts-desc);
+    white-space: pre-line;
+    overflow: visible;
+    position: relative;
+  }
+
+  .hc-ste-tem-speed-desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  .hc-ste-tem-speed-tooltip-trigger {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+    z-index: 3;
+  }
+
+  .hc-ste-tem-speed-tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-ste-tem-speed-tooltip-trigger:hover strong {
+    color: var(--sts-accent);
+  }
+
+  .hc-ste-tem-speed-tooltip {
+    position: absolute;
+    bottom: 100%;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.65rem;
+    margin-top: 0;
+    width: min(100vw - 2rem, 22rem);
+    max-width: calc(100vw - 2rem);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-ste-tem-speed-tooltip-trigger:hover .hc-ste-tem-speed-tooltip,
+  .hc-ste-tem-speed-tooltip-trigger:focus-within .hc-ste-tem-speed-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-ste-tem-speed-tooltip-box {
+    background-color: #fff;
+    color: #111;
+    padding: 1.75rem 1.5rem 1.75rem;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.08),
+      0 20px 40px -12px rgba(0, 0, 0, 0.22);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+    text-align: left;
+    overflow: visible;
+    max-height: none;
+  }
+
+  .hc-ste-tem-speed-tooltip-content {
+    display: block;
+    font-family: var(--font-body-family, var(--font-heading-family, ui-sans-serif, system-ui, sans-serif));
+  }
+
+  .hc-ste-tem-speed-tooltip-content p {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    font-weight: 400;
+    margin: 0 0 0.75rem;
+    color: #111;
+  }
+
+  .hc-ste-tem-speed-tooltip-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-ste-tem-speed-tooltip-content p:has(strong):not(:first-child) {
+    margin-top: 1.25rem;
+  }
+
+  .hc-ste-tem-speed-tooltip-content p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    margin-bottom: 0.45rem;
+    color: var(--sts-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-ste-tem-speed-tooltip-p {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    font-weight: 400;
+    margin: 0 0 0.75rem;
+    color: #111;
+  }
+
+  .hc-ste-tem-speed-tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-ste-tem-speed-tooltip-p:has(strong):not(:first-child) {
+    margin-top: 1.25rem;
+  }
+
+  .hc-ste-tem-speed-tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    margin-bottom: 0.45rem;
+    color: var(--sts-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-ste-tem-speed-tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+  .hc-ste-tem-speed-tooltip--flip .hc-ste-tem-speed-tooltip-arrow {
+    bottom: auto;
+    top: -0.5rem;
+    border-right: none;
+    border-bottom: none;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+  }
+
+  .hc-ste-tem-speed-visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-ste-tem-speed-card {
+    background-color: var(--sts-bg);
+    color: var(--sts-text);
+    border: 1px solid var(--sts-border);
+    padding: 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-ste-tem-speed-arena {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    background-color: var(--sts-arena-bg);
+    border: 1px solid var(--sts-arena-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hc-ste-tem-speed-ping-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  .hc-ste-tem-speed-ping-ring {
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--sts-ping-border);
+    border-radius: 50%;
+    animation: hc-ste-tem-speed-ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .hc-ste-tem-speed-center {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-ste-tem-speed-circle {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 2px solid var(--sts-energy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 30px var(--sts-energy-glow);
+  }
+
+  .hc-ste-tem-speed-icon-svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--sts-energy);
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-ste-tem-speed-circle-label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sts-text);
+  }
+
+  .hc-ste-tem-speed-arrow-top {
+    position: absolute;
+    top: -3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: hc-ste-tem-speed-bounce 1.2s ease-in-out infinite;
+  }
+
+  .hc-ste-tem-speed-arrow-top-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--sts-heat-arrow);
+  }
+
+  .hc-ste-tem-speed-arrow-top-text {
+    display: block;
+    font-size: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--sts-heat-arrow);
+  }
+
+  .hc-ste-tem-speed-arrow-bottom {
+    position: absolute;
+    bottom: -3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: hc-ste-tem-speed-pulse-soft 2s ease-in-out infinite;
+  }
+
+  .hc-ste-tem-speed-arrow-bottom-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--sts-energy);
+  }
+
+  .hc-ste-tem-speed-arrow-bottom-text {
+    font-size: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--sts-energy);
+  }
+
+  .hc-ste-tem-speed-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #111827;
+    border: 1px solid var(--sts-ping-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hc-ste-tem-speed-badge-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    color: var(--sts-energy);
+    flex-shrink: 0;
+  }
+
+  .hc-ste-tem-speed-badge-text {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sts-energy);
+  }
+
+  .hc-ste-tem-speed-schematic-label {
+    margin-top: 2rem;
+    text-align: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #4b5563;
+  }
+
+  @media (min-width: 768px) {
+    .hc-ste-tem-speed-text-col {
+      padding: 6rem;
+    }
+
+    .hc-ste-tem-speed-visual-col {
+      padding: 3rem;
+    }
+
+    .hc-ste-tem-speed-heading {
+      font-size: 3rem;
+    }
+
+    .hc-ste-tem-speed-card {
+      padding: 4rem;
+    }
+
+    .hc-ste-tem-speed-tooltip {
+      width: min(100vw - 3rem, 30rem);
+      max-width: calc(100vw - 3rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-ste-tem-speed-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-ste-tem-speed-text-col {
+      border-bottom: none;
+    }
+
+    .hc-ste-tem-speed-grid-default .hc-ste-tem-speed-text-col {
+      order: 1;
+      border-right: 1px solid var(--sts-border);
+    }
+
+    .hc-ste-tem-speed-grid-default .hc-ste-tem-speed-visual-col {
+      order: 2;
+    }
+
+    .hc-ste-tem-speed-grid-reversed .hc-ste-tem-speed-text-col {
+      order: 2;
+      border-left: 1px solid var(--sts-border);
+      border-right: none;
+    }
+
+    .hc-ste-tem-speed-grid-reversed .hc-ste-tem-speed-visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section
+  id="{{ sts_section_id }}"
+  class="hc-ste-tem-speed hc-ste-tem-speed-fade-in-up"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-ste-tem-speed-grid {% if is_reversed %}hc-ste-tem-speed-grid-reversed{% else %}hc-ste-tem-speed-grid-default{% endif %}">
+    <div class="hc-ste-tem-speed-text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-ste-tem-speed-tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-ste-tem-speed-heading">
+        {{ block.settings.heading | default: 'Steady-Temperature Sleep' }}
+      </h3>
+
+      <div class="hc-ste-tem-speed-desc">
+        {{ sts_desc }}
+      </div>
+    </div>
+
+    <div class="hc-ste-tem-speed-visual-col">
+      <div class="hc-ste-tem-speed-visual-inner">
+        <div class="hc-ste-tem-speed-card">
+          <div class="hc-ste-tem-speed-arena">
+            <div class="hc-ste-tem-speed-ping-layer" aria-hidden="true">
+              <div class="hc-ste-tem-speed-ping-ring" style="animation-duration: 3s; transform: scale(0.2);"></div>
+              <div class="hc-ste-tem-speed-ping-ring" style="animation-duration: 4s; transform: scale(0.4);"></div>
+              <div class="hc-ste-tem-speed-ping-ring" style="animation-duration: 5s; transform: scale(0.6);"></div>
+              <div class="hc-ste-tem-speed-ping-ring" style="animation-duration: 6s; transform: scale(0.8);"></div>
+              <div class="hc-ste-tem-speed-ping-ring" style="animation-duration: 7s; transform: scale(1);"></div>
+            </div>
+
+            <div class="hc-ste-tem-speed-center">
+              <div class="hc-ste-tem-speed-arrow-top" aria-hidden="true">
+                <span class="hc-ste-tem-speed-arrow-top-icon">↓</span>
+                <span class="hc-ste-tem-speed-arrow-top-text">{{ block.settings.body_heat_label | default: 'Body Heat' }}</span>
+              </div>
+
+              <div class="hc-ste-tem-speed-circle">
+                <svg
+                  class="hc-ste-tem-speed-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+                </svg>
+                <span class="hc-ste-tem-speed-circle-label">{{ block.settings.center_label | default: 'FIR' }}</span>
+              </div>
+
+              <div class="hc-ste-tem-speed-arrow-bottom" aria-hidden="true">
+                <span class="hc-ste-tem-speed-arrow-bottom-icon">↑</span>
+                <span class="hc-ste-tem-speed-arrow-bottom-text">{{ block.settings.reflected_label | default: 'Reflected Energy' }}</span>
+              </div>
+            </div>
+
+            {%- if block.settings.badge_text != blank -%}
+              <div class="hc-ste-tem-speed-badge">
+                <svg
+                  class="hc-ste-tem-speed-badge-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+                  <path d="M20 2v4"></path>
+                  <path d="M22 4h-4"></path>
+                  <circle cx="4" cy="20" r="2"></circle>
+                </svg>
+                <span class="hc-ste-tem-speed-badge-text">{{ block.settings.badge_text }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.schematic_footer != blank -%}
+            <p class="hc-ste-tem-speed-schematic-label">{{ block.settings.schematic_footer }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  <template id="hc-ste-tem-speed-tooltip-template-1">
+    <span class="hc-ste-tem-speed-tooltip">
+      <span class="hc-ste-tem-speed-tooltip-box">
+        <span class="hc-ste-tem-speed-tooltip-content">{{ block.settings.tooltip_1_content }}</span>
+        <span class="hc-ste-tem-speed-tooltip-arrow"></span>
+      </span>
+    </span>
+  </template>
+
+  <script>
+    (function () {
+      var sectionId = {{ sts_section_id | json }};
+      var gap = 10;
+
+      function bindStsTooltipFixedPosition(section) {
+        if (!section || section.hasAttribute('data-sts-tip-pos-bound')) return;
+        section.setAttribute('data-sts-tip-pos-bound', '1');
+
+        var scheduled = false;
+        function schedulePlace() {
+          if (scheduled) return;
+          scheduled = true;
+          requestAnimationFrame(function () {
+            scheduled = false;
+            section.querySelectorAll('.hc-ste-tem-speed-tooltip-trigger').forEach(placeOne);
+          });
+        }
+
+        function wrapIsActive(wrap) {
+          return wrap.matches(':hover') || wrap.matches(':focus-within');
+        }
+
+        function placeOne(wrap) {
+          var tip = wrap.querySelector('.hc-ste-tem-speed-tooltip');
+          if (!tip || !wrapIsActive(wrap)) return;
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              if (!wrapIsActive(wrap)) return;
+              var wrapR = wrap.getBoundingClientRect();
+              var maxW = Math.min(480, window.innerWidth - 24);
+              tip.style.boxSizing = 'border-box';
+              tip.style.width = maxW + 'px';
+              tip.style.position = 'fixed';
+              tip.style.right = 'auto';
+              tip.style.bottom = 'auto';
+              tip.style.transform = 'none';
+              tip.style.margin = '0';
+              tip.style.zIndex = '2147483646';
+
+              var th = tip.getBoundingClientRect().height;
+              var tw = tip.getBoundingClientRect().width;
+              var left = wrapR.left + wrapR.width / 2 - tw / 2;
+              left = Math.max(12, Math.min(left, window.innerWidth - tw - 12));
+
+              var top = wrapR.top - th - gap;
+              tip.classList.remove('hc-ste-tem-speed-tooltip--flip');
+              if (top < 8) {
+                top = wrapR.bottom + gap;
+                tip.classList.add('hc-ste-tem-speed-tooltip--flip');
+              }
+
+              tip.style.left = Math.round(left) + 'px';
+              tip.style.top = Math.round(top) + 'px';
+            });
+          });
+        }
+
+        function clearTip(wrap) {
+          var tip = wrap.querySelector('.hc-ste-tem-speed-tooltip');
+          if (!tip) return;
+          tip.style.cssText = '';
+          tip.classList.remove('hc-ste-tem-speed-tooltip--flip');
+        }
+
+        section.querySelectorAll('.hc-ste-tem-speed-tooltip-trigger').forEach(function (wrap) {
+          wrap.addEventListener('mouseenter', function () {
+            schedulePlace();
+          });
+          wrap.addEventListener('mouseleave', function () {
+            clearTip(wrap);
+          });
+          wrap.addEventListener('focusin', schedulePlace);
+          wrap.addEventListener('focusout', function () {
+            clearTip(wrap);
+          });
+        });
+
+        document.addEventListener('scroll', schedulePlace, true);
+        window.addEventListener('resize', schedulePlace);
+      }
+
+      function initHcSteTemSpeedTooltip() {
+        var section = document.getElementById(sectionId);
+        if (!section) return;
+        var descEl = section.querySelector('.hc-ste-tem-speed-desc');
+        if (!descEl) return;
+        var trigger = {{ block.settings.tooltip_1_trigger | json }};
+        descEl.querySelectorAll('strong').forEach(function (el) {
+          if (el.textContent.trim().toLowerCase() !== String(trigger).trim().toLowerCase()) return;
+          if (el.closest('.hc-ste-tem-speed-tooltip-trigger')) return;
+          var wrapper = document.createElement('span');
+          wrapper.className = 'hc-ste-tem-speed-tooltip-trigger';
+          el.parentNode.insertBefore(wrapper, el);
+          wrapper.appendChild(el);
+          var tmpl = document.getElementById('hc-ste-tem-speed-tooltip-template-1');
+          if (tmpl) wrapper.appendChild(tmpl.content.cloneNode(true));
+        });
+        bindStsTooltipFixedPosition(section);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHcSteTemSpeedTooltip);
+      } else {
+        initHcSteTemSpeedTooltip();
+      }
+      document.addEventListener('shopify:section:load', initHcSteTemSpeedTooltip);
+    })();
+  </script>
+{%- endif -%}

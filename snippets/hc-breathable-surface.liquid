@@ -1,0 +1,792 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign card_border = block.settings.card_border_color | default: '#000000'
+  assign diagram_bg = block.settings.diagram_bg | default: '#f9fafb'
+  assign diagram_inner_border = block.settings.diagram_inner_border | default: '#e5e7eb'
+  assign skin_strip_bg = block.settings.skin_strip_bg | default: '#ffedd5'
+  assign skin_strip_border = block.settings.skin_strip_border | default: '#fed7aa'
+  assign skin_strip_text = block.settings.skin_strip_text | default: '#fb923c'
+  assign humidity_color = block.settings.humidity_color | default: '#60a5fa'
+  assign oil_color = block.settings.oil_color | default: '#ca8a04'
+  assign charcoal_icon_bg = block.settings.charcoal_icon_bg | default: '#111827'
+  assign ash_icon_bg = block.settings.ash_icon_bg | default: '#9ca3af'
+  assign is_reversed = block.settings.reverse_layout
+  assign bs_tooltip_x = block.settings.tooltip_position | default: 'center'
+  assign bs_section_id = 'breathable-surface'
+  assign bs_tmpl_1 = 'hc-breath-surface-tooltip-1-' | append: block.id
+  assign bs_tmpl_2 = 'hc-breath-surface-tooltip-2-' | append: block.id
+
+  assign bs_desc = block.settings.description
+  assign bs_has_tooltips = false
+-%}
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  {%- assign bs_t1 = '<strong>' | append: block.settings.tooltip_1_trigger | append: '</strong>' -%}
+  {%- capture bs_w1 -%}<span class="hc-breath-surface__tooltip-trigger"><strong>{{ block.settings.tooltip_1_trigger }}</strong><span class="hc-breath-surface__tooltip"><span class="hc-breath-surface__tooltip-box"><span class="hc-breath-surface__tooltip-content">{{ block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-breath-surface__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-breath-surface__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign bs_desc = bs_desc | replace: bs_t1, bs_w1 -%}
+  {%- assign bs_has_tooltips = true -%}
+{%- endif -%}
+{%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+  {%- assign bs_t2 = '<strong>' | append: block.settings.tooltip_2_trigger | append: '</strong>' -%}
+  {%- capture bs_w2 -%}<span class="hc-breath-surface__tooltip-trigger"><strong>{{ block.settings.tooltip_2_trigger }}</strong><span class="hc-breath-surface__tooltip"><span class="hc-breath-surface__tooltip-box"><span class="hc-breath-surface__tooltip-content">{{ block.settings.tooltip_2_content | replace: '<p>', '<span class="hc-breath-surface__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-breath-surface__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign bs_desc = bs_desc | replace: bs_t2, bs_w2 -%}
+  {%- assign bs_has_tooltips = true -%}
+{%- endif -%}
+
+<style>
+  .hc-breath-surface {
+    --hc-breath-surface-bg: {{ bg_color }};
+    --hc-breath-surface-text: {{ text_color }};
+    --hc-breath-surface-accent: {{ accent_color }};
+    --hc-breath-surface-desc: {{ desc_color }};
+    --hc-breath-surface-card-border: {{ card_border }};
+    --hc-breath-surface-diagram-bg: {{ diagram_bg }};
+    --hc-breath-surface-diagram-inner-border: {{ diagram_inner_border }};
+    --hc-breath-surface-skin-strip-bg: {{ skin_strip_bg }};
+    --hc-breath-surface-skin-strip-border: {{ skin_strip_border }};
+    --hc-breath-surface-skin-strip-text: {{ skin_strip_text }};
+    --hc-breath-surface-humidity: {{ humidity_color }};
+    --hc-breath-surface-oil: {{ oil_color }};
+    --hc-breath-surface-charcoal-icon-bg: {{ charcoal_icon_bg }};
+    --hc-breath-surface-ash-icon-bg: {{ ash_icon_bg }};
+
+    background-color: var(--hc-breath-surface-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  @keyframes hc-breath-surface-bounce {
+    0%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -6px);
+    }
+  }
+
+  @keyframes hc-breath-surface-bounce-right {
+    0%,
+    100% {
+      transform: translate(50%, 0);
+    }
+    50% {
+      transform: translate(50%, -6px);
+    }
+  }
+
+  .hc-breath-surface__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-breath-surface__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-breath-surface-text);
+    order: 1;
+    border-bottom: 1px solid var(--hc-breath-surface-card-border);
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-breath-surface__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-breath-surface-bg);
+    order: 2;
+    overflow: visible;
+  }
+
+  .hc-breath-surface__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-breath-surface-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-breath-surface__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-breath-surface-text);
+  }
+
+  .hc-breath-surface__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.625;
+    max-width: 32rem;
+    color: var(--hc-breath-surface-desc);
+    white-space: pre-line;
+    overflow: visible;
+    position: relative;
+  }
+
+  .hc-breath-surface__desc p {
+    margin: 0 0 1rem;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  .hc-breath-surface__desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-breath-surface__desc strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-breath-surface__desc strong:hover {
+    color: var(--hc-breath-surface-accent);
+  }
+
+  .hc-breath-surface__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+    z-index: 3;
+  }
+
+  .hc-breath-surface__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-breath-surface__tooltip-trigger:hover strong {
+    color: var(--hc-breath-surface-accent);
+  }
+
+  .hc-breath-surface__tooltip {
+    position: absolute;
+    bottom: 100%;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.65rem;
+    width: min(100vw - 2rem, 20rem);
+    max-width: calc(100vw - 2rem);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-breath-surface[data-tooltip-x='align_start'] .hc-breath-surface__tooltip {
+    left: 0;
+    right: auto;
+    transform: none;
+  }
+
+  .hc-breath-surface__tooltip-trigger:hover .hc-breath-surface__tooltip,
+  .hc-breath-surface__tooltip-trigger:focus-within .hc-breath-surface__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-breath-surface__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.75rem 1.5rem;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.08),
+      0 20px 40px -12px rgba(0, 0, 0, 0.22);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+    overflow: visible;
+    text-align: left;
+  }
+
+  .hc-breath-surface__tooltip-content {
+    display: block;
+  }
+
+  .hc-breath-surface__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-breath-surface__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-breath-surface__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-breath-surface-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-breath-surface__tooltip-content p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-breath-surface__tooltip-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-breath-surface__tooltip-content p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-breath-surface-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-breath-surface__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+  .hc-breath-surface__tooltip--flip .hc-breath-surface__tooltip-arrow {
+    bottom: auto;
+    top: -0.5rem;
+    border-right: none;
+    border-bottom: none;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+  }
+
+  .hc-breath-surface__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-breath-surface__card {
+    background-color: var(--hc-breath-surface-bg);
+    padding: 2rem;
+    border: 1px solid var(--hc-breath-surface-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--hc-breath-surface-text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-breath-surface__diagram-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hc-breath-surface__diagram-frame {
+    position: relative;
+    width: 100%;
+    min-height: 16rem;
+    background-color: var(--hc-breath-surface-diagram-bg);
+    border: 1px solid var(--hc-breath-surface-diagram-inner-border);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hc-breath-surface__skin-strip {
+    width: 100%;
+    height: 2rem;
+    background-color: var(--hc-breath-surface-skin-strip-bg);
+    border-bottom: 1px solid var(--hc-breath-surface-skin-strip-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hc-breath-surface__skin-strip span {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--hc-breath-surface-skin-strip-text);
+  }
+
+  .hc-breath-surface__mid-band {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 8rem;
+    margin-top: auto;
+    background-color: var(--hc-breath-surface-bg);
+    border-top: 1px solid var(--hc-breath-surface-card-border);
+    border-bottom: 1px solid var(--hc-breath-surface-card-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 3rem;
+  }
+
+  .hc-breath-surface__flow-arrow {
+    position: absolute;
+    top: -2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hc-breath-surface__flow-arrow--humidity {
+    left: 25%;
+    animation: hc-breath-surface-bounce 1.2s ease-in-out infinite;
+  }
+
+  .hc-breath-surface__flow-arrow--oil {
+    right: 25%;
+    animation: hc-breath-surface-bounce-right 1.2s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  .hc-breath-surface__flow-arrow-symbol {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .hc-breath-surface__flow-arrow--humidity .hc-breath-surface__flow-arrow-symbol {
+    color: var(--hc-breath-surface-humidity);
+  }
+
+  .hc-breath-surface__flow-arrow--oil .hc-breath-surface__flow-arrow-symbol {
+    color: var(--hc-breath-surface-oil);
+  }
+
+  .hc-breath-surface__flow-arrow-label {
+    display: block;
+    font-size: 0.375rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 0.125rem;
+  }
+
+  .hc-breath-surface__flow-arrow--humidity .hc-breath-surface__flow-arrow-label {
+    color: var(--hc-breath-surface-humidity);
+  }
+
+  .hc-breath-surface__flow-arrow--oil .hc-breath-surface__flow-arrow-label {
+    color: var(--hc-breath-surface-oil);
+  }
+
+  .hc-breath-surface__icon-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-breath-surface__icon-ring {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-breath-surface__icon-ring--charcoal {
+    background-color: var(--hc-breath-surface-charcoal-icon-bg);
+    color: #fff;
+  }
+
+  .hc-breath-surface__icon-ring--ash {
+    background-color: var(--hc-breath-surface-ash-icon-bg);
+    color: #fff;
+  }
+
+  .hc-breath-surface__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .hc-breath-surface__icon-label {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--hc-breath-surface-text);
+  }
+
+  .hc-breath-surface__badge {
+    margin-top: 1rem;
+    flex-shrink: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 0.25rem 1rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hc-breath-surface__card-footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .hc-breath-surface__card-footer p {
+    margin: 0;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #9ca3af;
+  }
+
+  @media (min-width: 768px) {
+    .hc-breath-surface__text-col {
+      padding: 6rem;
+    }
+
+    .hc-breath-surface__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-breath-surface__heading {
+      font-size: 3rem;
+    }
+
+    .hc-breath-surface__card {
+      padding: 2rem 4rem;
+    }
+
+    .hc-breath-surface__tooltip {
+      width: min(100vw - 3rem, 28rem);
+      max-width: calc(100vw - 3rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-breath-surface__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-breath-surface__text-col {
+      border-bottom: none;
+    }
+
+    .hc-breath-surface__grid--default .hc-breath-surface__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-breath-surface-card-border);
+    }
+
+    .hc-breath-surface__grid--default .hc-breath-surface__visual-col {
+      order: 2;
+    }
+
+    .hc-breath-surface__grid--reversed .hc-breath-surface__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-breath-surface-card-border);
+      border-right: none;
+    }
+
+    .hc-breath-surface__grid--reversed .hc-breath-surface__visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section
+  id="{{ bs_section_id }}"
+  class="hc-breath-surface animate-fade-in-up"
+  data-tooltip-x="{{ bs_tooltip_x }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-breath-surface__grid {% if is_reversed %}hc-breath-surface__grid--reversed{% else %}hc-breath-surface__grid--default{% endif %}">
+    <div class="hc-breath-surface__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-breath-surface__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-breath-surface__heading">
+        {{ block.settings.heading | default: 'OIL & HUMIDITY MANAGEMENT' }}
+      </h3>
+
+      <div class="hc-breath-surface__desc">
+        {{ bs_desc }}
+      </div>
+    </div>
+
+    <div class="hc-breath-surface__visual-col">
+      <div class="hc-breath-surface__visual-inner">
+        <div class="hc-breath-surface__card">
+          <div class="hc-breath-surface__diagram-stack">
+            <div class="hc-breath-surface__diagram-frame">
+              <div class="hc-breath-surface__skin-strip">
+                <span>{{ block.settings.skin_bar_label | default: 'Skin Surface' }}</span>
+              </div>
+
+              <div class="hc-breath-surface__mid-band">
+                <div class="hc-breath-surface__flow-arrow hc-breath-surface__flow-arrow--humidity">
+                  <span class="hc-breath-surface__flow-arrow-symbol" aria-hidden="true">↓</span>
+                  <span class="hc-breath-surface__flow-arrow-label">{{ block.settings.humidity_label | default: 'Humidity' }}</span>
+                </div>
+                <div class="hc-breath-surface__flow-arrow hc-breath-surface__flow-arrow--oil">
+                  <span class="hc-breath-surface__flow-arrow-symbol" aria-hidden="true">↓</span>
+                  <span class="hc-breath-surface__flow-arrow-label">{{ block.settings.oil_label | default: 'Excess Oil' }}</span>
+                </div>
+
+                <div class="hc-breath-surface__icon-col">
+                  <div class="hc-breath-surface__icon-ring hc-breath-surface__icon-ring--charcoal">
+                    <svg
+                      class="hc-breath-surface__icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path>
+                      <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path>
+                    </svg>
+                  </div>
+                  <span class="hc-breath-surface__icon-label">{{ block.settings.charcoal_label | default: 'Charcoal' }}</span>
+                </div>
+
+                <div class="hc-breath-surface__icon-col">
+                  <div class="hc-breath-surface__icon-ring hc-breath-surface__icon-ring--ash">
+                    <svg
+                      class="hc-breath-surface__icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                      <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                      <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                    </svg>
+                  </div>
+                  <span class="hc-breath-surface__icon-label">{{ block.settings.ash_label | default: 'Volcanic Ash' }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hc-breath-surface__badge">
+              {{ block.settings.badge_text | default: 'Active Desiccant System' }}
+            </div>
+          </div>
+
+          <div class="hc-breath-surface__card-footer">
+            <p>{{ block.settings.schematic_footer | default: 'Humidity & Sebum Management Schematic' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if bs_has_tooltips -%}
+  {%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+    <template id="{{ bs_tmpl_1 }}">
+      <span class="hc-breath-surface__tooltip">
+        <span class="hc-breath-surface__tooltip-box">
+          <span class="hc-breath-surface__tooltip-content">{{ block.settings.tooltip_1_content }}</span>
+        </span>
+        <span class="hc-breath-surface__tooltip-arrow"></span>
+      </span>
+    </template>
+  {%- endif -%}
+  {%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+    <template id="{{ bs_tmpl_2 }}">
+      <span class="hc-breath-surface__tooltip">
+        <span class="hc-breath-surface__tooltip-box">
+          <span class="hc-breath-surface__tooltip-content">{{ block.settings.tooltip_2_content }}</span>
+        </span>
+        <span class="hc-breath-surface__tooltip-arrow"></span>
+      </span>
+    </template>
+  {%- endif -%}
+
+  <script>
+    (function () {
+      var sectionId = {{ bs_section_id | json }};
+      var gap = 10;
+      var pairs = [
+        {%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+          { trigger: {{ block.settings.tooltip_1_trigger | json }}, tmpl: {{ bs_tmpl_1 | json }} },
+        {%- endif -%}
+        {%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+          { trigger: {{ block.settings.tooltip_2_trigger | json }}, tmpl: {{ bs_tmpl_2 | json }} }
+        {%- endif -%}
+      ];
+
+      function bindBsTooltipFixedPosition(section) {
+        if (!section || section.hasAttribute('data-bs-tip-pos-bound')) return;
+        section.setAttribute('data-bs-tip-pos-bound', '1');
+
+        var scheduled = false;
+        function schedulePlace() {
+          if (scheduled) return;
+          scheduled = true;
+          requestAnimationFrame(function () {
+            scheduled = false;
+            section.querySelectorAll('.hc-breath-surface__tooltip-trigger').forEach(placeOne);
+          });
+        }
+
+        function wrapIsActive(wrap) {
+          return wrap.matches(':hover') || wrap.matches(':focus-within');
+        }
+
+        function placeOne(wrap) {
+          var tip = wrap.querySelector('.hc-breath-surface__tooltip');
+          if (!tip || !wrapIsActive(wrap)) return;
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              if (!wrapIsActive(wrap)) return;
+              var alignX = section.getAttribute('data-tooltip-x') || 'center';
+              var wrapR = wrap.getBoundingClientRect();
+              var maxW = Math.min(448, window.innerWidth - 24);
+              tip.style.boxSizing = 'border-box';
+              tip.style.width = maxW + 'px';
+              tip.style.position = 'fixed';
+              tip.style.right = 'auto';
+              tip.style.bottom = 'auto';
+              tip.style.transform = 'none';
+              tip.style.margin = '0';
+              tip.style.zIndex = '2147483646';
+
+              var tw = tip.getBoundingClientRect().width;
+              var th = tip.getBoundingClientRect().height;
+              var left =
+                alignX === 'align_start'
+                  ? wrapR.left
+                  : wrapR.left + wrapR.width / 2 - tw / 2;
+              left = Math.max(12, Math.min(left, window.innerWidth - tw - 12));
+
+              var top = wrapR.top - th - gap;
+              tip.classList.remove('hc-breath-surface__tooltip--flip');
+              if (top < 8) {
+                top = wrapR.bottom + gap;
+                tip.classList.add('hc-breath-surface__tooltip--flip');
+              }
+
+              tip.style.left = Math.round(left) + 'px';
+              tip.style.top = Math.round(top) + 'px';
+
+              var arrow = tip.querySelector('.hc-breath-surface__tooltip-arrow');
+              if (arrow) {
+                var anchorX = wrapR.left + wrapR.width / 2;
+                var arrowLeft = anchorX - left;
+                arrowLeft = Math.max(14, Math.min(arrowLeft, tw - 14));
+                arrow.style.left = Math.round(arrowLeft) + 'px';
+                arrow.style.transform = 'translateX(-50%) rotate(45deg)';
+              }
+            });
+          });
+        }
+
+        function clearTip(wrap) {
+          var tip = wrap.querySelector('.hc-breath-surface__tooltip');
+          if (!tip) return;
+          tip.style.cssText = '';
+          tip.classList.remove('hc-breath-surface__tooltip--flip');
+          var arrow = tip.querySelector('.hc-breath-surface__tooltip-arrow');
+          if (arrow) arrow.style.cssText = '';
+        }
+
+        section.querySelectorAll('.hc-breath-surface__tooltip-trigger').forEach(function (wrap) {
+          wrap.addEventListener('mouseenter', schedulePlace);
+          wrap.addEventListener('mouseleave', function () {
+            clearTip(wrap);
+          });
+          wrap.addEventListener('focusin', schedulePlace);
+          wrap.addEventListener('focusout', function () {
+            clearTip(wrap);
+          });
+        });
+
+        document.addEventListener('scroll', schedulePlace, true);
+        window.addEventListener('resize', schedulePlace);
+      }
+
+      function wrapTriggers(descEl) {
+        pairs.forEach(function (cfg) {
+          if (!cfg || !cfg.trigger || !cfg.tmpl) return;
+          descEl.querySelectorAll('strong').forEach(function (el) {
+            if (el.textContent.trim().toLowerCase() !== String(cfg.trigger).trim().toLowerCase()) return;
+            if (el.closest('.hc-breath-surface__tooltip-trigger')) return;
+            var wrapper = document.createElement('span');
+            wrapper.className = 'hc-breath-surface__tooltip-trigger';
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
+            var tmpl = document.getElementById(cfg.tmpl);
+            if (tmpl) wrapper.appendChild(tmpl.content.cloneNode(true));
+          });
+        });
+      }
+
+      function initHcBreathSurfaceTooltips() {
+        var section = document.getElementById(sectionId);
+        if (!section) return;
+        var descEl = section.querySelector('.hc-breath-surface__desc');
+        if (!descEl) return;
+        wrapTriggers(descEl);
+        bindBsTooltipFixedPosition(section);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHcBreathSurfaceTooltips);
+      } else {
+        initHcBreathSurfaceTooltips();
+      }
+      document.addEventListener('shopify:section:load', initHcBreathSurfaceTooltips);
+    })();
+  </script>
+{%- endif -%}

@@ -4,10 +4,11 @@
   assign accent_color = block.settings.accent_color | default: '#B45309'
   assign desc_color = block.settings.desc_color | default: '#9ca3af'
   assign is_reversed = block.settings.reverse_layout
+  assign mf_scope_id = 'hc-mf-' | append: block.id
 -%}
 
 <style>
-  .hc-mf {
+  #{{ mf_scope_id }}.hc-mf {
     --hc-mf-bg: {{ bg_color }};
     --hc-mf-text: {{ text_color }};
     --hc-mf-accent: {{ accent_color }};
@@ -17,13 +18,13 @@
     border-bottom: 1px solid #000;
   }
 
-  .hc-mf__grid {
+  #{{ mf_scope_id }} .hc-mf__grid {
     display: grid;
     grid-template-columns: 1fr;
     min-height: 60vh;
   }
 
-  .hc-mf__text-col {
+  #{{ mf_scope_id }} .hc-mf__text-col {
     padding: 3rem;
     display: flex;
     flex-direction: column;
@@ -33,7 +34,7 @@
     border-bottom: 1px solid #1f2937;
   }
 
-  .hc-mf__visual-col {
+  #{{ mf_scope_id }} .hc-mf__visual-col {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +43,7 @@
     order: 2;
   }
 
-  .hc-mf__tag {
+  #{{ mf_scope_id }} .hc-mf__tag {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.75rem;
     font-weight: 700;
@@ -52,7 +53,7 @@
     margin-bottom: 1.5rem;
   }
 
-  .hc-mf__heading {
+  #{{ mf_scope_id }} .hc-mf__heading {
     font-size: 2rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -62,7 +63,7 @@
     color: var(--hc-mf-text);
   }
 
-  .hc-mf__desc {
+  #{{ mf_scope_id }} .hc-mf__desc {
     font-size: 1.125rem;
     font-weight: 300;
     line-height: 1.6;
@@ -71,35 +72,35 @@
     white-space: pre-line;
   }
 
-  .hc-mf__desc strong {
+  #{{ mf_scope_id }} .hc-mf__desc strong {
     font-weight: 700;
     border-bottom: 1px dotted currentColor;
     cursor: help;
     transition: color 0.3s;
   }
 
-  .hc-mf__desc strong:hover {
+  #{{ mf_scope_id }} .hc-mf__desc strong:hover {
     color: var(--hc-mf-accent);
   }
 
   /* Tooltip */
-  .hc-mf__tooltip-trigger {
+  #{{ mf_scope_id }} .hc-mf__tooltip-trigger {
     position: relative;
     display: inline-block;
   }
 
-  .hc-mf__tooltip-trigger strong {
+  #{{ mf_scope_id }} .hc-mf__tooltip-trigger strong {
     font-weight: 700;
     border-bottom: 1px dotted currentColor;
     cursor: help;
     transition: color 0.3s;
   }
 
-  .hc-mf__tooltip-trigger:hover strong {
+  #{{ mf_scope_id }} .hc-mf__tooltip-trigger:hover strong {
     color: var(--hc-mf-accent);
   }
 
-  .hc-mf__tooltip {
+  #{{ mf_scope_id }} .hc-mf__tooltip {
     position: absolute;
     bottom: 100%;
     left: 50%;
@@ -113,12 +114,12 @@
     transition: opacity 0.2s, visibility 0.2s;
   }
 
-  .hc-mf__tooltip-trigger:hover .hc-mf__tooltip {
+  #{{ mf_scope_id }} .hc-mf__tooltip-trigger:hover .hc-mf__tooltip {
     opacity: 1;
     visibility: visible;
   }
 
-  .hc-mf__tooltip-box {
+  #{{ mf_scope_id }} .hc-mf__tooltip-box {
     background-color: #fff;
     color: #000;
     padding: 1.5rem;
@@ -128,11 +129,11 @@
     display: block;
   }
 
-  .hc-mf__tooltip-content {
+  #{{ mf_scope_id }} .hc-mf__tooltip-content {
     display: block;
   }
 
-  .hc-mf__tooltip-p {
+  #{{ mf_scope_id }} .hc-mf__tooltip-p {
     display: block;
     font-size: 0.75rem;
     line-height: 1.6;
@@ -140,11 +141,11 @@
     margin: 0 0 1rem;
   }
 
-  .hc-mf__tooltip-p:last-child {
+  #{{ mf_scope_id }} .hc-mf__tooltip-p:last-child {
     margin-bottom: 0;
   }
 
-  .hc-mf__tooltip-p strong {
+  #{{ mf_scope_id }} .hc-mf__tooltip-p strong {
     display: block;
     font-family: var(--font-heading-family, inherit);
     font-weight: 700;
@@ -157,11 +158,11 @@
     cursor: default;
   }
 
-  .hc-mf__tooltip-p strong:hover {
+  #{{ mf_scope_id }} .hc-mf__tooltip-p strong:hover {
     color: var(--hc-mf-accent);
   }
 
-  .hc-mf__tooltip-arrow {
+  #{{ mf_scope_id }} .hc-mf__tooltip-arrow {
     position: absolute;
     bottom: -0.5rem;
     left: 50%;
@@ -174,18 +175,18 @@
   }
 
   @media (min-width: 768px) {
-    .hc-mf__tooltip {
+    #{{ mf_scope_id }} .hc-mf__tooltip {
       width: 450px;
     }
   }
 
   /* Visual card */
-  .hc-mf__visual-inner {
+  #{{ mf_scope_id }} .hc-mf__visual-inner {
     width: 100%;
     max-width: 36rem;
   }
 
-  .hc-mf__card {
+  #{{ mf_scope_id }} .hc-mf__card {
     background-color: #fff;
     color: #000;
     padding: 2rem;
@@ -196,7 +197,7 @@
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
-  .hc-mf__card-title {
+  #{{ mf_scope_id }} .hc-mf__card-title {
     text-align: center;
     font-size: 0.625rem;
     font-weight: 700;
@@ -206,7 +207,7 @@
     color: #9ca3af;
   }
 
-  .hc-mf__chart {
+  #{{ mf_scope_id }} .hc-mf__chart {
     position: relative;
     height: 12rem;
     display: flex;
@@ -217,7 +218,7 @@
     padding: 1rem;
   }
 
-  .hc-mf__bar-group {
+  #{{ mf_scope_id }} .hc-mf__bar-group {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -225,40 +226,40 @@
     gap: 0.5rem;
   }
 
-  .hc-mf__bar {
+  #{{ mf_scope_id }} .hc-mf__bar {
     display: flex !important;
     width: 100%;
     border-radius: 0;
-}
+  }
 
-  .hc-mf__bar--1 {
+  #{{ mf_scope_id }} .hc-mf__bar--1 {
     background-color: #f3f4f6;
     height: 10rem;
   }
 
-  .hc-mf__bar--2 {
+  #{{ mf_scope_id }} .hc-mf__bar--2 {
     background-color: #e5e7eb;
     height: 8rem;
   }
 
-  .hc-mf__bar--3 {
+  #{{ mf_scope_id }} .hc-mf__bar--3 {
     background-color: var(--hc-mf-accent);
     height: 3rem;
     box-shadow: 0 0 15px rgba(180, 83, 9, 0.3);
   }
 
-  .hc-mf__bar-label {
+  #{{ mf_scope_id }} .hc-mf__bar-label {
     font-size: 0.5rem;
     text-transform: uppercase;
     font-weight: 700;
     color: #9ca3af;
   }
 
-  .hc-mf__bar-label--accent {
+  #{{ mf_scope_id }} .hc-mf__bar-label--accent {
     color: var(--hc-mf-accent);
   }
 
-  .hc-mf__chart-footer {
+  #{{ mf_scope_id }} .hc-mf__chart-footer {
     margin-top: 2rem;
     text-align: center;
     font-size: 0.625rem;
@@ -268,57 +269,57 @@
   }
 
   @media (min-width: 768px) {
-    .hc-mf__text-col {
+    #{{ mf_scope_id }} .hc-mf__text-col {
       padding: 6rem;
     }
 
-    .hc-mf__visual-col {
+    #{{ mf_scope_id }} .hc-mf__visual-col {
       padding: 3rem;
     }
 
-    .hc-mf__heading {
+    #{{ mf_scope_id }} .hc-mf__heading {
       font-size: 3rem;
     }
 
-    .hc-mf__card {
+    #{{ mf_scope_id }} .hc-mf__card {
       padding: 2rem 3rem;
     }
 
-    .hc-mf__card-title {
+    #{{ mf_scope_id }} .hc-mf__card-title {
       font-size: 0.75rem;
     }
   }
 
   @media (min-width: 1024px) {
-    .hc-mf__grid {
+    #{{ mf_scope_id }} .hc-mf__grid {
       grid-template-columns: 1fr 1fr;
     }
 
-    .hc-mf__text-col {
+    #{{ mf_scope_id }} .hc-mf__text-col {
       border-bottom: none;
     }
 
-    .hc-mf__grid--default .hc-mf__text-col {
+    #{{ mf_scope_id }} .hc-mf__grid--default .hc-mf__text-col {
       order: 1;
       border-right: 1px solid #1f2937;
     }
 
-    .hc-mf__grid--default .hc-mf__visual-col {
+    #{{ mf_scope_id }} .hc-mf__grid--default .hc-mf__visual-col {
       order: 2;
     }
 
-    .hc-mf__grid--reversed .hc-mf__text-col {
+    #{{ mf_scope_id }} .hc-mf__grid--reversed .hc-mf__text-col {
       order: 2;
       border-left: 1px solid #1f2937;
     }
 
-    .hc-mf__grid--reversed .hc-mf__visual-col {
+    #{{ mf_scope_id }} .hc-mf__grid--reversed .hc-mf__visual-col {
       order: 1;
     }
   }
 </style>
 
-<section id="micron-finish" class="hc-mf" {{ block.shopify_attributes }}>
+<section id="{{ mf_scope_id }}" class="hc-mf" {{ block.shopify_attributes }}>
   <div class="hc-mf__grid {% if is_reversed %}hc-mf__grid--reversed{% else %}hc-mf__grid--default{% endif %}">
 
     <div class="hc-mf__text-col">
