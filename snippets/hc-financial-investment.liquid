@@ -1,0 +1,281 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign is_reversed = block.settings.reverse_layout
+  assign fi_section_id = 'hc-fin-inv-' | append: block.id
+-%}
+
+<style>
+  @keyframes hc-fin-inv-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hc-fin-inv {
+    --hc-fin-inv-bg: {{ bg_color }};
+    --hc-fin-inv-text: {{ text_color }};
+    --hc-fin-inv-accent: {{ accent_color }};
+    --hc-fin-inv-desc: {{ desc_color }};
+
+    background-color: var(--hc-fin-inv-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+    animation: hc-fin-inv-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-fin-inv-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-fin-inv-text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-fin-inv-text);
+    order: 2;
+    border-top: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-fin-inv-visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-fin-inv-bg);
+    order: 1;
+    overflow: visible;
+  }
+
+  .hc-fin-inv-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-fin-inv-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-fin-inv-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-fin-inv-text);
+  }
+
+  .hc-fin-inv-desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-fin-inv-desc);
+    white-space: pre-line;
+  }
+
+  .hc-fin-inv-desc p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0 0 1rem;
+    color: inherit;
+  }
+
+  .hc-fin-inv-desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-fin-inv-visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-fin-inv-card {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .hc-fin-inv-card-title {
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+    color: var(--hc-fin-inv-text);
+  }
+
+  .hc-fin-inv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hc-fin-inv-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .hc-fin-inv-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .hc-fin-inv-row-label {
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--hc-fin-inv-text);
+  }
+
+  .hc-fin-inv-row-badge {
+    flex-shrink: 0;
+    background-color: #ffead5;
+    background-color: color-mix(in srgb, var(--hc-fin-inv-accent) 14%, transparent);
+    color: var(--hc-fin-inv-accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (min-width: 768px) {
+    .hc-fin-inv-text-col {
+      padding: 6rem;
+    }
+
+    .hc-fin-inv-visual-col {
+      padding: 3rem;
+    }
+
+    .hc-fin-inv-heading {
+      font-size: 3rem;
+    }
+
+    .hc-fin-inv-card {
+      padding: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-fin-inv-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-fin-inv-text-col {
+      border-top: none;
+    }
+
+    .hc-fin-inv-grid-default .hc-fin-inv-text-col {
+      order: 1;
+      border-right: 1px solid #000;
+    }
+
+    .hc-fin-inv-grid-default .hc-fin-inv-visual-col {
+      order: 2;
+    }
+
+    .hc-fin-inv-grid-reversed .hc-fin-inv-text-col {
+      order: 2;
+      border-right: none;
+      border-left: 1px solid #000;
+    }
+
+    .hc-fin-inv-grid-reversed .hc-fin-inv-visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section
+  id="{{ fi_section_id }}"
+  class="hc-fin-inv"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-fin-inv-grid {% if is_reversed %}hc-fin-inv-grid-reversed{% else %}hc-fin-inv-grid-default{% endif %}">
+    <div class="hc-fin-inv-text-col">
+      <span class="hc-fin-inv-tag">{{ block.settings.tag | default: '03 — Financial Intelligence' }}</span>
+
+      <h3 class="hc-fin-inv-heading">
+        {{ block.settings.heading | default: 'THE MOST INTELLIGENT INVESTMENT YOU CAN MAKE.' }}
+      </h3>
+
+      <div class="hc-fin-inv-desc">
+        {%- if block.settings.description != blank -%}
+          {{ block.settings.description }}
+        {%- else -%}
+          <p>
+            Traditional bedding is a hidden recurring expense. Standard sheets require constant spending on water,
+            electricity, and high-heat drying to manage bacteria and odors. Worse, this frequent laundering is what
+            ultimately destroys the fabric, forcing you into a cycle of expensive replacements every year or two.
+          </p>
+          <p>
+            Jax Sheets turn your bedding into a long-term asset. By staying fresh for weeks, they significantly reduce
+            laundry overhead and extend the lifespan of your sheets by years. Bedding that manages its own hygiene
+            literally costs less to own—saving you time, money, and the hassle of constant maintenance.
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hc-fin-inv-visual-col">
+      <div class="hc-fin-inv-visual-inner">
+        <div class="hc-fin-inv-card">
+          <h4 class="hc-fin-inv-card-title">
+            {{ block.settings.card_title | default: 'COST REDUCTION ANALYSIS' }}
+          </h4>
+          <div class="hc-fin-inv-list">
+            <div class="hc-fin-inv-row">
+              <span class="hc-fin-inv-row-label">{{ block.settings.item_1_label | default: 'DETERGENT' }}</span>
+              <span class="hc-fin-inv-row-badge">{{ block.settings.item_1_value | default: '-90% USAGE' }}</span>
+            </div>
+            <div class="hc-fin-inv-row">
+              <span class="hc-fin-inv-row-label">{{ block.settings.item_2_label | default: 'WATER & POWER' }}</span>
+              <span class="hc-fin-inv-row-badge">{{ block.settings.item_2_value | default: '-90% USAGE' }}</span>
+            </div>
+            <div class="hc-fin-inv-row">
+              <span class="hc-fin-inv-row-label">{{ block.settings.item_3_label | default: 'DRYER CYCLES' }}</span>
+              <span class="hc-fin-inv-row-badge">{{ block.settings.item_3_value | default: 'ELIMINATED' }}</span>
+            </div>
+            <div class="hc-fin-inv-row">
+              <span class="hc-fin-inv-row-label">{{ block.settings.item_4_label | default: 'REPLACEMENTS' }}</span>
+              <span class="hc-fin-inv-row-badge">{{ block.settings.item_4_value | default: 'EVERY 5-10 YEARS' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

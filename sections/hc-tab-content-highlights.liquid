@@ -109,6 +109,14 @@
             {% render 'hc-build-to-last', block: block %}
           {%- when 'intelligent-investment' -%}
             {% render 'hc-intelligent-investment', block: block %}
+          {%- when 'cleaner-planet' -%}
+            {% render 'hc-cleaner-planet', block: block %}
+          {%- when 'hc-reduced-washing' -%}
+            {% render 'hc-reduced-washing', block: block %}
+          {%- when 'hc-honest-truth' -%}
+            {% render 'hc-honest-truth', block: block %}
+          {%- when 'hc-financial-investment' -%}
+            {% render 'hc-financial-investment', block: block %}
           {%- when 'no-specific-modules' -%}
             {% render 'hc-no-specific-modules', block: block %}
           {%- when 'sheets-for-men' -%}
@@ -123,6 +131,8 @@
             {% render 'hc-steady-temperature-speed', block: block %}
           {%- when 'acne-shield' -%}
             {% render 'highlights-acne-shield', block: block %}
+          {%- when 'hc-extended-lifespan' -%}
+            {% render 'hc-extended-lifespan', block: block %}
           {%- when 'dolphin-smooth' -%}
             {% render 'hc-dolphin-smooth', block: block %}
           {%- when 'breathable-surface' -%}
@@ -1670,6 +1680,311 @@
       ]
     },
     {
+      "type": "hc-extended-lifespan",
+      "name": "Jax — Extended Lifespan",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Main content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "01 — Extended Lifespan"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "LESS WASHING = LONGER LIFESPAN"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Most bedding wears out prematurely due to the stress of frequent laundering. High heat and friction break down fibers, but bacteria and odors are what force those cycles. Jax Sheets solve this at the source. Our integrated technology stays fresh for much longer, significantly reducing the need for washing. By minimizing fabric stress, Jax Sheets preserve their original smoothness and performance for years, not months.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout",
+          "default": false,
+          "info": "Swaps text and visual column positions on large screens"
+        },
+        {
+          "type": "header",
+          "content": "Durability comparison"
+        },
+        {
+          "type": "text",
+          "id": "comparison_title",
+          "label": "Comparison title",
+          "default": "JAX SHEETS ARE MORE DURABLE BY:"
+        },
+        {
+          "type": "text",
+          "id": "comparison_1_value",
+          "label": "Stat 1 — value",
+          "default": "1.9x"
+        },
+        {
+          "type": "text",
+          "id": "comparison_1_label",
+          "label": "Stat 1 — label",
+          "default": "COTTON"
+        },
+        {
+          "type": "text",
+          "id": "comparison_2_value",
+          "label": "Stat 2 — value",
+          "default": "3.5x"
+        },
+        {
+          "type": "text",
+          "id": "comparison_2_label",
+          "label": "Stat 2 — label",
+          "default": "SILK"
+        },
+        {
+          "type": "text",
+          "id": "comparison_3_value",
+          "label": "Stat 3 — value",
+          "default": "2.5x"
+        },
+        {
+          "type": "text",
+          "id": "comparison_3_label",
+          "label": "Stat 3 — label",
+          "default": "TRADITIONAL LINEN"
+        },
+        {
+          "type": "header",
+          "content": "Performance chart"
+        },
+        {
+          "type": "text",
+          "id": "table_title",
+          "label": "Chart title",
+          "default": "DURABILITY PERFORMANCE CHART"
+        },
+        {
+          "type": "text",
+          "id": "header_category",
+          "label": "Column header — category",
+          "default": "Category"
+        },
+        {
+          "type": "text",
+          "id": "header_meaning",
+          "label": "Column header — meaning",
+          "default": "Meaning"
+        },
+        {
+          "type": "text",
+          "id": "header_col_cot",
+          "label": "Column header — cotton",
+          "default": "COT"
+        },
+        {
+          "type": "text",
+          "id": "header_col_silk",
+          "label": "Column header — silk",
+          "default": "SILK"
+        },
+        {
+          "type": "text",
+          "id": "header_col_jax",
+          "label": "Column header — Jax",
+          "default": "JAX"
+        },
+        {
+          "type": "header",
+          "content": "Chart rows"
+        },
+        {
+          "type": "text",
+          "id": "row_1_category",
+          "label": "Row 1 — category",
+          "default": "Tensile Strength"
+        },
+        {
+          "type": "text",
+          "id": "row_1_meaning",
+          "label": "Row 1 — meaning",
+          "default": "Resistance to tearing/thinning"
+        },
+        {
+          "type": "text",
+          "id": "row_1_cot",
+          "label": "Row 1 — cotton",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_1_silk",
+          "label": "Row 1 — silk",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_1_jax",
+          "label": "Row 1 — Jax",
+          "default": "★★★"
+        },
+        {
+          "type": "text",
+          "id": "row_2_category",
+          "label": "Row 2 — category",
+          "default": "Abrasion Resistance"
+        },
+        {
+          "type": "text",
+          "id": "row_2_meaning",
+          "label": "Row 2 — meaning",
+          "default": "Handles tossing and turning"
+        },
+        {
+          "type": "text",
+          "id": "row_2_cot",
+          "label": "Row 2 — cotton",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_2_silk",
+          "label": "Row 2 — silk",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_2_jax",
+          "label": "Row 2 — Jax",
+          "default": "★★★"
+        },
+        {
+          "type": "text",
+          "id": "row_3_category",
+          "label": "Row 3 — category",
+          "default": "Pilling Resistance"
+        },
+        {
+          "type": "text",
+          "id": "row_3_meaning",
+          "label": "Row 3 — meaning",
+          "default": "Engineered to resist fiber clusters"
+        },
+        {
+          "type": "text",
+          "id": "row_3_cot",
+          "label": "Row 3 — cotton",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_3_silk",
+          "label": "Row 3 — silk",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_3_jax",
+          "label": "Row 3 — Jax",
+          "default": "★★★"
+        },
+        {
+          "type": "text",
+          "id": "row_4_category",
+          "label": "Row 4 — category",
+          "default": "Moisture Strength"
+        },
+        {
+          "type": "text",
+          "id": "row_4_meaning",
+          "label": "Row 4 — meaning",
+          "default": "Maintains integrity when wet"
+        },
+        {
+          "type": "text",
+          "id": "row_4_cot",
+          "label": "Row 4 — cotton",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_4_silk",
+          "label": "Row 4 — silk",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_4_jax",
+          "label": "Row 4 — Jax",
+          "default": "★★★"
+        },
+        {
+          "type": "text",
+          "id": "row_5_category",
+          "label": "Row 5 — category",
+          "default": "Overall Longevity"
+        },
+        {
+          "type": "text",
+          "id": "row_5_meaning",
+          "label": "Row 5 — meaning",
+          "default": "Real-world years of use"
+        },
+        {
+          "type": "text",
+          "id": "row_5_cot",
+          "label": "Row 5 — cotton",
+          "default": "★★"
+        },
+        {
+          "type": "text",
+          "id": "row_5_silk",
+          "label": "Row 5 — silk",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "row_5_jax",
+          "label": "Row 5 — Jax",
+          "default": "★★★"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent",
+          "info": "Tag line, comparison labels, Jax column",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        }
+      ]
+    },
+    {
       "type": "dolphin-smooth",
       "name": "Dolphin-Smooth Texture",
       "limit": 1,
@@ -2201,6 +2516,27 @@
           "info": "Swaps text and visual column positions"
         },
         {
+          "type": "select",
+          "id": "column_divider_side",
+          "label": "Text column border (desktop)",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Between columns (recommended)"
+            },
+            {
+              "value": "left",
+              "label": "Left side of text column"
+            },
+            {
+              "value": "right",
+              "label": "Right side of text column"
+            }
+          ],
+          "default": "auto",
+          "info": "Places the vertical rule on the chosen edge of the text column. Auto uses the inner edge next to the chart so the line sits between the two columns."
+        },
+        {
           "type": "header",
           "content": "Tooltip"
         },
@@ -2244,6 +2580,13 @@
           "id": "desc_color",
           "label": "Description Color",
           "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "info": "Section outline, column divider, chart card, and tooltip frame",
+          "default": "#000000"
         }
       ]
     },
@@ -2765,6 +3108,212 @@
         { "type": "text", "id": "item_3_value", "label": "Item 3 Value", "default": "Eliminated" },
         { "type": "text", "id": "item_4_label", "label": "Item 4 Label", "default": "REPLACEMENTS" },
         { "type": "text", "id": "item_4_value", "label": "Item 4 Value", "default": "Every 5–10 Years" }
+      ]
+    },
+    {
+      "type": "cleaner-planet",
+      "name": "HC Cleaner Planet",
+      "settings": [
+        { "type": "header", "content": "Main Content" },
+        { "type": "text", "id": "title_main", "label": "Title (before accent)", "default": "BUILT FOR A CLEANER " },
+        { "type": "text", "id": "title_accent", "label": "Title Accent (colored)", "default": "PLANET" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "The fashion industry is the second largest polluter in the world. By creating clothing that doesn't need to be washed nearly as often as regular clothing, HercLéon is a commitment to a cleaner future." }
+      ]
+    },
+    {
+      "type": "hc-reduced-washing",
+      "name": "HC Reduced Washing",
+      "settings": [
+        { "type": "header", "content": "Main content" },
+        { "type": "text", "id": "tag", "label": "Tag line", "default": "01 — Reduced Washing" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "LESS WASHING MEANS LESS WASTE." },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Laundering bedding is one of the most resource-intensive household tasks. Because of their sheer volume, washing and drying a set of sheets requires significant amounts of water and energy, along with detergents and chemicals that eventually enter our waterways. Jax Sheets are engineered to stay fresh for much longer than traditional fabrics, which means they need to be washed far less often. This reduction in laundry cycles directly translates to a lower environmental footprint—saving thousands of gallons of water and reducing energy consumption and chemical pollution over the life of your sheets.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "chart_on_left",
+          "label": "Chart on left (desktop)",
+          "default": true,
+          "info": "When off, the text column is on the left on large screens."
+        },
+        { "type": "header", "content": "Chart card" },
+        { "type": "text", "id": "card_title", "label": "Card title", "default": "SMARTER USE, LESS WASTE" },
+        { "type": "text", "id": "bar_1_label", "label": "Bar 1 label", "default": "Laundry Reduction" },
+        { "type": "range", "id": "bar_1_width", "min": 0, "max": 100, "step": 1, "default": 90, "label": "Bar 1 fill %" },
+        { "type": "text", "id": "bar_2_label", "label": "Bar 2 label", "default": "Water Savings" },
+        { "type": "range", "id": "bar_2_width", "min": 0, "max": 100, "step": 1, "default": 85, "label": "Bar 2 fill %" },
+        { "type": "text", "id": "bar_3_label", "label": "Bar 3 label", "default": "Energy Saved" },
+        { "type": "range", "id": "bar_3_width", "min": 0, "max": 100, "step": 1, "default": 90, "label": "Bar 3 fill %" },
+        { "type": "text", "id": "bar_4_label", "label": "Bar 4 label", "default": "Reduced detergent use" },
+        { "type": "range", "id": "bar_4_width", "min": 0, "max": 100, "step": 1, "default": 90, "label": "Bar 4 fill %" },
+        { "type": "text", "id": "footnote", "label": "Footnote", "default": "Fewer washes, fewer replacements, lower impact." },
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "bg_color", "label": "Background", "default": "#000000" },
+        { "type": "color", "id": "text_color", "label": "Heading text", "default": "#ffffff" },
+        { "type": "color", "id": "desc_color", "label": "Description", "default": "#9ca3af" },
+        { "type": "color", "id": "accent_color", "label": "Accent & tag", "default": "#B45309" },
+        { "type": "color", "id": "column_rule_color", "label": "Column divider", "default": "#1f2937" },
+        { "type": "color", "id": "card_bg", "label": "Card background", "default": "#ffffff" }
+      ]
+    },
+    {
+      "type": "hc-honest-truth",
+      "name": "HC Honest Truth",
+      "settings": [
+        { "type": "header", "content": "Intro" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Transparency" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "The Honest Truth" },
+        { "type": "textarea", "id": "lead", "label": "Subtitle", "default": "We're not for everyone. Here's why you might NOT want to buy from us." },
+        { "type": "header", "content": "Card 1" },
+        { "type": "text", "id": "card_1_num", "label": "Number", "default": "01" },
+        { "type": "text", "id": "card_1_title", "label": "Title", "default": "Jax Sheets Aren't Cheap" },
+        { "type": "textarea", "id": "card_1_body", "label": "Body", "default": "They cost more than most people expect - and that's fair. Every fiber and finish was chosen for performance, longevity, and health, not price. Yes, it's a higher upfront cost - but Jax Sheets are designed to last 5-10 years while staying soft, cool, and clean. Over time, they end up costing less than replacing cheaper sheets every year." },
+        { "type": "header", "content": "Card 2" },
+        { "type": "text", "id": "card_2_num", "label": "Number", "default": "02" },
+        { "type": "text", "id": "card_2_title", "label": "Title", "default": "Oil Stains Can Happen" },
+        { "type": "textarea", "id": "card_2_body", "label": "Body", "default": "Jax Sheets are highly absorbent - that's part of what makes them breathable - but it also means they can hold onto oil from skin, hair, or skincare a bit more than cotton. Luckily, they wash out easily with proper care, and Jax 2.0 handles this better than ever but still not perfect." },
+        { "type": "header", "content": "Card 3" },
+        { "type": "text", "id": "card_3_num", "label": "Number", "default": "03" },
+        { "type": "text", "id": "card_3_title", "label": "Title", "default": "They Need Some Care When Washing" },
+        { "type": "textarea", "id": "card_3_body", "label": "Body", "default": "Jax Sheets are performance fabrics, not indestructible gym towels. Avoid harsh soaps, bleach, fabric softeners and rough loads with jeans or zippers. Treat them right and they'll last up to a decade - ignore them and they'll last a few years." },
+        { "type": "header", "content": "Card 4" },
+        { "type": "text", "id": "card_4_num", "label": "Number", "default": "04" },
+        { "type": "text", "id": "card_4_title", "label": "Title", "default": "They might feel different than what you're used to" },
+        { "type": "textarea", "id": "card_4_body", "label": "Body", "default": "They don't feel like crisp cotton or slick silk - they're somewhere in between. Some people love that balance of smoothness and breathability; others prefer something more traditional." },
+        { "type": "header", "content": "Card 5" },
+        { "type": "text", "id": "card_5_num", "label": "Number", "default": "05" },
+        { "type": "text", "id": "card_5_title", "label": "Title", "default": "You Might Start Disliking Every Other Bed Sheet You Sleep In" },
+        { "type": "textarea", "id": "card_5_body", "label": "Body", "default": "We once had a customer who lost his set of Jax Sheets in his divorce and others who plan their laundry day around being able to put Jax back on their bed, so you've been warned. Jax Sheets will ruin other sheets for you." },
+        { "type": "header", "content": "Closing tile" },
+        { "type": "text", "id": "closing_brand", "label": "Brand line", "default": "HercLeon" },
+        { "type": "text", "id": "closing_tagline", "label": "Tagline", "default": "Built for the 1% who demand more." },
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
+        { "type": "color", "id": "text_color", "label": "Headings", "default": "#000000" },
+        { "type": "color", "id": "accent_color", "label": "Eyebrow & numbers", "default": "#B45309" },
+        { "type": "color", "id": "muted_color", "label": "Body text", "default": "#4b5563" },
+        { "type": "color", "id": "grid_line_color", "label": "Grid & bottom border", "default": "#000000" },
+        { "type": "color", "id": "card_hover_bg", "label": "Card hover", "default": "#f9fafb" },
+        { "type": "color", "id": "aside_bg", "label": "Closing tile background", "default": "#f9fafb" },
+        { "type": "color", "id": "aside_muted_color", "label": "Closing tagline", "default": "#9ca3af" }
+      ]
+    },
+    {
+      "type": "hc-financial-investment",
+      "name": "Jax Fin. Investment",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Main content" },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — Financial Intelligence"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "THE MOST INTELLIGENT INVESTMENT YOU CAN MAKE."
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Traditional bedding is a hidden recurring expense. Standard sheets require constant spending on water, electricity, and high-heat drying to manage bacteria and odors. Worse, this frequent laundering is what ultimately destroys the fabric, forcing you into a cycle of expensive replacements every year or two.</p><p>Jax Sheets turn your bedding into a long-term asset. By staying fresh for weeks, they significantly reduce laundry overhead and extend the lifespan of your sheets by years. Bedding that manages its own hygiene literally costs less to own—saving you time, money, and the hassle of constant maintenance.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout",
+          "default": false,
+          "info": "Swaps text and visual column positions on large screens"
+        },
+        { "type": "header", "content": "Cost reduction card" },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "COST REDUCTION ANALYSIS"
+        },
+        {
+          "type": "text",
+          "id": "item_1_label",
+          "label": "Row 1 — label",
+          "default": "DETERGENT"
+        },
+        {
+          "type": "text",
+          "id": "item_1_value",
+          "label": "Row 1 — value",
+          "default": "-90% USAGE"
+        },
+        {
+          "type": "text",
+          "id": "item_2_label",
+          "label": "Row 2 — label",
+          "default": "WATER & POWER"
+        },
+        {
+          "type": "text",
+          "id": "item_2_value",
+          "label": "Row 2 — value",
+          "default": "-90% USAGE"
+        },
+        {
+          "type": "text",
+          "id": "item_3_label",
+          "label": "Row 3 — label",
+          "default": "DRYER CYCLES"
+        },
+        {
+          "type": "text",
+          "id": "item_3_value",
+          "label": "Row 3 — value",
+          "default": "ELIMINATED"
+        },
+        {
+          "type": "text",
+          "id": "item_4_label",
+          "label": "Row 4 — label",
+          "default": "REPLACEMENTS"
+        },
+        {
+          "type": "text",
+          "id": "item_4_value",
+          "label": "Row 4 — value",
+          "default": "EVERY 5-10 YEARS"
+        },
+        { "type": "header", "content": "Colors" },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent",
+          "info": "Tag line and value badges",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        }
       ]
     },
     {

@@ -1,0 +1,393 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign is_reversed = block.settings.reverse_layout
+  assign el_section_id = 'hc-exten-life-' | append: block.id
+-%}
+
+<style>
+  @keyframes hc-exten-life-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hc-exten-life {
+    --hc-exten-life-bg: {{ bg_color }};
+    --hc-exten-life-text: {{ text_color }};
+    --hc-exten-life-accent: {{ accent_color }};
+    --hc-exten-life-desc: {{ desc_color }};
+
+    background-color: var(--hc-exten-life-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+    animation: hc-exten-life-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-exten-life-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-exten-life-text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-exten-life-text);
+    order: 2;
+    border-top: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-exten-life-visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-exten-life-bg);
+    order: 1;
+    overflow: visible;
+  }
+
+  .hc-exten-life-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-exten-life-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-exten-life-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-exten-life-text);
+  }
+
+  .hc-exten-life-desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-exten-life-desc);
+    white-space: pre-line;
+  }
+
+  .hc-exten-life-desc p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+    color: inherit;
+  }
+
+  .hc-exten-life-visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-exten-life-card {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .hc-exten-life-comparison-block {
+    margin-bottom: 2rem;
+  }
+
+  .hc-exten-life-comparison-title {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--hc-exten-life-accent);
+    margin-bottom: 1rem;
+  }
+
+  .hc-exten-life-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .hc-exten-life-stat-cell {
+    border: 1px solid #000;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hc-exten-life-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--hc-exten-life-text);
+  }
+
+  .hc-exten-life-stat-label {
+    font-size: 0.5rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    line-height: 1.25;
+  }
+
+  .hc-exten-life-table-block {
+    margin: 0;
+  }
+
+  .hc-exten-life-table-title {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--hc-exten-life-accent);
+    margin-bottom: 1rem;
+  }
+
+  .hc-exten-life-table-scroll {
+    border: 1px solid #000;
+    overflow: hidden;
+  }
+
+  .hc-exten-life-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.625rem;
+  }
+
+  .hc-exten-life-thead-row {
+    border-bottom: 1px solid #000;
+    background-color: #f9fafb;
+  }
+
+  .hc-exten-life-th {
+    padding: 0.5rem;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+  }
+
+  .hc-exten-life-th--center {
+    text-align: center;
+  }
+
+  .hc-exten-life-th--accent {
+    color: var(--hc-exten-life-accent);
+  }
+
+  .hc-exten-life-tr {
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .hc-exten-life-tr:last-child {
+    border-bottom: none;
+  }
+
+  .hc-exten-life-td {
+    padding: 0.5rem;
+    vertical-align: top;
+  }
+
+  .hc-exten-life-td--category {
+    font-weight: 700;
+    color: var(--hc-exten-life-text);
+  }
+
+  .hc-exten-life-td--meaning {
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  .hc-exten-life-td--center {
+    text-align: center;
+  }
+
+  .hc-exten-life-td--muted {
+    color: #9ca3af;
+  }
+
+  .hc-exten-life-td--accent {
+    color: var(--hc-exten-life-accent);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .hc-exten-life-text-col {
+      padding: 6rem;
+    }
+
+    .hc-exten-life-visual-col {
+      padding: 3rem;
+    }
+
+    .hc-exten-life-heading {
+      font-size: 3rem;
+    }
+
+    .hc-exten-life-stat-value {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-exten-life-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-exten-life-text-col {
+      border-top: none;
+    }
+
+    .hc-exten-life-grid-default .hc-exten-life-text-col {
+      order: 1;
+      border-right: 1px solid #000;
+    }
+
+    .hc-exten-life-grid-default .hc-exten-life-visual-col {
+      order: 2;
+    }
+
+    .hc-exten-life-grid-reversed .hc-exten-life-text-col {
+      order: 2;
+      border-right: none;
+      border-left: 1px solid #000;
+    }
+
+    .hc-exten-life-grid-reversed .hc-exten-life-visual-col {
+      order: 1;
+    }
+  }
+</style>
+
+<section
+  id="{{ el_section_id }}"
+  class="hc-exten-life"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-exten-life-grid {% if is_reversed %}hc-exten-life-grid-reversed{% else %}hc-exten-life-grid-default{% endif %}">
+    <div class="hc-exten-life-text-col">
+      <span class="hc-exten-life-tag">{{ block.settings.tag | default: '01 — Extended Lifespan' }}</span>
+
+      <h3 class="hc-exten-life-heading">
+        {{ block.settings.heading | default: 'LESS WASHING = LONGER LIFESPAN' }}
+      </h3>
+
+      <div class="hc-exten-life-desc">
+        {%- assign el_default_desc = 'Most bedding wears out prematurely due to the stress of frequent laundering. High heat and friction break down fibers, but bacteria and odors are what force those cycles. Jax Sheets solve this at the source. Our integrated technology stays fresh for much longer, significantly reducing the need for washing. By minimizing fabric stress, Jax Sheets preserve their original smoothness and performance for years, not months.' -%}
+        {%- if block.settings.description != blank -%}
+          {{ block.settings.description }}
+        {%- else -%}
+          <p>{{ el_default_desc }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hc-exten-life-visual-col">
+      <div class="hc-exten-life-visual-inner">
+        <div class="hc-exten-life-card">
+          <div class="hc-exten-life-comparison-block">
+            <h4 class="hc-exten-life-comparison-title">
+              {{ block.settings.comparison_title | default: 'JAX SHEETS ARE MORE DURABLE BY:' }}
+            </h4>
+            <div class="hc-exten-life-stat-grid">
+              <div class="hc-exten-life-stat-cell">
+                <span class="hc-exten-life-stat-value">{{ block.settings.comparison_1_value | default: '1.9x' }}</span>
+                <span class="hc-exten-life-stat-label">{{ block.settings.comparison_1_label | default: 'COTTON' }}</span>
+              </div>
+              <div class="hc-exten-life-stat-cell">
+                <span class="hc-exten-life-stat-value">{{ block.settings.comparison_2_value | default: '3.5x' }}</span>
+                <span class="hc-exten-life-stat-label">{{ block.settings.comparison_2_label | default: 'SILK' }}</span>
+              </div>
+              <div class="hc-exten-life-stat-cell">
+                <span class="hc-exten-life-stat-value">{{ block.settings.comparison_3_value | default: '2.5x' }}</span>
+                <span class="hc-exten-life-stat-label">{{ block.settings.comparison_3_label | default: 'TRADITIONAL LINEN' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hc-exten-life-table-block">
+            <h4 class="hc-exten-life-table-title">
+              {{ block.settings.table_title | default: 'DURABILITY PERFORMANCE CHART' }}
+            </h4>
+            <div class="hc-exten-life-table-scroll">
+              <table class="hc-exten-life-table">
+                <thead>
+                  <tr class="hc-exten-life-thead-row">
+                    <th class="hc-exten-life-th">{{ block.settings.header_category | default: 'Category' }}</th>
+                    <th class="hc-exten-life-th">{{ block.settings.header_meaning | default: 'Meaning' }}</th>
+                    <th class="hc-exten-life-th hc-exten-life-th--center">{{ block.settings.header_col_cot | default: 'COT' }}</th>
+                    <th class="hc-exten-life-th hc-exten-life-th--center">{{ block.settings.header_col_silk | default: 'SILK' }}</th>
+                    <th class="hc-exten-life-th hc-exten-life-th--center hc-exten-life-th--accent">
+                      {{- block.settings.header_col_jax | default: 'JAX' -}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="hc-exten-life-tr">
+                    <td class="hc-exten-life-td hc-exten-life-td--category">{{ block.settings.row_1_category | default: 'Tensile Strength' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--meaning">{{ block.settings.row_1_meaning | default: 'Resistance to tearing/thinning' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_1_cot | default: '★★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_1_silk | default: '★★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--accent">{{ block.settings.row_1_jax | default: '★★★' }}</td>
+                  </tr>
+                  <tr class="hc-exten-life-tr">
+                    <td class="hc-exten-life-td hc-exten-life-td--category">{{ block.settings.row_2_category | default: 'Abrasion Resistance' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--meaning">{{ block.settings.row_2_meaning | default: 'Handles tossing and turning' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_2_cot | default: '★★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_2_silk | default: '★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--accent">{{ block.settings.row_2_jax | default: '★★★' }}</td>
+                  </tr>
+                  <tr class="hc-exten-life-tr">
+                    <td class="hc-exten-life-td hc-exten-life-td--category">{{ block.settings.row_3_category | default: 'Pilling Resistance' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--meaning">{{ block.settings.row_3_meaning | default: 'Engineered to resist fiber clusters' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_3_cot | default: '★★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_3_silk | default: '★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--accent">{{ block.settings.row_3_jax | default: '★★★' }}</td>
+                  </tr>
+                  <tr class="hc-exten-life-tr">
+                    <td class="hc-exten-life-td hc-exten-life-td--category">{{ block.settings.row_4_category | default: 'Moisture Strength' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--meaning">{{ block.settings.row_4_meaning | default: 'Maintains integrity when wet' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_4_cot | default: '★★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_4_silk | default: '★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--accent">{{ block.settings.row_4_jax | default: '★★★' }}</td>
+                  </tr>
+                  <tr class="hc-exten-life-tr">
+                    <td class="hc-exten-life-td hc-exten-life-td--category">{{ block.settings.row_5_category | default: 'Overall Longevity' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--meaning">{{ block.settings.row_5_meaning | default: 'Real-world years of use' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_5_cot | default: '★★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--center hc-exten-life-td--muted">{{ block.settings.row_5_silk | default: '★' }}</td>
+                    <td class="hc-exten-life-td hc-exten-life-td--accent">{{ block.settings.row_5_jax | default: '★★★' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

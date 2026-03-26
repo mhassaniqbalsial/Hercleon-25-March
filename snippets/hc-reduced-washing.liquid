@@ -1,0 +1,309 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign column_rule_color = block.settings.column_rule_color | default: '#1f2937'
+  assign card_bg = block.settings.card_bg | default: '#ffffff'
+  if block.settings.chart_on_left == false
+    assign chart_on_left = false
+  else
+    assign chart_on_left = true
+  endif
+  assign rw_section_id = 'hc-red-wash-' | append: block.id
+-%}
+
+<style>
+  @keyframes hc-red-wash-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hc-red-wash {
+    --hc-red-wash-bg: {{ bg_color }};
+    --hc-red-wash-text: {{ text_color }};
+    --hc-red-wash-desc: {{ desc_color }};
+    --hc-red-wash-accent: {{ accent_color }};
+    --hc-red-wash-rule: {{ column_rule_color }};
+    --hc-red-wash-card-bg: {{ card_bg }};
+
+    background-color: var(--hc-red-wash-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+    animation: hc-red-wash-fade-in-up 0.6s ease forwards;
+  }
+
+  .hc-red-wash-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-red-wash-text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-red-wash-text);
+    order: 1;
+    border-bottom: 1px solid var(--hc-red-wash-rule);
+    overflow: visible;
+  }
+
+  .hc-red-wash-visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-red-wash-bg);
+    order: 2;
+    overflow: visible;
+  }
+
+  .hc-red-wash-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-red-wash-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-red-wash-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-red-wash-text);
+  }
+
+  .hc-red-wash-desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-red-wash-desc);
+    white-space: pre-line;
+  }
+
+  .hc-red-wash-desc p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0 0 1rem;
+    color: inherit;
+  }
+
+  .hc-red-wash-desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-red-wash-visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-red-wash-card {
+    background-color: var(--hc-red-wash-card-bg);
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .hc-red-wash-card-title {
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+    color: #9ca3af;
+  }
+
+  .hc-red-wash-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hc-red-wash-stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .hc-red-wash-stat-label {
+    color: #000;
+  }
+
+  .hc-red-wash-stat-value {
+    font-weight: 700;
+    color: #000;
+  }
+
+  .hc-red-wash-stat-track {
+    width: 100%;
+    height: 0.5rem;
+    background-color: #f3f4f6;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .hc-red-wash-stat-fill {
+    height: 100%;
+    background-color: var(--hc-red-wash-accent);
+    border-radius: 9999px;
+    display: block !important;
+  }
+
+  .hc-red-wash-footnote {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.625rem;
+    color: #9ca3af;
+    font-style: italic;
+  }
+
+  @media (min-width: 768px) {
+    .hc-red-wash-text-col {
+      padding: 6rem;
+    }
+
+    .hc-red-wash-visual-col {
+      padding: 3rem;
+    }
+
+    .hc-red-wash-heading {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-red-wash-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-red-wash-text-col {
+      border-bottom: none;
+    }
+
+    .hc-red-wash-grid--chart-left .hc-red-wash-text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-red-wash-rule);
+    }
+
+    .hc-red-wash-grid--chart-left .hc-red-wash-visual-col {
+      order: 1;
+    }
+
+    .hc-red-wash-grid--text-left .hc-red-wash-text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-red-wash-rule);
+    }
+
+    .hc-red-wash-grid--text-left .hc-red-wash-visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section
+  id="{{ rw_section_id }}"
+  class="hc-red-wash"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-red-wash-grid {% if chart_on_left %}hc-red-wash-grid--chart-left{% else %}hc-red-wash-grid--text-left{% endif %}">
+    <div class="hc-red-wash-text-col">
+      <span class="hc-red-wash-tag">{{ block.settings.tag | default: '01 — Reduced Washing' }}</span>
+
+      <h3 class="hc-red-wash-heading">
+        {{ block.settings.heading | default: 'LESS WASHING MEANS LESS WASTE.' }}
+      </h3>
+
+      <div class="hc-red-wash-desc">
+        {%- if block.settings.description != blank -%}
+          {{ block.settings.description }}
+        {%- else -%}
+          <p>
+            Laundering bedding is one of the most resource-intensive household tasks. Because of their sheer volume,
+            washing and drying a set of sheets requires significant amounts of water and energy, along with detergents
+            and chemicals that eventually enter our waterways. Jax Sheets are engineered to stay fresh for much longer
+            than traditional fabrics, which means they need to be washed far less often. This reduction in laundry
+            cycles directly translates to a lower environmental footprint—saving thousands of gallons of water and
+            reducing energy consumption and chemical pollution over the life of your sheets.
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hc-red-wash-visual-col">
+      <div class="hc-red-wash-visual-inner">
+        <div class="hc-red-wash-card">
+          <h4 class="hc-red-wash-card-title">{{ block.settings.card_title | default: 'SMARTER USE, LESS WASTE' }}</h4>
+
+          <div class="hc-red-wash-stats">
+            <div>
+              <div class="hc-red-wash-stat-header">
+                <span class="hc-red-wash-stat-label">{{ block.settings.bar_1_label | default: 'Laundry Reduction' }}</span>
+                <span class="hc-red-wash-stat-value">{{ block.settings.bar_1_width | default: 90 }}%</span>
+              </div>
+              <div class="hc-red-wash-stat-track">
+                <div class="hc-red-wash-stat-fill" style="width: {{ block.settings.bar_1_width | default: 90 }}%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="hc-red-wash-stat-header">
+                <span class="hc-red-wash-stat-label">{{ block.settings.bar_2_label | default: 'Water Savings' }}</span>
+                <span class="hc-red-wash-stat-value">{{ block.settings.bar_2_width | default: 85 }}%</span>
+              </div>
+              <div class="hc-red-wash-stat-track">
+                <div class="hc-red-wash-stat-fill" style="width: {{ block.settings.bar_2_width | default: 85 }}%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="hc-red-wash-stat-header">
+                <span class="hc-red-wash-stat-label">{{ block.settings.bar_3_label | default: 'Energy Saved' }}</span>
+                <span class="hc-red-wash-stat-value">{{ block.settings.bar_3_width | default: 90 }}%</span>
+              </div>
+              <div class="hc-red-wash-stat-track">
+                <div class="hc-red-wash-stat-fill" style="width: {{ block.settings.bar_3_width | default: 90 }}%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="hc-red-wash-stat-header">
+                <span class="hc-red-wash-stat-label">{{ block.settings.bar_4_label | default: 'Reduced detergent use' }}</span>
+                <span class="hc-red-wash-stat-value">{{ block.settings.bar_4_width | default: 90 }}%</span>
+              </div>
+              <div class="hc-red-wash-stat-track">
+                <div class="hc-red-wash-stat-fill" style="width: {{ block.settings.bar_4_width | default: 90 }}%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="hc-red-wash-footnote">{{ block.settings.footnote | default: 'Fewer washes, fewer replacements, lower impact.' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
