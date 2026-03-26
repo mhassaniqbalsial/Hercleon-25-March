@@ -1,0 +1,1082 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hc_product_pg_hero_7KPEDk": {
+      "type": "hc-product-pg-hero",
+      "blocks": {
+        "timeline_item_m3qAfa": {
+          "type": "timeline_item",
+          "settings": {
+            "version": "1.0",
+            "year": "2018",
+            "is_current": false
+          }
+        },
+        "timeline_item_w3YA9D": {
+          "type": "timeline_item",
+          "settings": {
+            "version": "2.0",
+            "year": "2019",
+            "is_current": false
+          }
+        },
+        "timeline_item_mz4U9A": {
+          "type": "timeline_item",
+          "settings": {
+            "version": "3.0",
+            "year": "2023",
+            "is_current": false
+          }
+        },
+        "timeline_item_zRN6VJ": {
+          "type": "timeline_item",
+          "settings": {
+            "version": "4.0",
+            "year": "2023",
+            "is_current": false
+          }
+        },
+        "timeline_item_n9RrA9": {
+          "type": "timeline_item",
+          "settings": {
+            "version": "5.0",
+            "year": "2026",
+            "is_current": true
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_m3qAfa",
+        "timeline_item_w3YA9D",
+        "timeline_item_mz4U9A",
+        "timeline_item_zRN6VJ",
+        "timeline_item_n9RrA9"
+      ],
+      "name": "HC Product Hero Section",
+      "settings": {
+        "hero_title": "{{ product.metafields.custom.product_tagline.value }}",
+        "header_desktop_padding_top": 52,
+        "header_desktop_padding_bottom": 52,
+        "header_mobile_padding_top": 32,
+        "header_mobile_padding_bottom": 32,
+        "full_width": true
+      }
+    },
+    "hc_prod_seen_on_xJpiyB": {
+      "type": "HC-prod-seen-on",
+      "blocks": {
+        "logo_MdXELb": {
+          "type": "logo",
+          "settings": {
+            "name": "Shark Tank"
+          }
+        },
+        "logo_7jGtKB": {
+          "type": "logo",
+          "settings": {
+            "name": "Wonderful Engineering"
+          }
+        },
+        "logo_bjfi9c": {
+          "type": "logo",
+          "settings": {
+            "name": "Men's Journal"
+          }
+        },
+        "logo_XWiKUP": {
+          "type": "logo",
+          "settings": {
+            "name": "Gear Junkie"
+          }
+        },
+        "logo_8BRbkP": {
+          "type": "logo",
+          "settings": {
+            "name": "CNN"
+          }
+        },
+        "logo_YA8PCd": {
+          "type": "logo",
+          "settings": {
+            "name": "Lonely Planet"
+          }
+        },
+        "logo_6JeCng": {
+          "type": "logo",
+          "settings": {
+            "name": "MPR"
+          }
+        },
+        "logo_CnPAaa": {
+          "type": "logo",
+          "settings": {
+            "name": "Pioneer Press"
+          }
+        }
+      },
+      "block_order": [
+        "logo_MdXELb",
+        "logo_7jGtKB",
+        "logo_bjfi9c",
+        "logo_XWiKUP",
+        "logo_8BRbkP",
+        "logo_YA8PCd",
+        "logo_6JeCng",
+        "logo_CnPAaa"
+      ],
+      "name": "HC Product SeenOn",
+      "settings": {
+        "label": "As Seen On:"
+      }
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "title_size": "product-title-md",
+            "title_size_mobile": "product-title-md",
+            "title_tag": "h2",
+            "show_price": false,
+            "show_rating": true
+          }
+        },
+        "price_w8Xkqw": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "text_size": "text-base"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "enable_dynamic_variants": true,
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "enable_color_swatches": true,
+            "color_swatch_type": "color",
+            "size_chart": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_price": false,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "enable_back_in_stock": false,
+            "show_back_in_stock_name": false,
+            "show_back_in_stock_phone": false
+          }
+        },
+        "collapsible_tab_wKpy8i": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "STRATEGIC ADVANTAGES",
+            "content": "{{ product.metafields.custom.strategic_advantages_collapsible_text | metafield_tag }}",
+            "page": "",
+            "liquid": "",
+            "text_size": "text-sm"
+          }
+        },
+        "collapsible_tab_HmbqKW": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "INHERENT CONSTRAINTS",
+            "content": "{{ product.metafields.custom.inherent_constraints_collapsible_text | metafield_tag }}",
+            "page": "",
+            "liquid": "",
+            "text_size": "text-sm"
+          }
+        },
+        "collapsible_tab_hjbaN4": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "TECHNICAL SPECIFICATIONS",
+            "content": "{{ product.metafields.custom.technical_specifications_collapsible_text | metafield_tag }}",
+            "page": "",
+            "liquid": "",
+            "text_size": "text-sm"
+          }
+        },
+        "collapsible_tab_U4r97V": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "CARE INSTRUCTIONS",
+            "content": "{{ product.metafields.custom.care_instructions_collapsible_text | metafield_tag }}",
+            "page": "",
+            "liquid": "",
+            "text_size": "text-sm"
+          }
+        },
+        "collapsible_tab_eDjkUr": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "PRODUCT EVOLUTION",
+            "content": "{{ product.metafields.custom.product_evolution_collapsible_text | metafield_tag }}",
+            "page": "",
+            "liquid": "",
+            "text_size": "text-sm"
+          }
+        },
+        "icon_with_text_mrXBL8": {
+          "type": "icon_with_text",
+          "settings": {
+            "text_1": "Free US Shipping On Orders $50+",
+            "icon_select_1": "arrows",
+            "text_2": "Lifetime Manufacturing Guarantee",
+            "icon_select_2": "shield",
+            "text_3": "Lifetime Size Exchange Warranty",
+            "icon_select_3": "resize",
+            "highlight_3": false,
+            "text_4": "100 Days Return Window",
+            "icon_select_4": "refresh",
+            "text_5": "1.2% Return Rate Vs. 20% Industry Standard",
+            "icon_select_5": "down_arrow",
+            "highlight_5": true
+          }
+        },
+        "sticky_buy_button": {
+          "type": "sticky_buy_button",
+          "disabled": true,
+          "settings": {}
+        },
+        "complementary": {
+          "type": "complementary",
+          "disabled": true,
+          "settings": {
+            "heading": "Pairs well with",
+            "product_limit": 4,
+            "show_vendor": false,
+            "show_price": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price_w8Xkqw",
+        "description",
+        "variant_picker",
+        "buy_buttons",
+        "collapsible_tab_wKpy8i",
+        "collapsible_tab_HmbqKW",
+        "collapsible_tab_hjbaN4",
+        "collapsible_tab_U4r97V",
+        "collapsible_tab_eDjkUr",
+        "icon_with_text_mrXBL8",
+        "sticky_buy_button",
+        "complementary"
+      ],
+      "settings": {
+        "custom_class": "hc-product-page-main-section",
+        "enable_sticky_info": true,
+        "media_size": 60,
+        "gallery_layout": "columns",
+        "thumbnail_position": "below",
+        "image_ratio": "adapt_first",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "mobile_layout": "full_width",
+        "image_ratio_mobile": "adapt_first",
+        "mobile_thumbnail": true,
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "divider": false,
+        "full_width": true,
+        "remove_side_padding": false,
+        "rounded": false
+      }
+    },
+    "hc_product_tabs_nav_WDD6Wb": {
+      "type": "hc-product-tabs-nav",
+      "blocks": {
+        "tab_yUyywW": {
+          "type": "tab",
+          "settings": {
+            "tab_id": "highlights",
+            "tab_title": "Highlights",
+            "hide_from_products": []
+          }
+        },
+        "tab_wdXBj7": {
+          "type": "tab",
+          "settings": {
+            "tab_id": "hygiene",
+            "tab_title": "Hygiene",
+            "hide_from_products": []
+          }
+        },
+        "tab_NajzRg": {
+          "type": "tab",
+          "settings": {
+            "tab_id": "beauty",
+            "tab_title": "Beauty",
+            "hide_from_products": []
+          }
+        },
+        "tab_bXyY8F": {
+          "type": "tab",
+          "settings": {
+            "tab_id": "performance",
+            "tab_title": "Performance",
+            "hide_from_products": []
+          }
+        }
+      },
+      "block_order": [
+        "tab_yUyywW",
+        "tab_wdXBj7",
+        "tab_NajzRg",
+        "tab_bXyY8F"
+      ],
+      "name": "Product Tabs Navigation",
+      "settings": {
+        "custom_id": "hc-product-tabs-nav",
+        "show_label": true,
+        "label_text": "Mission Focus:"
+      }
+    },
+    "hc_tab_content_highlights_U6AUr3": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "sheets_for_men_ihWnyx": {
+          "type": "sheets-for-men",
+          "settings": {
+            "heading": "We created the best towel for men.",
+            "subheading": "You shower to get clean.",
+            "subheading_line2": "Your towel should keep you that way.",
+            "description": "Men sweat more, use their towels harder, and wash them less often than most towel manufacturers ever designed for. That gap is exactly what the Jax Towel was built to fill.",
+            "cta_text": "Get to know the technology before you experience the difference.",
+            "scroll_target": "self-cleaning",
+            "bg_color": "#000000",
+            "heading_color": "#ffffff",
+            "accent_color": "#b45309",
+            "description_color": "#9ca3af"
+          }
+        },
+        "inhospitable_germs_Wmi4zX": {
+          "type": "inhospitable-germs",
+          "settings": {
+            "tag": "01 — Deep-Core Sanitation",
+            "heading": "Inhospitable for Germs",
+            "description": "<p>While standard towels harbor moisture and bacteria in their loops, the <strong>coconut charcoal viscose</strong> and copper infused cotton blend in the Jax Towel creates an inhospitable environment for germs, keeping every use significantly cleaner and fresher than a conventional towel.</p>",
+            "card_title": "MICROBIAL BARRIER ANALYSIS",
+            "row1_label": "Staphylococcus",
+            "row1_width": "99.9%",
+            "row1_label_right": "99.9%",
+            "row2_label": "E. Coli",
+            "row2_width": "99.7%",
+            "row2_label_right": "99.7%",
+            "row3_label": "Candida",
+            "row3_width": "99.1%",
+            "row3_label_right": "99.1%",
+            "footer_note": "*Tested under ISO 20743 standards for anti-bacterial activity*",
+            "reverse_layout": false,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "tooltip_trigger": "coconut charcoal viscose",
+            "tooltip_content": "<p><strong>WHAT IS COCONUT CHARCOAL VISCOSE?</strong></p><p>Coconut Charcoal Viscose is a fiber made from bamboo pulp blended with activated charcoal derived from coconut shells. The coconut shells are burned at high temperatures to create a highly porous form of carbon, which is then infused into viscose fiber. This process gives the filling a unique microscopic structure — millions of tiny pores that are invisible to the eye but highly active in regulating your sleep environment. It is a natural, sustainably sourced material that brings functional benefits far beyond what conventional fillings can offer.</p><p><strong>WHY IS IT IN THE JAX COMFORTER</strong></p><p>Coconut Charcoal Viscose works as the filling of the JAX Comforter because of how much it does passively while you sleep. Its porous structure absorbs excess moisture and humidity from your body, keeping the inside of the comforter dry and preventing that heavy, damp feeling that disrupts sleep. The activated charcoal also naturally traps and neutralizes odor-causing particles, so the comforter stays fresher for longer without relying on chemical treatments. Beyond that, the fiber helps regulate temperature by absorbing excess heat when you run warm and releasing it when you cool down, reducing the discomfort of overheating through the night. The result is a filling that actively works with your body — keeping you dry, cool, and comfortable from the moment you get in.</p>",
+            "tooltip_position": "center",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "card_heading_color": "#9ca3af",
+            "card_border_color": "#000000",
+            "bar_track_color": "#f3f4f6",
+            "bar_fill_color": "#000000"
+          }
+        },
+        "acne_shield_cpnML4": {
+          "type": "acne-shield",
+          "settings": {
+            "tag": "02 — Ion-Infused Recovery",
+            "heading": "Skin Clarity Support",
+            "description": "<p>Our specialized fiber technology supports skin clarity. By reducing the presence of surface bacteria that causes breakouts, this towel acts as the final step in your skincare routine.</p>",
+            "card_title": "MICROBIOME PROTECTION",
+            "stat_value": "99.9%",
+            "stat_unit": "Kill Rate",
+            "stat_title": "Bacteria Neutralization",
+            "stat_desc": "Destroys acne-causing microbes every 180 seconds.",
+            "reverse_layout": true,
+            "style_preset": "ion_recovery",
+            "html_id": "",
+            "enable_section_animation": false,
+            "tooltip_trigger": "Silver Grid",
+            "tooltip_content": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction. It does not wash out, fade, or lose effectiveness over time.</p><p><strong>Why is it in the Jax Sheets?</strong></p><p>Silver is one of the most effective natural antimicrobial elements known, and in the Jax Sheets it works continuously to inhibit the growth of bacteria, fungi, and odor-causing microbes across the entire surface of the fabric. Because the silver is woven in rather than coated on, its protective properties remain consistent wash after wash and year after year. The result is a sheet that maintains a genuinely hygienic sleep surface over the long term, without relying on chemical treatments or needing to be replaced to stay effective.</p>",
+            "tooltip_position": "center",
+            "bg_color": "#000000",
+            "text_color": "#fafafa",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563"
+          }
+        },
+        "faster_drying_ecWfnz": {
+          "type": "faster-drying",
+          "settings": {
+            "tag": "03 — Zero-Damp Technology",
+            "heading": "2x Faster Drying",
+            "description": "<p>Because air flows through the hexagonal channels of the weave, the towel dries 2x faster than traditional towels, preventing that \"sour towel\" smell common in humid bathrooms.</p>",
+            "visual_title": "Active Ventilation",
+            "visual_subtitle": "Means 2 Times Faster Drying",
+            "reverse_layout": false,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "circle_border_color": "#000000",
+            "circle_hover_tint": "rgba(239, 246, 255, 0.5)",
+            "shimmer_line_color": "#f3f4f6"
+          }
+        },
+        "lightweight_compact_eny7XB": {
+          "type": "lightweight-compact",
+          "settings": {
+            "tag": "04 — Ultra-Compact Travel",
+            "heading": "Lightweight Without Compromise",
+            "description": "<p>The high density fiber blend of the Jax Towel delivers strong absorbency with up to 50% less bulk than a conventional towel, making it an ideal companion for the gym or a carry-on bag.</p>",
+            "left_label": "High Density\nFibers",
+            "right_label": "Ultra\nLightweight",
+            "reverse_layout": true,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af",
+            "divider_color": "#1f2937",
+            "card_bg_color": "#ffffff",
+            "card_text_color": "#000000",
+            "accent_box_bg": "rgba(180, 83, 9, 0.05)",
+            "equals_color": "#d1d5db",
+            "density_box_bg": "#f9fafb",
+            "density_dot_color": "rgba(0, 0, 0, 0.2)",
+            "density_inner_border": "#d1d5db"
+          }
+        }
+      },
+      "block_order": [
+        "sheets_for_men_ihWnyx",
+        "inhospitable_germs_Wmi4zX",
+        "acne_shield_cpnML4",
+        "faster_drying_ecWfnz",
+        "lightweight_compact_eny7XB"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "highlights"
+      }
+    },
+    "hc_tab_content_highlights_WrjdeC": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "permanent_copper_charcoal_hjAbit": {
+          "type": "permanent-copper-charcoal",
+          "settings": {
+            "tag": "01 — Continuous Bio-Shield",
+            "heading": "Permanent Copper & Charcoal Defense",
+            "description": "<p>Standard towels trap moisture and skin cells, creating a breeding ground for bacteria and mildew. We've solved this by weaving a dual-action matrix of <strong>Copper-infused cotton</strong> and <strong>Coconut Charcoal viscose</strong> directly into the fabric. This isn't a temporary coating; it is a permanent part of the fiber structure designed to actively inhibit the growth of microbes and odors.</p>",
+            "panel_copper_title": "Copper",
+            "panel_copper_subtitle": "Microbial Lysis Engine",
+            "panel_charcoal_title": "Coconut Charcoal",
+            "panel_charcoal_subtitle": "Molecular Odor Trap",
+            "reverse_layout": true,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "tooltip_trigger_1": "Copper-infused cotton",
+            "tooltip_content_1": "",
+            "tooltip_trigger_2": "Coconut Charcoal viscose",
+            "tooltip_content_2": "",
+            "tooltip_position": "center",
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af",
+            "divider_color": "#1f2937",
+            "card_border_color": "#1f2937",
+            "panel_accent_tint": "rgba(180, 83, 9, 0.1)",
+            "panel_charcoal_bg": "#111827",
+            "panel_charcoal_border": "#4b5563"
+          }
+        },
+        "inhospitable_germs_Aaj6Vx": {
+          "type": "inhospitable-germs",
+          "settings": {
+            "tag": "01 — Deep-Core Sanitation",
+            "heading": "Inhospitable for Germs",
+            "description": "<p>While standard towels harbor moisture and bacteria in their loops, the <strong>coconut charcoal viscose</strong> and copper infused cotton blend in the Jax Towel creates an inhospitable environment for germs, keeping every use significantly cleaner and fresher than a conventional towel.</p>",
+            "card_title": "MICROBIAL BARRIER ANALYSIS",
+            "row1_label": "Staphylococcus",
+            "row1_width": "99.9%",
+            "row1_label_right": "99.9%",
+            "row2_label": "E. Coli",
+            "row2_width": "99.7%",
+            "row2_label_right": "99.7%",
+            "row3_label": "Candida",
+            "row3_width": "99.1%",
+            "row3_label_right": "99.1%",
+            "footer_note": "*Tested under ISO 20743 standards for anti-bacterial activity*",
+            "reverse_layout": false,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "tooltip_trigger": "coconut charcoal viscose",
+            "tooltip_content": "",
+            "tooltip_position": "center",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "card_heading_color": "#9ca3af",
+            "card_border_color": "#000000",
+            "bar_track_color": "#f3f4f6",
+            "bar_fill_color": "#000000"
+          }
+        },
+        "long_lasting_freshness_UTiqN8": {
+          "type": "long-lasting-freshness",
+          "settings": {
+            "tag": "03 — Molecular Deodorization",
+            "heading": "Long-Lasting Freshness",
+            "description": "<p>The Jax Towel acts as a filter by blending <strong>coconut charcoal viscose</strong> with copper infused cotton. The charcoal's microscopic pores trap and neutralize odor-causing compounds, while the copper inhibits the growth of microbes in damp fabric. This system is designed to keep your towel significantly fresher between washes than a conventional towel.</p>",
+            "filter_label": "Charcoal Filter",
+            "diagram_caption": "Molecular Adsorption Schematic",
+            "reverse_layout": true,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "tooltip_trigger": "coconut charcoal viscose",
+            "tooltip_content": "",
+            "tooltip_position": "center",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "divider_color": "#000000",
+            "diagram_bg_color": "#f9fafb",
+            "diagram_border_color": "#e5e7eb",
+            "inflow_dot_color": "#d1d5db",
+            "outflow_dot_color": "#60a5fa",
+            "filter_bg_color": "#000000",
+            "filter_border_color": "#1f2937",
+            "caption_color": "#9ca3af"
+          }
+        }
+      },
+      "block_order": [
+        "permanent_copper_charcoal_hjAbit",
+        "inhospitable_germs_Aaj6Vx",
+        "long_lasting_freshness_UTiqN8"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "hygiene"
+      }
+    },
+    "hc_tab_content_highlights_MqRhp3": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "acne_shield_Hrcm6j": {
+          "type": "acne-shield",
+          "settings": {
+            "tag": "01 — Ion-Infused Recovery",
+            "heading": "SKIN CLARITY SUPPORT",
+            "description": "<p>Our specialized fiber technology supports skin clarity. By reducing the presence of surface bacteria that causes breakouts, this towel acts as the final step in your skincare routine.</p>",
+            "card_title": "MICROBIOME PROTECTION",
+            "stat_value": "99.9%",
+            "stat_unit": "Kill Rate",
+            "stat_title": "Bacteria Neutralization",
+            "stat_desc": "Destroys acne-causing microbes every 180 seconds.",
+            "reverse_layout": true,
+            "style_preset": "ion_recovery",
+            "html_id": "",
+            "enable_section_animation": false,
+            "tooltip_trigger": "Silver Grid",
+            "tooltip_content": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction.</p><p><strong>How does it fight acne?</strong></p><p>The silver ions continuously neutralize the bacteria that cause breakouts — Propionibacterium acnes and Staphylococcus aureus — directly on the fabric surface. Your skin rests on a cleaner environment every night without any additional effort.</p>",
+            "tooltip_position": "center",
+            "bg_color": "#000000",
+            "text_color": "#fafafa",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af"
+          }
+        },
+        "micron_finish_pLUDRz": {
+          "type": "micron-finish",
+          "settings": {
+            "tag": "03 — Non-Absorbent of Products",
+            "heading": "Essential Oil Preservation",
+            "description": "<p>Unlike heavy terry cloth that soaks up your expensive moisturizers and serums, our fibers are designed to dry your skin surface without stripping away its natural essential oils.</p>",
+            "card_title": "SURFACE FRICTION COEFFICIENT",
+            "bar_1_label": "Cotton",
+            "bar_2_label": "Silk",
+            "bar_3_label": "HercLeón",
+            "chart_footer": "Lower value indicates smoother surface & less skin irritation",
+            "reverse_layout": false,
+            "tooltip_trigger": "micron",
+            "tooltip_content": "<p><strong>What is a micron?</strong></p><p>A micron (micrometer) is one millionth of a meter. At 10 microns, each Jax fiber is roughly 1/10th the diameter of a human hair. This ultra-fine gauge allows the fibers to bend and drape with almost no resistance, producing a surface that feels remarkably smooth against skin.</p><p><strong>Why does it matter for sheets?</strong></p><p>Finer fibers create a denser, smoother weave with less surface friction. This means less irritation, less pilling, and a softer hand-feel that actually improves with use rather than degrading over time like conventional cotton.</p>",
+            "bg_color": "#fafafa",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af"
+          }
+        }
+      },
+      "block_order": [
+        "acne_shield_Hrcm6j",
+        "micron_finish_pLUDRz"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "beauty"
+      }
+    },
+    "hc_tab_content_highlights_VprjqV": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "sweat_management_cDYgzL": {
+          "type": "sweat-management",
+          "settings": {
+            "tag": "02 — Active Temperature Regulation",
+            "heading": "Advanced Night Sweat Management",
+            "description": "<p>Standard sheets trap heat against your skin, which forces your body to sweat in order to cool itself down and ultimately disrupts your sleep. The Jax Sheets address <strong>Phase Changing Materials</strong> embedded in the fabric that absorb excess heat as your body temperature rises, storing it within the material rather than letting it build up against your skin. As your temperature naturally drops through the night, the PCM releases that stored heat back gradually, keeping your thermal environment stable in both directions. By reducing the heat spikes that trigger night sweats in the first place, these sheets help you stay in the ideal thermal zone for uninterrupted rest.</p>",
+            "badge_text": "NASA TECH",
+            "reverse_layout": false,
+            "tooltip_trigger": "Phase Changing Materials",
+            "tooltip_content": "<p><strong>What are PCMs?</strong></p><p>Physically, Phase Changing Materials are specialized, plant based waxes contained within millions of microscopic bubbles embedded in the fabric. These micro capsules allow the wax to change from a solid to a liquid and back again to manage heat, all without making the fabric feel wet or heavy. Because they are part of the fiber itself, they provide a physical temperature solution that will not wash out or lose effectiveness over time.</p>",
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af"
+          }
+        }
+      },
+      "block_order": [
+        "sweat_management_cDYgzL"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "performance"
+      }
+    },
+    "hc_prod_compare_yK8FrA": {
+      "type": "HC-Prod-Compare",
+      "blocks": {
+        "competitor_mfcrjB": {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Merino Wool",
+            "rating_1": 1,
+            "rating_2": 1,
+            "rating_3": 2,
+            "rating_4": 1,
+            "rating_5": 1,
+            "rating_6": 3,
+            "rating_7": 2,
+            "rating_8": 3,
+            "rating_9": 1,
+            "rating_10": 1,
+            "rating_11": 2
+          }
+        },
+        "competitor_4Eawpe": {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Cotton",
+            "rating_1": 1,
+            "rating_2": 1,
+            "rating_3": 2,
+            "rating_4": 1,
+            "rating_5": 1,
+            "rating_6": 3,
+            "rating_7": 2,
+            "rating_8": 3,
+            "rating_9": 1,
+            "rating_10": 1,
+            "rating_11": 2
+          }
+        },
+        "competitor_XU8Mrp": {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Polyester",
+            "rating_1": 1,
+            "rating_2": 1,
+            "rating_3": 2,
+            "rating_4": 1,
+            "rating_5": 1,
+            "rating_6": 3,
+            "rating_7": 2,
+            "rating_8": 3,
+            "rating_9": 1,
+            "rating_10": 1,
+            "rating_11": 2
+          }
+        },
+        "competitor_BUbVHw": {
+          "type": "competitor",
+          "settings": {
+            "material_name": "Viscose",
+            "rating_1": 1,
+            "rating_2": 1,
+            "rating_3": 2,
+            "rating_4": 1,
+            "rating_5": 1,
+            "rating_6": 3,
+            "rating_7": 2,
+            "rating_8": 3,
+            "rating_9": 1,
+            "rating_10": 1,
+            "rating_11": 2
+          }
+        }
+      },
+      "block_order": [
+        "competitor_mfcrjB",
+        "competitor_4Eawpe",
+        "competitor_XU8Mrp",
+        "competitor_BUbVHw"
+      ],
+      "name": "HC Product Comparison",
+      "settings": {
+        "custom_id": "hc-comparison-chart-product-page",
+        "subtitle": "",
+        "title": "HERCLÉON VS EVERYONE",
+        "comparison_description": "When you look at the data, it's not even close. HercLéon is the only fabric engineered to handle the full spectrum of human odor.",
+        "hero_column": "HercFiber",
+        "hero_rating_1": 5,
+        "hero_rating_2": 5,
+        "hero_rating_3": 5,
+        "hero_rating_4": 4,
+        "hero_rating_5": 5,
+        "hero_rating_6": 5,
+        "hero_rating_7": 5,
+        "hero_rating_8": 4,
+        "hero_rating_9": 5,
+        "hero_rating_10": 4,
+        "hero_rating_11": 5
+      }
+    },
+    "faq_tFM8TN": {
+      "type": "faq",
+      "blocks": {
+        "question_8MHqTd": {
+          "type": "question",
+          "settings": {
+            "title": "Does it really not smell?",
+            "text": "<p>Yes. We built it from the fiber up to prevent odor formation, not just mask it.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "question_wBeDAg": {
+          "type": "question",
+          "settings": {
+            "title": "How long can I wear it?",
+            "text": "<p>Many users go 5–14 days depending on climate and activity. Some have gone months.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "question_M9TMUk": {
+          "type": "question",
+          "settings": {
+            "title": "Do the metals wash out?",
+            "text": "<p>No. They are locked into the yarn itself. This is not a coating.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "question_yaeBUm": {
+          "type": "question",
+          "settings": {
+            "title": "Is it hot?",
+            "text": "<p>No — micro-modal + volcanic minerals keep it significantly cooler than cotton.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "question_VjgdGD": {
+          "type": "question",
+          "settings": {
+            "title": "How is this different from Merino?",
+            "text": "<p>Stronger odor control. More comfortable. More durable. More cooling. Truly smell-proof.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "contact_pNgEhN": {
+          "type": "contact",
+          "settings": {
+            "heading": "Didn’t find your answer?",
+            "text": "<p>Don't hestitate to contact us</p>",
+            "show_phone": false,
+            "avatar_height": 60,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "question_8MHqTd",
+        "question_wBeDAg",
+        "question_M9TMUk",
+        "question_yaeBUm",
+        "question_VjgdGD",
+        "contact_pNgEhN"
+      ],
+      "name": "t:sections.faq.name",
+      "settings": {
+        "custom_id": "hc-product-faq",
+        "custom_class": "hc-product--faq",
+        "style": "with-background",
+        "heading": "FAQs",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "<p>PLEASE READ OUR <a href=\"/pages/faq\" title=\"Faq\">FAQS</a> PAGE TO FIND OUT MORE.</p>",
+        "button_label": "",
+        "button_link": "",
+        "button_external": false,
+        "button_icon": true,
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "highlighted_reveal": false,
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "color_overlay": "#ffffff",
+        "overlay_opacity": 4,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "divider": false,
+        "narrow": false,
+        "full_width": false,
+        "rounded": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "product_limit": 12,
+        "columns": 5,
+        "carousel_on_desktop": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "heading": "You may also like",
+        "heading_size": "title-md",
+        "heading_alignment": "text-center md:items-center",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "<p>96% of our customers buy them together!</p>",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "highlighted_reveal": false,
+        "color_text": "#000000",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "#ffffff",
+        "color_button_background": "#000000",
+        "color_button_gradient": "",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "divider": false,
+        "full_width": false,
+        "rounded": true
+      }
+    },
+    "help-drawer": {
+      "type": "help-drawer",
+      "blocks": {
+        "content-1": {
+          "type": "content",
+          "settings": {
+            "icon": "rocket",
+            "heading": "Shipping Information",
+            "text": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#b45309",
+            "color_background": "#fffbeb",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content-2": {
+          "type": "content",
+          "settings": {
+            "icon": "headphone",
+            "heading": "Customer Support",
+            "text": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#0369a1",
+            "color_background": "#f0f9ff",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content-3": {
+          "type": "content",
+          "settings": {
+            "icon": "chat_bubble",
+            "heading": "FAQ’s",
+            "text": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#be123c",
+            "color_background": "#fff1f2",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content-4": {
+          "type": "content",
+          "settings": {
+            "icon": "phone",
+            "heading": "Contact Us",
+            "text": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#4d7c0f",
+            "color_background": "#f7fee7",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        }
+      },
+      "block_order": [
+        "content-1",
+        "content-2",
+        "content-3",
+        "content-4"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Need help?",
+        "description": "<p>If you have any questions, you are always welcome to contact us. We'll get back to you as soon as possible, within 24 hours on weekdays.</p>"
+      }
+    },
+    "hc_floating_navigation_product_pxWf6t": {
+      "type": "HC-floating-navigation-product",
+      "blocks": {
+        "clearance_item_niKyJP": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercShirt",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_HtffEP": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercSocks",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        },
+        "clearance_item_dLKra8": {
+          "type": "clearance_item",
+          "settings": {
+            "product_name": "HercUnderwear",
+            "product_link": "",
+            "clearance_level": "CLEARANCE LEVEL 1"
+          }
+        }
+      },
+      "block_order": [
+        "clearance_item_niKyJP",
+        "clearance_item_HtffEP",
+        "clearance_item_dLKra8"
+      ],
+      "name": "HC Floating Nav Product",
+      "settings": {
+        "benefits_text": "Benefits",
+        "benefits_link": "#hc-product-tabs-nav",
+        "compare_text": "Compare",
+        "compare_link": "#hc-comparison-chart-product-page",
+        "faq_text": "FAQ",
+        "faq_link": "#hc-product-faq",
+        "reviews_text": "Reviews",
+        "reviews_link": "",
+        "cta_text": "Add To Cart",
+        "cta_link": "#product-section-main",
+        "restricted_message": "\"HercLeon is currently invite-only. To ensure the highest quality and service, we limit access to verified operatives.\"",
+        "login_url": "",
+        "member_status": "Founding Member",
+        "invites_left": 3,
+        "merit_points": 1250
+      }
+    }
+  },
+  "order": [
+    "hc_product_pg_hero_7KPEDk",
+    "hc_prod_seen_on_xJpiyB",
+    "main-product",
+    "hc_product_tabs_nav_WDD6Wb",
+    "hc_tab_content_highlights_U6AUr3",
+    "hc_tab_content_highlights_WrjdeC",
+    "hc_tab_content_highlights_MqRhp3",
+    "hc_tab_content_highlights_VprjqV",
+    "hc_prod_compare_yK8FrA",
+    "faq_tFM8TN",
+    "product-recommendations",
+    "help-drawer",
+    "hc_floating_navigation_product_pxWf6t"
+  ]
+}
