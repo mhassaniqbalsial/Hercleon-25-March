@@ -1,0 +1,353 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign is_reversed = block.settings.reverse_layout
+  assign min_h = block.settings.min_height | default: '60vh'
+  assign divider_color = block.settings.divider_color | default: '#1f2937'
+  assign card_bg = block.settings.card_bg_color | default: '#ffffff'
+  assign card_text = block.settings.card_text_color | default: '#000000'
+  assign accent_faint_bg = block.settings.accent_box_bg | default: 'rgba(180, 83, 9, 0.05)'
+  assign html_id_setting = block.settings.html_id | default: '' | strip
+  if html_id_setting != blank
+    assign sec_id = html_id_setting
+  else
+    assign sec_id = 'lightweight-compact'
+  endif
+-%}
+
+<style>
+  @keyframes hc-lw-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .hc-lw {
+    --hc-lw-bg: {{ bg_color }};
+    --hc-lw-text: {{ text_color }};
+    --hc-lw-accent: {{ accent_color }};
+    --hc-lw-desc: {{ desc_color }};
+    --hc-lw-min-h: {{ min_h }};
+    --hc-lw-divider: {{ divider_color }};
+    --hc-lw-card-bg: {{ card_bg }};
+    --hc-lw-card-text: {{ card_text }};
+    --hc-lw-accent-faint: {{ accent_faint_bg }};
+    --hc-lw-eq: {{ block.settings.equals_color | default: '#d1d5db' }};
+    --hc-lw-dot: {{ block.settings.density_dot_color | default: 'rgba(0, 0, 0, 0.2)' }};
+    --hc-lw-inner-box: {{ block.settings.density_inner_border | default: '#d1d5db' }};
+    --hc-lw-density-bg: {{ block.settings.density_box_bg | default: '#f9fafb' }};
+
+    background-color: var(--hc-lw-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-lw__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: var(--hc-lw-min-h);
+    overflow: visible;
+  }
+
+  .hc-lw__text-col {
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-lw-text);
+    order: 2;
+    border-top: 1px solid var(--hc-lw-divider);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-lw__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    background-color: var(--hc-lw-bg);
+    order: 1;
+  }
+
+  .hc-lw__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-lw-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-lw__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-lw-text);
+  }
+
+  .hc-lw__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-lw-desc);
+    white-space: pre-line;
+  }
+
+  .hc-lw__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-lw__card {
+    background-color: var(--hc-lw-card-bg);
+    color: var(--hc-lw-card-text);
+    border: 1px solid #000;
+    padding: 2rem 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .hc-lw__compare {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .hc-lw__compare-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hc-lw__compare-row {
+      gap: 3rem;
+    }
+  }
+
+  .hc-lw__col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hc-lw__box {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hc-lw-density-bg);
+  }
+
+  @media (min-width: 768px) {
+    .hc-lw__box {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+
+  .hc-lw__box--accent {
+    border-color: var(--hc-lw-accent);
+    background-color: var(--hc-lw-accent-faint);
+  }
+
+  .hc-lw__grid-inner {
+    position: absolute;
+    inset: 0.5rem;
+    border: 1px dashed var(--hc-lw-inner-box);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.25rem;
+    padding: 0.25rem;
+    box-sizing: border-box;
+  }
+
+  .hc-lw__dot {
+    border-radius: 9999px;
+    background-color: var(--hc-lw-dot);
+  }
+
+  .hc-lw__zap {
+    position: relative;
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    color: var(--hc-lw-card-text);
+  }
+
+  .hc-lw__feather {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--hc-lw-accent);
+    animation: hc-lw-bounce 1.2s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .hc-lw__feather {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
+  .hc-lw__col-label {
+    margin: 0;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.35;
+    color: var(--hc-lw-card-text);
+  }
+
+  .hc-lw__col-label--accent {
+    color: var(--hc-lw-accent);
+  }
+
+  .hc-lw__eq {
+    font-size: 1.875rem;
+    font-weight: 300;
+    color: var(--hc-lw-eq);
+    line-height: 1;
+  }
+
+  @media (min-width: 768px) {
+    .hc-lw__text-col {
+      padding: 6rem 6rem;
+    }
+
+    .hc-lw__heading {
+      font-size: 3rem;
+    }
+
+    .hc-lw__card {
+      padding: 4rem 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-lw__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-lw__text-col {
+      border-top: none;
+    }
+
+    .hc-lw__grid--default .hc-lw__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-lw-divider);
+    }
+
+    .hc-lw__grid--default .hc-lw__visual-col {
+      order: 1;
+    }
+
+    .hc-lw__grid--reversed .hc-lw__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-lw-divider);
+    }
+
+    .hc-lw__grid--reversed .hc-lw__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section
+  id="{{ sec_id }}"
+  class="hc-lw{% if block.settings.enable_section_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-lw__grid {% if is_reversed %}hc-lw__grid--reversed{% else %}hc-lw__grid--default{% endif %}">
+    <div class="hc-lw__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-lw__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+      <h3 class="hc-lw__heading">{{ block.settings.heading | default: 'Lightweight Without Compromise' }}</h3>
+      <div class="hc-lw__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-lw__visual-col">
+      <div class="hc-lw__visual-inner">
+        <div class="hc-lw__card">
+          <div class="hc-lw__compare">
+            <div class="hc-lw__compare-row">
+              <div class="hc-lw__col">
+                <div class="hc-lw__box">
+                  <div class="hc-lw__grid-inner" aria-hidden="true">
+                    {%- for i in (1..16) -%}
+                      <div class="hc-lw__dot"></div>
+                    {%- endfor -%}
+                  </div>
+                  <svg
+                    class="hc-lw__zap"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+                  </svg>
+                </div>
+                <p class="hc-lw__col-label">{{ block.settings.left_label | newline_to_br }}</p>
+              </div>
+
+              <span class="hc-lw__eq" aria-hidden="true">=</span>
+
+              <div class="hc-lw__col">
+                <div class="hc-lw__box hc-lw__box--accent">
+                  <svg
+                    class="hc-lw__feather"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z"></path>
+                    <path d="M16 8 2 22"></path>
+                    <path d="M17.5 15H9"></path>
+                  </svg>
+                </div>
+                <p class="hc-lw__col-label hc-lw__col-label--accent">{{ block.settings.right_label | newline_to_br }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

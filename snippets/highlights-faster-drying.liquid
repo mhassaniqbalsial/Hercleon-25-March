@@ -1,0 +1,314 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign is_reversed = block.settings.reverse_layout
+  assign min_h = block.settings.min_height | default: '60vh'
+  assign hover_tint = block.settings.circle_hover_tint | default: 'rgba(239, 246, 255, 0.5)'
+  assign html_id_setting = block.settings.html_id | default: '' | strip
+  if html_id_setting != blank
+    assign sec_id = html_id_setting
+  else
+    assign sec_id = 'faster-drying'
+  endif
+-%}
+
+<style>
+  @keyframes hc-fd-shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes hc-fd-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+
+  .hc-fd {
+    --hc-fd-bg: {{ bg_color }};
+    --hc-fd-text: {{ text_color }};
+    --hc-fd-accent: {{ accent_color }};
+    --hc-fd-desc: {{ desc_color }};
+    --hc-fd-min-h: {{ min_h }};
+    --hc-fd-hover-tint: {{ hover_tint }};
+    --hc-fd-circle-border: {{ block.settings.circle_border_color | default: '#000000' }};
+    --hc-fd-shimmer-line: {{ block.settings.shimmer_line_color | default: '#f3f4f6' }};
+
+    background-color: var(--hc-fd-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-fd__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: var(--hc-fd-min-h);
+    overflow: visible;
+  }
+
+  .hc-fd__text-col {
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-fd-text);
+    order: 2;
+    border-top: 1px solid #000;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-fd__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    background-color: var(--hc-fd-bg);
+    order: 1;
+  }
+
+  .hc-fd__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-fd-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-fd__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-fd-text);
+  }
+
+  .hc-fd__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-fd-desc);
+    white-space: pre-line;
+  }
+
+  .hc-fd__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-fd__card {
+    background-color: var(--hc-fd-bg);
+    color: var(--hc-fd-text);
+    border: 1px solid #000;
+    padding: 2rem 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .hc-fd__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .hc-fd__wind-wrap {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border: 4px solid var(--hc-fd-circle-border);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hc-fd__wind-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background-color: var(--hc-fd-hover-tint);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+  }
+
+  .hc-fd__wind-wrap:hover .hc-fd__wind-bg {
+    transform: scale(1);
+  }
+
+  .hc-fd__wind-svg {
+    position: relative;
+    z-index: 1;
+    width: 4rem;
+    height: 4rem;
+    color: var(--hc-fd-text);
+    animation: hc-fd-pulse 2s ease-in-out infinite;
+  }
+
+  .hc-fd__shimmer-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--hc-fd-shimmer-line);
+    animation: hc-fd-shimmer 2s linear infinite;
+    pointer-events: none;
+  }
+
+  .hc-fd__shimmer-line--1 {
+    top: 25%;
+  }
+
+  .hc-fd__shimmer-line--2 {
+    top: 50%;
+    animation-delay: 0.5s;
+  }
+
+  .hc-fd__shimmer-line--3 {
+    top: 75%;
+    animation-delay: 1s;
+  }
+
+  .hc-fd__viz-text {
+    text-align: center;
+  }
+
+  .hc-fd__viz-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--hc-fd-text);
+  }
+
+  .hc-fd__viz-rule {
+    width: 3rem;
+    height: 1px;
+    background-color: var(--hc-fd-accent);
+    margin: 0 auto 0.5rem;
+  }
+
+  .hc-fd__viz-sub {
+    margin: 0;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--hc-fd-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  @media (min-width: 768px) {
+    .hc-fd__text-col {
+      padding: 6rem 6rem;
+    }
+
+    .hc-fd__heading {
+      font-size: 3rem;
+    }
+
+    .hc-fd__card {
+      padding: 4rem 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-fd__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-fd__text-col {
+      border-top: none;
+    }
+
+    .hc-fd__grid--default .hc-fd__text-col {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+
+    .hc-fd__grid--default .hc-fd__visual-col {
+      order: 1;
+    }
+
+    .hc-fd__grid--reversed .hc-fd__text-col {
+      order: 1;
+      border-right: 1px solid #000;
+    }
+
+    .hc-fd__grid--reversed .hc-fd__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section
+  id="{{ sec_id }}"
+  class="hc-fd{% if block.settings.enable_section_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-fd__grid {% if is_reversed %}hc-fd__grid--reversed{% else %}hc-fd__grid--default{% endif %}">
+    <div class="hc-fd__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-fd__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+      <h3 class="hc-fd__heading">{{ block.settings.heading | default: '2x Faster Drying' }}</h3>
+      <div class="hc-fd__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-fd__visual-col">
+      <div class="hc-fd__visual-inner">
+        <div class="hc-fd__card">
+          <div class="hc-fd__card-inner">
+            <div class="hc-fd__wind-wrap">
+              <div class="hc-fd__wind-bg" aria-hidden="true"></div>
+              <div class="hc-fd__shimmer-line hc-fd__shimmer-line--1" aria-hidden="true"></div>
+              <div class="hc-fd__shimmer-line hc-fd__shimmer-line--2" aria-hidden="true"></div>
+              <div class="hc-fd__shimmer-line hc-fd__shimmer-line--3" aria-hidden="true"></div>
+              <svg
+                class="hc-fd__wind-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path>
+                <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path>
+                <path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path>
+              </svg>
+            </div>
+            <div class="hc-fd__viz-text">
+              <p class="hc-fd__viz-title">{{ block.settings.visual_title | default: 'Active Ventilation' }}</p>
+              <div class="hc-fd__viz-rule" aria-hidden="true"></div>
+              <p class="hc-fd__viz-sub">{{ block.settings.visual_subtitle | default: 'Means 2 Times Faster Drying' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

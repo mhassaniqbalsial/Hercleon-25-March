@@ -1,0 +1,634 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#000000'
+  assign text_color = block.settings.text_color | default: '#ffffff'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#9ca3af'
+  assign is_reversed = block.settings.reverse_layout
+  assign as_tooltip_x = block.settings.tooltip_position | default: 'center'
+  assign min_h = block.settings.min_height | default: '60vh'
+  assign divider_color = block.settings.divider_color | default: '#1f2937'
+  assign card_border = block.settings.card_border_color | default: '#1f2937'
+  assign panel_charcoal_bg = block.settings.panel_charcoal_bg | default: '#111827'
+  assign panel_charcoal_border = block.settings.panel_charcoal_border | default: '#4b5563'
+  assign panel_accent_tint = block.settings.panel_accent_tint | default: 'rgba(180, 83, 9, 0.1)'
+  assign html_id_setting = block.settings.html_id | default: '' | strip
+  if html_id_setting != blank
+    assign sec_id = html_id_setting
+  else
+    assign sec_id = 'permanent-copper-charcoal'
+  endif
+  assign tmpl_1_id = 'hc-bio-tooltip-1-' | append: block.id
+  assign tmpl_2_id = 'hc-bio-tooltip-2-' | append: block.id
+  assign tr1 = block.settings.tooltip_trigger_1 | default: '' | strip
+  assign tr2 = block.settings.tooltip_trigger_2 | default: '' | strip
+  assign desc_rendered = block.settings.description
+-%}
+{%- if tr1 != blank and block.settings.tooltip_content_1 != blank -%}
+  {%- assign s1 = '<strong>' | append: tr1 | append: '</strong>' -%}
+  {%- capture h1 -%}
+<span class="hc-bio__tooltip-trigger"><strong>{{ tr1 }}</strong><span class="hc-bio__tooltip"><span class="hc-bio__tooltip-box"><span class="hc-bio__tooltip-content">{{ block.settings.tooltip_content_1 | replace: '<p>', '<span class="hc-bio__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-bio__tooltip-arrow"></span></span></span></span>
+  {%- endcapture -%}
+  {%- assign desc_rendered = desc_rendered | replace: s1, h1 -%}
+{%- endif -%}
+{%- if tr2 != blank and block.settings.tooltip_content_2 != blank -%}
+  {%- assign s2 = '<strong>' | append: tr2 | append: '</strong>' -%}
+  {%- capture h2 -%}
+<span class="hc-bio__tooltip-trigger"><strong>{{ tr2 }}</strong><span class="hc-bio__tooltip"><span class="hc-bio__tooltip-box"><span class="hc-bio__tooltip-content">{{ block.settings.tooltip_content_2 | replace: '<p>', '<span class="hc-bio__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-bio__tooltip-arrow"></span></span></span></span>
+  {%- endcapture -%}
+  {%- assign desc_rendered = desc_rendered | replace: s2, h2 -%}
+{%- endif -%}
+
+<style>
+  .hc-bio {
+    --hc-bio-bg: {{ bg_color }};
+    --hc-bio-text: {{ text_color }};
+    --hc-bio-accent: {{ accent_color }};
+    --hc-bio-desc: {{ desc_color }};
+    --hc-bio-min-h: {{ min_h }};
+    --hc-bio-divider: {{ divider_color }};
+    --hc-bio-card-border: {{ card_border }};
+    --hc-bio-panel-charcoal-bg: {{ panel_charcoal_bg }};
+    --hc-bio-panel-charcoal-border: {{ panel_charcoal_border }};
+    --hc-bio-panel-accent-tint: {{ panel_accent_tint }};
+
+    background-color: var(--hc-bio-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-bio__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: var(--hc-bio-min-h);
+    overflow: visible;
+  }
+
+  .hc-bio__text-col {
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-bio-text);
+    order: 2;
+    border-top: 1px solid var(--hc-bio-divider);
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-bio__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    background-color: var(--hc-bio-bg);
+    order: 1;
+    overflow: visible;
+  }
+
+  .hc-bio__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-bio-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-bio__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-bio-text);
+  }
+
+  .hc-bio__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-bio-desc);
+    white-space: pre-line;
+    overflow: visible;
+    position: relative;
+  }
+
+  .hc-bio__desc strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-bio__desc strong:hover {
+    color: var(--hc-bio-accent);
+  }
+
+  .hc-bio__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+    z-index: 3;
+  }
+
+  .hc-bio__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-bio__tooltip-trigger:hover strong {
+    color: var(--hc-bio-accent);
+  }
+
+  .hc-bio__tooltip {
+    position: absolute;
+    bottom: 100%;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.65rem;
+    margin-top: 0;
+    width: min(100vw - 2rem, 20rem);
+    max-width: calc(100vw - 2rem);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-bio[data-tooltip-x='align_start'] .hc-bio__tooltip {
+    left: 0;
+    right: auto;
+    transform: none;
+  }
+
+  .hc-bio__tooltip-trigger:hover .hc-bio__tooltip,
+  .hc-bio__tooltip-trigger:focus-within .hc-bio__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-bio__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.75rem 1.5rem 1.75rem;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.08),
+      0 20px 40px -12px rgba(0, 0, 0, 0.22);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+    overflow: visible;
+    max-height: none;
+    text-align: left;
+  }
+
+  .hc-bio__tooltip-content {
+    display: block;
+  }
+
+  .hc-bio__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-bio__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-bio__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-bio-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-bio__tooltip-content p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-bio__tooltip-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-bio__tooltip-content p:has(strong):not(:first-child) {
+    margin-top: 1.25rem;
+  }
+
+  .hc-bio__tooltip-content p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-bio-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-bio__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+  .hc-bio__tooltip--flip .hc-bio__tooltip-arrow {
+    bottom: auto;
+    top: -0.5rem;
+    border-right: none;
+    border-bottom: none;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-bio__tooltip {
+      width: min(100vw - 3rem, 28rem);
+      max-width: calc(100vw - 3rem);
+    }
+  }
+
+  .hc-bio__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-bio__card {
+    background-color: var(--hc-bio-bg);
+    color: var(--hc-bio-text);
+    border: 1px solid var(--hc-bio-card-border);
+    padding: 2rem 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .hc-bio__panels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hc-bio__panel {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hc-bio__panel-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    transform: translateX(-100%);
+    transition: transform 1s ease;
+    pointer-events: none;
+  }
+
+  .hc-bio__panel:hover .hc-bio__panel-glare {
+    transform: translateX(100%);
+  }
+
+  .hc-bio__panel--copper {
+    border: 2px solid var(--hc-bio-accent);
+    background-color: var(--hc-bio-panel-accent-tint);
+  }
+
+  .hc-bio__panel--charcoal {
+    border: 2px solid var(--hc-bio-panel-charcoal-border);
+    background-color: var(--hc-bio-panel-charcoal-bg);
+  }
+
+  .hc-bio__panel-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .hc-bio__panel--copper .hc-bio__panel-icon {
+    color: var(--hc-bio-accent);
+  }
+
+  .hc-bio__panel--charcoal .hc-bio__panel-icon {
+    color: #9ca3af;
+  }
+
+  .hc-bio__panel-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--hc-bio-text);
+  }
+
+  .hc-bio__panel-sub {
+    margin: 0.5rem 0 0;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .hc-bio__panel--copper .hc-bio__panel-sub {
+    color: var(--hc-bio-accent);
+  }
+
+  .hc-bio__panel--charcoal .hc-bio__panel-sub {
+    color: #6b7280;
+  }
+
+  @media (min-width: 768px) {
+    .hc-bio__text-col {
+      padding: 6rem 6rem;
+    }
+
+    .hc-bio__heading {
+      font-size: 3rem;
+    }
+
+    .hc-bio__card {
+      padding: 3rem 3rem;
+    }
+
+    .hc-bio__panel-title {
+      font-size: 1.875rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-bio__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-bio__text-col {
+      border-top: none;
+    }
+
+    .hc-bio__grid--default .hc-bio__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-bio-divider);
+    }
+
+    .hc-bio__grid--default .hc-bio__visual-col {
+      order: 1;
+    }
+
+    .hc-bio__grid--reversed .hc-bio__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-bio-divider);
+    }
+
+    .hc-bio__grid--reversed .hc-bio__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section
+  id="{{ sec_id }}"
+  class="hc-bio{% if block.settings.enable_section_animation %} animate-fade-in-up{% endif %}"
+  data-tooltip-x="{{ as_tooltip_x }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-bio__grid {% if is_reversed %}hc-bio__grid--reversed{% else %}hc-bio__grid--default{% endif %}">
+    <div class="hc-bio__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-bio__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+      <h3 class="hc-bio__heading">{{ block.settings.heading | default: 'Permanent Copper & Charcoal Defense' }}</h3>
+      <div class="hc-bio__desc">{{ desc_rendered }}</div>
+    </div>
+
+    <div class="hc-bio__visual-col">
+      <div class="hc-bio__visual-inner">
+        <div class="hc-bio__card">
+          <div class="hc-bio__panels">
+            <div class="hc-bio__panel hc-bio__panel--copper">
+              <div class="hc-bio__panel-glare" aria-hidden="true"></div>
+              <svg
+                class="hc-bio__panel-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+              <span class="hc-bio__panel-title">{{ block.settings.panel_copper_title | default: 'Copper' }}</span>
+              <span class="hc-bio__panel-sub">{{ block.settings.panel_copper_subtitle | default: 'Microbial Lysis Engine' }}</span>
+            </div>
+            <div class="hc-bio__panel hc-bio__panel--charcoal">
+              <div class="hc-bio__panel-glare" aria-hidden="true"></div>
+              <svg
+                class="hc-bio__panel-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path>
+                <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path>
+                <path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path>
+              </svg>
+              <span class="hc-bio__panel-title">{{ block.settings.panel_charcoal_title | default: 'Coconut Charcoal' }}</span>
+              <span class="hc-bio__panel-sub">{{ block.settings.panel_charcoal_subtitle | default: 'Molecular Odor Trap' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if tr1 != blank and block.settings.tooltip_content_1 != blank or tr2 != blank and block.settings.tooltip_content_2 != blank -%}
+  {%- if tr1 != blank and block.settings.tooltip_content_1 != blank -%}
+    <template id="{{ tmpl_1_id }}">
+      <span class="hc-bio__tooltip">
+        <span class="hc-bio__tooltip-box">
+          <span class="hc-bio__tooltip-content">{{ block.settings.tooltip_content_1 }}</span>
+        </span>
+        <span class="hc-bio__tooltip-arrow"></span>
+      </span>
+    </template>
+  {%- endif -%}
+  {%- if tr2 != blank and block.settings.tooltip_content_2 != blank -%}
+    <template id="{{ tmpl_2_id }}">
+      <span class="hc-bio__tooltip">
+        <span class="hc-bio__tooltip-box">
+          <span class="hc-bio__tooltip-content">{{ block.settings.tooltip_content_2 }}</span>
+        </span>
+        <span class="hc-bio__tooltip-arrow"></span>
+      </span>
+    </template>
+  {%- endif -%}
+
+  <script>
+    (function () {
+      var sectionId = {{ sec_id | json }};
+      var gap = 10;
+      var configs = [];
+      {%- if tr1 != blank and block.settings.tooltip_content_1 != blank -%}
+        configs.push({ text: {{ tr1 | json }}, tmplId: {{ tmpl_1_id | json }} });
+      {%- endif -%}
+      {%- if tr2 != blank and block.settings.tooltip_content_2 != blank -%}
+        configs.push({ text: {{ tr2 | json }}, tmplId: {{ tmpl_2_id | json }} });
+      {%- endif -%}
+
+      function bindBioTooltip(section) {
+        if (!section || section.hasAttribute('data-bio-tip-bound')) return;
+        section.setAttribute('data-bio-tip-bound', '1');
+        var scheduled = false;
+        function schedulePlace() {
+          if (scheduled) return;
+          scheduled = true;
+          requestAnimationFrame(function () {
+            scheduled = false;
+            section.querySelectorAll('.hc-bio__tooltip-trigger').forEach(placeOne);
+          });
+        }
+        function wrapIsActive(wrap) {
+          return wrap.matches(':hover') || wrap.matches(':focus-within');
+        }
+        function placeOne(wrap) {
+          var tip = wrap.querySelector('.hc-bio__tooltip');
+          if (!tip || !wrapIsActive(wrap)) return;
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              if (!wrapIsActive(wrap)) return;
+              var alignX = section.getAttribute('data-tooltip-x') || 'center';
+              var wrapR = wrap.getBoundingClientRect();
+              var maxW = Math.min(448, window.innerWidth - 24);
+              tip.style.boxSizing = 'border-box';
+              tip.style.width = maxW + 'px';
+              tip.style.position = 'fixed';
+              tip.style.right = 'auto';
+              tip.style.bottom = 'auto';
+              tip.style.transform = 'none';
+              tip.style.margin = '0';
+              tip.style.zIndex = '2147483646';
+              var tw = tip.getBoundingClientRect().width;
+              var th = tip.getBoundingClientRect().height;
+              var left =
+                alignX === 'align_start'
+                  ? wrapR.left
+                  : wrapR.left + wrapR.width / 2 - tw / 2;
+              left = Math.max(12, Math.min(left, window.innerWidth - tw - 12));
+              var top = wrapR.top - th - gap;
+              tip.classList.remove('hc-bio__tooltip--flip');
+              if (top < 8) {
+                top = wrapR.bottom + gap;
+                tip.classList.add('hc-bio__tooltip--flip');
+              }
+              tip.style.left = Math.round(left) + 'px';
+              tip.style.top = Math.round(top) + 'px';
+              var arrow = tip.querySelector('.hc-bio__tooltip-arrow');
+              if (arrow) {
+                var anchorX = wrapR.left + wrapR.width / 2;
+                var arrowLeft = anchorX - left;
+                arrowLeft = Math.max(14, Math.min(arrowLeft, tw - 14));
+                arrow.style.left = Math.round(arrowLeft) + 'px';
+                arrow.style.transform = 'translateX(-50%) rotate(45deg)';
+              }
+            });
+          });
+        }
+        function clearTip(wrap) {
+          var tip = wrap.querySelector('.hc-bio__tooltip');
+          if (!tip) return;
+          tip.style.cssText = '';
+          tip.classList.remove('hc-bio__tooltip--flip');
+          var arrow = tip.querySelector('.hc-bio__tooltip-arrow');
+          if (arrow) arrow.style.cssText = '';
+        }
+        section.querySelectorAll('.hc-bio__tooltip-trigger').forEach(function (wrap) {
+          wrap.addEventListener('mouseenter', schedulePlace);
+          wrap.addEventListener('mouseleave', function () {
+            clearTip(wrap);
+          });
+          wrap.addEventListener('focusin', schedulePlace);
+          wrap.addEventListener('focusout', function () {
+            clearTip(wrap);
+          });
+        });
+        document.addEventListener('scroll', schedulePlace, true);
+        window.addEventListener('resize', schedulePlace);
+      }
+
+      function initBioTooltip() {
+        var section = document.getElementById(sectionId);
+        if (!section) return;
+        var descEl = section.querySelector('.hc-bio__desc');
+        if (!descEl) return;
+        configs.forEach(function (cfg) {
+          if (!cfg.text || !cfg.tmplId) return;
+          var tmpl = document.getElementById(cfg.tmplId);
+          if (!tmpl) return;
+          var triggerLower = String(cfg.text).trim().toLowerCase();
+          descEl.querySelectorAll('strong').forEach(function (el) {
+            if (el.textContent.trim().toLowerCase() !== triggerLower) return;
+            if (el.closest('.hc-bio__tooltip-trigger')) return;
+            var wrapper = document.createElement('span');
+            wrapper.className = 'hc-bio__tooltip-trigger';
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
+            wrapper.appendChild(tmpl.content.cloneNode(true));
+          });
+        });
+        bindBioTooltip(section);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBioTooltip);
+      } else {
+        initBioTooltip();
+      }
+      document.addEventListener('shopify:section:load', initBioTooltip);
+    })();
+  </script>
+{%- endif -%}

@@ -131,6 +131,16 @@
             {% render 'hc-steady-temperature-speed', block: block %}
           {%- when 'acne-shield' -%}
             {% render 'highlights-acne-shield', block: block %}
+          {%- when 'inhospitable-germs' -%}
+            {% render 'highlights-inhospitable-germs', block: block %}
+          {%- when 'faster-drying' -%}
+            {% render 'highlights-faster-drying', block: block %}
+          {%- when 'lightweight-compact' -%}
+            {% render 'highlights-lightweight-compact', block: block %}
+          {%- when 'permanent-copper-charcoal' -%}
+            {% render 'highlights-permanent-copper-charcoal', block: block %}
+          {%- when 'long-lasting-freshness' -%}
+            {% render 'highlights-long-lasting-freshness', block: block %}
           {%- when 'hc-extended-lifespan' -%}
             {% render 'hc-extended-lifespan', block: block %}
           {%- when 'dolphin-smooth' -%}
@@ -1621,6 +1631,34 @@
         },
         {
           "type": "header",
+          "content": "Style preset"
+        },
+        {
+          "type": "select",
+          "id": "style_preset",
+          "label": "Visual style",
+          "options": [
+            { "value": "default", "label": "Default (light card)" },
+            { "value": "ion_recovery", "label": "Dark card (ion recovery)" }
+          ],
+          "default": "default",
+          "info": "Ion recovery: black card, gray-900 stat box, #111 ring track, gray-800 column borders, tighter padding. Set Colors below to black / white / gray for the full hero look."
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Leave blank to keep \"acne-shield\". Use a unique id if you need anchors or multiple instances (e.g. towel_ion_recovery)."
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false,
+          "info": "Adds theme class animate-fade-in-up on the section (only visible if your CSS defines it)."
+        },
+        {
+          "type": "header",
           "content": "Tooltip"
         },
         {
@@ -1676,6 +1714,859 @@
           "id": "desc_color",
           "label": "Description Color",
           "default": "#4b5563"
+        }
+      ]
+    },
+    {
+      "type": "inhospitable-germs",
+      "name": "Inhospitable for Germs",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "01 — Deep-Core Sanitation"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Inhospitable for Germs"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>While standard towels harbor moisture and bacteria in their loops, the <strong>coconut charcoal viscose</strong> and copper infused cotton blend in the Jax Towel creates an inhospitable environment for germs, keeping every use significantly cleaner and fresher than a conventional towel.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Microbial barrier card"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "MICROBIAL BARRIER ANALYSIS"
+        },
+        {
+          "type": "text",
+          "id": "row1_label",
+          "label": "Row 1 — microbe name",
+          "default": "Staphylococcus"
+        },
+        {
+          "type": "text",
+          "id": "row1_width",
+          "label": "Row 1 — bar width",
+          "default": "99.9%",
+          "info": "CSS width for the filled bar (e.g. 99.9% or 85%)"
+        },
+        {
+          "type": "text",
+          "id": "row1_label_right",
+          "label": "Row 1 — percentage label",
+          "default": "99.9%"
+        },
+        {
+          "type": "text",
+          "id": "row2_label",
+          "label": "Row 2 — microbe name",
+          "default": "E. Coli"
+        },
+        {
+          "type": "text",
+          "id": "row2_width",
+          "label": "Row 2 — bar width",
+          "default": "99.7%"
+        },
+        {
+          "type": "text",
+          "id": "row2_label_right",
+          "label": "Row 2 — percentage label",
+          "default": "99.7%"
+        },
+        {
+          "type": "text",
+          "id": "row3_label",
+          "label": "Row 3 — microbe name",
+          "default": "Candida"
+        },
+        {
+          "type": "text",
+          "id": "row3_width",
+          "label": "Row 3 — bar width",
+          "default": "99.1%"
+        },
+        {
+          "type": "text",
+          "id": "row3_label_right",
+          "label": "Row 3 — percentage label",
+          "default": "99.1%"
+        },
+        {
+          "type": "textarea",
+          "id": "footer_note",
+          "label": "Footer disclaimer",
+          "default": "*Tested under ISO 20743 standards for anti-bacterial activity*"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (text left, visual right)",
+          "default": false,
+          "info": "Off = visual left and text right (default travel layout)."
+        },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Default: inhospitable-germs. Example: travel"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false,
+          "info": "Adds animate-fade-in-up if your theme defines it."
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger",
+          "label": "Trigger phrase (must match bold text)",
+          "default": "coconut charcoal viscose"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip content"
+        },
+        {
+          "type": "select",
+          "id": "tooltip_position",
+          "label": "Tooltip horizontal placement",
+          "options": [
+            { "value": "center", "label": "Centered on the phrase" },
+            { "value": "align_start", "label": "Aligned with phrase" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading / body emphasis",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, hover)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "card_heading_color",
+          "label": "Card title & footer note",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "bar_track_color",
+          "label": "Bar track",
+          "default": "#f3f4f6"
+        },
+        {
+          "type": "color",
+          "id": "bar_fill_color",
+          "label": "Bar fill",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "type": "faster-drying",
+      "name": "2x Faster Drying",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — Zero-Damp Technology"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "2x Faster Drying"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Because air flows through the hexagonal channels of the weave, the towel dries 2x faster than traditional towels, preventing that \"sour towel\" smell common in humid bathrooms.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "visual_title",
+          "label": "Title under icon",
+          "default": "Active Ventilation"
+        },
+        {
+          "type": "text",
+          "id": "visual_subtitle",
+          "label": "Subtitle (small caps)",
+          "default": "Means 2 Times Faster Drying"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (text left, visual right)",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Default: faster-drying. Example: towel_zero_damp"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, rule, subtitle)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "circle_border_color",
+          "label": "Wind circle border",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "circle_hover_tint",
+          "label": "Circle hover tint (CSS)",
+          "default": "rgba(239, 246, 255, 0.5)",
+          "info": "Any valid CSS color, often rgba for a soft wash."
+        },
+        {
+          "type": "color",
+          "id": "shimmer_line_color",
+          "label": "Shimmer line color",
+          "default": "#f3f4f6"
+        }
+      ]
+    },
+    {
+      "type": "lightweight-compact",
+      "name": "Lightweight Compromise",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "04 — Ultra-Compact Travel"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Lightweight Without Compromise"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The high density fiber blend of the Jax Towel delivers strong absorbency with up to 50% less bulk than a conventional towel, making it an ideal companion for the gym or a carry-on bag.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Comparison labels"
+        },
+        {
+          "type": "textarea",
+          "id": "left_label",
+          "label": "Left column label",
+          "default": "High Density\nFibers",
+          "info": "Line breaks become line breaks on the storefront."
+        },
+        {
+          "type": "textarea",
+          "id": "right_label",
+          "label": "Right column label",
+          "default": "Ultra\nLightweight"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse column order",
+          "default": true,
+          "info": "On (default): text left, card right. Off: swaps columns."
+        },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Default: lightweight-compact. Example: towel_compact_travel"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading / tag context",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, feather, right label)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Column divider",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "card_text_color",
+          "label": "Card text & icons",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "accent_box_bg",
+          "label": "Accent box tint (feather side, CSS)",
+          "default": "rgba(180, 83, 9, 0.05)"
+        },
+        {
+          "type": "color",
+          "id": "equals_color",
+          "label": "Equals sign",
+          "default": "#d1d5db"
+        },
+        {
+          "type": "color",
+          "id": "density_box_bg",
+          "label": "Density box background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "text",
+          "id": "density_dot_color",
+          "label": "Grid dot fill (CSS)",
+          "default": "rgba(0, 0, 0, 0.2)"
+        },
+        {
+          "type": "color",
+          "id": "density_inner_border",
+          "label": "Inner dashed border",
+          "default": "#d1d5db"
+        }
+      ]
+    },
+    {
+      "type": "permanent-copper-charcoal",
+      "name": "Permanent Copper",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "01 — Continuous Bio-Shield"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Permanent Copper & Charcoal Defense"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Standard towels trap moisture and skin cells, creating a breeding ground for bacteria and mildew. We've solved this by weaving a dual-action matrix of <strong>Copper-infused cotton</strong> and <strong>Coconut Charcoal viscose</strong> directly into the fabric. This isn't a temporary coating; it is a permanent part of the fiber structure designed to actively inhibit the growth of microbes and odors.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Dual panels"
+        },
+        {
+          "type": "text",
+          "id": "panel_copper_title",
+          "label": "Copper panel — title",
+          "default": "Copper"
+        },
+        {
+          "type": "text",
+          "id": "panel_copper_subtitle",
+          "label": "Copper panel — subtitle",
+          "default": "Microbial Lysis Engine"
+        },
+        {
+          "type": "text",
+          "id": "panel_charcoal_title",
+          "label": "Charcoal panel — title",
+          "default": "Coconut Charcoal"
+        },
+        {
+          "type": "text",
+          "id": "panel_charcoal_subtitle",
+          "label": "Charcoal panel — subtitle",
+          "default": "Molecular Odor Trap"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse column order",
+          "default": true,
+          "info": "On (default): text left, panels right. Off: swaps columns."
+        },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Default: permanent-copper-charcoal. Example: towel_bio_shield"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Tooltips (two phrases)"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger_1",
+          "label": "Tooltip 1 — trigger (match bold text)",
+          "default": "Copper-infused cotton"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content_1",
+          "label": "Tooltip 1 — content"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger_2",
+          "label": "Tooltip 2 — trigger (match bold text)",
+          "default": "Coconut Charcoal viscose"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content_2",
+          "label": "Tooltip 2 — content"
+        },
+        {
+          "type": "select",
+          "id": "tooltip_position",
+          "label": "Tooltip horizontal placement",
+          "options": [
+            { "value": "center", "label": "Centered on the phrase" },
+            { "value": "align_start", "label": "Aligned with phrase" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading / panel titles",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Column divider",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#1f2937"
+        },
+        {
+          "type": "text",
+          "id": "panel_accent_tint",
+          "label": "Copper panel background (CSS)",
+          "default": "rgba(180, 83, 9, 0.1)"
+        },
+        {
+          "type": "color",
+          "id": "panel_charcoal_bg",
+          "label": "Charcoal panel background",
+          "default": "#111827"
+        },
+        {
+          "type": "color",
+          "id": "panel_charcoal_border",
+          "label": "Charcoal panel border",
+          "default": "#4b5563"
+        }
+      ]
+    },
+    {
+      "type": "long-lasting-freshness",
+      "name": "Long-Lasting Freshness",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — Molecular Deodorization"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Long-Lasting Freshness"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The Jax Towel acts as a filter by blending <strong>coconut charcoal viscose</strong> with copper infused cotton. The charcoal's microscopic pores trap and neutralize odor-causing compounds, while the copper inhibits the growth of microbes in damp fabric. This system is designed to keep your towel significantly fresher between washes than a conventional towel.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "filter_label",
+          "label": "Filter label",
+          "default": "Charcoal Filter"
+        },
+        {
+          "type": "text",
+          "id": "diagram_caption",
+          "label": "Diagram caption",
+          "default": "Molecular Adsorption Schematic"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse column order",
+          "default": true,
+          "info": "On (default): text left, diagram right."
+        },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Default: long-lasting-freshness. Example: towel_odor_deodorization"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_trigger",
+          "label": "Trigger phrase (match bold text)",
+          "default": "coconut charcoal viscose"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip content"
+        },
+        {
+          "type": "select",
+          "id": "tooltip_position",
+          "label": "Tooltip horizontal placement",
+          "options": [
+            { "value": "center", "label": "Centered on the phrase" },
+            { "value": "align_start", "label": "Aligned with phrase" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, filter glow)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Column divider",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "diagram_bg_color",
+          "label": "Diagram area background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "color",
+          "id": "diagram_border_color",
+          "label": "Diagram border",
+          "default": "#e5e7eb"
+        },
+        {
+          "type": "color",
+          "id": "inflow_dot_color",
+          "label": "Inflow dots",
+          "default": "#d1d5db"
+        },
+        {
+          "type": "color",
+          "id": "outflow_dot_color",
+          "label": "Outflow dots / arrow",
+          "default": "#60a5fa"
+        },
+        {
+          "type": "color",
+          "id": "filter_bg_color",
+          "label": "Filter block background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "filter_border_color",
+          "label": "Filter block border",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Diagram caption",
+          "default": "#9ca3af"
         }
       ]
     },

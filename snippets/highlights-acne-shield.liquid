@@ -5,7 +5,13 @@
   assign desc_color = block.settings.desc_color | default: '#4b5563'
   assign is_reversed = block.settings.reverse_layout
   assign as_tooltip_x = block.settings.tooltip_position | default: 'center'
-  assign as_section_id = 'acne-shield'
+  assign style_preset = block.settings.style_preset | default: 'default'
+  assign html_id_setting = block.settings.html_id | default: '' | strip
+  if html_id_setting != blank
+    assign as_section_id = html_id_setting
+  else
+    assign as_section_id = 'acne-shield'
+  endif
   assign as_tooltip_template_id = 'hc-as-tooltip-template-' | append: block.id
 -%}
 
@@ -431,11 +437,66 @@
       order: 2;
     }
   }
+
+  /* Dark “ion recovery” preset — matches towel_ion_recovery-style layout; opt-in via theme setting */
+  .hc-as--style-ion .hc-as__text-col {
+    padding: 1rem 3rem;
+    border-color: #1f2937;
+  }
+
+  .hc-as--style-ion .hc-as__visual-col {
+    padding: 0.5rem 2rem;
+  }
+
+  .hc-as--style-ion .hc-as__visual-inner {
+    max-width: 28rem;
+  }
+
+  .hc-as--style-ion .hc-as__card {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+  }
+
+  .hc-as--style-ion .hc-as__card-title {
+    color: #6b7280;
+  }
+
+  .hc-as--style-ion .hc-as__stat-box {
+    border-color: #111827;
+    background-color: rgba(3, 7, 18, 0.5);
+  }
+
+  .hc-as--style-ion .hc-as__ring-bg {
+    stroke: #111111;
+  }
+
+  .hc-as--style-ion .hc-as__ring-value {
+    color: #ffffff;
+  }
+
+  .hc-as--style-ion .hc-as__stat-title {
+    color: #ffffff;
+  }
+
+  .hc-as--style-ion .hc-as__stat-desc {
+    color: #6b7280;
+  }
+
+  @media (min-width: 768px) {
+    .hc-as--style-ion .hc-as__text-col {
+      padding: 1.5rem 6rem;
+    }
+
+    .hc-as--style-ion .hc-as__visual-col {
+      padding: 1rem 3rem;
+    }
+  }
 </style>
 
 <section
-  id="acne-shield"
-  class="hc-as"
+  id="{{ as_section_id }}"
+  class="hc-as{% if style_preset == 'ion_recovery' %} hc-as--style-ion{% endif %}{% if block.settings.enable_section_animation %} animate-fade-in-up{% endif %}"
   data-tooltip-x="{{ as_tooltip_x }}"
   {{ block.shopify_attributes }}
 >

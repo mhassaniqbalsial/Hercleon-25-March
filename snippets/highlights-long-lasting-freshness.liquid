@@ -1,0 +1,715 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign is_reversed = block.settings.reverse_layout
+  assign as_tooltip_x = block.settings.tooltip_position | default: 'center'
+  assign min_h = block.settings.min_height | default: '60vh'
+  assign divider_color = block.settings.divider_color | default: '#000000'
+  assign html_id_setting = block.settings.html_id | default: '' | strip
+  if html_id_setting != blank
+    assign sec_id = html_id_setting
+  else
+    assign sec_id = 'long-lasting-freshness'
+  endif
+  assign tmpl_id = 'hc-lf-tooltip-template-' | append: block.id
+  assign lf_tooltip_trigger = block.settings.tooltip_trigger | default: '' | strip
+-%}
+{%- assign desc_rendered = block.settings.description -%}
+{%- if lf_tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+  {%- assign lf_s = '<strong>' | append: lf_tooltip_trigger | append: '</strong>' -%}
+  {%- capture lf_h -%}
+<span class="hc-lf__tooltip-trigger"><strong>{{ lf_tooltip_trigger }}</strong><span class="hc-lf__tooltip"><span class="hc-lf__tooltip-box"><span class="hc-lf__tooltip-content">{{ block.settings.tooltip_content | replace: '<p>', '<span class="hc-lf__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-lf__tooltip-arrow"></span></span></span></span>
+  {%- endcapture -%}
+  {%- assign desc_rendered = desc_rendered | replace: lf_s, lf_h -%}
+{%- endif -%}
+
+<style>
+  @keyframes hc-lf-pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes hc-lf-ping-dot {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes hc-lf-bounce-arrow {
+    0%,
+    100% {
+      transform: translateY(-50%) translateX(0);
+    }
+    50% {
+      transform: translateY(-50%) translateX(5px);
+    }
+  }
+
+  .hc-lf {
+    --hc-lf-bg: {{ bg_color }};
+    --hc-lf-text: {{ text_color }};
+    --hc-lf-accent: {{ accent_color }};
+    --hc-lf-desc: {{ desc_color }};
+    --hc-lf-min-h: {{ min_h }};
+    --hc-lf-divider: {{ divider_color }};
+    --hc-lf-diagram-bg: {{ block.settings.diagram_bg_color | default: '#f9fafb' }};
+    --hc-lf-diagram-border: {{ block.settings.diagram_border_color | default: '#e5e7eb' }};
+    --hc-lf-in-dot: {{ block.settings.inflow_dot_color | default: '#d1d5db' }};
+    --hc-lf-out-dot: {{ block.settings.outflow_dot_color | default: '#60a5fa' }};
+    --hc-lf-filter-bg: {{ block.settings.filter_bg_color | default: '#000000' }};
+    --hc-lf-filter-border: {{ block.settings.filter_border_color | default: '#1f2937' }};
+    --hc-lf-caption: {{ block.settings.caption_color | default: '#9ca3af' }};
+
+    background-color: var(--hc-lf-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-lf__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: var(--hc-lf-min-h);
+    overflow: visible;
+  }
+
+  .hc-lf__text-col {
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-lf-text);
+    order: 2;
+    border-top: 1px solid var(--hc-lf-divider);
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-lf__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    background-color: var(--hc-lf-bg);
+    order: 1;
+    overflow: visible;
+  }
+
+  .hc-lf__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-lf-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-lf__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-lf-text);
+  }
+
+  .hc-lf__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-lf-desc);
+    white-space: pre-line;
+    overflow: visible;
+    position: relative;
+  }
+
+  .hc-lf__desc strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-lf__desc strong:hover {
+    color: var(--hc-lf-accent);
+  }
+
+  .hc-lf__tooltip-trigger {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+    z-index: 3;
+  }
+
+  .hc-lf__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-lf__tooltip-trigger:hover strong {
+    color: var(--hc-lf-accent);
+  }
+
+  .hc-lf__tooltip {
+    position: absolute;
+    bottom: 100%;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.65rem;
+    margin-top: 0;
+    width: min(100vw - 2rem, 20rem);
+    max-width: calc(100vw - 2rem);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-lf[data-tooltip-x='align_start'] .hc-lf__tooltip {
+    left: 0;
+    right: auto;
+    transform: none;
+  }
+
+  .hc-lf__tooltip-trigger:hover .hc-lf__tooltip,
+  .hc-lf__tooltip-trigger:focus-within .hc-lf__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-lf__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.75rem 1.5rem 1.75rem;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.08),
+      0 20px 40px -12px rgba(0, 0, 0, 0.22);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+    overflow: visible;
+    max-height: none;
+    text-align: left;
+  }
+
+  .hc-lf__tooltip-content {
+    display: block;
+  }
+
+  .hc-lf__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-lf__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-lf__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-lf-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-lf__tooltip-content p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-lf__tooltip-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-lf__tooltip-content p:has(strong):not(:first-child) {
+    margin-top: 1.25rem;
+  }
+
+  .hc-lf__tooltip-content p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-lf-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-lf__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+  .hc-lf__tooltip--flip .hc-lf__tooltip-arrow {
+    bottom: auto;
+    top: -0.5rem;
+    border-right: none;
+    border-bottom: none;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+  }
+
+  @media (min-width: 768px) {
+    .hc-lf__tooltip {
+      width: min(100vw - 3rem, 28rem);
+      max-width: calc(100vw - 3rem);
+    }
+  }
+
+  .hc-lf__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-lf__card {
+    background-color: var(--hc-lf-bg);
+    color: var(--hc-lf-text);
+    border: 1px solid #000;
+    padding: 2rem 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-lf__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-lf__diagram {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    background-color: var(--hc-lf-diagram-bg);
+    border: 1px solid var(--hc-lf-diagram-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hc-lf__col-in,
+  .hc-lf__col-out {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 33.333%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 0;
+    pointer-events: none;
+  }
+
+  .hc-lf__col-in {
+    left: 0;
+  }
+
+  .hc-lf__col-out {
+    right: 0;
+  }
+
+  .hc-lf__in-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background-color: var(--hc-lf-in-dot);
+    animation: hc-lf-pulse-dot 1.6s ease-in-out infinite;
+  }
+
+  .hc-lf__in-dot--d1 {
+    animation-delay: 0.2s;
+  }
+  .hc-lf__in-dot--d2 {
+    animation-delay: 0.4s;
+  }
+  .hc-lf__in-dot--d3 {
+    animation-delay: 0.6s;
+  }
+  .hc-lf__in-dot--d4 {
+    animation-delay: 0.8s;
+  }
+
+  .hc-lf__out-dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background-color: var(--hc-lf-out-dot);
+    animation: hc-lf-ping-dot 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .hc-lf__out-dot--d1 {
+    animation-delay: 0.5s;
+  }
+  .hc-lf__out-dot--d2 {
+    animation-delay: 1s;
+  }
+
+  .hc-lf__filter {
+    position: relative;
+    z-index: 2;
+    width: 8rem;
+    height: 12rem;
+    background-color: var(--hc-lf-filter-bg);
+    border: 4px solid var(--hc-lf-filter-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  }
+
+  .hc-lf__filter-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    background-image: radial-gradient(rgb(255, 255, 255) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+  }
+
+  .hc-lf__filter-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hc-lf__filter-icon-wrap {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background-color: var(--hc-lf-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(180, 83, 9, 0.45);
+  }
+
+  .hc-lf__filter-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #fff;
+  }
+
+  .hc-lf__filter-label {
+    margin: 0;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    padding: 0 0.5rem;
+    line-height: 1.3;
+  }
+
+  .hc-lf__arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 1.25rem;
+    line-height: 1;
+    animation: hc-lf-bounce-arrow 1.2s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .hc-lf__arrow--in {
+    left: 25%;
+    color: #9ca3af;
+  }
+
+  .hc-lf__arrow--out {
+    right: 25%;
+    color: var(--hc-lf-out-dot);
+    animation-delay: 0.5s;
+  }
+
+  .hc-lf__caption {
+    margin: 2rem 0 0;
+    text-align: center;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-lf-caption);
+  }
+
+  @media (min-width: 768px) {
+    .hc-lf__text-col {
+      padding: 6rem 6rem;
+    }
+
+    .hc-lf__heading {
+      font-size: 3rem;
+    }
+
+    .hc-lf__card {
+      padding: 4rem 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-lf__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-lf__text-col {
+      border-top: none;
+    }
+
+    .hc-lf__grid--default .hc-lf__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-lf-divider);
+    }
+
+    .hc-lf__grid--default .hc-lf__visual-col {
+      order: 1;
+    }
+
+    .hc-lf__grid--reversed .hc-lf__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-lf-divider);
+    }
+
+    .hc-lf__grid--reversed .hc-lf__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section
+  id="{{ sec_id }}"
+  class="hc-lf{% if block.settings.enable_section_animation %} animate-fade-in-up{% endif %}"
+  data-tooltip-x="{{ as_tooltip_x }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-lf__grid {% if is_reversed %}hc-lf__grid--reversed{% else %}hc-lf__grid--default{% endif %}">
+    <div class="hc-lf__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-lf__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+      <h3 class="hc-lf__heading">{{ block.settings.heading | default: 'Long-Lasting Freshness' }}</h3>
+      <div class="hc-lf__desc">{{ desc_rendered }}</div>
+    </div>
+
+    <div class="hc-lf__visual-col">
+      <div class="hc-lf__visual-inner">
+        <div class="hc-lf__card">
+          <div class="hc-lf__card-inner">
+            <div class="hc-lf__diagram" aria-hidden="true">
+              <div class="hc-lf__col-in">
+                <div class="hc-lf__in-dot"></div>
+                <div class="hc-lf__in-dot hc-lf__in-dot--d1"></div>
+                <div class="hc-lf__in-dot hc-lf__in-dot--d2"></div>
+                <div class="hc-lf__in-dot hc-lf__in-dot--d3"></div>
+                <div class="hc-lf__in-dot hc-lf__in-dot--d4"></div>
+              </div>
+              <div class="hc-lf__filter">
+                <div class="hc-lf__filter-pattern"></div>
+                <div class="hc-lf__filter-inner">
+                  <div class="hc-lf__filter-icon-wrap">
+                    <svg
+                      class="hc-lf__filter-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                    </svg>
+                  </div>
+                  <p class="hc-lf__filter-label">{{ block.settings.filter_label | default: 'Charcoal Filter' }}</p>
+                </div>
+              </div>
+              <div class="hc-lf__col-out">
+                <div class="hc-lf__out-dot"></div>
+                <div class="hc-lf__out-dot hc-lf__out-dot--d1"></div>
+                <div class="hc-lf__out-dot hc-lf__out-dot--d2"></div>
+              </div>
+              <span class="hc-lf__arrow hc-lf__arrow--in">→</span>
+              <span class="hc-lf__arrow hc-lf__arrow--out">→</span>
+            </div>
+            <p class="hc-lf__caption">{{ block.settings.diagram_caption | default: 'Molecular Adsorption Schematic' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if lf_tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
+  <template id="{{ tmpl_id }}">
+    <span class="hc-lf__tooltip">
+      <span class="hc-lf__tooltip-box">
+        <span class="hc-lf__tooltip-content">{{ block.settings.tooltip_content }}</span>
+      </span>
+      <span class="hc-lf__tooltip-arrow"></span>
+    </span>
+  </template>
+
+  <script>
+    (function () {
+      var sectionId = {{ sec_id | json }};
+      var tmplId = {{ tmpl_id | json }};
+      var gap = 10;
+
+      function bindLfTooltip(section) {
+        if (!section || section.hasAttribute('data-lf-tip-bound')) return;
+        section.setAttribute('data-lf-tip-bound', '1');
+        var scheduled = false;
+        function schedulePlace() {
+          if (scheduled) return;
+          scheduled = true;
+          requestAnimationFrame(function () {
+            scheduled = false;
+            section.querySelectorAll('.hc-lf__tooltip-trigger').forEach(placeOne);
+          });
+        }
+        function wrapIsActive(wrap) {
+          return wrap.matches(':hover') || wrap.matches(':focus-within');
+        }
+        function placeOne(wrap) {
+          var tip = wrap.querySelector('.hc-lf__tooltip');
+          if (!tip || !wrapIsActive(wrap)) return;
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              if (!wrapIsActive(wrap)) return;
+              var alignX = section.getAttribute('data-tooltip-x') || 'center';
+              var wrapR = wrap.getBoundingClientRect();
+              var maxW = Math.min(448, window.innerWidth - 24);
+              tip.style.boxSizing = 'border-box';
+              tip.style.width = maxW + 'px';
+              tip.style.position = 'fixed';
+              tip.style.right = 'auto';
+              tip.style.bottom = 'auto';
+              tip.style.transform = 'none';
+              tip.style.margin = '0';
+              tip.style.zIndex = '2147483646';
+              var tw = tip.getBoundingClientRect().width;
+              var th = tip.getBoundingClientRect().height;
+              var left =
+                alignX === 'align_start'
+                  ? wrapR.left
+                  : wrapR.left + wrapR.width / 2 - tw / 2;
+              left = Math.max(12, Math.min(left, window.innerWidth - tw - 12));
+              var top = wrapR.top - th - gap;
+              tip.classList.remove('hc-lf__tooltip--flip');
+              if (top < 8) {
+                top = wrapR.bottom + gap;
+                tip.classList.add('hc-lf__tooltip--flip');
+              }
+              tip.style.left = Math.round(left) + 'px';
+              tip.style.top = Math.round(top) + 'px';
+              var arrow = tip.querySelector('.hc-lf__tooltip-arrow');
+              if (arrow) {
+                var anchorX = wrapR.left + wrapR.width / 2;
+                var arrowLeft = anchorX - left;
+                arrowLeft = Math.max(14, Math.min(arrowLeft, tw - 14));
+                arrow.style.left = Math.round(arrowLeft) + 'px';
+                arrow.style.transform = 'translateX(-50%) rotate(45deg)';
+              }
+            });
+          });
+        }
+        function clearTip(wrap) {
+          var tip = wrap.querySelector('.hc-lf__tooltip');
+          if (!tip) return;
+          tip.style.cssText = '';
+          tip.classList.remove('hc-lf__tooltip--flip');
+          var arrow = tip.querySelector('.hc-lf__tooltip-arrow');
+          if (arrow) arrow.style.cssText = '';
+        }
+        section.querySelectorAll('.hc-lf__tooltip-trigger').forEach(function (wrap) {
+          wrap.addEventListener('mouseenter', schedulePlace);
+          wrap.addEventListener('mouseleave', function () {
+            clearTip(wrap);
+          });
+          wrap.addEventListener('focusin', schedulePlace);
+          wrap.addEventListener('focusout', function () {
+            clearTip(wrap);
+          });
+        });
+        document.addEventListener('scroll', schedulePlace, true);
+        window.addEventListener('resize', schedulePlace);
+      }
+
+      function initLfTooltip() {
+        var section = document.getElementById(sectionId);
+        if (!section) return;
+        var descEl = section.querySelector('.hc-lf__desc');
+        if (!descEl) return;
+        var trigger = {{ lf_tooltip_trigger | json }};
+        descEl.querySelectorAll('strong').forEach(function (el) {
+          if (el.textContent.trim().toLowerCase() !== String(trigger).trim().toLowerCase()) return;
+          if (el.closest('.hc-lf__tooltip-trigger')) return;
+          var wrapper = document.createElement('span');
+          wrapper.className = 'hc-lf__tooltip-trigger';
+          el.parentNode.insertBefore(wrapper, el);
+          wrapper.appendChild(el);
+          var tmpl = document.getElementById(tmplId);
+          if (tmpl) wrapper.appendChild(tmpl.content.cloneNode(true));
+        });
+        bindLfTooltip(section);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLfTooltip);
+      } else {
+        initLfTooltip();
+      }
+      document.addEventListener('shopify:section:load', initLfTooltip);
+    })();
+  </script>
+{%- endif -%}
