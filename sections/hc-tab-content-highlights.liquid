@@ -129,6 +129,8 @@
             {% render 'colling-dry-sweet', block: block %}
           {%- when 'steady-temperature-speed' -%}
             {% render 'hc-steady-temperature-speed', block: block %}
+          {%- when 'always-cool' -%}
+            {% render 'highlights-always-cool', block: block %}
           {%- when 'acne-shield' -%}
             {% render 'highlights-acne-shield', block: block %}
           {%- when 'inhospitable-germs' -%}
@@ -1562,6 +1564,176 @@
           "id": "heat_arrow_color",
           "label": "Body heat arrow",
           "default": "#fb923c"
+        }
+      ]
+    },
+    {
+      "type": "always-cool",
+      "name": "Always Cool",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "always-cool",
+          "info": "For anchor links; lowercase, no spaces (handleized)."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "01 — Thermal-Regulating Core"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Always the Cool Side"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Engineered with <strong>bamboo copper viscose</strong>, the Jax Comforter is designed to sleep significantly cooler than traditional cotton. The copper fibers help conduct heat away from your body while the <strong>coconut charcoal viscose</strong> fill manages humidity to prevent overheating. Together they work as a system to keep you on the cool side of the bed all night long.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Tooltips"
+        },
+        {
+          "type": "paragraph",
+          "content": "Bold the exact phrase in the description that should open each tooltip. Trigger text must match the bold wording (case-insensitive)."
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Tooltip 1 — trigger",
+          "default": "bamboo copper viscose",
+          "info": "Must match the bold phrase in the description."
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip 1 — content",
+          "info": "Use bold for small section titles inside the popup.",
+          "default": "<p><strong>BAMBOO COPPER VISCOSE</strong></p><p>A blend engineered to move heat away from the body while staying soft and breathable for cooler sleep.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_2_trigger",
+          "label": "Tooltip 2 — trigger",
+          "default": "coconut charcoal viscose",
+          "info": "Must match the bold phrase in the description."
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_2_content",
+          "label": "Tooltip 2 — content",
+          "default": "<p><strong>COCONUT CHARCOAL VISCOSE</strong></p><p>Fill fibers that help manage moisture and humidity so you are less likely to overheat.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Temperature graphic"
+        },
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Stat value",
+          "default": "-3°C"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat caption",
+          "default": "Temp Drop"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse row (visual first)",
+          "default": false,
+          "info": "On large screens, swaps columns. The vertical border between columns moves to the correct inside edge automatically."
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card / frame background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Borders (bottom & column divider)",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#f3f4f6"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag & bold hover)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "heading_text_color",
+          "label": "Heading text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "body_text_color",
+          "label": "Body text",
+          "default": "#4b5563"
+        },
+        {
+          "type": "header",
+          "content": "Temperature dial colors"
+        },
+        {
+          "type": "color",
+          "id": "stat_value_color",
+          "label": "Stat number",
+          "default": "#2563eb"
+        },
+        {
+          "type": "color",
+          "id": "stat_label_color",
+          "label": "Stat caption",
+          "default": "#60a5fa"
+        },
+        {
+          "type": "color",
+          "id": "dial_pulse_ring_color",
+          "label": "Outer pulse ring",
+          "default": "#eff6ff"
+        },
+        {
+          "type": "color",
+          "id": "dial_ring_color",
+          "label": "Inner circle border",
+          "default": "#dbeafe"
+        },
+        {
+          "type": "color",
+          "id": "dial_fill_color",
+          "label": "Inner circle fill (opacity applied)",
+          "default": "#eff6ff"
         }
       ]
     },

@@ -357,13 +357,22 @@
             "tab_title": "Performance",
             "hide_from_products": []
           }
+        },
+        "tab_jqDW9Q": {
+          "type": "tab",
+          "settings": {
+            "tab_id": "downsides",
+            "tab_title": "Downsides",
+            "hide_from_products": []
+          }
         }
       },
       "block_order": [
         "tab_yUyywW",
         "tab_wdXBj7",
         "tab_NajzRg",
-        "tab_bXyY8F"
+        "tab_bXyY8F",
+        "tab_jqDW9Q"
       ],
       "name": "Product Tabs Navigation",
       "settings": {
@@ -378,10 +387,10 @@
         "sheets_for_men_ihWnyx": {
           "type": "sheets-for-men",
           "settings": {
-            "heading": "We created the best towel for men.",
-            "subheading": "You shower to get clean.",
-            "subheading_line2": "Your towel should keep you that way.",
-            "description": "Men sweat more, use their towels harder, and wash them less often than most towel manufacturers ever designed for. That gap is exactly what the Jax Towel was built to fill.",
+            "heading": "We created the best comforter for men.",
+            "subheading": "Waking up drenched is not a sleep problem.",
+            "subheading_line2": "It's a comforter problem.",
+            "description": "Men run hotter and sweat more during sleep than conventional comforters were ever built to handle. Most trap heat and moisture against your body all night. The Jax Comforter was engineered to do the opposite.",
             "cta_text": "Get to know the technology before you experience the difference.",
             "scroll_target": "self-cleaning",
             "bg_color": "#000000",
@@ -390,118 +399,39 @@
             "description_color": "#9ca3af"
           }
         },
-        "inhospitable_germs_Wmi4zX": {
-          "type": "inhospitable-germs",
+        "always_cool_PBp9tc": {
+          "type": "always-cool",
+          "disabled": true,
           "settings": {
-            "tag": "01 — Deep-Core Sanitation",
-            "heading": "Inhospitable for Germs",
-            "description": "<p>While standard towels harbor moisture and bacteria in their loops, the <strong>coconut charcoal viscose</strong> and copper infused cotton blend in the Jax Towel creates an inhospitable environment for germs, keeping every use significantly cleaner and fresher than a conventional towel.</p>",
-            "card_title": "MICROBIAL BARRIER ANALYSIS",
-            "row1_label": "Staphylococcus",
-            "row1_width": "99.9%",
-            "row1_label_right": "99.9%",
-            "row2_label": "E. Coli",
-            "row2_width": "99.7%",
-            "row2_label_right": "99.7%",
-            "row3_label": "Candida",
-            "row3_width": "99.1%",
-            "row3_label_right": "99.1%",
-            "footer_note": "*Tested under ISO 20743 standards for anti-bacterial activity*",
-            "reverse_layout": false,
-            "min_height": "60vh",
-            "html_id": "",
-            "enable_section_animation": false,
-            "tooltip_trigger": "coconut charcoal viscose",
-            "tooltip_content": "<p><strong>WHAT IS COCONUT CHARCOAL VISCOSE?</strong></p><p>Coconut Charcoal Viscose is a fiber made from bamboo pulp blended with activated charcoal derived from coconut shells. The coconut shells are burned at high temperatures to create a highly porous form of carbon, which is then infused into viscose fiber. This process gives the filling a unique microscopic structure — millions of tiny pores that are invisible to the eye but highly active in regulating your sleep environment. It is a natural, sustainably sourced material that brings functional benefits far beyond what conventional fillings can offer.</p><p><strong>WHY IS IT IN THE JAX COMFORTER</strong></p><p>Coconut Charcoal Viscose works as the filling of the JAX Comforter because of how much it does passively while you sleep. Its porous structure absorbs excess moisture and humidity from your body, keeping the inside of the comforter dry and preventing that heavy, damp feeling that disrupts sleep. The activated charcoal also naturally traps and neutralizes odor-causing particles, so the comforter stays fresher for longer without relying on chemical treatments. Beyond that, the fiber helps regulate temperature by absorbing excess heat when you run warm and releasing it when you cool down, reducing the discomfort of overheating through the night. The result is a filling that actively works with your body — keeping you dry, cool, and comfortable from the moment you get in.</p>",
-            "tooltip_position": "center",
-            "bg_color": "#ffffff",
-            "text_color": "#000000",
-            "accent_color": "#b45309",
-            "desc_color": "#4b5563",
-            "card_heading_color": "#9ca3af",
-            "card_border_color": "#000000",
-            "bar_track_color": "#f3f4f6",
-            "bar_fill_color": "#000000"
-          }
-        },
-        "acne_shield_cpnML4": {
-          "type": "acne-shield",
-          "settings": {
-            "tag": "02 — Ion-Infused Recovery",
-            "heading": "Skin Clarity Support",
-            "description": "<p>Our specialized fiber technology supports skin clarity. By reducing the presence of surface bacteria that causes breakouts, this towel acts as the final step in your skincare routine.</p>",
-            "card_title": "MICROBIOME PROTECTION",
-            "stat_value": "99.9%",
-            "stat_unit": "Kill Rate",
-            "stat_title": "Bacteria Neutralization",
-            "stat_desc": "Destroys acne-causing microbes every 180 seconds.",
+            "section_id": "always-cool",
+            "tag": "01 — Thermal-Regulating Core",
+            "heading": "Always the Cool Side",
+            "description": "<p>Engineered with <strong>bamboo copper viscose</strong>, the Jax Comforter is designed to sleep significantly cooler than traditional cotton. The copper fibers help conduct heat away from your body while the <strong>coconut charcoal viscose</strong> fill manages humidity to prevent overheating. Together they work as a system to keep you on the cool side of the bed all night long.</p>",
+            "tooltip_1_trigger": "bamboo copper viscose",
+            "tooltip_1_content": "<p><strong>BAMBOO COPPER VISCOSE</strong></p><p>A blend engineered to move heat away from the body while staying soft and breathable for cooler sleep.</p>",
+            "tooltip_2_trigger": "coconut charcoal viscose",
+            "tooltip_2_content": "<p><strong>COCONUT CHARCOAL VISCOSE</strong></p><p>Fill fibers that help manage moisture and humidity so you are less likely to overheat.</p>",
+            "stat_value": "-3°C",
+            "stat_label": "Temp Drop",
             "reverse_layout": true,
-            "style_preset": "ion_recovery",
-            "html_id": "",
-            "enable_section_animation": false,
-            "tooltip_trigger": "Silver Grid",
-            "tooltip_content": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction. It does not wash out, fade, or lose effectiveness over time.</p><p><strong>Why is it in the Jax Sheets?</strong></p><p>Silver is one of the most effective natural antimicrobial elements known, and in the Jax Sheets it works continuously to inhibit the growth of bacteria, fungi, and odor-causing microbes across the entire surface of the fabric. Because the silver is woven in rather than coated on, its protective properties remain consistent wash after wash and year after year. The result is a sheet that maintains a genuinely hygienic sleep surface over the long term, without relying on chemical treatments or needing to be replaced to stay effective.</p>",
-            "tooltip_position": "center",
-            "bg_color": "#000000",
-            "text_color": "#fafafa",
-            "accent_color": "#b45309",
-            "desc_color": "#4b5563"
-          }
-        },
-        "faster_drying_ecWfnz": {
-          "type": "faster-drying",
-          "settings": {
-            "tag": "03 — Zero-Damp Technology",
-            "heading": "2x Faster Drying",
-            "description": "<p>Because air flows through the hexagonal channels of the weave, the towel dries 2x faster than traditional towels, preventing that \"sour towel\" smell common in humid bathrooms.</p>",
-            "visual_title": "Active Ventilation",
-            "visual_subtitle": "Means 2 Times Faster Drying",
-            "reverse_layout": false,
-            "min_height": "60vh",
-            "html_id": "",
-            "enable_section_animation": false,
             "bg_color": "#ffffff",
-            "text_color": "#000000",
-            "accent_color": "#b45309",
-            "desc_color": "#4b5563",
-            "circle_border_color": "#000000",
-            "circle_hover_tint": "rgba(239, 246, 255, 0.5)",
-            "shimmer_line_color": "#f3f4f6"
-          }
-        },
-        "lightweight_compact_eny7XB": {
-          "type": "lightweight-compact",
-          "settings": {
-            "tag": "04 — Ultra-Compact Travel",
-            "heading": "Lightweight Without Compromise",
-            "description": "<p>The high density fiber blend of the Jax Towel delivers strong absorbency with up to 50% less bulk than a conventional towel, making it an ideal companion for the gym or a carry-on bag.</p>",
-            "left_label": "High Density\nFibers",
-            "right_label": "Ultra\nLightweight",
-            "reverse_layout": true,
-            "min_height": "60vh",
-            "html_id": "",
-            "enable_section_animation": false,
-            "bg_color": "#000000",
-            "text_color": "#ffffff",
-            "accent_color": "#b45309",
-            "desc_color": "#9ca3af",
-            "divider_color": "#1f2937",
             "card_bg_color": "#ffffff",
-            "card_text_color": "#000000",
-            "accent_box_bg": "rgba(180, 83, 9, 0.05)",
-            "equals_color": "#d1d5db",
-            "density_box_bg": "#f9fafb",
-            "density_dot_color": "rgba(0, 0, 0, 0.2)",
-            "density_inner_border": "#d1d5db"
+            "border_color": "#000000",
+            "card_border_color": "#f3f4f6",
+            "accent_color": "#b45309",
+            "heading_text_color": "#000000",
+            "body_text_color": "#4b5563",
+            "stat_value_color": "#2563eb",
+            "stat_label_color": "#60a5fa",
+            "dial_pulse_ring_color": "#eff6ff",
+            "dial_ring_color": "#dbeafe",
+            "dial_fill_color": "#eff6ff"
           }
         }
       },
       "block_order": [
         "sheets_for_men_ihWnyx",
-        "inhospitable_germs_Wmi4zX",
-        "acne_shield_cpnML4",
-        "faster_drying_ecWfnz",
-        "lightweight_compact_eny7XB"
+        "always_cool_PBp9tc"
       ],
       "name": "Tab Content - Highlights",
       "settings": {
@@ -563,7 +493,7 @@
             "html_id": "",
             "enable_section_animation": false,
             "tooltip_trigger": "coconut charcoal viscose",
-            "tooltip_content": "",
+            "tooltip_content": "<p><strong>WHAT IS COCONUT CHARCOAL VISCOSE?</strong></p><p>Coconut Charcoal Viscose is a fiber made from bamboo pulp blended with activated charcoal derived from coconut shells. The coconut shells are burned at high temperatures to create a highly porous form of carbon, which is then infused into the viscose fiber. This process gives the filling a unique microscopic structure — millions of tiny pores that are invisible to the eye but highly active in regulating your sleep environment. It is a natural, sustainably sourced material that brings functional benefits far beyond what conventional fillings can offer.</p><p><strong>WHY IS IT IN THE JAX COMFORTER?</strong></p><p>Coconut Charcoal Viscose works as the filling of the JAX Comforter because of how much it does passively while you sleep. Its porous structure absorbs excess moisture and humidity from your body, keeping the inside of the comforter dry and preventing that heavy, damp feeling that disrupts sleep. The activated charcoal also naturally traps and neutralizes odor-causing particles, so the comforter stays fresher for longer without relying on chemical treatments. Beyond that, the fiber helps regulate temperature by absorbing excess heat when you run warm and releasing it when you cool down, reducing the discomfort of overheating through the night. The result is a filling that actively works with your body — keeping you dry, cool, and comfortable from the moment you get in.</p>",
             "tooltip_position": "center",
             "bg_color": "#ffffff",
             "text_color": "#000000",
@@ -588,7 +518,7 @@
             "html_id": "",
             "enable_section_animation": false,
             "tooltip_trigger": "coconut charcoal viscose",
-            "tooltip_content": "",
+            "tooltip_content": "<p><strong>WHAT IS COCONUT CHARCOAL VISCOSE?</strong></p><p>Coconut Charcoal Viscose is a fiber made from bamboo pulp blended with activated charcoal derived from coconut shells. The coconut shells are burned at high temperatures to create a highly porous form of carbon, which is then infused into the viscose fiber. This process gives the filling a unique microscopic structure — millions of tiny pores that are invisible to the eye but highly active in regulating your sleep environment. It is a natural, sustainably sourced material that brings functional benefits far beyond what conventional fillings can offer.</p><p><strong>WHY IS IT IN THE JAX COMFORTER?</strong></p><p>Coconut Charcoal Viscose works as the filling of the JAX Comforter because of how much it does passively while you sleep. Its porous structure absorbs excess moisture and humidity from your body, keeping the inside of the comforter dry and preventing that heavy, damp feeling that disrupts sleep. The activated charcoal also naturally traps and neutralizes odor-causing particles, so the comforter stays fresher for longer without relying on chemical treatments. Beyond that, the fiber helps regulate temperature by absorbing excess heat when you run warm and releasing it when you cool down, reducing the discomfort of overheating through the night. The result is a filling that actively works with your body — keeping you dry, cool, and comfortable from the moment you get in.</p>",
             "tooltip_position": "center",
             "bg_color": "#ffffff",
             "text_color": "#000000",
@@ -642,6 +572,29 @@
             "desc_color": "#9ca3af"
           }
         },
+        "hc_micro_geometry_cWcNnw": {
+          "type": "hc-micro-geometry",
+          "settings": {
+            "tag": "02 — Micro-Exfoliating Geometry",
+            "heading": "HC Micro Geometry",
+            "description": "<p>The precision-engineered waffle weave provides a gentle mechanical exfoliation. It lifts away dead skin cells and debris more effectively than flat towels, leaving your skin polished and glowing.</p>",
+            "matrix_badge": "Geometric Exfoliation Matrix",
+            "matrix_footer": "Precision Weave Architecture",
+            "reverse_layout": false,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "card_border_color": "#000000",
+            "matrix_bg": "#f9fafb",
+            "matrix_cell_border": "#d1d5db",
+            "matrix_cell_bg": "#ffffff",
+            "footer_color": "#9ca3af"
+          }
+        },
         "micron_finish_pLUDRz": {
           "type": "micron-finish",
           "settings": {
@@ -665,6 +618,7 @@
       },
       "block_order": [
         "acne_shield_Hrcm6j",
+        "hc_micro_geometry_cWcNnw",
         "micron_finish_pLUDRz"
       ],
       "name": "Tab Content - Highlights",
@@ -675,29 +629,128 @@
     "hc_tab_content_highlights_VprjqV": {
       "type": "hc-tab-content-highlights",
       "blocks": {
-        "sweat_management_cDYgzL": {
-          "type": "sweat-management",
+        "faster_drying_ehPGEE": {
+          "type": "faster-drying",
           "settings": {
-            "tag": "02 — Active Temperature Regulation",
-            "heading": "Advanced Night Sweat Management",
-            "description": "<p>Standard sheets trap heat against your skin, which forces your body to sweat in order to cool itself down and ultimately disrupts your sleep. The Jax Sheets address <strong>Phase Changing Materials</strong> embedded in the fabric that absorb excess heat as your body temperature rises, storing it within the material rather than letting it build up against your skin. As your temperature naturally drops through the night, the PCM releases that stored heat back gradually, keeping your thermal environment stable in both directions. By reducing the heat spikes that trigger night sweats in the first place, these sheets help you stay in the ideal thermal zone for uninterrupted rest.</p>",
-            "badge_text": "NASA TECH",
+            "tag": "01 — Zero-Damp Technology",
+            "heading": "2x Faster Drying",
+            "description": "<p>Because air flows through the hexagonal channels of the weave, the towel dries 2x faster than traditional towels, preventing that \"sour towel\" smell common in humid bathrooms.</p>",
+            "visual_title": "Active Ventilation",
+            "visual_subtitle": "Means 2 Times Faster Drying",
+            "reverse_layout": true,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "circle_border_color": "#000000",
+            "circle_hover_tint": "rgba(239, 246, 255, 0.5)",
+            "shimmer_line_color": "#f3f4f6"
+          }
+        },
+        "lightweight_compact_cpdNJt": {
+          "type": "lightweight-compact",
+          "settings": {
+            "tag": "02 — Ultra-Compact Travel",
+            "heading": "Lightweight Without Compromise",
+            "description": "<p>The high density fiber blend of the Jax Towel delivers strong absorbency with up to 50% less bulk than a conventional towel, making it an ideal companion for the gym or a carry-on bag.</p>",
+            "left_label": "High Density\nFibers",
+            "right_label": "Ultra\nLightweight",
             "reverse_layout": false,
-            "tooltip_trigger": "Phase Changing Materials",
-            "tooltip_content": "<p><strong>What are PCMs?</strong></p><p>Physically, Phase Changing Materials are specialized, plant based waxes contained within millions of microscopic bubbles embedded in the fabric. These micro capsules allow the wax to change from a solid to a liquid and back again to manage heat, all without making the fabric feel wet or heavy. Because they are part of the fiber itself, they provide a physical temperature solution that will not wash out or lose effectiveness over time.</p>",
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
             "bg_color": "#000000",
             "text_color": "#ffffff",
             "accent_color": "#b45309",
-            "desc_color": "#9ca3af"
+            "desc_color": "#9ca3af",
+            "divider_color": "#1f2937",
+            "card_bg_color": "#ffffff",
+            "card_text_color": "#000000",
+            "accent_box_bg": "rgba(180, 83, 9, 0.05)",
+            "equals_color": "#d1d5db",
+            "density_box_bg": "#f9fafb",
+            "density_dot_color": "rgba(0, 0, 0, 0.2)",
+            "density_inner_border": "#d1d5db"
+          }
+        },
+        "hc_rapid_surface_area_j4Hckt": {
+          "type": "hc-rapid-surface-area",
+          "settings": {
+            "tag": "03 — Increased Surface Area",
+            "heading": "Rapid Absorption",
+            "description": "<p>The geometric wells in the weave of the Jax Towel significantly increase the surface area of the fabric, allowing for rapid absorption and faster evaporation compared to a conventional towel weave.</p>",
+            "item_1_title": "Fast Absorption",
+            "item_2_title": "Fast Evaporation",
+            "item_3_title": "Extra Surface Dryness",
+            "reverse_layout": false,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "card_bg": "#f9fafb",
+            "card_border_color": "#e5e7eb"
           }
         }
       },
       "block_order": [
-        "sweat_management_cDYgzL"
+        "faster_drying_ehPGEE",
+        "lightweight_compact_cpdNJt",
+        "hc_rapid_surface_area_j4Hckt"
       ],
       "name": "Tab Content - Highlights",
       "settings": {
         "tab_id": "performance"
+      }
+    },
+    "hc_tab_content_highlights_9PafMc": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "hc_honest_truth_NbQRXj": {
+          "type": "hc-honest-truth",
+          "settings": {
+            "eyebrow": "Transparency",
+            "heading": "The Honest Truth",
+            "lead": "We're not for everyone. Here's why you might NOT want to buy from us.",
+            "card_1_num": "01",
+            "card_1_title": "The \"Slick\" Effect",
+            "card_1_body": "Because our fibers are so smooth, the comforter has a high degree of \"slip.\" If you’re a very restless sleeper, you might find it sliding toward the edge of the bed more than a rough cotton duvet would.",
+            "card_2_num": "02",
+            "card_2_title": "Natural Character",
+            "card_2_body": "Our high-performance material is prone to \"lived-in\" wrinkling. We don't use stiffening agents or chemical anti-wrinkle sprays, so it will have a soft, draped aesthetic rather than a rigid, starched look.",
+            "card_3_num": "03",
+            "card_3_title": "Absorbent Drying Time",
+            "card_3_body": "Our fibers are designed to drink up moisture to keep you dry. This means when it is time for a wash, it will take longer to dry on a low-heat setting than synthetic, low-quality bedding.",
+            "card_4_num": "04",
+            "card_4_title": "High-Density Loft",
+            "card_4_body": "If you are looking for a massive, \"puffy\" polyester cloud, this isn't it. Our comforter is high-density and streamlined—designed for thermal performance and weight, not for bulk.",
+            "card_5_num": "05",
+            "card_5_title": "Specific Care",
+            "card_5_body": "This is a premium technology. To keep the integrated freshness active, you’ll need to avoid high heat and bleach, which can \"clog\" the performance properties of the fibers.",
+            "closing_brand": "HercLeon",
+            "closing_tagline": "Built for the 1% who demand more.",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "muted_color": "#4b5563",
+            "grid_line_color": "#000000",
+            "card_hover_bg": "#f9fafb",
+            "aside_bg": "#f9fafb",
+            "aside_muted_color": "#9ca3af"
+          }
+        }
+      },
+      "block_order": [
+        "hc_honest_truth_NbQRXj"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "downsides"
       }
     },
     "hc_prod_compare_yK8FrA": {
@@ -1073,6 +1126,7 @@
     "hc_tab_content_highlights_WrjdeC",
     "hc_tab_content_highlights_MqRhp3",
     "hc_tab_content_highlights_VprjqV",
+    "hc_tab_content_highlights_9PafMc",
     "hc_prod_compare_yK8FrA",
     "faq_tFM8TN",
     "product-recommendations",
