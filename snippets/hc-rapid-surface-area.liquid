@@ -1,0 +1,97 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign card_bg = block.settings.card_bg | default: '#f9fafb'
+  assign card_border_color = block.settings.card_border_color | default: '#e5e7eb'
+  assign min_h = block.settings.min_height | default: '60vh'
+  assign is_reversed = block.settings.reverse_layout
+-%}
+
+<style>
+  .hc-rapid-surface-area {
+    --hc-rapid-surface-area-bg: {{ bg_color }};
+    --hc-rapid-surface-area-text: {{ text_color }};
+    --hc-rapid-surface-area-accent: {{ accent_color }};
+    --hc-rapid-surface-area-desc: {{ desc_color }};
+    --hc-rapid-surface-area-card-bg: {{ card_bg }};
+    --hc-rapid-surface-area-card-border: {{ card_border_color }};
+    --hc-rapid-surface-area-min-h: {{ min_h }};
+    background-color: var(--hc-rapid-surface-area-bg);
+    border-bottom: 1px solid #000;
+  }
+
+  .hc-rapid-surface-area__grid { display: grid; grid-template-columns: 1fr; min-height: var(--hc-rapid-surface-area-min-h); }
+  .hc-rapid-surface-area__text-col { padding: 3rem; display: flex; flex-direction: column; justify-content: center; color: var(--hc-rapid-surface-area-text); border-top: 1px solid #000; order: 2; }
+  .hc-rapid-surface-area__visual-col { padding: 2rem; display: flex; align-items: center; justify-content: center; order: 1; }
+  .hc-rapid-surface-area__tag { margin: 0 0 1.5rem; font: 700 0.75rem ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hc-rapid-surface-area-accent); }
+  .hc-rapid-surface-area__heading { margin: 0 0 2rem; font-size: 2rem; line-height: 1.15; font-weight: 700; text-transform: uppercase; font-family: var(--font-heading-family, inherit); }
+  .hc-rapid-surface-area__desc { font-size: 1.125rem; font-weight: 300; line-height: 1.6; color: var(--hc-rapid-surface-area-desc); max-width: 32rem; }
+  .hc-rapid-surface-area__desc p { margin: 0 0 1rem; }
+  .hc-rapid-surface-area__desc p:last-child { margin-bottom: 0; }
+  .hc-rapid-surface-area__inner { width: 100%; max-width: 42rem; }
+  .hc-rapid-surface-area__card { border: 1px solid #000; background: #fff; padding: 1.5rem; }
+  .hc-rapid-surface-area__list { display: grid; gap: 0.9rem; }
+  .hc-rapid-surface-area__item { display: flex; align-items: center; gap: 0.9rem; border: 1px solid var(--hc-rapid-surface-area-card-border); background: var(--hc-rapid-surface-area-card-bg); padding: 1rem; transition: border-color .2s ease; }
+  .hc-rapid-surface-area__item:hover { border-color: var(--hc-rapid-surface-area-accent); }
+  .hc-rapid-surface-area__icon-ring { width: 2.25rem; height: 2.25rem; border-radius: 0.25rem; display: grid; place-items: center; background: color-mix(in srgb, var(--hc-rapid-surface-area-accent) 20%, white); color: var(--hc-rapid-surface-area-accent); flex-shrink: 0; }
+  .hc-rapid-surface-area__icon { width: 1.2rem; height: 1.2rem; }
+  .hc-rapid-surface-area__item-title { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; color: var(--hc-rapid-surface-area-text); }
+
+  @media (min-width: 768px) {
+    .hc-rapid-surface-area__text-col { padding: 6rem; }
+    .hc-rapid-surface-area__visual-col { padding: 3rem; }
+    .hc-rapid-surface-area__heading { font-size: 3rem; }
+    .hc-rapid-surface-area__card { padding: 2rem; }
+  }
+  @media (min-width: 1024px) {
+    .hc-rapid-surface-area__grid { grid-template-columns: 1fr 1fr; }
+    .hc-rapid-surface-area__text-col { border-top: 0; }
+    .hc-rapid-surface-area__grid--default .hc-rapid-surface-area__text-col { order: 1; border-right: 1px solid #000; }
+    .hc-rapid-surface-area__grid--default .hc-rapid-surface-area__visual-col { order: 2; }
+    .hc-rapid-surface-area__grid--reversed .hc-rapid-surface-area__text-col { order: 2; border-left: 1px solid #000; border-right: 0; }
+    .hc-rapid-surface-area__grid--reversed .hc-rapid-surface-area__visual-col { order: 1; }
+  }
+</style>
+
+<section
+  id="{{ block.settings.html_id | default: 'hc-rapid-surface-area' }}"
+  class="hc-rapid-surface-area{% if block.settings.enable_section_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-rapid-surface-area__grid {% if is_reversed %}hc-rapid-surface-area__grid--reversed{% else %}hc-rapid-surface-area__grid--default{% endif %}">
+    <div class="hc-rapid-surface-area__text-col">
+      {%- if block.settings.tag != blank -%}<span class="hc-rapid-surface-area__tag">{{ block.settings.tag }}</span>{%- endif -%}
+      <h3 class="hc-rapid-surface-area__heading">{{ block.settings.heading | default: 'Rapid Absorption' }}</h3>
+      <div class="hc-rapid-surface-area__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-rapid-surface-area__visual-col">
+      <div class="hc-rapid-surface-area__inner">
+        <div class="hc-rapid-surface-area__card">
+          <div class="hc-rapid-surface-area__list">
+            <div class="hc-rapid-surface-area__item">
+              <span class="hc-rapid-surface-area__icon-ring">
+                <svg class="hc-rapid-surface-area__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg>
+              </span>
+              <p class="hc-rapid-surface-area__item-title">{{ block.settings.item_1_title | default: 'Fast Absorption' }}</p>
+            </div>
+            <div class="hc-rapid-surface-area__item">
+              <span class="hc-rapid-surface-area__icon-ring">
+                <svg class="hc-rapid-surface-area__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></svg>
+              </span>
+              <p class="hc-rapid-surface-area__item-title">{{ block.settings.item_2_title | default: 'Fast Evaporation' }}</p>
+            </div>
+            <div class="hc-rapid-surface-area__item">
+              <span class="hc-rapid-surface-area__icon-ring">
+                <svg class="hc-rapid-surface-area__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/></svg>
+              </span>
+              <p class="hc-rapid-surface-area__item-title">{{ block.settings.item_3_title | default: 'Extra Surface Dryness' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

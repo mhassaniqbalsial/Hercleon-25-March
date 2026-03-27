@@ -1,0 +1,274 @@
+{%- liquid
+  assign bg_color = block.settings.bg_color | default: '#ffffff'
+  assign text_color = block.settings.text_color | default: '#000000'
+  assign accent_color = block.settings.accent_color | default: '#B45309'
+  assign desc_color = block.settings.desc_color | default: '#4b5563'
+  assign card_border_color = block.settings.card_border_color | default: '#000000'
+  assign matrix_bg = block.settings.matrix_bg | default: '#f9fafb'
+  assign matrix_cell_border = block.settings.matrix_cell_border | default: '#d1d5db'
+  assign matrix_cell_bg = block.settings.matrix_cell_bg | default: '#ffffff'
+  assign footer_color = block.settings.footer_color | default: '#9ca3af'
+  assign min_h = block.settings.min_height | default: '60vh'
+  assign is_reversed = block.settings.reverse_layout
+-%}
+
+<style>
+  .hc-micro-geometry {
+    --hc-micro-geometry-bg: {{ bg_color }};
+    --hc-micro-geometry-text: {{ text_color }};
+    --hc-micro-geometry-accent: {{ accent_color }};
+    --hc-micro-geometry-desc: {{ desc_color }};
+    --hc-micro-geometry-card-border: {{ card_border_color }};
+    --hc-micro-geometry-matrix-bg: {{ matrix_bg }};
+    --hc-micro-geometry-matrix-cell-border: {{ matrix_cell_border }};
+    --hc-micro-geometry-matrix-cell-bg: {{ matrix_cell_bg }};
+    --hc-micro-geometry-footer: {{ footer_color }};
+    --hc-micro-geometry-min-h: {{ min_h }};
+
+    background-color: var(--hc-micro-geometry-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-micro-geometry__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: var(--hc-micro-geometry-min-h);
+    overflow: visible;
+  }
+
+  .hc-micro-geometry__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-micro-geometry-text);
+    order: 2;
+    border-top: 1px solid #000;
+  }
+
+  .hc-micro-geometry__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-micro-geometry-bg);
+    order: 1;
+  }
+
+  .hc-micro-geometry__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-micro-geometry-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-micro-geometry__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-micro-geometry-text);
+  }
+
+  .hc-micro-geometry__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.625;
+    max-width: 32rem;
+    color: var(--hc-micro-geometry-desc);
+    white-space: pre-line;
+  }
+
+  .hc-micro-geometry__desc p {
+    margin: 0 0 1rem;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  .hc-micro-geometry__desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-micro-geometry__visual-inner {
+    width: 100%;
+    max-width: 42rem;
+  }
+
+  .hc-micro-geometry__card {
+    background-color: var(--hc-micro-geometry-bg);
+    color: var(--hc-micro-geometry-text);
+    border: 1px solid var(--hc-micro-geometry-card-border);
+    padding: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .hc-micro-geometry__matrix-frame {
+    position: relative;
+    border: 1px solid #e5e7eb;
+    background-color: var(--hc-micro-geometry-matrix-bg);
+    min-height: 16rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  .hc-micro-geometry__matrix-grid {
+    position: absolute;
+    inset: 1rem;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .hc-micro-geometry__matrix-cell {
+    border: 1px solid var(--hc-micro-geometry-matrix-cell-border);
+    background-color: var(--hc-micro-geometry-matrix-cell-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .hc-micro-geometry__matrix-cell-core {
+    width: 55%;
+    height: 55%;
+    border-radius: 0.2rem;
+    background: rgba(249, 250, 251, 0.9);
+  }
+
+  .hc-micro-geometry__matrix-badge {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--hc-micro-geometry-card-border);
+    padding: 0.65rem 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    text-align: center;
+  }
+
+  .hc-micro-geometry__matrix-badge span {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--hc-micro-geometry-text);
+  }
+
+  .hc-micro-geometry__footer {
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+
+  .hc-micro-geometry__footer p {
+    margin: 0;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--hc-micro-geometry-footer);
+  }
+
+  @media (min-width: 768px) {
+    .hc-micro-geometry__text-col {
+      padding: 6rem;
+    }
+
+    .hc-micro-geometry__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-micro-geometry__heading {
+      font-size: 3rem;
+    }
+
+    .hc-micro-geometry__card {
+      padding: 2rem 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-micro-geometry__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-micro-geometry__text-col {
+      border-top: none;
+    }
+
+    .hc-micro-geometry__grid--default .hc-micro-geometry__text-col {
+      order: 2;
+      border-left: 1px solid #000;
+    }
+
+    .hc-micro-geometry__grid--default .hc-micro-geometry__visual-col {
+      order: 1;
+    }
+
+    .hc-micro-geometry__grid--reversed .hc-micro-geometry__text-col {
+      order: 1;
+      border-right: 1px solid #000;
+      border-left: none;
+    }
+
+    .hc-micro-geometry__grid--reversed .hc-micro-geometry__visual-col {
+      order: 2;
+    }
+  }
+</style>
+
+<section
+  id="{{ block.settings.html_id | default: 'hc-micro-geometry' }}"
+  class="hc-micro-geometry{% if block.settings.enable_section_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-micro-geometry__grid {% if is_reversed %}hc-micro-geometry__grid--reversed{% else %}hc-micro-geometry__grid--default{% endif %}">
+    <div class="hc-micro-geometry__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-micro-geometry__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+      <h3 class="hc-micro-geometry__heading">
+        {{ block.settings.heading | default: 'HC Micro Geometry' }}
+      </h3>
+      <div class="hc-micro-geometry__desc">
+        {{ block.settings.description }}
+      </div>
+    </div>
+
+    <div class="hc-micro-geometry__visual-col">
+      <div class="hc-micro-geometry__visual-inner">
+        <div class="hc-micro-geometry__card">
+          <div class="hc-micro-geometry__matrix-frame">
+            <div class="hc-micro-geometry__matrix-grid" aria-hidden="true">
+              {%- for i in (1..48) -%}
+                <div class="hc-micro-geometry__matrix-cell">
+                  <span class="hc-micro-geometry__matrix-cell-core"></span>
+                </div>
+              {%- endfor -%}
+            </div>
+            <div class="hc-micro-geometry__matrix-badge">
+              <span>{{ block.settings.matrix_badge | default: 'Geometric Exfoliation Matrix' }}</span>
+            </div>
+          </div>
+
+          <div class="hc-micro-geometry__footer">
+            <p>{{ block.settings.matrix_footer | default: 'Precision Weave Architecture' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="travel" class="border-b border-black bg-white animate-fade-in-up"><div class="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh] lg:flex-row-reverse"><div class="p-12 md:p-24 flex flex-col justify-center lg:order-2 lg:border-l border-black text-black"><span class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#B45309] mb-6">02 — Micro-Exfoliating Geometry</span><h3 class="text-4xl md:text-5xl font-display font-bold uppercase mb-8 leading-tight text-black">Precision Waffle Weave</h3><div class="text-lg font-light leading-relaxed max-w-lg text-gray-600 whitespace-pre-line"><p class="text-lg font-light leading-relaxed max-w-lg text-gray-600 whitespace-pre-line"><span>The precision-engineered waffle weave provides a gentle mechanical exfoliation. It lifts away dead skin cells and debris more effectively than flat towels, leaving your skin polished and glowing.</span></p></div></div><div class="flex items-center justify-center p-8 md:p-12 bg-white lg:order-1"><div class="w-full max-w-xl"><div class="bg-white p-8 md:p-16 border border-black w-full max-w-2xl mx-auto font-mono text-black relative overflow-hidden"><div class="flex flex-col items-center"><div class="relative w-full h-64 bg-gray-50 border border-gray-200 flex items-center justify-center overflow-hidden"><div class="absolute inset-0 grid grid-cols-8 grid-rows-6 gap-1 p-4"><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div><div class="border border-gray-300 bg-white shadow-inner flex items-center justify-center"><div class="w-1/2 h-1/2 bg-gray-50 rounded-sm"></div></div></div><div class="relative z-10 bg-white/90 backdrop-blur-sm border border-black px-6 py-3 shadow-xl"><span class="text-xs font-bold uppercase tracking-widest">Geometric Exfoliation Matrix</span></div></div><div class="mt-8 text-center"><p class="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-400">Precision Weave Architecture</p></div></div></div></div></div></div></section>

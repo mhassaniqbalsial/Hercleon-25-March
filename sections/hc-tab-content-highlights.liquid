@@ -133,6 +133,10 @@
             {% render 'highlights-acne-shield', block: block %}
           {%- when 'inhospitable-germs' -%}
             {% render 'highlights-inhospitable-germs', block: block %}
+          {%- when 'hc-micro-geometry' -%}
+            {% render 'hc-micro-geometry', block: block %}
+          {%- when 'hc-rapid-surface-area' -%}
+            {% render 'hc-rapid-surface-area', block: block %}
           {%- when 'faster-drying' -%}
             {% render 'highlights-faster-drying', block: block %}
           {%- when 'lightweight-compact' -%}
@@ -1926,6 +1930,179 @@
           "label": "Bar fill",
           "default": "#000000"
         }
+      ]
+    },
+    {
+      "type": "hc-micro-geometry",
+      "name": "HC Micro Geometry",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "02 — Micro-Exfoliating Geometry"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "HC Micro Geometry"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The precision-engineered waffle weave provides a gentle mechanical exfoliation. It lifts away dead skin cells and debris more effectively than flat towels, leaving your skin polished and glowing.</p>"
+        },
+        {
+          "type": "text",
+          "id": "matrix_badge",
+          "label": "Matrix badge",
+          "default": "Geometric Exfoliation Matrix"
+        },
+        {
+          "type": "text",
+          "id": "matrix_footer",
+          "label": "Matrix footer",
+          "default": "Precision Weave Architecture"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (text left, visual right)",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Default: hc-micro-geometry"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "matrix_bg",
+          "label": "Matrix background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "color",
+          "id": "matrix_cell_border",
+          "label": "Matrix cell border",
+          "default": "#d1d5db"
+        },
+        {
+          "type": "color",
+          "id": "matrix_cell_bg",
+          "label": "Matrix cell background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "footer_color",
+          "label": "Footer text",
+          "default": "#9ca3af"
+        }
+      ]
+    },
+    {
+      "type": "hc-rapid-surface-area",
+      "name": "HC Rapid Surface Area",
+      "settings": [
+        { "type": "header", "content": "Content" },
+        { "type": "text", "id": "tag", "label": "Tag line", "default": "03 — Increased Surface Area" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Rapid Absorption" },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The geometric wells in the weave of the Jax Towel significantly increase the surface area of the fabric, allowing for rapid absorption and faster evaporation compared to a conventional towel weave.</p>"
+        },
+        { "type": "text", "id": "item_1_title", "label": "Item 1 title", "default": "Fast Absorption" },
+        { "type": "text", "id": "item_2_title", "label": "Item 2 title", "default": "Fast Evaporation" },
+        { "type": "text", "id": "item_3_title", "label": "Item 3 title", "default": "Extra Surface Dryness" },
+
+        { "type": "header", "content": "Layout" },
+        { "type": "checkbox", "id": "reverse_layout", "label": "Reverse layout (visual left, text right off)", "default": false },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        { "type": "text", "id": "html_id", "label": "Section HTML id (optional)", "info": "Default: hc-rapid-surface-area" },
+        { "type": "checkbox", "id": "enable_section_animation", "label": "Fade-in-up animation class", "default": false },
+
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
+        { "type": "color", "id": "text_color", "label": "Text", "default": "#000000" },
+        { "type": "color", "id": "accent_color", "label": "Accent", "default": "#B45309" },
+        { "type": "color", "id": "desc_color", "label": "Description", "default": "#4b5563" },
+        { "type": "color", "id": "card_bg", "label": "Item card background", "default": "#f9fafb" },
+        { "type": "color", "id": "card_border_color", "label": "Item card border", "default": "#e5e7eb" }
       ]
     },
     {
