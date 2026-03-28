@@ -1,0 +1,303 @@
+{% comment %}
+  Highlights — 3x Longer Between Washes (laundry-free longevity)
+{% endcomment %}
+
+{%- liquid
+  assign wash_bg          = block.settings.bg_color | default: '#000000'
+  assign wash_text        = block.settings.text_color | default: '#ffffff'
+  assign wash_accent      = block.settings.accent_color | default: '#B45309'
+  assign wash_desc        = block.settings.desc_color | default: '#9ca3af'
+  assign wash_border      = block.settings.border_color | default: '#1f2937'
+  assign wash_card_bg     = block.settings.card_bg_color | default: '#000000'
+  assign wash_card_border = block.settings.card_border_color | default: '#1f2937'
+  assign is_reversed      = block.settings.reverse_layout
+  assign wash_section_id  = block.settings.section_id | default: '3x-longer-washes' | handleize
+  assign trad_filled      = block.settings.traditional_filled | default: 8
+  assign jax_filled       = block.settings.jax_filled | default: 2
+-%}
+
+{%- style -%}
+  .hc-wash3x {
+    --wash-bg: {{ wash_bg }};
+    --wash-text: {{ wash_text }};
+    --wash-accent: {{ wash_accent }};
+    --wash-desc: {{ wash_desc }};
+    --wash-border: {{ wash_border }};
+    --wash-card-bg: {{ wash_card_bg }};
+    --wash-card-border: {{ wash_card_border }};
+
+    background-color: var(--wash-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-wash3x__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-wash3x__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--wash-text);
+    order: 1;
+    border-bottom: 1px solid var(--wash-border);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-wash3x__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--wash-bg);
+    order: 2;
+  }
+
+  .hc-wash3x__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--wash-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-wash3x__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--wash-text);
+  }
+
+  .hc-wash3x__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--wash-desc);
+    white-space: pre-line;
+  }
+
+  .hc-wash3x__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  /* Visual card */
+  .hc-wash3x__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-wash3x__card {
+    background-color: var(--wash-card-bg);
+    padding: 2rem;
+    border: 1px solid var(--wash-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--wash-text);
+  }
+
+  .hc-wash3x__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Comparison row */
+  .hc-wash3x__row {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .hc-wash3x__row--traditional {
+    border-left: 2px solid #374151;
+  }
+
+  .hc-wash3x__row--jax {
+    border-left: 2px solid var(--wash-accent);
+  }
+
+  .hc-wash3x__row-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .hc-wash3x__row--traditional .hc-wash3x__row-label {
+    color: #6b7280;
+  }
+
+  .hc-wash3x__row--jax .hc-wash3x__row-label {
+    color: var(--wash-accent);
+  }
+
+  .hc-wash3x__blocks {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .hc-wash3x__block {
+    display: flex !important;
+    height: 2rem;
+    flex: 1;
+}
+
+  .hc-wash3x__block--filled-gray {
+    background-color: #374151;
+  }
+
+  .hc-wash3x__block--empty-gray {
+    background-color: transparent;
+    border: 1px solid #374151;
+  }
+
+  .hc-wash3x__block--filled-accent {
+    background-color: var(--wash-accent);
+  }
+
+  .hc-wash3x__block--empty-accent {
+    background-color: transparent;
+    border: 1px solid;
+    border-color: color-mix(in srgb, var(--wash-accent) 20%, transparent);
+  }
+
+  .hc-wash3x__row-note {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .hc-wash3x__row--traditional .hc-wash3x__row-note {
+    color: #4b5563;
+  }
+
+  .hc-wash3x__row--jax .hc-wash3x__row-note {
+    color: var(--wash-accent);
+  }
+
+  @media (min-width: 768px) {
+    .hc-wash3x__text-col {
+      padding: 6rem;
+    }
+
+    .hc-wash3x__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-wash3x__heading {
+      font-size: 3rem;
+    }
+
+    .hc-wash3x__card {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-wash3x__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-wash3x__text-col {
+      border-bottom: none;
+    }
+
+    .hc-wash3x__grid--default .hc-wash3x__text-col {
+      order: 1;
+      border-right: 1px solid var(--wash-border);
+    }
+
+    .hc-wash3x__grid--default .hc-wash3x__visual-col {
+      order: 2;
+    }
+
+    .hc-wash3x__grid--reversed .hc-wash3x__text-col {
+      order: 2;
+      border-left: 1px solid var(--wash-border);
+    }
+
+    .hc-wash3x__grid--reversed .hc-wash3x__visual-col {
+      order: 1;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ wash_section_id }}"
+  class="hc-wash3x{% if block.settings.enable_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-wash3x__grid {% if is_reversed %}hc-wash3x__grid--reversed{% else %}hc-wash3x__grid--default{% endif %}">
+
+    <div class="hc-wash3x__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-wash3x__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-wash3x__heading">{{ block.settings.heading | default: '3x Longer Between Washes' }}</h3>
+
+      <div class="hc-wash3x__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-wash3x__visual-col">
+      <div class="hc-wash3x__visual-inner">
+        <div class="hc-wash3x__card">
+          <div class="hc-wash3x__rows">
+
+            <div class="hc-wash3x__row hc-wash3x__row--traditional">
+              <p class="hc-wash3x__row-label">{{ block.settings.traditional_label | default: 'Traditional Comforter' }}</p>
+              <div class="hc-wash3x__blocks">
+                {%- for i in (1..10) -%}
+                  {%- if i <= trad_filled -%}
+                    <div class="hc-wash3x__block hc-wash3x__block--filled-gray"></div>
+                  {%- else -%}
+                    <div class="hc-wash3x__block hc-wash3x__block--empty-gray"></div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              {%- if block.settings.traditional_note != blank -%}
+                <p class="hc-wash3x__row-note">{{ block.settings.traditional_note }}</p>
+              {%- endif -%}
+            </div>
+
+            <div class="hc-wash3x__row hc-wash3x__row--jax">
+              <p class="hc-wash3x__row-label">{{ block.settings.jax_label | default: 'Jax Comforter' }}</p>
+              <div class="hc-wash3x__blocks">
+                {%- for i in (1..10) -%}
+                  {%- if i <= jax_filled -%}
+                    <div class="hc-wash3x__block hc-wash3x__block--filled-accent"></div>
+                  {%- else -%}
+                    <div class="hc-wash3x__block hc-wash3x__block--empty-accent"></div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              {%- if block.settings.jax_note != blank -%}
+                <p class="hc-wash3x__row-note">{{ block.settings.jax_note }}</p>
+              {%- endif -%}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

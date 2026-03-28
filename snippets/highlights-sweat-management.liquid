@@ -173,6 +173,12 @@
     border-bottom: 1px solid #000;
   }
 
+  @media (max-width: 479px) {
+    .hc-sm__tooltip {
+      width: 240px;
+    }
+  }
+
   @media (min-width: 768px) {
     .hc-sm__tooltip {
       width: 450px;
@@ -497,48 +503,3 @@
   </div>
 </section>
 
-{%- if block.settings.tooltip_trigger != blank and block.settings.tooltip_content != blank -%}
-  <template id="hc-sm-tooltip-template">
-    <div class="hc-sm__tooltip">
-      <div class="hc-sm__tooltip-box">
-        <div class="hc-sm__tooltip-content">
-          {{ block.settings.tooltip_content }}
-        </div>
-        <div class="hc-sm__tooltip-arrow"></div>
-      </div>
-    </div>
-  </template>
-
-  <script>
-    (function() {
-      function initSmTooltip() {
-        var trigger = {{ block.settings.tooltip_trigger | json }};
-        var section = document.getElementById('night-sweats');
-        if (!section) return;
-        var descEl = section.querySelector('.hc-sm__desc');
-        if (!descEl) return;
-        var strongs = descEl.querySelectorAll('strong');
-        strongs.forEach(function(el) {
-          if (el.textContent.trim().toLowerCase() === trigger.trim().toLowerCase()) {
-            if (el.parentNode.classList && el.parentNode.classList.contains('hc-sm__tooltip-trigger')) return;
-            var wrapper = document.createElement('span');
-            wrapper.className = 'hc-sm__tooltip-trigger';
-            el.parentNode.insertBefore(wrapper, el);
-            wrapper.appendChild(el);
-
-            var tmpl = document.getElementById('hc-sm-tooltip-template');
-            if (tmpl) {
-              wrapper.appendChild(tmpl.content.cloneNode(true));
-            }
-          }
-        });
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSmTooltip);
-      } else {
-        initSmTooltip();
-      }
-    })();
-  </script>
-{%- endif -%}

@@ -1,0 +1,254 @@
+{% comment %}
+  Highlights — Body-Contouring Loft (liquid-like drape)
+{% endcomment %}
+
+{%- liquid
+  assign bc_bg         = block.settings.bg_color | default: '#000000'
+  assign bc_text       = block.settings.text_color | default: '#ffffff'
+  assign bc_accent     = block.settings.accent_color | default: '#B45309'
+  assign bc_desc       = block.settings.desc_color | default: '#9ca3af'
+  assign bc_border     = block.settings.border_color | default: '#1f2937'
+  assign bc_card_bg    = block.settings.card_bg_color | default: '#ffffff'
+  assign bc_card_border = block.settings.card_border_color | default: '#f3f4f6'
+  assign bc_line_base  = block.settings.baseline_stroke | default: '#e5e7eb'
+  assign bc_line_body  = block.settings.body_stroke | default: '#B45309'
+  assign is_reversed   = block.settings.reverse_layout
+  assign bc_section_id = block.settings.section_id | default: 'body-contouring' | handleize
+-%}
+
+{%- style -%}
+  @keyframes hc-bc-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hc-bc {
+    --hc-bc-bg: {{ bc_bg }};
+    --hc-bc-text: {{ bc_text }};
+    --hc-bc-accent: {{ bc_accent }};
+    --hc-bc-desc: {{ bc_desc }};
+    --hc-bc-border: {{ bc_border }};
+    --hc-bc-card-bg: {{ bc_card_bg }};
+    --hc-bc-card-border: {{ bc_card_border }};
+    --hc-bc-line-base: {{ bc_line_base }};
+    --hc-bc-line-body: {{ bc_line_body }};
+
+    background-color: var(--hc-bc-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-bc__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-bc__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-bc-text);
+    order: 1;
+    border-bottom: 1px solid var(--hc-bc-border);
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-bc__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-bc-bg);
+    order: 2;
+    overflow: visible;
+  }
+
+  .hc-bc__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-bc-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-bc__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-bc-text);
+  }
+
+  .hc-bc__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-bc-desc);
+    white-space: pre-line;
+  }
+
+  .hc-bc__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  .hc-bc__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-bc__card {
+    background-color: var(--hc-bc-card-bg);
+    padding: 2rem;
+    border: 1px solid var(--hc-bc-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-bc__svg-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .hc-bc__svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .hc-bc__baseline {
+    stroke: var(--hc-bc-line-base);
+  }
+
+  .hc-bc__contour {
+    stroke: var(--hc-bc-line-body);
+    animation: hc-bc-pulse 2s ease-in-out infinite;
+  }
+
+  .hc-bc__svg-caption {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 6px;
+    fill: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  @media (min-width: 768px) {
+    .hc-bc__text-col {
+      padding: 6rem;
+    }
+
+    .hc-bc__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-bc__heading {
+      font-size: 3rem;
+    }
+
+    .hc-bc__card {
+      padding: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-bc__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-bc__text-col {
+      border-bottom: none;
+    }
+
+    .hc-bc__grid--default .hc-bc__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-bc-border);
+    }
+
+    .hc-bc__grid--default .hc-bc__visual-col {
+      order: 2;
+    }
+
+    .hc-bc__grid--reversed .hc-bc__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-bc-border);
+    }
+
+    .hc-bc__grid--reversed .hc-bc__visual-col {
+      order: 1;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ bc_section_id }}"
+  class="hc-bc{% if block.settings.enable_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-bc__grid {% if is_reversed %}hc-bc__grid--reversed{% else %}hc-bc__grid--default{% endif %}">
+
+    <div class="hc-bc__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-bc__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-bc__heading">{{ block.settings.heading | default: 'Body-Contouring Loft' }}</h3>
+
+      <div class="hc-bc__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-bc__visual-col">
+      <div class="hc-bc__visual-inner">
+        <div class="hc-bc__card">
+          <div class="hc-bc__svg-wrap">
+            <svg
+              class="hc-bc__svg"
+              viewBox="0 0 200 60"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                class="hc-bc__baseline"
+                d="M10,45 Q50,40 100,45 T190,45"
+                fill="none"
+                stroke-width="2"
+              />
+              <path
+                class="hc-bc__contour"
+                d="M10,35 Q50,30 100,35 T190,35"
+                fill="none"
+                stroke-width="3"
+              />
+              <text
+                class="hc-bc__svg-caption"
+                x="100"
+                y="57"
+                text-anchor="middle"
+              >{{ block.settings.svg_caption | default: 'Anatomical Alignment' }}</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -18,7 +18,20 @@
   assign ac_dial_fill_a = ac_dial_fill | color_modify: 'alpha', 0.3
   assign is_reversed = block.settings.reverse_layout
   assign ac_section_id = block.settings.section_id | default: 'always-cool' | handleize
+  assign ac_desc = block.settings.description
 -%}
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  {%- assign ac_t1 = '<strong>' | append: block.settings.tooltip_1_trigger | append: '</strong>' -%}
+  {%- capture ac_w1 -%}<span class="hc-always-cool-tooltip-trigger"><strong>{{ block.settings.tooltip_1_trigger }}</strong><span class="hc-always-cool-tooltip"><span class="hc-always-cool-tooltip-box"><span class="hc-always-cool-tooltip-content">{{ block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-always-cool-tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-always-cool-tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign ac_desc = ac_desc | replace: ac_t1, ac_w1 -%}
+{%- endif -%}
+
+{%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+  {%- assign ac_t2 = '<strong>' | append: block.settings.tooltip_2_trigger | append: '</strong>' -%}
+  {%- capture ac_w2 -%}<span class="hc-always-cool-tooltip-trigger"><strong>{{ block.settings.tooltip_2_trigger }}</strong><span class="hc-always-cool-tooltip"><span class="hc-always-cool-tooltip-box"><span class="hc-always-cool-tooltip-content">{{ block.settings.tooltip_2_content | replace: '<p>', '<span class="hc-always-cool-tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-always-cool-tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign ac_desc = ac_desc | replace: ac_t2, ac_w2 -%}
+{%- endif -%}
 
 {%- style -%}
   @keyframes hc-always-cool-fade-in-up {
@@ -127,71 +140,49 @@
     white-space: inherit;
   }
 
-  .hc-always-cool__desc strong {
-    font-weight: 700;
-    border-bottom: 1px dotted currentColor;
-    cursor: help;
-    transition: color 0.3s ease;
-  }
-
-  .hc-always-cool__desc strong:hover,
-  .hc-always-cool__desc strong:focus-visible {
-    color: var(--ac-accent);
-  }
-
   .hc-always-cool-tooltip-trigger {
     position: relative;
-    display: inline-block;
-    overflow: visible;
-    z-index: 3;
+    display: inline-flex;
   }
 
   .hc-always-cool-tooltip-trigger strong {
     font-weight: 700;
     border-bottom: 1px dotted currentColor;
     cursor: help;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
   }
 
-  .hc-always-cool-tooltip-trigger:hover strong,
-  .hc-always-cool-tooltip-trigger:focus-within strong {
+  .hc-always-cool-tooltip-trigger:hover strong {
     color: var(--ac-accent);
   }
 
   .hc-always-cool-tooltip {
     position: absolute;
     bottom: 100%;
-    top: auto;
     left: 50%;
     transform: translateX(-50%);
-    margin-bottom: 0.65rem;
-    width: min(100vw - 2rem, 22rem);
-    max-width: calc(100vw - 2rem);
-    z-index: 99999;
+    margin-bottom: 1rem;
+    width: 320px;
+    z-index: 1000;
     pointer-events: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s, visibility 0.2s;
   }
 
-  .hc-always-cool-tooltip-trigger:hover .hc-always-cool-tooltip,
-  .hc-always-cool-tooltip-trigger:focus-within .hc-always-cool-tooltip {
+  .hc-always-cool-tooltip-trigger:hover .hc-always-cool-tooltip {
     opacity: 1;
     visibility: visible;
   }
 
   .hc-always-cool-tooltip-box {
     background-color: #fff;
-    color: #111;
-    padding: 1.75rem 1.5rem;
-    box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.08),
-      0 20px 40px -12px rgba(0, 0, 0, 0.22);
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     border: 1px solid #000;
     position: relative;
     display: block;
-    text-align: left;
-    overflow: visible;
   }
 
   .hc-always-cool-tooltip-content {
@@ -199,43 +190,12 @@
     font-family: var(--font-body-family, var(--font-heading-family, ui-sans-serif, system-ui, sans-serif));
   }
 
-  .hc-always-cool-tooltip-content p {
-    display: block;
-    font-size: 0.8125rem;
-    line-height: 1.65;
-    font-weight: 400;
-    margin: 0 0 0.75rem;
-    color: #111;
-  }
-
-  .hc-always-cool-tooltip-content p:last-child {
-    margin-bottom: 0;
-  }
-
-  .hc-always-cool-tooltip-content p:has(strong):not(:first-child) {
-    margin-top: 1.25rem;
-  }
-
-  .hc-always-cool-tooltip-content p strong {
-    display: block;
-    font-family: var(--font-heading-family, inherit);
-    font-weight: 700;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
-    margin-bottom: 0.45rem;
-    color: var(--ac-accent);
-    border-bottom: none;
-    cursor: default;
-  }
-
   .hc-always-cool-tooltip-p {
     display: block;
-    font-size: 0.8125rem;
-    line-height: 1.65;
+    font-size: 0.75rem;
+    line-height: 1.6;
     font-weight: 400;
-    margin: 0 0 0.75rem;
+    margin: 0 0 1rem;
     color: #111;
   }
 
@@ -243,22 +203,21 @@
     margin-bottom: 0;
   }
 
-  .hc-always-cool-tooltip-p:has(strong):not(:first-child) {
-    margin-top: 1.25rem;
-  }
-
   .hc-always-cool-tooltip-p strong {
     display: block;
     font-family: var(--font-heading-family, inherit);
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
-    margin-bottom: 0.45rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
     color: var(--ac-accent);
     border-bottom: none;
     cursor: default;
+  }
+
+  .hc-always-cool-tooltip-p strong:hover {
+    color: var(--ac-accent);
   }
 
   .hc-always-cool-tooltip-arrow {
@@ -266,27 +225,22 @@
     bottom: -0.5rem;
     left: 50%;
     transform: translateX(-50%) rotate(45deg);
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 1rem;
+    height: 1rem;
     background-color: #fff;
     border-right: 1px solid #000;
     border-bottom: 1px solid #000;
-    box-sizing: border-box;
   }
 
-  .hc-always-cool-tooltip--flip .hc-always-cool-tooltip-arrow {
-    bottom: auto;
-    top: -0.5rem;
-    border-right: none;
-    border-bottom: none;
-    border-left: 1px solid #000;
-    border-top: 1px solid #000;
+  @media (max-width: 479px) {
+    .hc-always-cool-tooltip {
+      width: 240px;
+    }
   }
 
   @media (min-width: 768px) {
     .hc-always-cool-tooltip {
-      width: min(100vw - 3rem, 30rem);
-      max-width: calc(100vw - 3rem);
+      width: 450px;
     }
   }
 
@@ -439,7 +393,7 @@
       </h3>
 
       <div class="hc-always-cool__desc">
-        {{ block.settings.description }}
+        {{ ac_desc }}
       </div>
     </div>
 
@@ -458,168 +412,3 @@
     </div>
   </div>
 </section>
-
-{%- liquid
-  assign ac_tip_1 = false
-  assign ac_tip_2 = false
-  if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank
-    assign ac_tip_1 = true
-  endif
-  if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank
-    assign ac_tip_2 = true
-  endif
--%}
-
-{%- if ac_tip_1 -%}
-  <template id="hc-always-cool-tooltip-template-1">
-    <span class="hc-always-cool-tooltip">
-      <span class="hc-always-cool-tooltip-box">
-        <span class="hc-always-cool-tooltip-content">
-          {{- block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-always-cool-tooltip-p">' | replace: '</p>', '</span>' -}}
-        </span>
-        <span class="hc-always-cool-tooltip-arrow"></span>
-      </span>
-    </span>
-  </template>
-{%- endif -%}
-
-{%- if ac_tip_2 -%}
-  <template id="hc-always-cool-tooltip-template-2">
-    <span class="hc-always-cool-tooltip">
-      <span class="hc-always-cool-tooltip-box">
-        <span class="hc-always-cool-tooltip-content">
-          {{- block.settings.tooltip_2_content | replace: '<p>', '<span class="hc-always-cool-tooltip-p">' | replace: '</p>', '</span>' -}}
-        </span>
-        <span class="hc-always-cool-tooltip-arrow"></span>
-      </span>
-    </span>
-  </template>
-{%- endif -%}
-
-{%- if ac_tip_1 or ac_tip_2 -%}
-  <script>
-    (function () {
-      var sectionId = {{ ac_section_id | json }};
-      var gap = 10;
-      var configs = [].concat(
-        {% if ac_tip_1 %}
-          [{ trigger: {{ block.settings.tooltip_1_trigger | json }}, templateId: 'hc-always-cool-tooltip-template-1' }],
-        {% else %}
-          [],
-        {% endif %}
-        {% if ac_tip_2 %}
-          [{ trigger: {{ block.settings.tooltip_2_trigger | json }}, templateId: 'hc-always-cool-tooltip-template-2' }]
-        {% else %}
-          []
-        {% endif %}
-      );
-
-      function bindAcAlwaysCoolTooltips(section) {
-        if (!section || section.hasAttribute('data-ac-tip-pos-bound')) return;
-        section.setAttribute('data-ac-tip-pos-bound', '1');
-
-        var scheduled = false;
-        function schedulePlace() {
-          if (scheduled) return;
-          scheduled = true;
-          requestAnimationFrame(function () {
-            scheduled = false;
-            section.querySelectorAll('.hc-always-cool-tooltip-trigger').forEach(placeOne);
-          });
-        }
-
-        function wrapIsActive(wrap) {
-          return wrap.matches(':hover') || wrap.matches(':focus-within');
-        }
-
-        function placeOne(wrap) {
-          var tip = wrap.querySelector('.hc-always-cool-tooltip');
-          if (!tip || !wrapIsActive(wrap)) return;
-
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-              if (!wrapIsActive(wrap)) return;
-              var wrapR = wrap.getBoundingClientRect();
-              var maxW = Math.min(480, window.innerWidth - 24);
-              tip.style.boxSizing = 'border-box';
-              tip.style.width = maxW + 'px';
-              tip.style.position = 'fixed';
-              tip.style.right = 'auto';
-              tip.style.bottom = 'auto';
-              tip.style.transform = 'none';
-              tip.style.margin = '0';
-              tip.style.zIndex = '2147483646';
-
-              var th = tip.getBoundingClientRect().height;
-              var tw = tip.getBoundingClientRect().width;
-              var left = wrapR.left + wrapR.width / 2 - tw / 2;
-              left = Math.max(12, Math.min(left, window.innerWidth - tw - 12));
-
-              var top = wrapR.top - th - gap;
-              tip.classList.remove('hc-always-cool-tooltip--flip');
-              if (top < 8) {
-                top = wrapR.bottom + gap;
-                tip.classList.add('hc-always-cool-tooltip--flip');
-              }
-
-              tip.style.left = Math.round(left) + 'px';
-              tip.style.top = Math.round(top) + 'px';
-            });
-          });
-        }
-
-        function clearTip(wrap) {
-          var tip = wrap.querySelector('.hc-always-cool-tooltip');
-          if (!tip) return;
-          tip.style.cssText = '';
-          tip.classList.remove('hc-always-cool-tooltip--flip');
-        }
-
-        section.querySelectorAll('.hc-always-cool-tooltip-trigger').forEach(function (wrap) {
-          wrap.addEventListener('mouseenter', schedulePlace);
-          wrap.addEventListener('mouseleave', function () {
-            clearTip(wrap);
-          });
-          wrap.addEventListener('focusin', schedulePlace);
-          wrap.addEventListener('focusout', function () {
-            clearTip(wrap);
-          });
-        });
-
-        document.addEventListener('scroll', schedulePlace, true);
-        window.addEventListener('resize', schedulePlace);
-      }
-
-      function initHcAlwaysCoolTooltips() {
-        var section = document.getElementById(sectionId);
-        if (!section) return;
-        var descEl = section.querySelector('.hc-always-cool__desc');
-        if (!descEl) return;
-
-        configs.forEach(function (cfg) {
-          if (!cfg || !cfg.trigger) return;
-          var triggerNorm = String(cfg.trigger).trim().toLowerCase();
-          descEl.querySelectorAll('strong').forEach(function (el) {
-            if (el.textContent.trim().toLowerCase() !== triggerNorm) return;
-            if (el.closest('.hc-always-cool-tooltip-trigger')) return;
-            var wrapper = document.createElement('span');
-            wrapper.className = 'hc-always-cool-tooltip-trigger';
-            el.parentNode.insertBefore(wrapper, el);
-            wrapper.appendChild(el);
-            var tmpl = document.getElementById(cfg.templateId);
-            if (tmpl) wrapper.appendChild(tmpl.content.cloneNode(true));
-          });
-        });
-
-        bindAcAlwaysCoolTooltips(section);
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHcAlwaysCoolTooltips);
-      } else {
-        initHcAlwaysCoolTooltips();
-      }
-      document.addEventListener('shopify:section:load', initHcAlwaysCoolTooltips);
-    })();
-  </script>
-{%- endif -%}

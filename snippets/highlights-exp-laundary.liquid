@@ -8,7 +8,7 @@
 
   .hc-exp-laundry-block__grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
     min-height: 60vh;
   }
 
@@ -169,9 +169,23 @@
       grid-template-columns: 1fr 1fr;
     }
 
-    .hc-exp-laundry-block__content {
-    border-right: 1px solid #1f2937;
-}
+    .hc-exp-laundry-block__grid--default .hc-exp-laundry-block__content {
+      order: 1;
+      border-right: 1px solid #1f2937;
+    }
+
+    .hc-exp-laundry-block__grid--default .hc-exp-laundry-block__visual-wrapper {
+      order: 2;
+    }
+
+    .hc-exp-laundry-block__grid--reversed .hc-exp-laundry-block__content {
+      order: 2;
+      border-left: 1px solid #1f2937;
+    }
+
+    .hc-exp-laundry-block__grid--reversed .hc-exp-laundry-block__visual-wrapper {
+      order: 1;
+    }
   }
 
   @media screen and (max-width: 1024px) {
@@ -188,7 +202,7 @@
 </style>
 
 <div class="hc-exp-laundry-block {{ block.settings.custom_class }}" {{ block.shopify_attributes }}>
-              <div class="hc-exp-laundry-block__grid">
+  <div class="hc-exp-laundry-block__grid {% if block.settings.reverse_layout %}hc-exp-laundry-block__grid--reversed{% else %}hc-exp-laundry-block__grid--default{% endif %}">
                 <div class="hc-exp-laundry-block__content">
                   {%- if block.settings.eyebrow_text != blank -%}
                     <span class="hc-exp-laundry-block__eyebrow">{{ block.settings.eyebrow_text }}</span>

@@ -135,6 +135,10 @@
             {% render 'highlights-acne-shield', block: block %}
           {%- when 'inhospitable-germs' -%}
             {% render 'highlights-inhospitable-germs', block: block %}
+          {%- when 'hc-micro-geometry' -%}
+            {% render 'hc-micro-geometry', block: block %}
+          {%- when 'hc-rapid-surface-area' -%}
+            {% render 'hc-rapid-surface-area', block: block %}
           {%- when 'faster-drying' -%}
             {% render 'highlights-faster-drying', block: block %}
           {%- when 'lightweight-compact' -%}
@@ -155,6 +159,26 @@
             {% render 'highlights-longevity-designed', block: block %}
           {%- when 'charcoal-ash-system' -%}
             {% render 'highlights-charcoal-ash-system', block: block %}
+          {%- when 'breathable-micro-climate' -%}
+            {% render 'highlights-breathable-micro-climate', block: block %}
+          {%- when 'body-contouring' -%}
+            {% render 'highlights-body-contouring', block: block %}
+          {%- when 'sterile-environment' -%}
+            {% render 'highlights-sterile-environment', block: block %}
+          {%- when 'instant-evaporation' -%}
+            {% render 'highlights-instant-evaporation', block: block %}
+          {%- when 'minimal-friction' -%}
+            {% render 'highlights-minimal-friction', block: block %}
+          {%- when 'natural-purification' -%}
+            {% render 'highlights-natural-purification', block: block %}
+          {%- when '3x-longer-washes' -%}
+            {% render 'highlights-3x-longer-washes', block: block %}
+          {%- when 'comforter-hl-compare' -%}
+            {% render 'comforter-hl-compare', block: block %}
+          {%- when 'precision-waffle' -%}
+            {% render 'highlights-precision-waffle', block: block %}
+          {%- when 'friction-free' -%}
+            {% render 'highlights-friction-free', block: block %}
         {%- endcase -%}
       {%- endfor -%}
     {%- endif -%}
@@ -1045,6 +1069,12 @@
           "max": 100,
           "step": 1,
           "default": 50
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": false
         }
       ]
     },
@@ -2098,6 +2128,179 @@
           "label": "Bar fill",
           "default": "#000000"
         }
+      ]
+    },
+    {
+      "type": "hc-micro-geometry",
+      "name": "HC Micro Geometry",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "02 — Micro-Exfoliating Geometry"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "HC Micro Geometry"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The precision-engineered waffle weave provides a gentle mechanical exfoliation. It lifts away dead skin cells and debris more effectively than flat towels, leaving your skin polished and glowing.</p>"
+        },
+        {
+          "type": "text",
+          "id": "matrix_badge",
+          "label": "Matrix badge",
+          "default": "Geometric Exfoliation Matrix"
+        },
+        {
+          "type": "text",
+          "id": "matrix_footer",
+          "label": "Matrix footer",
+          "default": "Precision Weave Architecture"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (text left, visual right)",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        {
+          "type": "text",
+          "id": "html_id",
+          "label": "Section HTML id (optional)",
+          "info": "Default: hc-micro-geometry"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_section_animation",
+          "label": "Fade-in-up animation class",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "matrix_bg",
+          "label": "Matrix background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "color",
+          "id": "matrix_cell_border",
+          "label": "Matrix cell border",
+          "default": "#d1d5db"
+        },
+        {
+          "type": "color",
+          "id": "matrix_cell_bg",
+          "label": "Matrix cell background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "footer_color",
+          "label": "Footer text",
+          "default": "#9ca3af"
+        }
+      ]
+    },
+    {
+      "type": "hc-rapid-surface-area",
+      "name": "HC Rapid Surface Area",
+      "settings": [
+        { "type": "header", "content": "Content" },
+        { "type": "text", "id": "tag", "label": "Tag line", "default": "03 — Increased Surface Area" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Rapid Absorption" },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The geometric wells in the weave of the Jax Towel significantly increase the surface area of the fabric, allowing for rapid absorption and faster evaporation compared to a conventional towel weave.</p>"
+        },
+        { "type": "text", "id": "item_1_title", "label": "Item 1 title", "default": "Fast Absorption" },
+        { "type": "text", "id": "item_2_title", "label": "Item 2 title", "default": "Fast Evaporation" },
+        { "type": "text", "id": "item_3_title", "label": "Item 3 title", "default": "Extra Surface Dryness" },
+
+        { "type": "header", "content": "Layout" },
+        { "type": "checkbox", "id": "reverse_layout", "label": "Reverse layout (visual left, text right off)", "default": false },
+        {
+          "type": "select",
+          "id": "min_height",
+          "label": "Minimum section height",
+          "options": [
+            { "value": "30vh", "label": "30vh" },
+            { "value": "50vh", "label": "50vh" },
+            { "value": "60vh", "label": "60vh" }
+          ],
+          "default": "60vh"
+        },
+        { "type": "text", "id": "html_id", "label": "Section HTML id (optional)", "info": "Default: hc-rapid-surface-area" },
+        { "type": "checkbox", "id": "enable_section_animation", "label": "Fade-in-up animation class", "default": false },
+
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
+        { "type": "color", "id": "text_color", "label": "Text", "default": "#000000" },
+        { "type": "color", "id": "accent_color", "label": "Accent", "default": "#B45309" },
+        { "type": "color", "id": "desc_color", "label": "Description", "default": "#4b5563" },
+        { "type": "color", "id": "card_bg", "label": "Item card background", "default": "#f9fafb" },
+        { "type": "color", "id": "card_border_color", "label": "Item card border", "default": "#e5e7eb" }
       ]
     },
     {
@@ -3804,6 +4007,1207 @@
           "id": "desc_color",
           "label": "Description Color",
           "default": "#9ca3af"
+        }
+      ]
+    },
+    {
+      "type": "breathable-micro-climate",
+      "name": "Breathable Climate",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "breathable-micro-climate",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "02 — Vapor-Permeable Structure"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Breathable Micro-Climate"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Unlike synthetic fills that trap heat and moisture, the <strong>coconut charcoal viscose</strong> filling of the Jax Comforter is built to breathe. Its porous structure allows air to circulate freely, preventing heat from building up and that heavy, suffocating feeling that wakes you in the night. It works to keep the air under your covers consistently cool, dry, and fresh.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Tooltips"
+        },
+        {
+          "type": "paragraph",
+          "content": "Bold the exact phrase in the description that should open each tooltip."
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Tooltip 1 — trigger",
+          "default": "coconut charcoal viscose",
+          "info": "Must match the bold phrase in the description."
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip 1 — content",
+          "default": "<p><strong>COCONUT CHARCOAL VISCOSE</strong></p><p>A porous fiber structure that allows air to move freely, dispersing heat and preventing the build-up that causes night waking.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_2_trigger",
+          "label": "Tooltip 2 — trigger",
+          "info": "Optional second tooltip trigger."
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_2_content",
+          "label": "Tooltip 2 — content"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "vent_label",
+          "label": "Ventilation label",
+          "default": "Active Ventilation"
+        },
+        {
+          "type": "text",
+          "id": "footer_caption",
+          "label": "Footer caption",
+          "default": "Vapor-Permeable Matrix Analysis"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual first)",
+          "default": false,
+          "info": "Swaps text and visual columns on large screens."
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag & hover)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider / border",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "air_dot_color",
+          "label": "Air particle dots",
+          "default": "#60a5fa"
+        },
+        {
+          "type": "color",
+          "id": "heat_dot_color",
+          "label": "Heat particle dots",
+          "default": "#f87171"
+        },
+        {
+          "type": "color",
+          "id": "fabric_bar_color",
+          "label": "Fabric strip color",
+          "default": "#374151"
+        }
+      ]
+    },
+    {
+      "type": "body-contouring",
+      "name": "Body-Contouring Loft",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "body-contouring",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — Liquid-Like Drape"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Body-Contouring Loft"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Because our fibers are denser and more flexible than standard textiles, the comforter contours to your body's unique shape rather than resting stiffly on top of you.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "svg_caption",
+          "label": "SVG caption",
+          "default": "Anatomical Alignment"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": true,
+          "info": "Matches the original design where the SVG card is on the left."
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#f3f4f6"
+        },
+        {
+          "type": "color",
+          "id": "baseline_stroke",
+          "label": "Baseline curve color",
+          "default": "#e5e7eb"
+        },
+        {
+          "type": "color",
+          "id": "body_stroke",
+          "label": "Body-contour curve color",
+          "default": "#B45309"
+        }
+      ]
+    },
+    {
+      "type": "sterile-environment",
+      "name": "Sterile Sleep Environment",
+      "limit": 1,
+      "settings": [ 
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "sterile-environment",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "04 — Bio-Static Protection"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Sterile Sleep Environment"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The copper ions woven into the surface of the comforter actively help inhibit bacterial growth around the clock, without any chemical coatings or treatments. The materials are naturally hypoallergenic, making it a safer choice for sensitive skin and those who react to the synthetic dyes and chemical finishes commonly found in conventional bedding. It stays clean not because of what we have sprayed on it, but because of what it is made of.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Badge labels"
+        },
+        {
+          "type": "text",
+          "id": "badge_1_label",
+          "label": "Badge 1 label",
+          "default": "Anti Bacterial"
+        },
+        {
+          "type": "text",
+          "id": "badge_2_label",
+          "label": "Badge 2 label",
+          "default": "Hypoallergenic"
+        },
+        {
+          "type": "text",
+          "id": "badge_3_label",
+          "label": "Badge 3 label",
+          "default": "No Chemical Coating"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag & icons)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#f3f4f6"
+        },
+        {
+          "type": "color",
+          "id": "ring_border_color",
+          "label": "Badge ring border",
+          "default": "#e5e7eb"
+        }
+      ]
+    },
+    {
+      "type": "instant-evaporation",
+      "name": "Instant Evaporation",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "instant-evaporation",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        { 
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — Hyper-Wicking Technology"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Instant Evaporation"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Nobody wants to wake up feeling sticky. The <strong>bamboo copper viscose</strong> surface of the Jax Comforter is woven to pull moisture away from your skin the moment it appears, spreading it across a wider surface area so it evaporates quickly instead of sitting against your body.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "paragraph",
+          "content": "Bold the exact phrase in the description that should open the tooltip."
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Tooltip trigger",
+          "default": "bamboo copper viscose",
+          "info": "Must match the bold phrase in the description."
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip content",
+          "default": "<p><strong>BAMBOO COPPER VISCOSE</strong></p><p>A high-surface-area fiber blend that rapidly moves moisture away from skin and spreads it for faster evaporation.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Feature rows"
+        },
+        {
+          "type": "text",
+          "id": "row_1_label",
+          "label": "Row 1 label",
+          "default": "Fast Absorption"
+        },
+        {
+          "type": "text",
+          "id": "row_2_label",
+          "label": "Row 2 label",
+          "default": "Fast Evaporation"
+        },
+        {
+          "type": "text",
+          "id": "row_3_label",
+          "label": "Row 3 label",
+          "default": "Extra Surface Dryness"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag & icons)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#f3f4f6"
+        },
+        {
+          "type": "color",
+          "id": "row_bg_color",
+          "label": "Row background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "color",
+          "id": "row_border_color",
+          "label": "Row border",
+          "default": "#e5e7eb"
+        }
+      ]
+    },
+    {
+      "type": "minimal-friction",
+      "name": "Minimal Friction",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "minimal-friction",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — Sensitive-Skin Certified"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Minimal Friction"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>We spend a third of our lives in bed, so how something feels against your skin actually matters. The smooth weave of the Jax Comforter creates very little friction as you move through the night, which makes a real difference if you have sensitive skin or tend to react to certain fabrics. It's the kind of thing that's easy to overlook when you're shopping for a comforter, until you've slept under one that gets it right.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "weave_label",
+          "label": "Icon box label",
+          "default": "Specialized Weave"
+        },
+        {
+          "type": "text",
+          "id": "bar_fill_pct",
+          "label": "Friction bar fill percentage",
+          "default": "15%",
+          "info": "e.g. 15% — shows how low friction is."
+        },
+        {
+          "type": "text",
+          "id": "bar_label",
+          "label": "Friction bar label",
+          "default": "Minimal Friction"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, icon & bar)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#f3f4f6"
+        },
+        {
+          "type": "color",
+          "id": "weave_box_bg",
+          "label": "Icon box background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "color",
+          "id": "weave_box_border",
+          "label": "Icon box border",
+          "default": "#e5e7eb"
+        }
+      ]
+    }, 
+    { 
+      "type": "natural-purification",
+      "name": "Natural Purification",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "natural-purification",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "01 — Molecular Odor Shield"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Natural Purification Technology"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Your comforter absorbs a lot over time — body heat, moisture, the general wear of daily life. The <strong>coconut charcoal viscose</strong> filling inside the Jax Comforter works against that naturally, trapping and neutralizing odors rather than just masking them. This technology makes the comforter stay genuinely fresh between washes.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip"
+        },
+        {
+          "type": "paragraph",
+          "content": "Bold the exact phrase in the description that should open the tooltip."
+        },
+        {
+          "type": "text",
+          "id": "tooltip_1_trigger",
+          "label": "Tooltip trigger",
+          "default": "coconut charcoal viscose",
+          "info": "Must match the bold phrase in the description."
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_1_content",
+          "label": "Tooltip content",
+          "default": "<p><strong>COCONUT CHARCOAL VISCOSE</strong></p><p>A highly porous fiber derived from coconut shells that absorbs and neutralizes odor molecules at the source rather than masking them.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Stat number",
+          "default": "99%"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat label",
+          "default": "Filtration Efficiency"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag, icon & stat)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#1f2937"
+        }
+      ]
+    },
+    {
+      "type": "3x-longer-washes",
+      "name": "3x Longer Between Washes",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "3x-longer-washes",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "03 — Laundry-Free Longevity"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "3x Longer Between Washes"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Because the fibers actively repel moisture and neutralize scents, you can go 3x longer between washes compared to traditional bedding.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Comparison bars"
+        },
+        {
+          "type": "text",
+          "id": "traditional_label",
+          "label": "Traditional row label",
+          "default": "Traditional Comforter"
+        },
+        {
+          "type": "range",
+          "id": "traditional_filled",
+          "label": "Traditional filled blocks (out of 10)",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 8
+        },
+        {
+          "type": "text",
+          "id": "traditional_note",
+          "label": "Traditional row note",
+          "default": "High bacteria accumulation"
+        },
+        {
+          "type": "text",
+          "id": "jax_label",
+          "label": "Jax row label",
+          "default": "Jax Comforter"
+        },
+        {
+          "type": "range",
+          "id": "jax_filled",
+          "label": "Jax filled blocks (out of 10)",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "jax_note",
+          "label": "Jax row note",
+          "default": "Molecular Odor Neutralization"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag & Jax bar)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#1f2937"
+        }
+      ]
+    },
+    {
+      "type": "comforter-hl-compare",
+      "name": "Comforter Compare",
+      "limit": 1, 
+      "settings": [
+        
+      ]
+    },
+    {
+      "type": "precision-waffle",
+      "name": "Precision Waffle Weave",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "precision-waffle",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "02 — Micro-Exfoliating Geometry"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Precision Waffle Weave"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>The precision-engineered waffle weave provides a gentle mechanical exfoliation. It lifts away dead skin cells and debris more effectively than flat towels, leaving your skin polished and glowing.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Visual card"
+        },
+        {
+          "type": "text",
+          "id": "badge_label",
+          "label": "Badge overlay text",
+          "default": "Geometric Exfoliation Matrix"
+        },
+        {
+          "type": "text",
+          "id": "footer_label",
+          "label": "Footer caption",
+          "default": "Precision Weave Architecture"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#4b5563"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "grid_bg_color",
+          "label": "Waffle grid background",
+          "default": "#f9fafb"
+        },
+        {
+          "type": "color",
+          "id": "grid_border_color",
+          "label": "Waffle grid border",
+          "default": "#e5e7eb"
+        },
+        {
+          "type": "color",
+          "id": "cell_bg_color",
+          "label": "Cell background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "cell_border_color",
+          "label": "Cell border",
+          "default": "#d1d5db"
+        },
+        {
+          "type": "color",
+          "id": "cell_inner_bg_color",
+          "label": "Cell inner square",
+          "default": "#f9fafb"
+        }
+      ]
+    },
+    {
+      "type": "friction-free",
+      "name": "Friction-Free Hair Care",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section HTML id",
+          "default": "friction-free",
+          "info": "For anchor links; lowercase, no spaces."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "02 — The \"Dolphin-Smooth\" Texture"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Friction-Free Hair Care"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Standard cotton and polyester fabrics have microscopic irregularities that catch on hair cuticles as you move through the night, causing frizz, micro-tears, and breakage over time. The Jax Sheets are engineered at a fiber level to be exceptionally smooth, significantly reducing that physical drag against your hair.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Comparison panels"
+        },
+        {
+          "type": "text",
+          "id": "std_label",
+          "label": "Standard fabric label",
+          "default": "Standard Fabric"
+        },
+        {
+          "type": "text",
+          "id": "std_badge",
+          "label": "Standard badge text",
+          "default": "FRICTION"
+        },
+        {
+          "type": "text",
+          "id": "std_bottom_label",
+          "label": "Standard bottom label",
+          "default": "Micro-Tears"
+        },
+        {
+          "type": "text",
+          "id": "jax_label",
+          "label": "Jax fabric label",
+          "default": "Jax Fabric"
+        },
+        {
+          "type": "text",
+          "id": "jax_badge",
+          "label": "Jax badge text",
+          "default": "SMOOTH"
+        },
+        {
+          "type": "text",
+          "id": "jax_bottom_label",
+          "label": "Jax bottom label",
+          "default": "Friction-Free"
+        },
+        {
+          "type": "text",
+          "id": "footer_caption",
+          "label": "Footer caption",
+          "default": "Surface Friction Comparison (1000x)"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Reverse layout (visual left, text right)",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_animation",
+          "label": "Enable fade-in animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Heading & body text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent (tag & Jax panel)",
+          "default": "#B45309"
+        },
+        {
+          "type": "color",
+          "id": "desc_color",
+          "label": "Description text",
+          "default": "#9ca3af"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Column divider",
+          "default": "#1f2937"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border",
+          "default": "#1f2937"
         }
       ]
     },

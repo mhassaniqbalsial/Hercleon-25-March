@@ -1,0 +1,522 @@
+{% comment %}
+  Highlights — Breathable Micro-Climate (vapor-permeable structure)
+{% endcomment %}
+
+{%- liquid
+  assign bmc_bg        = block.settings.bg_color | default: '#000000'
+  assign bmc_text      = block.settings.text_color | default: '#ffffff'
+  assign bmc_accent    = block.settings.accent_color | default: '#B45309'
+  assign bmc_desc      = block.settings.desc_color | default: '#9ca3af'
+  assign bmc_border    = block.settings.border_color | default: '#1f2937'
+  assign bmc_card_bg   = block.settings.card_bg_color | default: '#000000'
+  assign bmc_card_border = block.settings.card_border_color | default: '#1f2937'
+  assign bmc_dot_air   = block.settings.air_dot_color | default: '#60a5fa'
+  assign bmc_dot_heat  = block.settings.heat_dot_color | default: '#f87171'
+  assign bmc_fabric_bar = block.settings.fabric_bar_color | default: '#374151'
+  assign is_reversed   = block.settings.reverse_layout
+  assign bmc_section_id = block.settings.section_id | default: 'breathable-micro-climate' | handleize
+  assign bmc_desc_rendered = block.settings.description
+-%}
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  {%- assign bmc_t1 = '<strong>' | append: block.settings.tooltip_1_trigger | append: '</strong>' -%}
+  {%- capture bmc_w1 -%}<span class="hc-bmc__tooltip-trigger"><strong>{{ block.settings.tooltip_1_trigger }}</strong><span class="hc-bmc__tooltip"><span class="hc-bmc__tooltip-box"><span class="hc-bmc__tooltip-content">{{ block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-bmc__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-bmc__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign bmc_desc_rendered = bmc_desc_rendered | replace: bmc_t1, bmc_w1 -%}
+{%- endif -%}
+
+{%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
+  {%- assign bmc_t2 = '<strong>' | append: block.settings.tooltip_2_trigger | append: '</strong>' -%}
+  {%- capture bmc_w2 -%}<span class="hc-bmc__tooltip-trigger"><strong>{{ block.settings.tooltip_2_trigger }}</strong><span class="hc-bmc__tooltip"><span class="hc-bmc__tooltip-box"><span class="hc-bmc__tooltip-content">{{ block.settings.tooltip_2_content | replace: '<p>', '<span class="hc-bmc__tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-bmc__tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign bmc_desc_rendered = bmc_desc_rendered | replace: bmc_t2, bmc_w2 -%}
+{%- endif -%}
+
+{%- style -%}
+  @keyframes hc-bmc-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-0.25rem); }
+  }
+
+  @keyframes hc-bmc-ping {
+    75%, 100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  @keyframes hc-bmc-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .hc-bmc {
+    --hc-bmc-bg: {{ bmc_bg }};
+    --hc-bmc-text: {{ bmc_text }};
+    --hc-bmc-accent: {{ bmc_accent }};
+    --hc-bmc-desc: {{ bmc_desc }};
+    --hc-bmc-border: {{ bmc_border }};
+    --hc-bmc-card-bg: {{ bmc_card_bg }};
+    --hc-bmc-card-border: {{ bmc_card_border }};
+    --hc-bmc-dot-air: {{ bmc_dot_air }};
+    --hc-bmc-dot-heat: {{ bmc_dot_heat }};
+    --hc-bmc-fabric-bar: {{ bmc_fabric_bar }};
+
+    background-color: var(--hc-bmc-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-bmc__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+    overflow: visible;
+  }
+
+  .hc-bmc__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-bmc-text);
+    order: 1;
+    border-bottom: 1px solid var(--hc-bmc-border);
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-bmc__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-bmc-bg);
+    order: 2;
+    overflow: visible;
+  }
+
+  .hc-bmc__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-bmc-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-bmc__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-bmc-text);
+  }
+
+  .hc-bmc__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-bmc-desc);
+    white-space: pre-line;
+    overflow: visible;
+    position: relative;
+  }
+
+  .hc-bmc__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  /* Tooltip */
+  .hc-bmc__tooltip-trigger {
+    position: relative;
+    display: inline-flex;
+    overflow: visible;
+    z-index: 3;
+  }
+
+  .hc-bmc__tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-bmc__tooltip-trigger:hover strong {
+    color: var(--hc-bmc-accent);
+  }
+
+  .hc-bmc__tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    width: 320px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-bmc__tooltip-trigger:hover .hc-bmc__tooltip,
+  .hc-bmc__tooltip-trigger:focus-within .hc-bmc__tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-bmc__tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+  }
+
+  .hc-bmc__tooltip-content {
+    display: block;
+  }
+
+  .hc-bmc__tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-bmc__tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-bmc__tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-bmc-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-bmc__tooltip-content p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+
+  .hc-bmc__tooltip-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-bmc__tooltip-content p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--hc-bmc-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-bmc__tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+
+  @media (max-width: 479px) {
+    .hc-bmc__tooltip {
+      width: 240px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hc-bmc__tooltip {
+      width: 450px;
+    }
+  }
+
+  /* Visual card */
+  .hc-bmc__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-bmc__card {
+    background-color: var(--hc-bmc-card-bg);
+    padding: 2rem;
+    border: 1px solid var(--hc-bmc-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--hc-bmc-text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-bmc__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-bmc__frame {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    background-color: #030712;
+    border: 1px solid #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hc-bmc__fabric-bar {
+    display: flex !important;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background-color: var(--hc-bmc-fabric-bar);
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .hc-bmc__fabric-pulse { 
+    display: flex !important;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    transform: translateY(-50%);
+    z-index: 20;
+    background-color: color-mix(in srgb, var(--hc-bmc-accent) 20%, transparent);
+    animation: hc-bmc-pulse 2s ease-in-out infinite;
+  }
+
+  @supports not (color: color-mix(in srgb, red, blue)) {
+    .hc-bmc__fabric-pulse {
+      background-color: rgba(180, 83, 9, 0.2);
+    }
+  }
+
+  .hc-bmc__air-dot {
+    display: flex !important;
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background-color: var(--hc-bmc-dot-air);
+    animation-name: hc-bmc-bounce;
+    animation-duration: var(--dur, 1.6s);
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: var(--delay, 0s);
+    z-index: 5;
+  }
+
+  .hc-bmc__heat-dot {
+    display: flex !important;
+    position: absolute;
+    top: 45%;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background-color: var(--hc-bmc-dot-heat);
+    animation-name: hc-bmc-ping;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    animation-iteration-count: infinite;
+    animation-delay: var(--delay, 0s);
+    z-index: 30;
+  }
+
+  .hc-bmc__center {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-bmc__wind-icon {
+    width: 3rem;
+    height: 3rem;
+    color: var(--hc-bmc-accent);
+    margin-bottom: 1rem;
+  }
+
+  .hc-bmc__vent-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--hc-bmc-text);
+  }
+
+  .hc-bmc__card-footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .hc-bmc__card-footer p {
+    margin: 0;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #4b5563;
+  }
+
+  @media (min-width: 768px) {
+    .hc-bmc__text-col {
+      padding: 6rem;
+    }
+
+    .hc-bmc__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-bmc__heading {
+      font-size: 3rem;
+    }
+
+    .hc-bmc__card {
+      padding: 2rem 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-bmc__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-bmc__text-col {
+      border-bottom: none;
+    }
+
+    .hc-bmc__grid--default .hc-bmc__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-bmc-border);
+    }
+
+    .hc-bmc__grid--default .hc-bmc__visual-col {
+      order: 2;
+    }
+
+    .hc-bmc__grid--reversed .hc-bmc__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-bmc-border);
+    }
+
+    .hc-bmc__grid--reversed .hc-bmc__visual-col {
+      order: 1;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ bmc_section_id }}"
+  class="hc-bmc{% if block.settings.enable_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-bmc__grid {% if is_reversed %}hc-bmc__grid--reversed{% else %}hc-bmc__grid--default{% endif %}">
+
+    <div class="hc-bmc__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-bmc__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-bmc__heading">{{ block.settings.heading | default: 'Breathable Micro-Climate' }}</h3>
+
+      <div class="hc-bmc__desc">{{ bmc_desc_rendered }}</div>
+    </div>
+
+    <div class="hc-bmc__visual-col">
+      <div class="hc-bmc__visual-inner">
+        <div class="hc-bmc__card">
+          <div class="hc-bmc__card-inner">
+
+            <div class="hc-bmc__frame" aria-hidden="true">
+              <div class="hc-bmc__fabric-bar"></div>
+              <div class="hc-bmc__fabric-pulse"></div>
+
+              <div class="hc-bmc__air-dot" style="left:5%;top:20%;--dur:1.85s;--delay:0.04s;"></div>
+              <div class="hc-bmc__air-dot" style="left:13%;top:70%;--dur:1.59s;--delay:0.15s;"></div>
+              <div class="hc-bmc__air-dot" style="left:21%;top:20%;--dur:1.59s;--delay:0.9s;"></div>
+              <div class="hc-bmc__air-dot" style="left:29%;top:70%;--dur:1.93s;--delay:0.79s;"></div>
+              <div class="hc-bmc__air-dot" style="left:37%;top:20%;--dur:1.77s;--delay:0.21s;"></div>
+              <div class="hc-bmc__air-dot" style="left:45%;top:70%;--dur:1.79s;--delay:0.96s;"></div>
+              <div class="hc-bmc__air-dot" style="left:53%;top:20%;--dur:1.28s;--delay:0.65s;"></div>
+              <div class="hc-bmc__air-dot" style="left:61%;top:70%;--dur:1.72s;--delay:0.93s;"></div>
+              <div class="hc-bmc__air-dot" style="left:69%;top:20%;--dur:1.09s;--delay:0.98s;"></div>
+              <div class="hc-bmc__air-dot" style="left:77%;top:70%;--dur:1.5s;--delay:0.66s;"></div>
+              <div class="hc-bmc__air-dot" style="left:85%;top:20%;--dur:1.64s;--delay:0.66s;"></div>
+              <div class="hc-bmc__air-dot" style="left:93%;top:70%;--dur:1.76s;--delay:0.68s;"></div>
+
+              <div class="hc-bmc__heat-dot" style="left:10%;--delay:0.71s;"></div>
+              <div class="hc-bmc__heat-dot" style="left:22%;--delay:0.2s;"></div>
+              <div class="hc-bmc__heat-dot" style="left:34%;--delay:0.66s;"></div>
+              <div class="hc-bmc__heat-dot" style="left:46%;--delay:0.75s;"></div>
+              <div class="hc-bmc__heat-dot" style="left:58%;--delay:0.22s;"></div>
+              <div class="hc-bmc__heat-dot" style="left:70%;--delay:0.01s;"></div>
+              <div class="hc-bmc__heat-dot" style="left:82%;--delay:0.14s;"></div>
+              <div class="hc-bmc__heat-dot" style="left:94%;--delay:0.28s;"></div>
+
+              <div class="hc-bmc__center">
+                <svg
+                  class="hc-bmc__wind-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path>
+                  <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path>
+                  <path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path>
+                </svg>
+                <span class="hc-bmc__vent-label">{{ block.settings.vent_label | default: 'Active Ventilation' }}</span>
+              </div>
+            </div>
+
+            <div class="hc-bmc__card-footer">
+              <p>{{ block.settings.footer_caption | default: 'Vapor-Permeable Matrix Analysis' }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

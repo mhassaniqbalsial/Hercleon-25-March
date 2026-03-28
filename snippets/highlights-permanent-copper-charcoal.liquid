@@ -271,6 +271,12 @@
     border-top: 1px solid #000;
   }
 
+  @media (max-width: 479px) {
+    .hc-bio__tooltip {
+      width: 240px;
+    }
+  }
+
   @media (min-width: 768px) {
     .hc-bio__tooltip {
       width: min(100vw - 3rem, 28rem);
@@ -486,149 +492,3 @@
   </div>
 </section>
 
-{%- if tr1 != blank and block.settings.tooltip_content_1 != blank or tr2 != blank and block.settings.tooltip_content_2 != blank -%}
-  {%- if tr1 != blank and block.settings.tooltip_content_1 != blank -%}
-    <template id="{{ tmpl_1_id }}">
-      <span class="hc-bio__tooltip">
-        <span class="hc-bio__tooltip-box">
-          <span class="hc-bio__tooltip-content">{{ block.settings.tooltip_content_1 }}</span>
-        </span>
-        <span class="hc-bio__tooltip-arrow"></span>
-      </span>
-    </template>
-  {%- endif -%}
-  {%- if tr2 != blank and block.settings.tooltip_content_2 != blank -%}
-    <template id="{{ tmpl_2_id }}">
-      <span class="hc-bio__tooltip">
-        <span class="hc-bio__tooltip-box">
-          <span class="hc-bio__tooltip-content">{{ block.settings.tooltip_content_2 }}</span>
-        </span>
-        <span class="hc-bio__tooltip-arrow"></span>
-      </span>
-    </template>
-  {%- endif -%}
-
-  <script>
-    (function () {
-      var sectionId = {{ sec_id | json }};
-      var gap = 10;
-      var configs = [];
-      {%- if tr1 != blank and block.settings.tooltip_content_1 != blank -%}
-        configs.push({ text: {{ tr1 | json }}, tmplId: {{ tmpl_1_id | json }} });
-      {%- endif -%}
-      {%- if tr2 != blank and block.settings.tooltip_content_2 != blank -%}
-        configs.push({ text: {{ tr2 | json }}, tmplId: {{ tmpl_2_id | json }} });
-      {%- endif -%}
-
-      function bindBioTooltip(section) {
-        if (!section || section.hasAttribute('data-bio-tip-bound')) return;
-        section.setAttribute('data-bio-tip-bound', '1');
-        var scheduled = false;
-        function schedulePlace() {
-          if (scheduled) return;
-          scheduled = true;
-          requestAnimationFrame(function () {
-            scheduled = false;
-            section.querySelectorAll('.hc-bio__tooltip-trigger').forEach(placeOne);
-          });
-        }
-        function wrapIsActive(wrap) {
-          return wrap.matches(':hover') || wrap.matches(':focus-within');
-        }
-        function placeOne(wrap) {
-          var tip = wrap.querySelector('.hc-bio__tooltip');
-          if (!tip || !wrapIsActive(wrap)) return;
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-              if (!wrapIsActive(wrap)) return;
-              var alignX = section.getAttribute('data-tooltip-x') || 'center';
-              var wrapR = wrap.getBoundingClientRect();
-              var maxW = Math.min(448, window.innerWidth - 24);
-              tip.style.boxSizing = 'border-box';
-              tip.style.width = maxW + 'px';
-              tip.style.position = 'fixed';
-              tip.style.right = 'auto';
-              tip.style.bottom = 'auto';
-              tip.style.transform = 'none';
-              tip.style.margin = '0';
-              tip.style.zIndex = '2147483646';
-              var tw = tip.getBoundingClientRect().width;
-              var th = tip.getBoundingClientRect().height;
-              var left =
-                alignX === 'align_start'
-                  ? wrapR.left
-                  : wrapR.left + wrapR.width / 2 - tw / 2;
-              left = Math.max(12, Math.min(left, window.innerWidth - tw - 12));
-              var top = wrapR.top - th - gap;
-              tip.classList.remove('hc-bio__tooltip--flip');
-              if (top < 8) {
-                top = wrapR.bottom + gap;
-                tip.classList.add('hc-bio__tooltip--flip');
-              }
-              tip.style.left = Math.round(left) + 'px';
-              tip.style.top = Math.round(top) + 'px';
-              var arrow = tip.querySelector('.hc-bio__tooltip-arrow');
-              if (arrow) {
-                var anchorX = wrapR.left + wrapR.width / 2;
-                var arrowLeft = anchorX - left;
-                arrowLeft = Math.max(14, Math.min(arrowLeft, tw - 14));
-                arrow.style.left = Math.round(arrowLeft) + 'px';
-                arrow.style.transform = 'translateX(-50%) rotate(45deg)';
-              }
-            });
-          });
-        }
-        function clearTip(wrap) {
-          var tip = wrap.querySelector('.hc-bio__tooltip');
-          if (!tip) return;
-          tip.style.cssText = '';
-          tip.classList.remove('hc-bio__tooltip--flip');
-          var arrow = tip.querySelector('.hc-bio__tooltip-arrow');
-          if (arrow) arrow.style.cssText = '';
-        }
-        section.querySelectorAll('.hc-bio__tooltip-trigger').forEach(function (wrap) {
-          wrap.addEventListener('mouseenter', schedulePlace);
-          wrap.addEventListener('mouseleave', function () {
-            clearTip(wrap);
-          });
-          wrap.addEventListener('focusin', schedulePlace);
-          wrap.addEventListener('focusout', function () {
-            clearTip(wrap);
-          });
-        });
-        document.addEventListener('scroll', schedulePlace, true);
-        window.addEventListener('resize', schedulePlace);
-      }
-
-      function initBioTooltip() {
-        var section = document.getElementById(sectionId);
-        if (!section) return;
-        var descEl = section.querySelector('.hc-bio__desc');
-        if (!descEl) return;
-        configs.forEach(function (cfg) {
-          if (!cfg.text || !cfg.tmplId) return;
-          var tmpl = document.getElementById(cfg.tmplId);
-          if (!tmpl) return;
-          var triggerLower = String(cfg.text).trim().toLowerCase();
-          descEl.querySelectorAll('strong').forEach(function (el) {
-            if (el.textContent.trim().toLowerCase() !== triggerLower) return;
-            if (el.closest('.hc-bio__tooltip-trigger')) return;
-            var wrapper = document.createElement('span');
-            wrapper.className = 'hc-bio__tooltip-trigger';
-            el.parentNode.insertBefore(wrapper, el);
-            wrapper.appendChild(el);
-            wrapper.appendChild(tmpl.content.cloneNode(true));
-          });
-        });
-        bindBioTooltip(section);
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initBioTooltip);
-      } else {
-        initBioTooltip();
-      }
-      document.addEventListener('shopify:section:load', initBioTooltip);
-    })();
-  </script>
-{%- endif -%}

@@ -357,13 +357,22 @@
             "tab_title": "Performance",
             "hide_from_products": []
           }
+        },
+        "tab_akNAyN": {
+          "type": "tab",
+          "settings": {
+            "tab_id": "downsides",
+            "tab_title": "Downsides",
+            "hide_from_products": []
+          }
         }
       },
       "block_order": [
         "tab_yUyywW",
         "tab_wdXBj7",
         "tab_NajzRg",
-        "tab_bXyY8F"
+        "tab_bXyY8F",
+        "tab_akNAyN"
       ],
       "name": "Product Tabs Navigation",
       "settings": {
@@ -544,8 +553,8 @@
         "inhospitable_germs_Aaj6Vx": {
           "type": "inhospitable-germs",
           "settings": {
-            "tag": "01 — Deep-Core Sanitation",
-            "heading": "Precision Waffle Weave",
+            "tag": "02 — Deep-Core Sanitation",
+            "heading": "Inhospitable for Germs",
             "description": "<p>While standard towels harbor moisture and bacteria in their loops, the <strong>coconut charcoal viscose</strong> and copper infused cotton blend in the Jax Towel creates an inhospitable environment for germs, keeping every use significantly cleaner and fresher than a conventional towel.</p>",
             "card_title": "MICROBIAL BARRIER ANALYSIS",
             "row1_label": "Staphylococcus",
@@ -642,6 +651,31 @@
             "desc_color": "#9ca3af"
           }
         },
+        "precision_waffle_E9MMDA": {
+          "type": "precision-waffle",
+          "settings": {
+            "section_id": "precision-waffle",
+            "tag": "02 — Micro-Exfoliating Geometry",
+            "heading": "Precision Waffle Weave",
+            "description": "<p>The precision-engineered waffle weave provides a gentle mechanical exfoliation. It lifts away dead skin cells and debris more effectively than flat towels, leaving your skin polished and glowing.</p>",
+            "badge_label": "Geometric Exfoliation Matrix",
+            "footer_label": "Precision Weave Architecture",
+            "reverse_layout": true,
+            "enable_animation": true,
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "border_color": "#000000",
+            "card_bg_color": "#ffffff",
+            "card_border_color": "#000000",
+            "grid_bg_color": "#f9fafb",
+            "grid_border_color": "#e5e7eb",
+            "cell_bg_color": "#ffffff",
+            "cell_border_color": "#d1d5db",
+            "cell_inner_bg_color": "#f9fafb"
+          }
+        },
         "micron_finish_pLUDRz": {
           "type": "micron-finish",
           "settings": {
@@ -661,11 +695,38 @@
             "accent_color": "#b45309",
             "desc_color": "#9ca3af"
           }
+        },
+        "instant_evaporation_aF68wQ": {
+          "type": "instant-evaporation",
+          "settings": {
+            "section_id": "instant-evaporation",
+            "tag": "03 — Increased Surface Area",
+            "heading": "Rapid Absorption",
+            "description": "<p>The geometric wells in the weave of the Jax Towel significantly increase the surface area of the fabric, allowing for rapid absorption and faster evaporation compared to a conventional towel weave.</p>",
+            "tooltip_1_trigger": "",
+            "tooltip_1_content": "<p><strong>BAMBOO COPPER VISCOSE</strong></p><p></p>",
+            "row_1_label": "Fast Absorption",
+            "row_2_label": "Fast Evaporation",
+            "row_3_label": "Extra Surface Dryness",
+            "reverse_layout": false,
+            "enable_animation": true,
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "border_color": "#000000",
+            "card_bg_color": "#ffffff",
+            "card_border_color": "#f3f4f6",
+            "row_bg_color": "#f9fafb",
+            "row_border_color": "#e5e7eb"
+          }
         }
       },
       "block_order": [
         "acne_shield_Hrcm6j",
-        "micron_finish_pLUDRz"
+        "precision_waffle_E9MMDA",
+        "micron_finish_pLUDRz",
+        "instant_evaporation_aF68wQ"
       ],
       "name": "Tab Content - Highlights",
       "settings": {
@@ -675,6 +736,53 @@
     "hc_tab_content_highlights_VprjqV": {
       "type": "hc-tab-content-highlights",
       "blocks": {
+        "faster_drying_mwaALm": {
+          "type": "faster-drying",
+          "settings": {
+            "tag": "03 — Zero-Damp Technology",
+            "heading": "2x Faster Drying",
+            "description": "<p>Because air flows through the hexagonal channels of the weave, the towel dries 2x faster than traditional towels, preventing that \"sour towel\" smell common in humid bathrooms.</p>",
+            "visual_title": "Active Ventilation",
+            "visual_subtitle": "Means 2 Times Faster Drying",
+            "reverse_layout": true,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "circle_border_color": "#000000",
+            "circle_hover_tint": "rgba(239, 246, 255, 0.5)",
+            "shimmer_line_color": "#f3f4f6"
+          }
+        },
+        "lightweight_compact_TgLhYK": {
+          "type": "lightweight-compact",
+          "settings": {
+            "tag": "04 — Ultra-Compact Travel",
+            "heading": "Lightweight Without Compromise",
+            "description": "<p>The high density fiber blend of the Jax Towel delivers strong absorbency with up to 50% less bulk than a conventional towel, making it an ideal companion for the gym or a carry-on bag.</p>",
+            "left_label": "High Density\nFibers",
+            "right_label": "Ultra\nLightweight",
+            "reverse_layout": false,
+            "min_height": "60vh",
+            "html_id": "",
+            "enable_section_animation": false,
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af",
+            "divider_color": "#1f2937",
+            "card_bg_color": "#ffffff",
+            "card_text_color": "#000000",
+            "accent_box_bg": "rgba(180, 83, 9, 0.05)",
+            "equals_color": "#d1d5db",
+            "density_box_bg": "#f9fafb",
+            "density_dot_color": "rgba(0, 0, 0, 0.2)",
+            "density_inner_border": "#d1d5db"
+          }
+        },
         "sweat_management_cDYgzL": {
           "type": "sweat-management",
           "settings": {
@@ -693,11 +801,58 @@
         }
       },
       "block_order": [
+        "faster_drying_mwaALm",
+        "lightweight_compact_TgLhYK",
         "sweat_management_cDYgzL"
       ],
       "name": "Tab Content - Highlights",
       "settings": {
         "tab_id": "performance"
+      }
+    },
+    "hc_tab_content_highlights_AkPBbV": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "hc_honest_truth_YEHrXB": {
+          "type": "hc-honest-truth",
+          "settings": {
+            "eyebrow": "Transparency",
+            "heading": "The Honest Truth",
+            "lead": "We're not for everyone. Here's why you might NOT want to buy from us.",
+            "card_1_num": "01",
+            "card_1_title": "The \"Snag\" Risk",
+            "card_1_body": "The open, geometric architecture of our waffle weave is more susceptible to \"pulls\" or snags from jewelry or sharp objects than a standard flat towel. It requires a bit more mindfulness during use.",
+            "card_2_num": "02",
+            "card_2_title": "Texture Adjustment",
+            "card_2_body": "If you are used to the \"mushy\" feel of a thick polyester towel, the firm, exfoliating grip of our high-performance weave will feel different at first. It is designed for function and skin-health, not just \"fuzziness.\"",
+            "card_3_num": "03",
+            "card_3_title": "Shrinkage Potential",
+            "card_3_body": "Because we use high-integrity natural base fibers without chemical stabilizers, the towel will \"tighten up\" and develop more texture after the first wash. This is a feature of the weave's performance, but it may appear smaller initially.",
+            "card_4_num": "04",
+            "card_4_title": "No Softener Allowed",
+            "card_4_body": "To keep the metallic ions and mineral filters active, you must avoid fabric softeners. Softeners \"clog\" the fiber technology, rendering the hygiene benefits less effective.",
+            "card_5_num": "05",
+            "card_5_title": "Initial Shedding",
+            "card_5_body": "In the first 1–2 washes, you may see some fiber \"pilling.\" This is simply the excess high-performance material settling into its permanent structure.",
+            "closing_brand": "HercLeon",
+            "closing_tagline": "Built for the 1% who demand more.",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "muted_color": "#4b5563",
+            "grid_line_color": "#000000",
+            "card_hover_bg": "#f9fafb",
+            "aside_bg": "#f9fafb",
+            "aside_muted_color": "#9ca3af"
+          }
+        }
+      },
+      "block_order": [
+        "hc_honest_truth_YEHrXB"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "downsides"
       }
     },
     "hc_prod_compare_yK8FrA": {
@@ -1073,6 +1228,7 @@
     "hc_tab_content_highlights_WrjdeC",
     "hc_tab_content_highlights_MqRhp3",
     "hc_tab_content_highlights_VprjqV",
+    "hc_tab_content_highlights_AkPBbV",
     "hc_prod_compare_yK8FrA",
     "faq_tFM8TN",
     "product-recommendations",

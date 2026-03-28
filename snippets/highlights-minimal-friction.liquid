@@ -1,0 +1,343 @@
+{% comment %}
+  Highlights — Minimal Friction (sensitive-skin certified)
+{% endcomment %}
+
+{%- liquid
+  assign minfric_bg          = block.settings.bg_color | default: '#ffffff'
+  assign minfric_text        = block.settings.text_color | default: '#000000'
+  assign minfric_accent      = block.settings.accent_color | default: '#B45309'
+  assign minfric_desc        = block.settings.desc_color | default: '#4b5563'
+  assign minfric_border      = block.settings.border_color | default: '#000000'
+  assign minfric_card_bg     = block.settings.card_bg_color | default: '#ffffff'
+  assign minfric_card_border = block.settings.card_border_color | default: '#f3f4f6'
+  assign minfric_box_bg      = block.settings.weave_box_bg | default: '#f9fafb'
+  assign minfric_box_border  = block.settings.weave_box_border | default: '#e5e7eb'
+  assign minfric_bar_fill    = block.settings.bar_fill_pct | default: '15%'
+  unless minfric_bar_fill contains '%'
+    assign minfric_bar_fill = minfric_bar_fill | append: '%'
+  endunless
+  assign is_reversed         = block.settings.reverse_layout
+  assign minfric_section_id  = block.settings.section_id | default: 'minimal-friction' | handleize
+-%}
+
+{%- style -%}
+  .hc-minfric {
+    --hc-minfric-bg: {{ minfric_bg }};
+    --hc-minfric-text: {{ minfric_text }};
+    --hc-minfric-accent: {{ minfric_accent }};
+    --hc-minfric-desc: {{ minfric_desc }};
+    --hc-minfric-border: {{ minfric_border }};
+    --hc-minfric-card-bg: {{ minfric_card_bg }};
+    --hc-minfric-card-border: {{ minfric_card_border }};
+    --hc-minfric-box-bg: {{ minfric_box_bg }};
+    --hc-minfric-box-border: {{ minfric_box_border }};
+
+    background-color: var(--hc-minfric-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-minfric__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-minfric__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--hc-minfric-text);
+    order: 1;
+    border-bottom: 1px solid var(--hc-minfric-border);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-minfric__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--hc-minfric-bg);
+    order: 2;
+  }
+
+  .hc-minfric__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--hc-minfric-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-minfric__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--hc-minfric-text);
+  }
+
+  .hc-minfric__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--hc-minfric-desc);
+    white-space: pre-line;
+  }
+
+  .hc-minfric__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  /* Visual card */
+  .hc-minfric__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-minfric__card {
+    background-color: var(--hc-minfric-card-bg);
+    padding: 2rem;
+    border: 1px solid var(--hc-minfric-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--hc-minfric-text);
+  }
+
+  .hc-minfric__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Weave preview box */
+  .hc-minfric__weave-box {
+    width: 100%;
+    height: 8rem;
+    background-color: var(--hc-minfric-box-bg);
+    border: 1px dashed var(--hc-minfric-box-border);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-minfric__weave-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .hc-minfric__weave-line {
+    width: 1px;
+    background-color: var(--hc-minfric-text);
+  }
+
+  .hc-minfric__weave-center {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-minfric__weave-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--hc-minfric-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-minfric__weave-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--hc-minfric-text);
+  }
+
+  /* Friction bar */
+  .hc-minfric__bar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .hc-minfric__bar-track {
+    flex: 1;
+    height: 4px;
+    background-color: #f3f4f6;
+    position: relative;
+  }
+
+  .hc-minfric__bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: {{ minfric_bar_fill }};
+    background-color: var(--hc-minfric-accent);
+    display: block !important;
+  }
+
+  .hc-minfric__bar-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--hc-minfric-accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .hc-minfric__text-col {
+      padding: 6rem;
+    }
+
+    .hc-minfric__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-minfric__heading {
+      font-size: 3rem;
+    }
+
+    .hc-minfric__card {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-minfric__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-minfric__text-col {
+      border-bottom: none;
+    }
+
+    .hc-minfric__grid--default .hc-minfric__text-col {
+      order: 1;
+      border-right: 1px solid var(--hc-minfric-border);
+    }
+
+    .hc-minfric__grid--default .hc-minfric__visual-col {
+      order: 2;
+    }
+
+    .hc-minfric__grid--reversed .hc-minfric__text-col {
+      order: 2;
+      border-left: 1px solid var(--hc-minfric-border);
+    }
+
+    .hc-minfric__grid--reversed .hc-minfric__visual-col {
+      order: 1;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ minfric_section_id }}"
+  class="hc-minfric{% if block.settings.enable_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-minfric__grid {% if is_reversed %}hc-minfric__grid--reversed{% else %}hc-minfric__grid--default{% endif %}">
+
+    <div class="hc-minfric__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-minfric__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-minfric__heading">{{ block.settings.heading | default: 'Minimal Friction' }}</h3>
+
+      <div class="hc-minfric__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-minfric__visual-col">
+      <div class="hc-minfric__visual-inner">
+        <div class="hc-minfric__card">
+          <div class="hc-minfric__card-inner">
+
+            <div class="hc-minfric__weave-box">
+              <div class="hc-minfric__weave-lines" aria-hidden="true">
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+                <div class="hc-minfric__weave-line"></div>
+              </div>
+
+              <div class="hc-minfric__weave-center">
+                <svg
+                  class="hc-minfric__weave-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z"></path>
+                  <path d="M16 8 2 22"></path>
+                  <path d="M17.5 15H9"></path>
+                </svg>
+                <span class="hc-minfric__weave-label">{{ block.settings.weave_label | default: 'Specialized Weave' }}</span>
+              </div>
+            </div>
+
+            <div class="hc-minfric__bar-row">
+              <div class="hc-minfric__bar-track">
+                <div class="hc-minfric__bar-fill"></div>
+              </div>
+              <span class="hc-minfric__bar-label">{{ block.settings.bar_label | default: 'Minimal Friction' }}</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

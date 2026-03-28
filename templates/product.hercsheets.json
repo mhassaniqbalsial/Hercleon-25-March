@@ -361,16 +361,24 @@
         "tab_RKcQGj": {
           "type": "tab",
           "settings": {
-            "tab_id": "travel",
-            "tab_title": "Travel freedom",
+            "tab_id": "beauty",
+            "tab_title": "Beauty",
             "hide_from_products": []
           }
         },
         "tab_aWzzHc": {
           "type": "tab",
           "settings": {
-            "tab_id": "briefing",
-            "tab_title": "Full Briefing",
+            "tab_id": "durability",
+            "tab_title": "Durability",
+            "hide_from_products": []
+          }
+        },
+        "tab_jBEnVJ": {
+          "type": "tab",
+          "settings": {
+            "tab_id": "sustainability",
+            "tab_title": "Sustainability",
             "hide_from_products": []
           }
         }
@@ -381,7 +389,8 @@
         "tab_NajzRg",
         "tab_bXyY8F",
         "tab_RKcQGj",
-        "tab_aWzzHc"
+        "tab_aWzzHc",
+        "tab_jBEnVJ"
       ],
       "name": "Product Tabs Navigation",
       "settings": {
@@ -453,8 +462,12 @@
             "stat_title": "Bacteria Neutralization",
             "stat_desc": "Destroys acne-causing microbes every 180 seconds.",
             "reverse_layout": false,
+            "style_preset": "default",
+            "html_id": "",
+            "enable_section_animation": false,
             "tooltip_trigger": "Silver Grid",
             "tooltip_content": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction. It does not wash out, fade, or lose effectiveness over time.</p><p><strong>Why is it in the Jax Sheets?</strong></p><p>Silver is one of the most effective natural antimicrobial elements known, and in the Jax Sheets it works continuously to inhibit the growth of bacteria, fungi, and odor-causing microbes across the entire surface of the fabric. Because the silver is woven in rather than coated on, its protective properties remain consistent wash after wash and year after year. The result is a sheet that maintains a genuinely hygienic sleep surface over the long term, without relying on chemical treatments or needing to be replaced to stay effective.</p>",
+            "tooltip_position": "center",
             "bg_color": "#ffffff",
             "text_color": "#000000",
             "accent_color": "#b45309",
@@ -495,12 +508,14 @@
             "stat_value": "5x",
             "stat_label": "Durability Factor",
             "reverse_layout": true,
+            "column_divider_side": "auto",
             "tooltip_trigger": "",
             "tooltip_content": "",
             "bg_color": "#ffffff",
             "text_color": "#000000",
             "accent_color": "#b45309",
-            "desc_color": "#4b5563"
+            "desc_color": "#4b5563",
+            "border_color": "#000000"
           }
         }
       },
@@ -624,14 +639,339 @@
             "accent_color": "#b45309",
             "desc_color": "#9ca3af"
           }
+        },
+        "dry_sweet_eXRtwe": {
+          "type": "dry-sweet",
+          "settings": {
+            "tag": "02 — HUMIDITY & MOISTURE CONTROL",
+            "heading": "The Dry-Sleep System",
+            "description": "<p>While PCM manages the heat, our embedded <strong>Volcanic Ash</strong> and <strong>Coconut Charcoal</strong> manage the humidity. These materials work to pull moisture away from your skin before it can even turn into visible sweat. By instantly evaporating skin humidity, the fabric prevents that damp, \"clammy\" feeling common with traditional bedding. This ensures your sleep environment remains dry and breathable, keeping you comfortable even in high-humidity environments or through changing seasons.</p>",
+            "center_label": "Dry-Sleep",
+            "vapor_label": "Vapor",
+            "heat_label": "Heat",
+            "badge_text": "Active Wicking",
+            "schematic_footer": "Hydro-Dynamic Evaporation Schematic",
+            "reverse_layout": true,
+            "tooltip_1_trigger": "Volcanic Ash",
+            "tooltip_1_content": "<p><strong>WHAT IS VOLCANIC ASH?</strong></p><p>Volcanic ash in textiles means ultra-fine mineral particles from volcanic rock. Embedded in fibers, they create microscopic pathways that help absorb and move moisture vapor away from the skin instead of letting it sit on the surface.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>Jax Sheets weave volcanic ash into the fabric so humidity is pulled away from your body before it can feel damp or clammy. That keeps the sleep surface drier and more breathable on warm or humid nights.</p>",
+            "tooltip_2_trigger": "Coconut Charcoal",
+            "tooltip_2_content": "<p><strong>WHAT IS COCONUT CHARCOAL?</strong></p><p>Coconut charcoal is activated carbon made from coconut shells. Its porous structure adsorbs odor molecules and helps manage moisture in fabrics—similar to premium filters that use carbon to trap impurities at a microscopic level.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>In Jax Sheets, coconut charcoal works with the rest of the fiber system to reduce odors and balance humidity in your bedding. The result is a cleaner-smelling, less clammy sleep surface between washes.</p>",
+            "tooltip_3_trigger": "",
+            "tooltip_3_content": "",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "wick_color": "#3b82f6"
+          }
+        },
+        "steady_temperature_speed_eTV3A9": {
+          "type": "steady-temperature-speed",
+          "settings": {
+            "section_id": "steady-temperature-fir",
+            "tag": "03 — FIR Bio-Ceramic Technology",
+            "heading": "Steady-Temperature Sleep",
+            "description": "<p>Most bedding is passive, it either traps heat or lets it escape. The <strong>FIR Bio-Ceramics</strong> in the Jax Sheets actively work with your body's natural heat output, re-emitting it as far infrared energy that encourages circulation and helps your body regulate its own temperature more efficiently through the night. The result is fewer of those subtle temperature fluctuations that pull you out of deep sleep without you ever realizing why.</p>",
+            "center_label": "FIR",
+            "body_heat_label": "Body Heat",
+            "reflected_label": "Reflected Energy",
+            "badge_text": "Bio-Active",
+            "schematic_footer": "Thermal Mirror Schematic",
+            "reverse_layout": false,
+            "tooltip_1_trigger": "FIR Bio-Ceramics",
+            "tooltip_1_content": "<p><strong>WHAT IS FIR BIO-CERAMICS?</strong></p><p>FIR (far infrared) bio-ceramics are mineral materials embedded in fibers that absorb body heat and re-emit it as gentle far infrared energy—supporting micro-circulation and a more stable thermal feel through the night.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>Jax Sheets use FIR bio-ceramics so passive heat from your body is recycled into comfortable infrared warmth instead of building up as trapped hot spots. That helps reduce the small temperature swings that can disturb deep sleep.</p>",
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af",
+            "energy_color": "#ef4444",
+            "heat_arrow_color": "#fb923c"
+          }
         }
       },
       "block_order": [
-        "sweat_management_cDYgzL"
+        "sweat_management_cDYgzL",
+        "dry_sweet_eXRtwe",
+        "steady_temperature_speed_eTV3A9"
       ],
       "name": "Tab Content - Highlights",
       "settings": {
         "tab_id": "cooling"
+      }
+    },
+    "hc_tab_content_highlights_BF4Rdi": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "acne_shield_JLPLQx": {
+          "type": "acne-shield",
+          "settings": {
+            "tag": "03 — Clinical-Grade Germ Protection",
+            "heading": "THE ANTI-ACNE SHIELD",
+            "description": "<p>Most sleep acne is caused by bacteria that accumulate on your pillowcase and transfer back to your skin while you sleep. The <strong>Silver Grid</strong> woven into the Jax Sheets continuously inhibits the growth of those bacteria on the fabric surface, meaning your face rests on a significantly cleaner environment every night.<br/>For skin prone to breakouts, conventional pillowcases offer no protection against bacterial buildup between washes. The Jax Sheets work against it constantly.</p>",
+            "card_title": "MICROBIOME PROTECTION",
+            "stat_value": "99.9%",
+            "stat_unit": "Kill Rate",
+            "stat_title": "Bacteria Neutralization",
+            "stat_desc": "Destroys acne-causing microbes every 180 seconds.",
+            "reverse_layout": false,
+            "style_preset": "default",
+            "html_id": "",
+            "enable_section_animation": false,
+            "tooltip_trigger": "Silver Grid",
+            "tooltip_content": "<p><strong>What is it?</strong></p><p>A silver grid is a network of ultra-fine silver threads woven directly into the fabric at precise intervals, forming a continuous grid structure throughout the textile. Unlike silver ion treatments that are applied to the surface of a fabric and degrade with washing, a woven silver grid is a permanent part of the sheet's construction.</p><p><strong>How does it fight acne?</strong></p><p>The silver ions continuously neutralize the bacteria that cause breakouts — Propionibacterium acnes and Staphylococcus aureus — directly on the fabric surface. Your skin rests on a cleaner environment every night without any additional effort.</p>",
+            "tooltip_position": "center",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563"
+          }
+        },
+        "friction_free_npCmym": {
+          "type": "friction-free",
+          "settings": {
+            "section_id": "friction-free",
+            "tag": "02 — The \"Dolphin-Smooth\" Texture",
+            "heading": "Friction-Free Hair Care",
+            "description": "<p>Standard cotton and polyester fabrics have microscopic irregularities that catch on hair cuticles as you move through the night, causing frizz, micro-tears, and breakage over time. The Jax Sheets are engineered at a fiber level to be exceptionally smooth, significantly reducing that physical drag against your hair.</p>",
+            "std_label": "Standard Fabric",
+            "std_badge": "FRICTION",
+            "std_bottom_label": "Micro-Tears",
+            "jax_label": "Jax Fabric",
+            "jax_badge": "SMOOTH",
+            "jax_bottom_label": "Friction-Free",
+            "footer_caption": "Surface Friction Comparison (1000x)",
+            "reverse_layout": true,
+            "enable_animation": true,
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af",
+            "border_color": "#1f2937",
+            "card_bg_color": "#000000",
+            "card_border_color": "#1f2937"
+          }
+        },
+        "breathable_surface_Tzgyi3": {
+          "type": "breathable-surface",
+          "settings": {
+            "tag": "03 — A Breathable Surface for Clearer Skin",
+            "heading": "OIL & HUMIDITY MANAGEMENT",
+            "description": "<p>Skin inflammation often occurs when sweat and excess sebum (oil) are trapped against the skin in a damp environment. To manage this, we've woven in <strong>Volcanic Ash</strong> and <strong>Coconut Charcoal</strong>. The ash acts as a natural desiccant, pulling humidity away from your skin before it becomes liquid sweat, while the charcoal helps absorb excess oils. By keeping the sleep surface dry and oil-neutral, the fabric prevents the \"clammy\" environment that leads to congested pores and morning puffiness.</p>",
+            "skin_bar_label": "Skin Surface",
+            "humidity_label": "Humidity",
+            "oil_label": "Excess Oil",
+            "charcoal_label": "Charcoal",
+            "ash_label": "Volcanic Ash",
+            "badge_text": "Active Desiccant System",
+            "schematic_footer": "Humidity & Sebum Management Schematic",
+            "reverse_layout": false,
+            "tooltip_1_trigger": "Volcanic Ash",
+            "tooltip_1_content": "<p><strong>WHAT IS VOLCANIC ASH?</strong></p><p>Volcanic ash in textiles means ultra-fine mineral particles from volcanic rock. Embedded in fibers, they create microscopic pathways that help absorb and move moisture vapor away from the skin instead of letting it sit on the surface.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>Jax Sheets weave volcanic ash into the fabric so humidity is pulled away from your body before it can feel damp or clammy. That keeps the sleep surface drier and more breathable on warm or humid nights.</p>",
+            "tooltip_2_trigger": "Coconut Charcoal",
+            "tooltip_2_content": "<p><strong>WHAT IS COCONUT CHARCOAL?</strong></p><p>Coconut charcoal is activated carbon made from coconut shells. Its porous structure adsorbs odor molecules and helps manage moisture in fabrics—similar to premium filters that use carbon to trap impurities at a microscopic level.</p><p><strong>WHY IS IT IN JAX SHEETS?</strong></p><p>In Jax Sheets, coconut charcoal works with the rest of the fiber system to reduce odors and balance humidity in your bedding. The result is a cleaner-smelling, less clammy sleep surface between washes.</p>",
+            "tooltip_position": "center",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "card_border_color": "#000000",
+            "diagram_bg": "#f9fafb",
+            "diagram_inner_border": "#e5e7eb",
+            "skin_strip_bg": "#ffedd5",
+            "skin_strip_border": "#fed7aa",
+            "skin_strip_text": "#fb923c",
+            "humidity_color": "#60a5fa",
+            "oil_color": "#ca8a04",
+            "charcoal_icon_bg": "#111827",
+            "ash_icon_bg": "#9ca3af"
+          }
+        }
+      },
+      "block_order": [
+        "acne_shield_JLPLQx",
+        "friction_free_npCmym",
+        "breathable_surface_Tzgyi3"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "beauty"
+      }
+    },
+    "hc_tab_content_highlights_cGhz7i": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "durability_lifespan_FtJtyf": {
+          "type": "durability-lifespan",
+          "settings": {
+            "eyebrow_text": "01 — EXTENDED LIFESPAN",
+            "title": "Less Smell = Longer Lifespan",
+            "description": "Most clothing wears out early because it has to be washed constantly.",
+            "comparison_title": "HercFiber™ is more durable than others by:",
+            "comparison_1_value": "1.9x",
+            "comparison_1_label": "Cotton",
+            "comparison_2_value": "2x",
+            "comparison_2_label": "Viscose",
+            "comparison_3_value": "3x",
+            "comparison_3_label": "Merino Wool",
+            "table_title": "HercFiber Is Durable In Every Way",
+            "header_category": "Category",
+            "header_meaning": "Meaning",
+            "header_cotton": "Cot",
+            "header_merino": "Mer",
+            "header_herc": "Herc",
+            "row_1_category": "Tensile Strength",
+            "row_1_meaning": "Resistance to breaking",
+            "row_1_cotton": "★★",
+            "row_1_merino": "★",
+            "row_1_herc": "★★★",
+            "row_2_category": "Abrasion Resistance",
+            "row_2_meaning": "Handles rubbing/friction",
+            "row_2_cotton": "★★",
+            "row_2_merino": "★",
+            "row_2_herc": "★★★",
+            "row_3_category": "Pilling Resistance",
+            "row_3_meaning": "Avoids fiber balls",
+            "row_3_cotton": "★★",
+            "row_3_merino": "★",
+            "row_3_herc": "★★★",
+            "row_4_category": "Shape Retention",
+            "row_4_meaning": "Keeps shape/fit",
+            "row_4_cotton": "★",
+            "row_4_merino": "★★★",
+            "row_4_herc": "★★",
+            "row_5_category": "Heat/Wash Stability",
+            "row_5_meaning": "Tolerates washing",
+            "row_5_cotton": "★★",
+            "row_5_merino": "★",
+            "row_5_herc": "★★★",
+            "row_6_category": "Moisture Strength",
+            "row_6_meaning": "Strength when wet",
+            "row_6_cotton": "★★",
+            "row_6_merino": "★",
+            "row_6_herc": "★★★",
+            "row_7_category": "Overall Durability",
+            "row_7_meaning": "Real-world lifespan",
+            "row_7_cotton": "★★",
+            "row_7_merino": "★",
+            "row_7_herc": "★★★"
+          }
+        },
+        "longevity_designed_innxBr": {
+          "type": "longevity-designed",
+          "settings": {
+            "tag": "05 — Resists Wear and Breakdown",
+            "heading": "DESIGNED FOR LONGEVITY",
+            "description": "<p>Frequent laundering is the primary cause of fabric wear. The friction and high heat of heavy bedding cycles eventually break down fibers, leading to stretching and thinning. Because Jax Sheets require significantly fewer washes, they avoid this routine damage. Built with a highly pill-resistant HercLeón™ structure, they are designed to maintain their performance for years—reducing textile waste and the need for frequent replacements.</p>",
+            "card_title": "AVERAGE SHEET LIFESPAN",
+            "standard_label": "TRADITIONAL COTTON / LINEN / POLY",
+            "standard_value": "2 - 3 YEARS",
+            "jax_label": "JAX SHEETS",
+            "jax_value": "UP TO 10 YEARS",
+            "stat_value": "5x",
+            "stat_label": "Durability Factor",
+            "reverse_layout": true,
+            "column_divider_side": "auto",
+            "tooltip_trigger": "",
+            "tooltip_content": "",
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "accent_color": "#b45309",
+            "desc_color": "#9ca3af",
+            "border_color": "#000000"
+          }
+        },
+        "intelligent_investment_aVTFQd": {
+          "type": "intelligent-investment",
+          "settings": {
+            "eyebrow_text": "03 — FINANCIAL INTELLIGENCE",
+            "title": "THE MOST INTELLIGENT INVESTMENT YOU CAN MAKE.",
+            "description": "Smelly clothes are a liability. They require constant spending on detergent, water, electricity, and machine maintenance. Worse, frequent washing destroys the fabric, forcing you to buy replacements.\n\nHercLéon turns clothing into an asset. By staying fresh for weeks, we eliminate 90% of laundry costs and extend garment lifespan by years. Clothing that doesn't smell literally costs less to own.",
+            "card_title": "Cost Reduction Analysis",
+            "item_1_label": "DETERGENT",
+            "item_1_value": "−90% Usage",
+            "item_2_label": "WATER & POWER",
+            "item_2_value": "−90% Usage",
+            "item_3_label": "DRYER CYCLES",
+            "item_3_value": "Eliminated",
+            "item_4_label": "REPLACEMENTS",
+            "item_4_value": "Every 5–10 Years"
+          }
+        }
+      },
+      "block_order": [
+        "durability_lifespan_FtJtyf",
+        "longevity_designed_innxBr",
+        "intelligent_investment_aVTFQd"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "durability"
+      }
+    },
+    "hc_tab_content_highlights_R8QtwR": {
+      "type": "hc-tab-content-highlights",
+      "blocks": {
+        "cleaner_planet_33jydC": {
+          "type": "cleaner-planet",
+          "settings": {
+            "title_main": "BUILT FOR A CLEANER",
+            "title_accent": "PLANET",
+            "description": "The fashion industry is the second largest polluter in the world. By creating clothing that doesn't need to be washed nearly as often as regular clothing, HercLéon is a commitment to a cleaner future."
+          }
+        },
+        "exp_laundry_FAgnLp": {
+          "type": "exp-laundry",
+          "settings": {
+            "eyebrow_text": "01 — Reduced Washing",
+            "title": "LESS WASHING MEANS LESS WASTE.",
+            "subtitle": "Experiencing having more time, energy and flexibility",
+            "description": "Laundering bedding is one of the most resource-intensive household tasks. Because of their sheer volume, washing and drying a set of sheets requires significant amounts of water and energy, along with detergents and chemicals that eventually enter our waterways. Jax Sheets are engineered to stay fresh for much longer than traditional fabrics, which means they need to be washed far less often. This reduction in laundry cycles directly translates to a lower environmental footprint—saving thousands of gallons of water and reducing energy consumption and chemical pollution over the life of your sheets.",
+            "card_title": "Life Efficiency",
+            "footer_text": "HercLeón removes the hidden burdens of clothing.",
+            "metric_1_label": "Laundry Reduction",
+            "metric_1_value": 90,
+            "metric_2_label": "Water Savings",
+            "metric_2_value": 85,
+            "metric_3_label": "Energy Saved",
+            "metric_3_value": 90,
+            "metric_4_label": "Reduced detergent use",
+            "metric_4_value": 50,
+            "reverse_layout": true
+          }
+        },
+        "longevity_designed_gpQmWy": {
+          "type": "longevity-designed",
+          "settings": {
+            "tag": "05 — Resists Wear and Breakdown",
+            "heading": "DESIGNED FOR LONGEVITY",
+            "description": "<p>Frequent laundering is the primary cause of fabric wear. The friction and high heat of heavy bedding cycles eventually break down fibers, leading to stretching and thinning. Because Jax Sheets require significantly fewer washes, they avoid this routine damage. Built with a highly pill-resistant HercLeón™ structure, they are designed to maintain their performance for years—reducing textile waste and the need for frequent replacements.</p>",
+            "card_title": "AVERAGE SHEET LIFESPAN",
+            "standard_label": "TRADITIONAL COTTON / LINEN / POLY",
+            "standard_value": "2 - 3 YEARS",
+            "jax_label": "JAX SHEETS",
+            "jax_value": "UP TO 10 YEARS",
+            "stat_value": "5x",
+            "stat_label": "Durability Factor",
+            "reverse_layout": true,
+            "column_divider_side": "auto",
+            "tooltip_trigger": "",
+            "tooltip_content": "",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#b45309",
+            "desc_color": "#4b5563",
+            "border_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "cleaner_planet_33jydC",
+        "exp_laundry_FAgnLp",
+        "longevity_designed_gpQmWy"
+      ],
+      "name": "Tab Content - Highlights",
+      "settings": {
+        "tab_id": "sustainability"
       }
     },
     "hc_prod_compare_yK8FrA": {
@@ -1007,6 +1347,9 @@
     "hc_tab_content_highlights_WrjdeC",
     "hc_tab_content_highlights_MqRhp3",
     "hc_tab_content_highlights_VprjqV",
+    "hc_tab_content_highlights_BF4Rdi",
+    "hc_tab_content_highlights_cGhz7i",
+    "hc_tab_content_highlights_R8QtwR",
     "hc_prod_compare_yK8FrA",
     "faq_tFM8TN",
     "product-recommendations",

@@ -1,0 +1,299 @@
+{% comment %}
+  Highlights — Precision Waffle Weave (micro-exfoliating geometry)
+{% endcomment %}
+
+{%- liquid
+  assign pw_bg          = block.settings.bg_color | default: '#ffffff'
+  assign pw_text        = block.settings.text_color | default: '#000000'
+  assign pw_accent      = block.settings.accent_color | default: '#B45309'
+  assign pw_desc        = block.settings.desc_color | default: '#4b5563'
+  assign pw_border      = block.settings.border_color | default: '#000000'
+  assign pw_card_bg     = block.settings.card_bg_color | default: '#ffffff'
+  assign pw_card_border = block.settings.card_border_color | default: '#000000'
+  assign pw_cell_bg     = block.settings.cell_bg_color | default: '#ffffff'
+  assign pw_cell_border = block.settings.cell_border_color | default: '#d1d5db'
+  assign pw_cell_inner  = block.settings.cell_inner_bg_color | default: '#f9fafb'
+  assign pw_grid_bg     = block.settings.grid_bg_color | default: '#f9fafb'
+  assign pw_grid_border = block.settings.grid_border_color | default: '#e5e7eb'
+  assign is_reversed    = block.settings.reverse_layout
+  assign pw_section_id  = block.settings.section_id | default: 'precision-waffle' | handleize
+-%}
+
+{%- style -%}
+  .hc-waffle {
+    --pw-bg: {{ pw_bg }};
+    --pw-text: {{ pw_text }};
+    --pw-accent: {{ pw_accent }};
+    --pw-desc: {{ pw_desc }};
+    --pw-border: {{ pw_border }};
+    --pw-card-bg: {{ pw_card_bg }};
+    --pw-card-border: {{ pw_card_border }};
+    --pw-cell-bg: {{ pw_cell_bg }};
+    --pw-cell-border: {{ pw_cell_border }};
+    --pw-cell-inner: {{ pw_cell_inner }};
+    --pw-grid-bg: {{ pw_grid_bg }};
+    --pw-grid-border: {{ pw_grid_border }};
+
+    background-color: var(--pw-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-waffle__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-waffle__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--pw-text);
+    order: 1;
+    border-bottom: 1px solid var(--pw-border);
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+  }
+
+  .hc-waffle__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--pw-bg);
+    order: 2;
+  }
+
+  .hc-waffle__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--pw-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-waffle__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--pw-text);
+  }
+
+  .hc-waffle__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--pw-desc);
+    white-space: pre-line;
+  }
+
+  .hc-waffle__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  /* Visual card */
+  .hc-waffle__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-waffle__card {
+    background-color: var(--pw-card-bg);
+    padding: 2rem;
+    border: 1px solid var(--pw-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--pw-text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hc-waffle__pattern-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Waffle grid */
+  .hc-waffle__pattern {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    background-color: var(--pw-grid-bg);
+    border: 1px solid var(--pw-grid-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hc-waffle__cells {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 3px;
+    padding: 1rem;
+  }
+
+  .hc-waffle__cell {
+    background-color: var(--pw-cell-bg);
+    border: 1px solid var(--pw-cell-border);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-waffle__cell-inner {
+    width: 50%;
+    height: 50%;
+    background-color: var(--pw-cell-inner);
+    border-radius: 2px;
+  }
+
+  /* Badge overlay */
+  .hc-waffle__badge {
+    position: relative;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--pw-card-border);
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  }
+
+  .hc-waffle__badge-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--pw-text);
+  }
+
+  /* Footer label */
+  .hc-waffle__footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .hc-waffle__footer-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #9ca3af;
+  }
+
+  @media (min-width: 768px) {
+    .hc-waffle__text-col {
+      padding: 6rem;
+    }
+
+    .hc-waffle__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-waffle__heading {
+      font-size: 3rem;
+    }
+
+    .hc-waffle__card {
+      padding: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-waffle__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-waffle__text-col {
+      border-bottom: none;
+    }
+
+    .hc-waffle__grid--default .hc-waffle__text-col {
+      order: 1;
+      border-right: 1px solid var(--pw-border);
+    }
+
+    .hc-waffle__grid--default .hc-waffle__visual-col {
+      order: 2;
+    }
+
+    .hc-waffle__grid--reversed .hc-waffle__text-col {
+      order: 2;
+      border-left: 1px solid var(--pw-border);
+    }
+
+    .hc-waffle__grid--reversed .hc-waffle__visual-col {
+      order: 1;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ pw_section_id }}"
+  class="hc-waffle{% if block.settings.enable_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-waffle__grid {% if is_reversed %}hc-waffle__grid--reversed{% else %}hc-waffle__grid--default{% endif %}">
+
+    <div class="hc-waffle__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-waffle__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-waffle__heading">{{ block.settings.heading | default: 'Precision Waffle Weave' }}</h3>
+
+      <div class="hc-waffle__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-waffle__visual-col">
+      <div class="hc-waffle__visual-inner">
+        <div class="hc-waffle__card">
+          <div class="hc-waffle__pattern-wrap">
+
+            <div class="hc-waffle__pattern">
+              <div class="hc-waffle__cells" aria-hidden="true">
+                {%- for i in (1..48) -%}
+                  <div class="hc-waffle__cell">
+                    <div class="hc-waffle__cell-inner"></div>
+                  </div>
+                {%- endfor -%}
+              </div>
+              <div class="hc-waffle__badge">
+                <span class="hc-waffle__badge-text">{{ block.settings.badge_label | default: 'Geometric Exfoliation Matrix' }}</span>
+              </div>
+            </div>
+
+            {%- if block.settings.footer_label != blank -%}
+              <div class="hc-waffle__footer">
+                <p class="hc-waffle__footer-label">{{ block.settings.footer_label }}</p>
+              </div>
+            {%- endif -%}
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

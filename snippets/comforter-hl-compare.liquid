@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jax Comforter – Competitor Analysis</title>
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Variables ─────────────────────────────────────────── */
+    :root {
+      --hc-cc-accent:          #B45309;
+      --hc-cc-accent-dim:      rgba(180, 83, 9, 0.05);
+      --hc-cc-accent-border:   rgba(180, 83, 9, 0.20);
+      --hc-cc-bg:              #000000;
+      --hc-cc-card-bg:         #111111;
+      --hc-cc-card-header-bg:  #151515;
+      --hc-cc-border:          #1f1f1f;
+      --hc-cc-text-white:      #ffffff;
+      --hc-cc-text-gray:       #9ca3af;
+      --hc-cc-text-light:      #d1d5db;
+      --hc-cc-green:           #10b981;
+      --hc-cc-red:             #ef4444;
+      --hc-cc-font-mono:       'Courier New', Courier, monospace;
+      --hc-cc-font-display:    Georgia, 'Times New Roman', serif;
+      --hc-cc-radius:          16px;
+    }
+
+    /* ─── Section ───────────────────────────────────────────── */
+    .hc-comfort-comp-section {
+      background-color: var(--hc-cc-bg);
+      color: var(--hc-cc-text-white);
+      padding: 96px 0;
+      border-bottom: 1px solid var(--hc-cc-border);
+      animation: hc-cc-fade-up 0.6s ease both;
+    }
+
+    @keyframes hc-cc-fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Container ─────────────────────────────────────────── */
+    .hc-comfort-comp-container {
+      padding: 0 24px;
+      max-width: 1400px;
+      margin: 0 auto 96px auto;
+    }
+
+    /* ─── Heading block ─────────────────────────────────────── */
+    .hc-comfort-comp-heading {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .hc-comfort-comp-label {
+      display: block;
+      font-family: var(--hc-cc-font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--hc-cc-accent);
+      margin-bottom: 16px;
+    }
+
+    .hc-comfort-comp-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--hc-cc-text-white);
+      line-height: 1.1;
+    }
+
+    /* ─── Cards list ─────────────────────────────────────────── */
+    .hc-comfort-comp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* ─── Card ───────────────────────────────────────────────── */
+    .hc-comfort-comp-card {
+      background-color: var(--hc-cc-card-bg);
+      border: 1px solid var(--hc-cc-border);
+      border-radius: var(--hc-cc-radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── Card header ────────────────────────────────────────── */
+    .hc-comfort-comp-card-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--hc-cc-border);
+      background-color: var(--hc-cc-card-header-bg);
+    }
+
+    .hc-comfort-comp-card-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--hc-cc-text-white);
+      margin-bottom: 8px;
+    }
+
+    .hc-comfort-comp-card-tagline {
+      font-family: var(--hc-cc-font-mono);
+      font-size: 13px;
+      color: var(--hc-cc-text-gray);
+    }
+
+    /* ─── Card body grid ─────────────────────────────────────── */
+    .hc-comfort-comp-card-body {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1024px) {
+      .hc-comfort-comp-card-body {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    /* ─── Card columns ───────────────────────────────────────── */
+    .hc-comfort-comp-col {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--hc-cc-border);
+    }
+
+    @media (min-width: 1024px) {
+      .hc-comfort-comp-col {
+        border-bottom: none;
+        border-right: 1px solid var(--hc-cc-border);
+      }
+      .hc-comfort-comp-col:last-child {
+        border-right: none;
+      }
+    }
+
+    /* vs column special treatment */
+    .hc-comfort-comp-col--vs {
+      background-color: var(--hc-cc-accent-dim);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      border-bottom: none;
+    }
+
+    /* ─── Column sub-heading ─────────────────────────────────── */
+    .hc-comfort-comp-col-label {
+      font-family: var(--hc-cc-font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hc-comfort-comp-col-label--pros { color: var(--hc-cc-green); }
+    .hc-comfort-comp-col-label--cons { color: var(--hc-cc-red); }
+    .hc-comfort-comp-col-label--vs   { color: var(--hc-cc-accent); font-weight: 700; }
+    .hc-comfort-comp-col-label--when { color: var(--hc-cc-text-gray); font-weight: 700; }
+
+    .hc-comfort-comp-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hc-comfort-comp-dot--green { background-color: var(--hc-cc-green); }
+    .hc-comfort-comp-dot--red   { background-color: var(--hc-cc-red); }
+
+    /* ─── Feature list ───────────────────────────────────────── */
+    .hc-comfort-comp-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hc-comfort-comp-feature-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--hc-cc-text-white);
+      margin-bottom: 4px;
+    }
+
+    .hc-comfort-comp-feature-desc {
+      font-size: 13px;
+      color: var(--hc-cc-text-gray);
+      line-height: 1.6;
+    }
+
+    /* ─── VS quote ───────────────────────────────────────────── */
+    .hc-comfort-comp-vs-quote {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--hc-cc-text-white);
+      line-height: 1.7;
+    }
+
+    /* ─── VS divider block ───────────────────────────────────── */
+    .hc-comfort-comp-vs-when {
+      padding-top: 24px;
+      border-top: 1px solid var(--hc-cc-accent-border);
+    }
+
+    .hc-comfort-comp-vs-when-text {
+      font-size: 13px;
+      color: var(--hc-cc-text-light);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<section class="hc-comfort-comp-section" id="compare">
+  <div class="hc-comfort-comp-container">
+
+    <!-- Heading -->
+    <div class="hc-comfort-comp-heading">
+      <span class="hc-comfort-comp-label">Competitor Analysis</span>
+      <h2 class="hc-comfort-comp-title">How We Stack Up</h2>
+    </div>
+
+    <!-- Cards -->
+    <div class="hc-comfort-comp-list">
+
+      <!-- ── Card 1: Cotton ── -->
+      <article class="hc-comfort-comp-card">
+        <div class="hc-comfort-comp-card-header">
+          <h3 class="hc-comfort-comp-card-name">Standard Cotton Comforter</h3>
+          <p class="hc-comfort-comp-card-tagline">The Reliable Quilt.</p>
+        </div>
+        <div class="hc-comfort-comp-card-body">
+          <!-- Pros -->
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--pros">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--green"></span>Pros
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">Natural Weight</span>
+                <span class="hc-comfort-comp-feature-desc">Provides that classic, comforting "heaviness" that many people find essential for falling asleep.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Machine-Friendly</span>
+                <span class="hc-comfort-comp-feature-desc">Generally easy to toss in a large washer and dryer without needing special care.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">High Breathability</span>
+                <span class="hc-comfort-comp-feature-desc">A solid natural option that allows for decent airflow compared to synthetics.</span>
+              </li>
+            </ul>
+          </div>
+          <!-- Cons -->
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--cons">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--red"></span>Cons
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">The "Musty" Factor</span>
+                <span class="hc-comfort-comp-feature-desc">Cotton is a hollow fiber that loves to trap moisture and skin cells, which can lead to a "stale" smell if not washed frequently.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">The Dust Mite Magnet</span>
+                <span class="hc-comfort-comp-feature-desc">Without a mineral shield, cotton is a prime real estate market for dust mites and allergens.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Clumpy Fill</span>
+                <span class="hc-comfort-comp-feature-desc">Over time, cotton fill tends to shift and clump, leaving you with "cold spots" in the middle of the night.</span>
+              </li>
+            </ul>
+          </div>
+          <!-- VS -->
+          <div class="hc-comfort-comp-col hc-comfort-comp-col--vs">
+            <div>
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--vs">VS. Jax Comforter – The First Comforter Engineered For Men</p>
+              <p class="hc-comfort-comp-vs-quote">"Cotton is a classic, but it's a bit of a 'scent sponge.' It soaks up everything and eventually starts to smell like, well... you. The Jax Comforter uses volcanic ash and coconut charcoal fibers to actively neutralize odors and moisture. It's the difference between a blanket that just sits there and one that actually works to keep your sleep environment clean and fresh."</p>
+            </div>
+            <div class="hc-comfort-comp-vs-when">
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--when">When to choose over Jax Comforter</p>
+              <p class="hc-comfort-comp-vs-when-text">When you really crave that heavy, old-school quilt feeling and don't mind the "musty" smell that comes with a few weeks of skipped laundry.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 2: Polyester ── -->
+      <article class="hc-comfort-comp-card">
+        <div class="hc-comfort-comp-card-header">
+          <h3 class="hc-comfort-comp-card-name">Polyester (Down Alternative) Comforter</h3>
+          <p class="hc-comfort-comp-card-tagline">The "Marshmallow" Synthetic.</p>
+        </div>
+        <div class="hc-comfort-comp-card-body">
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--pros">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--green"></span>Pros
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">Extreme Loft</span>
+                <span class="hc-comfort-comp-feature-desc">If you want that "giant puffy cloud" look for your bed, polyester down-alternative is the undisputed king.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Inexpensive</span>
+                <span class="hc-comfort-comp-feature-desc">The most affordable way to get a thick, fluffy comforter.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Hypoallergenic (Initially)</span>
+                <span class="hc-comfort-comp-feature-desc">Since it's synthetic, it doesn't have the dander issues of real down.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--cons">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--red"></span>Cons
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">The Sweat Trap</span>
+                <span class="hc-comfort-comp-feature-desc">Polyester is essentially plastic; it doesn't breathe, meaning it reflects your body heat back at you until you wake up in a puddle.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">The "Permastink"</span>
+                <span class="hc-comfort-comp-feature-desc">Body oils bond to these synthetic fibers, creating a scent that eventually becomes impossible to wash out.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Static King</span>
+                <span class="hc-comfort-comp-feature-desc">Prone to building up static electricity, which can be an annoying "shock" in dry winter months.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col hc-comfort-comp-col--vs">
+            <div>
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--vs">VS. Jax Comforter – The First Comforter Engineered For Men</p>
+              <p class="hc-comfort-comp-vs-quote">"Polyester is like sleeping under a cloud made of plastic bags—it's fluffy, but it's a total sweat trap. Jax is the polar opposite. It's sleek, cooling, and breathable. We used minerals and metals to ensure it stays self-cleaning and anti-odor, so you get that 'fresh bed' feeling without the midnight sauna session."</p>
+            </div>
+            <div class="hc-comfort-comp-vs-when">
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--when">When to choose over Jax Comforter</p>
+              <p class="hc-comfort-comp-vs-when-text">When you specifically want that 'overstuffed' marshmallow aesthetic for your bedroom and you happen to sleep in a very cold room where breathability isn't a priority.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 3: Viscose/Bamboo ── -->
+      <article class="hc-comfort-comp-card">
+        <div class="hc-comfort-comp-card-header">
+          <h3 class="hc-comfort-comp-card-name">Standard Viscose (Bamboo/Rayon) Comforter</h3>
+          <p class="hc-comfort-comp-card-tagline">The Silky "Standard" Cooling Blanket.</p>
+        </div>
+        <div class="hc-comfort-comp-card-body">
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--pros">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--green"></span>Pros
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">Silky Smooth</span>
+                <span class="hc-comfort-comp-feature-desc">Offers a beautiful, liquid-like drape that feels incredible against the skin.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Naturally Cooling</span>
+                <span class="hc-comfort-comp-feature-desc">The fibers are naturally cool to the touch and better at moving moisture than cotton.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--cons">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--red"></span>Cons
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">No "Brain"</span>
+                <span class="hc-comfort-comp-feature-desc">Standard viscose is just a soft fiber; it has no active way to fight off the bacteria or odors that naturally build up in a bed.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Fragile Longevity</span>
+                <span class="hc-comfort-comp-feature-desc">Can become limp or lose its structure after a few trips through the wash.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col hc-comfort-comp-col--vs">
+            <div>
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--vs">VS. Jax Comforter – The First Comforter Engineered For Men</p>
+              <p class="hc-comfort-comp-vs-quote">"Standard bamboo is a great start, but it's 'dumb' tech. We took that silky-soft base and gave it a high-tech upgrade. By infusing the fibers with coconut charcoal and FIR (Far Infrared) minerals, the Jax Comforter doesn't just feel cool—it actively aids in thermal regulation and keeps itself self-cleaning. It's the 'best sleep a man can get' because the tech is doing the heavy lifting while you rest."</p>
+            </div>
+            <div class="hc-comfort-comp-vs-when">
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--when">When to choose over Jax Comforter</p>
+              <p class="hc-comfort-comp-vs-when-text">When you want a basic silky feel on a budget and you're fine with a blanket that has zero active odor-fighting technology.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 4: Silk ── -->
+      <article class="hc-comfort-comp-card">
+        <div class="hc-comfort-comp-card-header">
+          <h3 class="hc-comfort-comp-card-name">Silk-Filled Comforter</h3>
+          <p class="hc-comfort-comp-card-tagline">The Elite Natural Luxury.</p>
+        </div>
+        <div class="hc-comfort-comp-card-body">
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--pros">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--green"></span>Pros
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">Smart Thermostat</span>
+                <span class="hc-comfort-comp-feature-desc">Silk is incredibly good at regulating temperature, keeping you warm in winter and cool in summer.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Naturally Hypoallergenic</span>
+                <span class="hc-comfort-comp-feature-desc">Silk contains sericin, a protein that naturally repels dust mites and mold.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Whisper-Light</span>
+                <span class="hc-comfort-comp-feature-desc">Provides a decent amount of warmth without feeling heavy or restrictive.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--cons">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--red"></span>Cons
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">Maintenance Nightmare</span>
+                <span class="hc-comfort-comp-feature-desc">You generally cannot wash a silk-filled comforter at home; it requires professional cleaning or very careful spot-treating.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Super Expensive</span>
+                <span class="hc-comfort-comp-feature-desc">Easily the most expensive option on the market, often costing 3–4× more than high-end alternatives.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Very Thin Profile</span>
+                <span class="hc-comfort-comp-feature-desc">Like Jax, silk is not "fluffy," which can be a disappointment if you're looking for a puffy bed.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col hc-comfort-comp-col--vs">
+            <div>
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--vs">VS. Jax Comforter – The First Comforter Engineered For Men</p>
+              <p class="hc-comfort-comp-vs-quote">"Silk is elite, but it's high-stress. One spill and you're looking at a $100 dry-cleaning bill. Jax gives you that same temperature-regulating, silky-smooth luxury but with self-cleaning mineral tech that makes it durable for real life. It's the performance of silk with the 'invincibility' of advanced material science."</p>
+            </div>
+            <div class="hc-comfort-comp-vs-when">
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--when">When to choose over Jax Comforter</p>
+              <p class="hc-comfort-comp-vs-when-text">When you have a massive budget, no pets, and a dedicated dry cleaner on speed dial.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 5: Down ── -->
+      <article class="hc-comfort-comp-card">
+        <div class="hc-comfort-comp-card-header">
+          <h3 class="hc-comfort-comp-card-name">Down Comforter</h3>
+          <p class="hc-comfort-comp-card-tagline">The "Cloud" Standard.</p>
+        </div>
+        <div class="hc-comfort-comp-card-body">
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--pros">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--green"></span>Pros
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">Unmatched Loft</span>
+                <span class="hc-comfort-comp-feature-desc">If you want that "sleeping under a giant marshmallow" look, nothing beats the natural fluffiness and "bounce" of high-quality down.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Incredible Warmth-to-Weight</span>
+                <span class="hc-comfort-comp-feature-desc">It provides massive amounts of warmth without feeling like a heavy lead blanket, making it a favorite for cold climates.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Natural Longevity</span>
+                <span class="hc-comfort-comp-feature-desc">If cared for properly, a high-end down comforter can literally last for decades while maintaining its "poof."</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col">
+            <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--cons">
+              <span class="hc-comfort-comp-dot hc-comfort-comp-dot--red"></span>Cons
+            </p>
+            <ul class="hc-comfort-comp-features">
+              <li>
+                <span class="hc-comfort-comp-feature-title">The "Allergy" Trap</span>
+                <span class="hc-comfort-comp-feature-desc">Down is a natural magnet for dust mites and dander; if you have sensitive sinuses, it can lead to a stuffy nose by morning.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Maintenance Intensity</span>
+                <span class="hc-comfort-comp-feature-desc">You can't just "wash" down; it requires professional cleaning or a very stressful home-drying process to prevent clumping and that "wet bird" smell.</span>
+              </li>
+              <li>
+                <span class="hc-comfort-comp-feature-title">Feather Leaks</span>
+                <span class="hc-comfort-comp-feature-desc">Over time, those tiny sharp quills will eventually find a way through the fabric and poke you in the middle of the night.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-comfort-comp-col hc-comfort-comp-col--vs">
+            <div>
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--vs">VS. Jax Comforter – The First Comforter Engineered For Men</p>
+              <p class="hc-comfort-comp-vs-quote">"Down is the undisputed king of 'fluff,' but it's high-maintenance and can be a nightmare for allergies. Jax takes a different approach. Instead of just trapping air, we use mineral-infused fibers, volcanic ash, and coconut charcoal to manage your body's temperature and keep the bed self-cleaning. It's the difference between sleeping under a pile of feathers and sleeping under a high-performance recovery system that stays anti-odor and fresh for weeks."</p>
+            </div>
+            <div class="hc-comfort-comp-vs-when">
+              <p class="hc-comfort-comp-col-label hc-comfort-comp-col-label--when">When to choose over Jax Comforter</p>
+              <p class="hc-comfort-comp-vs-when-text">When your #1 priority is that 'overstuffed cloud' look for your bed and you live in an environment so cold that you need maximum natural insulation.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /.hc-comfort-comp-list -->
+  </div><!-- /.hc-comfort-comp-container -->
+</section>
+
+</body>
+</html>

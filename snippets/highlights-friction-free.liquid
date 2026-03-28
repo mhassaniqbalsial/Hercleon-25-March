@@ -1,0 +1,383 @@
+{% comment %}
+  Highlights — Friction-Free Hair Care (dolphin-smooth texture)
+{% endcomment %}
+
+{%- liquid
+  assign ff_bg          = block.settings.bg_color | default: '#000000'
+  assign ff_text        = block.settings.text_color | default: '#ffffff'
+  assign ff_accent      = block.settings.accent_color | default: '#B45309'
+  assign ff_desc        = block.settings.desc_color | default: '#9ca3af'
+  assign ff_border      = block.settings.border_color | default: '#1f2937'
+  assign ff_card_bg     = block.settings.card_bg_color | default: '#000000'
+  assign ff_card_border = block.settings.card_border_color | default: '#1f2937'
+  assign is_reversed    = block.settings.reverse_layout
+  assign ff_section_id  = block.settings.section_id | default: 'friction-free' | handleize
+-%}
+
+{%- style -%}
+  .hc-frfree {
+    --ff-bg: {{ ff_bg }};
+    --ff-text: {{ ff_text }};
+    --ff-accent: {{ ff_accent }};
+    --ff-desc: {{ ff_desc }};
+    --ff-border: {{ ff_border }};
+    --ff-card-bg: {{ ff_card_bg }};
+    --ff-card-border: {{ ff_card_border }};
+
+    background-color: var(--ff-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-frfree__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-frfree__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--ff-text);
+    order: 1;
+    border-bottom: 1px solid var(--ff-border);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hc-frfree__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--ff-bg);
+    order: 2;
+  }
+
+  .hc-frfree__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ff-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-frfree__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--ff-text);
+  }
+
+  .hc-frfree__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--ff-desc);
+    white-space: pre-line;
+  }
+
+  .hc-frfree__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  /* Visual card */
+  .hc-frfree__visual-inner {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hc-frfree__card {
+    background-color: var(--ff-card-bg);
+    padding: 2rem;
+    border: 1px solid var(--ff-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--ff-text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Comparison panels */
+  .hc-frfree__panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .hc-frfree__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hc-frfree__panel-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hc-frfree__panel-label--std  { color: #6b7280; }
+  .hc-frfree__panel-label--jax  { color: var(--ff-accent); }
+
+  /* Preview boxes */
+  .hc-frfree__preview {
+    width: 100%;
+    height: 12rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hc-frfree__preview--std {
+    background-color: #111827;
+    border: 1px solid #374151;
+  }
+
+  .hc-frfree__preview--jax {
+    background-color: #030712;
+    border: 1px solid;
+    border-color: color-mix(in srgb, var(--ff-accent) 30%, transparent);
+  }
+
+  /* Horizontal line */
+  .hc-frfree__h-line {
+    display: flex !important;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transform: translateY(-50%);
+  }
+
+  .hc-frfree__h-line--std {
+    background-color: #374151;
+  }
+
+  .hc-frfree__h-line--jax {
+    background-color: var(--ff-accent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--ff-accent) 50%, transparent);
+  }
+
+  /* Friction ticks (standard fabric) */
+  .hc-frfree__tick {
+    display: flex !important;
+    position: absolute;
+    width: 4px;
+    height: 12px;
+    background-color: #374151;
+    transform: rotate(45deg);
+  }
+
+  /* Badge (center overlay) */
+  .hc-frfree__badge {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hc-frfree__badge-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .hc-frfree__badge-text--std { color: #f87171; }
+  .hc-frfree__badge-text--jax { color: var(--ff-accent); }
+
+  .hc-frfree__badge-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-frfree__badge-icon--std {
+    background-color: rgba(248, 113, 113, 0.2);
+    color: #f87171;
+  }
+
+  .hc-frfree__badge-icon--jax {
+    background-color: color-mix(in srgb, var(--ff-accent) 20%, transparent);
+    color: var(--ff-accent);
+  }
+
+  .hc-frfree__panel-bottom {
+    margin-top: 1rem;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hc-frfree__panel-bottom--std { color: #f87171; }
+  .hc-frfree__panel-bottom--jax { color: var(--ff-accent); }
+
+  /* Footer caption */
+  .hc-frfree__footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .hc-frfree__footer-text {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #4b5563;
+  }
+
+  @media (min-width: 768px) {
+    .hc-frfree__text-col {
+      padding: 6rem;
+    }
+
+    .hc-frfree__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-frfree__heading {
+      font-size: 3rem;
+    }
+
+    .hc-frfree__card {
+      padding: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-frfree__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-frfree__text-col {
+      border-bottom: none;
+    }
+
+    .hc-frfree__grid--default .hc-frfree__text-col {
+      order: 1;
+      border-right: 1px solid var(--ff-border);
+    }
+
+    .hc-frfree__grid--default .hc-frfree__visual-col {
+      order: 2;
+    }
+
+    .hc-frfree__grid--reversed .hc-frfree__text-col {
+      order: 2;
+      border-left: 1px solid var(--ff-border);
+    }
+
+    .hc-frfree__grid--reversed .hc-frfree__visual-col {
+      order: 1;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ ff_section_id }}"
+  class="hc-frfree{% if block.settings.enable_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-frfree__grid {% if is_reversed %}hc-frfree__grid--reversed{% else %}hc-frfree__grid--default{% endif %}">
+
+    <div class="hc-frfree__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-frfree__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-frfree__heading">{{ block.settings.heading | default: 'Friction-Free Hair Care' }}</h3>
+
+      <div class="hc-frfree__desc">{{ block.settings.description }}</div>
+    </div>
+
+    <div class="hc-frfree__visual-col">
+      <div class="hc-frfree__visual-inner">
+        <div class="hc-frfree__card">
+
+          <div class="hc-frfree__panels">
+
+            {{- '<!-- Standard Fabric panel -->' -}}
+            <div class="hc-frfree__panel">
+              <span class="hc-frfree__panel-label hc-frfree__panel-label--std">{{ block.settings.std_label | default: 'Standard Fabric' }}</span>
+              <div class="hc-frfree__preview hc-frfree__preview--std">
+                <div class="hc-frfree__h-line hc-frfree__h-line--std" aria-hidden="true"></div>
+                {%- assign tick_lefts = '0,10,20,30,40,50,60,70,80,90' | split: ',' -%}
+                {%- assign tick_tops  = '45,52,45,52,45,52,45,52,45,52' | split: ',' -%}
+                {%- for tick in tick_lefts -%}
+                  <div
+                    class="hc-frfree__tick"
+                    style="left:{{ tick }}%;top:{{ tick_tops[forloop.index0] }}%;"
+                    aria-hidden="true"
+                  ></div>
+                {%- endfor -%}
+                <div class="hc-frfree__badge">
+                  <span class="hc-frfree__badge-text hc-frfree__badge-text--std">{{ block.settings.std_badge | default: 'FRICTION' }}</span>
+                  <div class="hc-frfree__badge-icon hc-frfree__badge-icon--std" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path>
+                      <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path>
+                      <path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <span class="hc-frfree__panel-bottom hc-frfree__panel-bottom--std">{{ block.settings.std_bottom_label | default: 'Micro-Tears' }}</span>
+            </div>
+
+            {{- '<!-- Jax Fabric panel -->' -}}
+            <div class="hc-frfree__panel">
+              <span class="hc-frfree__panel-label hc-frfree__panel-label--jax">{{ block.settings.jax_label | default: 'Jax Fabric' }}</span>
+              <div class="hc-frfree__preview hc-frfree__preview--jax">
+                <div class="hc-frfree__h-line hc-frfree__h-line--jax" aria-hidden="true"></div>
+                <div class="hc-frfree__badge">
+                  <span class="hc-frfree__badge-text hc-frfree__badge-text--jax">{{ block.settings.jax_badge | default: 'SMOOTH' }}</span>
+                  <div class="hc-frfree__badge-icon hc-frfree__badge-icon--jax" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z"></path>
+                      <path d="M16 8 2 22"></path>
+                      <path d="M17.5 15H9"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <span class="hc-frfree__panel-bottom hc-frfree__panel-bottom--jax">{{ block.settings.jax_bottom_label | default: 'Friction-Free' }}</span>
+            </div>
+
+          </div>
+
+          {%- if block.settings.footer_caption != blank -%}
+            <div class="hc-frfree__footer">
+              <p class="hc-frfree__footer-text">{{ block.settings.footer_caption }}</p>
+            </div>
+          {%- endif -%}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

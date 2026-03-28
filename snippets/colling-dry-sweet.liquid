@@ -465,6 +465,12 @@
     }
   }
 
+  @media (max-width: 479px) {
+    .hc-dry-sweet__tooltip {
+      width: 240px;
+    }
+  }
+
   @media (min-width: 1024px) {
     .hc-dry-sweet__grid {
       grid-template-columns: 1fr 1fr;
@@ -579,99 +585,3 @@
   </div>
 </section>
 
-{%- liquid
-  assign ds_tt_js = false
-  if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank
-    assign ds_tt_js = true
-  endif
-  if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank
-    assign ds_tt_js = true
-  endif
-  if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank
-    assign ds_tt_js = true
-  endif
--%}
-
-{%- if ds_tt_js -%}
-  {%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
-    <template id="hc-dry-sweet-tooltip-template-1">
-      <span class="hc-dry-sweet__tooltip">
-        <span class="hc-dry-sweet__tooltip-box">
-          <span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_1_content }}</span>
-          <span class="hc-dry-sweet__tooltip-arrow"></span>
-        </span>
-      </span>
-    </template>
-  {%- endif -%}
-  {%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
-    <template id="hc-dry-sweet-tooltip-template-2">
-      <span class="hc-dry-sweet__tooltip">
-        <span class="hc-dry-sweet__tooltip-box">
-          <span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_2_content }}</span>
-          <span class="hc-dry-sweet__tooltip-arrow"></span>
-        </span>
-      </span>
-    </template>
-  {%- endif -%}
-  {%- if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank -%}
-    <template id="hc-dry-sweet-tooltip-template-3">
-      <span class="hc-dry-sweet__tooltip">
-        <span class="hc-dry-sweet__tooltip-box">
-          <span class="hc-dry-sweet__tooltip-content">{{ block.settings.tooltip_3_content }}</span>
-          <span class="hc-dry-sweet__tooltip-arrow"></span>
-        </span>
-      </span>
-    </template>
-  {%- endif -%}
-
-  <script>
-    (function () {
-      function initHcDrySweetTooltips() {
-        var section = document.getElementById('dry-sleep-system');
-        if (!section) return;
-        var descEl = section.querySelector('.hc-dry-sweet__desc');
-        if (!descEl) return;
-
-        var configs = [];
-        {%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
-          configs.push({
-            trigger: {{ block.settings.tooltip_1_trigger | json }},
-            templateId: 'hc-dry-sweet-tooltip-template-1'
-          });
-        {%- endif -%}
-        {%- if block.settings.tooltip_2_trigger != blank and block.settings.tooltip_2_content != blank -%}
-          configs.push({
-            trigger: {{ block.settings.tooltip_2_trigger | json }},
-            templateId: 'hc-dry-sweet-tooltip-template-2'
-          });
-        {%- endif -%}
-        {%- if block.settings.tooltip_3_trigger != blank and block.settings.tooltip_3_content != blank -%}
-          configs.push({
-            trigger: {{ block.settings.tooltip_3_trigger | json }},
-            templateId: 'hc-dry-sweet-tooltip-template-3'
-          });
-        {%- endif -%}
-
-        configs.forEach(function (cfg) {
-          descEl.querySelectorAll('strong').forEach(function (el) {
-            if (el.textContent.trim().toLowerCase() !== String(cfg.trigger).trim().toLowerCase()) return;
-            if (el.closest('.hc-dry-sweet__tooltip-trigger')) return;
-            var wrapper = document.createElement('span');
-            wrapper.className = 'hc-dry-sweet__tooltip-trigger';
-            el.parentNode.insertBefore(wrapper, el);
-            wrapper.appendChild(el);
-            var tmpl = document.getElementById(cfg.templateId);
-            if (tmpl) wrapper.appendChild(tmpl.content.cloneNode(true));
-          });
-        });
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHcDrySweetTooltips);
-      } else {
-        initHcDrySweetTooltips();
-      }
-      document.addEventListener('shopify:section:load', initHcDrySweetTooltips);
-    })();
-  </script>
-{%- endif -%}

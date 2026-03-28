@@ -1,0 +1,390 @@
+{% comment %}
+  Highlights — Natural Purification (molecular odor shield)
+{% endcomment %}
+
+{%- liquid
+  assign np_bg          = block.settings.bg_color | default: '#000000'
+  assign np_text        = block.settings.text_color | default: '#ffffff'
+  assign np_accent      = block.settings.accent_color | default: '#B45309'
+  assign np_desc        = block.settings.desc_color | default: '#9ca3af'
+  assign np_border      = block.settings.border_color | default: '#1f2937'
+  assign np_card_bg     = block.settings.card_bg_color | default: '#000000'
+  assign np_card_border = block.settings.card_border_color | default: '#1f2937'
+  assign is_reversed    = block.settings.reverse_layout
+  assign np_section_id  = block.settings.section_id | default: 'natural-purification' | handleize
+  assign np_desc_html   = block.settings.description
+-%}
+
+{%- if block.settings.tooltip_1_trigger != blank and block.settings.tooltip_1_content != blank -%}
+  {%- assign np_t1 = '<strong>' | append: block.settings.tooltip_1_trigger | append: '</strong>' -%}
+  {%- capture np_w1 -%}<span class="hc-natpure-tooltip-trigger"><strong>{{ block.settings.tooltip_1_trigger }}</strong><span class="hc-natpure-tooltip"><span class="hc-natpure-tooltip-box"><span class="hc-natpure-tooltip-content">{{ block.settings.tooltip_1_content | replace: '<p>', '<span class="hc-natpure-tooltip-p">' | replace: '</p>', '</span>' }}</span><span class="hc-natpure-tooltip-arrow"></span></span></span></span>{%- endcapture -%}
+  {%- assign np_desc_html = np_desc_html | replace: np_t1, np_w1 -%}
+{%- endif -%}
+
+{%- style -%}
+  @keyframes hc-natpure-spin-slow {
+    to { transform: rotate(360deg); }
+  }
+
+  .hc-natpure {
+    --np-bg: {{ np_bg }};
+    --np-text: {{ np_text }};
+    --np-accent: {{ np_accent }};
+    --np-desc: {{ np_desc }};
+    --np-border: {{ np_border }};
+    --np-card-bg: {{ np_card_bg }};
+    --np-card-border: {{ np_card_border }};
+
+    background-color: var(--np-bg);
+    border-bottom: 1px solid #000;
+    overflow: visible;
+  }
+
+  .hc-natpure__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 60vh;
+  }
+
+  .hc-natpure__text-col {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--np-text);
+    order: 1;
+    border-bottom: 1px solid var(--np-border);
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+  }
+
+  .hc-natpure__visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    background-color: var(--np-bg);
+    order: 2;
+  }
+
+  .hc-natpure__tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--np-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hc-natpure__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--np-text);
+  }
+
+  .hc-natpure__desc {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 32rem;
+    color: var(--np-desc);
+    white-space: pre-line;
+    overflow: visible;
+  }
+
+  .hc-natpure__desc p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    white-space: inherit;
+  }
+
+  /* Tooltip */
+  .hc-natpure-tooltip-trigger {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .hc-natpure-tooltip-trigger strong {
+    font-weight: 700;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+    transition: color 0.3s;
+  }
+
+  .hc-natpure-tooltip-trigger:hover strong {
+    color: var(--np-accent);
+  }
+
+  .hc-natpure-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    width: 320px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .hc-natpure-tooltip-trigger:hover .hc-natpure-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hc-natpure-tooltip-box {
+    background-color: #fff;
+    color: #000;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #000;
+    position: relative;
+    display: block;
+  }
+
+  .hc-natpure-tooltip-content {
+    display: block;
+    font-family: var(--font-body-family, var(--font-heading-family, ui-sans-serif, system-ui, sans-serif));
+  }
+
+  .hc-natpure-tooltip-p {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0 0 1rem;
+    color: #111;
+  }
+
+  .hc-natpure-tooltip-p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hc-natpure-tooltip-p strong {
+    display: block;
+    font-family: var(--font-heading-family, inherit);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--np-accent);
+    border-bottom: none;
+    cursor: default;
+  }
+
+  .hc-natpure-tooltip-p strong:hover {
+    color: var(--np-accent);
+  }
+
+  .hc-natpure-tooltip-arrow {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+
+  /* Visual card */
+  .hc-natpure__card {
+    background-color: var(--np-card-bg);
+    padding: 2rem;
+    border: 1px solid var(--np-card-border);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--np-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hc-natpure__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hc-natpure__circle {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 2px solid var(--np-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .hc-natpure__ring {
+    position: absolute;
+    inset: 0.5rem;
+    border-radius: 50%;
+    border: 1px dashed;
+    border-color: color-mix(in srgb, var(--np-accent) 30%, transparent);
+    animation: hc-natpure-spin-slow 8s linear infinite;
+  }
+
+  .hc-natpure__wind-icon {
+    width: 3rem;
+    height: 3rem;
+    color: var(--np-accent);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hc-natpure__stat-number {
+    font-size: 1.875rem;
+    font-weight: 700;
+    font-family: var(--font-heading-family, inherit);
+    color: var(--np-text);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .hc-natpure__stat-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--np-accent);
+  }
+
+  @media (max-width: 479px) {
+    .hc-natpure-tooltip {
+      width: 240px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hc-natpure__text-col {
+      padding: 6rem;
+    }
+
+    .hc-natpure__visual-col {
+      padding: 3rem;
+    }
+
+    .hc-natpure__heading {
+      font-size: 3rem;
+    }
+
+    .hc-natpure__card {
+      padding: 4rem;
+    }
+
+    .hc-natpure__circle {
+      width: 10rem;
+      height: 10rem;
+    }
+
+    .hc-natpure__wind-icon {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .hc-natpure__stat-number {
+      font-size: 2.25rem;
+    }
+
+    .hc-natpure-tooltip {
+      width: 450px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hc-natpure__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-natpure__text-col {
+      border-bottom: none;
+    }
+
+    .hc-natpure__grid--default .hc-natpure__text-col {
+      order: 1;
+      border-right: 1px solid var(--np-border);
+    }
+
+    .hc-natpure__grid--default .hc-natpure__visual-col {
+      order: 2;
+    }
+
+    .hc-natpure__grid--reversed .hc-natpure__text-col {
+      order: 2;
+      border-left: 1px solid var(--np-border);
+    }
+
+    .hc-natpure__grid--reversed .hc-natpure__visual-col {
+      order: 1;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ np_section_id }}"
+  class="hc-natpure{% if block.settings.enable_animation %} animate-fade-in-up{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="hc-natpure__grid {% if is_reversed %}hc-natpure__grid--reversed{% else %}hc-natpure__grid--default{% endif %}">
+
+    <div class="hc-natpure__text-col">
+      {%- if block.settings.tag != blank -%}
+        <span class="hc-natpure__tag">{{ block.settings.tag }}</span>
+      {%- endif -%}
+
+      <h3 class="hc-natpure__heading">{{ block.settings.heading | default: 'Natural Purification Technology' }}</h3>
+
+      <div class="hc-natpure__desc">{{ np_desc_html }}</div>
+    </div>
+
+    <div class="hc-natpure__visual-col">
+      <div class="hc-natpure__card">
+        <div class="hc-natpure__card-inner">
+
+          <div class="hc-natpure__circle">
+            <div class="hc-natpure__ring" aria-hidden="true"></div>
+            <svg
+              class="hc-natpure__wind-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path>
+              <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path>
+              <path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path>
+            </svg>
+          </div>
+
+          <p class="hc-natpure__stat-number">{{ block.settings.stat_number | default: '99%' }}</p>
+          <p class="hc-natpure__stat-label">{{ block.settings.stat_label | default: 'Filtration Efficiency' }}</p>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
